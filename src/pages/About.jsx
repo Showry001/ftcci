@@ -17,7 +17,7 @@ export default function About() {
 
   return (
     <>
-      <PageHero crumb="Home > About" title="About Us" image="/assets/pages/about-hero.png" />
+      <PageHero crumb="Home > About" title="About Us" image={`${import.meta.env.BASE_URL}assets/pages/about-hero.png`} />
       <SubNav items={aboutSubNav} label="About sections" />
 
       {/* KPI strip */}

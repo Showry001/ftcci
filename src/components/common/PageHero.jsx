@@ -1,6 +1,6 @@
 import styles from "./PageHero.module.css";
 
-const DEFAULT_BG = "/assets/pages/about-hero.png";
+const DEFAULT_BG = `${import.meta.env.BASE_URL}assets/pages/about-hero.png`;
 
 // 461px banner used at the top of every inner page: photo + 84% navy tint, breadcrumb and title.
 export default function PageHero({ crumb, title, image = DEFAULT_BG }) {

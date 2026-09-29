@@ -1,4 +1,4 @@
-const a = (p) => `/assets/${p}`;
+const a = (p) => `${import.meta.env.BASE_URL}assets/${p}`;
 
 export const eventIcons = {
   calendar: a("events/icon-calendar-gold.svg"),

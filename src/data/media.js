@@ -1,6 +1,6 @@
 import { featuredNews, news } from "./content.js";
 
-const a = (p) => `/assets/${p}`;
+const a = (p) => `${import.meta.env.BASE_URL}assets/${p}`;
 
 export const mediaSubNav = [
   { label: "Press Coverage", href: "#press-coverage" },

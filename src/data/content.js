@@ -1,7 +1,7 @@
 // All copy and asset paths for the FTCCI home page, taken from the Figma file.
 // Assets live in /public/assets and are fetched from Figma by `npm run assets`.
 
-const a = (p) => `/assets/${p}`;
+const a = (p) => `${import.meta.env.BASE_URL}assets/${p}`;
 
 export const assets = {
   logo: a("header/logo.png"),

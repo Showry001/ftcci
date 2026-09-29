@@ -2,7 +2,7 @@ import { useState } from "react";
 import PageHero from "../components/common/PageHero.jsx";
 import styles from "./Contact.module.css";
 
-const a = (p) => `/assets/${p}`;
+const a = (p) => `${import.meta.env.BASE_URL}assets/${p}`;
 const icons = {
   chevron: a("contact/icon-chevron-down.svg"),
   send: a("contact/icon-send.svg"),
