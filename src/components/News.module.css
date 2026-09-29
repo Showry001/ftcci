@@ -1,0 +1,209 @@
+.section {
+  background: var(--gray-100);
+  padding: 60px 0;
+}
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 55.56px;
+  color: var(--ink-800);
+}
+.title span {
+  color: var(--gold-600);
+}
+.outline {
+  padding: 10.78px 21.57px;
+  border: 1.02px solid var(--navy-900);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 15.1px;
+  line-height: 21.57px;
+  color: var(--navy-900);
+  transition: background 0.15s, color 0.15s;
+}
+.outline:hover {
+  background: var(--navy-900);
+  color: var(--white);
+}
+.grid {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: 731.57fr 488fr;
+  gap: 20px;
+  align-items: center;
+}
+.featured {
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 421.3px;
+}
+.featuredMedia {
+  height: 259.85px;
+  overflow: hidden;
+}
+.featuredMedia img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease-out);
+}
+/* Figma Link 135:2474 hover: image eases in (~4%) */
+.featured:hover .featuredMedia img {
+  transform: scale(1.043);
+}
+.featuredBody {
+  padding: 20px;
+}
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.tag {
+  background: var(--navy-900);
+  border-radius: var(--radius-xs);
+  padding: 2.5px 10px;
+  font-family: var(--font-sf);
+  font-weight: 600;
+  font-size: 12.49px;
+  line-height: 18.74px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.date {
+  font-family: var(--font-sf);
+  font-size: 13.74px;
+  line-height: 20.61px;
+  letter-spacing: 0.08px;
+  color: var(--gray-500);
+}
+.featuredTitle {
+  padding-top: 10px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 19.99px;
+  line-height: 27.48px;
+  color: var(--gray-950);
+}
+.excerpt {
+  padding-top: 7.5px;
+  font-family: var(--font-sf);
+  font-size: 16.24px;
+  line-height: 26.39px;
+  letter-spacing: -0.1px;
+  color: var(--gray-600);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.item {
+  display: flex;
+  gap: 15px;
+  padding: 15px;
+  min-height: 129.92px;
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow var(--dur-hover) var(--ease-out), transform var(--dur-hover) var(--ease-out);
+}
+.item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+.featured {
+  transition: box-shadow var(--dur-hover) var(--ease-out);
+}
+.featured:hover {
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+}
+.thumb {
+  width: 99.94px;
+  height: 99.94px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+.itemBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+.itemBody .metaRow {
+  gap: 7.5px;
+  padding-bottom: 5px;
+}
+.tagSm {
+  padding: 2px 8px;
+  font-size: 10px;
+}
+.dateSm {
+  font-size: 12.49px;
+  line-height: 18.74px;
+  letter-spacing: 0.15px;
+}
+.itemTitle {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 22.33px;
+  color: var(--gray-900);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (max-width: 1199px) {
+  .title {
+    font-size: clamp(30px, 3.4vw, 42px);
+  }
+  .grid {
+    grid-template-columns: 1.5fr 1fr;
+  }
+  .featuredMedia {
+    height: auto;
+    aspect-ratio: 731.57 / 259.85;
+  }
+  .featured {
+    min-height: 0;
+  }
+  .featuredTitle {
+    font-size: 17px;
+    line-height: 1.4;
+  }
+  .excerpt {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .item {
+    min-height: 0;
+    padding: 10px;
+    gap: 10px;
+  }
+  .thumb {
+    width: 72px;
+    height: 72px;
+  }
+  .itemTitle {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+}

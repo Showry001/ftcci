@@ -1,0 +1,146 @@
+.section {
+  background: var(--gray-100);
+  padding: 65px 0;
+}
+.inner {
+  display: flex;
+  align-items: center;
+  gap: 78px;
+}
+.intro {
+  width: 303px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 58px;
+  color: var(--navy-900);
+  white-space: nowrap;
+}
+.title span {
+  color: var(--gold-600);
+}
+.body {
+  font-family: var(--font-segoe);
+  font-size: 16px;
+  line-height: 28px;
+  color: var(--gray-850);
+}
+.cards {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 275.3px));
+  gap: 16px;
+}
+.card {
+  background: var(--navy-900);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.raised {
+  box-shadow: 0 0 7.07px rgba(0, 0, 0, 0.2);
+}
+.photo {
+  width: 100%;
+  aspect-ratio: 275.88 / 172.73;
+  background: #d4cdc2;
+}
+/* Figma Container 143:2615 hover: portrait eases in (~7.5%) */
+.photo img {
+  transition: transform 0.5s var(--ease-out);
+}
+.card:hover .photo img {
+  transform: scale(1.075);
+}
+.caption {
+  padding: 6px 0 4.8px 9.6px;
+}
+.captionInner {
+  border-left: 0.96px solid #c9a84c;
+  padding: 14.39px 14.39px 14.39px 15.35px;
+  display: flex;
+  flex-direction: column;
+  gap: 6.6px;
+}
+.captionInner h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 16.97px;
+  line-height: 12px;
+  color: var(--white);
+  white-space: nowrap;
+}
+.captionInner p {
+  padding-top: 2.4px;
+  font-size: 9.19px;
+  line-height: 12px;
+  color: var(--white);
+}
+
+@media (max-width: 1199px) {
+  .inner {
+    gap: 32px;
+  }
+  .intro {
+    width: 26%;
+  }
+  .title {
+    font-size: clamp(26px, 3vw, 36px);
+    line-height: 1.4;
+    white-space: normal;
+  }
+  .body {
+    font-size: 14px;
+    line-height: 24px;
+  }
+  .captionInner h3 {
+    font-size: clamp(13px, 1.4vw, 16.97px);
+    line-height: 1.2;
+    white-space: normal;
+  }
+}
+
+/* Mobile leadership: stacked, full-width cards on a lavender band */
+@media (max-width: 767px) {
+  .section {
+    background: var(--surface-lavender-3);
+    padding: 60px 0;
+  }
+  .inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 28px;
+  }
+  .intro {
+    width: 100%;
+  }
+  .title {
+    font-size: 32px;
+    line-height: 58px;
+  }
+  .body {
+    font-size: 15px;
+    line-height: 26px;
+  }
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .photo {
+    aspect-ratio: 330 / 206.6;
+  }
+  .captionInner h3 {
+    font-size: 20px;
+    line-height: 16px;
+  }
+  .captionInner p {
+    font-size: 11px;
+  }
+}

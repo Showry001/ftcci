@@ -1,0 +1,152 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-hero);
+  min-height: 548.6px;
+  display: flex;
+  align-items: flex-end;
+  background: var(--navy-900);
+}
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: hero-settle 1.8s var(--ease-out) both;
+}
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+.content {
+  position: relative;
+  max-width: 547.5px;
+  padding: 0 50.84px 156.75px;
+  filter: drop-shadow(0 2px 9.5px rgba(0, 0, 0, 0.4));
+}
+.title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 57.02px;
+  color: var(--white);
+  width: 606.7px;
+  animation: hero-rise 0.9s var(--ease-out) 0.15s backwards;
+}
+.title span {
+  display: block;
+  color: var(--gold-hero-text);
+}
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 11.73px;
+  padding-top: 27.37px;
+  animation: hero-rise 0.9s var(--ease-out) 0.35s backwards;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5.87px;
+  padding: 11.73px 23.46px;
+  border-radius: 7.13px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13.2px;
+  line-height: 19.8px;
+  white-space: nowrap;
+  transition: background-color var(--dur-hover) var(--ease-figma), color var(--dur-hover) var(--ease-figma),
+    border-color var(--dur-hover) var(--ease-figma), box-shadow var(--dur-hover) var(--ease-figma);
+}
+.btn img {
+  transition: filter var(--dur-hover) var(--ease-figma);
+}
+.btnGold {
+  background: var(--gold-400);
+  color: var(--navy-950);
+}
+/* Figma Link 208:956 hover (Variant2): gold fill → 1px white outline, white label + arrow.
+   The outline is an inset shadow so the button keeps its size. */
+.btnGold:hover {
+  background: transparent;
+  color: var(--white);
+  box-shadow: inset 0 0 0 1px var(--white);
+}
+.btnGold:hover img {
+  filter: brightness(0) invert(1);
+}
+.btnNavy {
+  background: var(--navy-950);
+  color: var(--white);
+  border: 0.5px solid #bebebe;
+}
+/* Figma Link 208:964 hover (Variant2): navy → 20% white glass with a 55% white border */
+.btnNavy:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+  }
+}
+@keyframes hero-settle {
+  from {
+    transform: scale(1.06);
+  }
+}
+
+@media (max-width: 1199px) {
+  .hero {
+    min-height: clamp(360px, 44vw, 548px);
+  }
+  .content {
+    padding: 0 clamp(28px, 4vw, 50px) clamp(64px, 11vw, 156px);
+  }
+  .title {
+    font-size: clamp(30px, 3.6vw, 44px);
+    line-height: 1.3;
+    width: auto;
+  }
+}
+
+/* Mobile: full-bleed 390×643 hero, copy starting at y=310 */
+@media (max-width: 767px) {
+  .hero {
+    border-radius: 0;
+    min-height: 643px;
+    align-items: flex-start;
+  }
+  .content {
+    width: 100%;
+    max-width: none;
+    padding: 310px 25px 139px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .title {
+    padding: 10px;
+    font-size: 32px;
+    line-height: 42px;
+    width: 100%;
+  }
+  .title span {
+    display: inline;
+  }
+  .ctas {
+    padding: 0 0 0 8.7px;
+    gap: 10.9px;
+    flex-wrap: nowrap;
+  }
+  .btn {
+    gap: 5.45px;
+    padding: 10.9px 21.79px;
+    font-size: 12.26px;
+    line-height: 18.39px;
+  }
+}

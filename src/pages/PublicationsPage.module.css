@@ -1,0 +1,134 @@
+.page {
+  background: var(--surface-lavender-4);
+  padding: 70px 0;
+}
+.section {
+  scroll-margin-top: calc(var(--header-h) + var(--subnav-h) + 16px);
+}
+.section + .section {
+  margin-top: 70px;
+}
+.section h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 1.1;
+  color: var(--navy-900);
+}
+.grid {
+  margin-top: 41px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px 43px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--white);
+  border: 1px solid #d5d5d5;
+  border-radius: 11.33px;
+  overflow: hidden;
+  transition: background-color var(--dur-hover) var(--ease-figma), border-color var(--dur-hover) var(--ease-figma),
+    box-shadow var(--dur-hover) var(--ease-figma), transform var(--dur-hover) var(--ease-out);
+}
+/* Same hover language as the Figma publication cards (94:4458 / 567:3504) */
+.card:hover {
+  transform: translateY(-2px);
+  background: var(--navy-850);
+  border-color: var(--navy-850);
+  box-shadow: 0 8px 20px rgba(15, 28, 82, 0.18);
+}
+.cover img {
+  transition: transform 0.5s var(--ease-out);
+}
+.card:hover .cover img {
+  transform: scale(1.06);
+}
+.body time,
+.body strong {
+  transition: color var(--dur-hover) var(--ease-figma);
+}
+.card:hover .body time,
+.card:hover .body strong {
+  color: var(--white);
+}
+.cover {
+  position: relative;
+  display: block;
+  aspect-ratio: 277.6 / 268.16;
+  overflow: hidden;
+  background: #d9d9d9;
+}
+.cropped {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  max-width: none;
+}
+.fit {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.body {
+  display: flex;
+  flex-direction: column;
+  padding: 13px 16px 12px;
+}
+.body time {
+  font-size: 10.15px;
+  line-height: 15.2px;
+  color: #000;
+}
+.body strong {
+  padding-top: 4px;
+  font-weight: 700;
+  font-size: 14.2px;
+  line-height: 20.3px;
+  color: #000;
+}
+.dl {
+  margin-top: 4px;
+  font-weight: 600;
+  font-size: 12.19px;
+  line-height: 24px;
+  color: var(--gold-600);
+}
+.card:hover .dl {
+  text-decoration: underline;
+}
+
+@media (max-width: 1199px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 767px) {
+  .page {
+    padding: 40px 0 56px;
+  }
+  .section + .section {
+    margin-top: 48px;
+  }
+  .section h2 {
+    font-size: 24px;
+  }
+  .grid {
+    margin-top: 20px;
+    gap: 14px;
+  }
+  .body {
+    padding: 10px 12px;
+  }
+  .body strong {
+    font-size: 13px;
+    line-height: 18px;
+  }
+}

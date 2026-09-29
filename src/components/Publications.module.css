@@ -1,0 +1,141 @@
+.section {
+  background: var(--white);
+  padding: 72px 0;
+}
+.title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 45.17px;
+  color: var(--navy-900);
+}
+.introRow {
+  margin-top: 29px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+}
+.lead {
+  max-width: 625px;
+  font-family: var(--font-public);
+  font-size: 17.21px;
+  line-height: 30.11px;
+  color: var(--gray-750);
+}
+.arrows {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+  margin-bottom: 8px;
+}
+.arrows button {
+  width: 34.8px;
+  height: 34.8px;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+.arrows button:disabled {
+  opacity: 1; /* the exported prev/next SVGs already carry the muted state */
+  cursor: default;
+}
+.arrows img {
+  width: 100%;
+  height: 100%;
+}
+.track {
+  margin-top: 24px;
+  display: flex;
+  gap: 22px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding: 14px;
+  margin-inline: -14px;
+  scroll-padding-inline: 14px;
+}
+.track::-webkit-scrollbar {
+  display: none;
+}
+.card {
+  flex: 0 0 calc((100% - 3 * 22px) / 4);
+  scroll-snap-align: start;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-publication);
+  overflow: hidden;
+  transition: background-color var(--dur-hover) var(--ease-figma), box-shadow var(--dur-hover) var(--ease-figma);
+}
+.cover {
+  aspect-ratio: 293.58 / 281.75;
+  overflow: hidden;
+}
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 0.5s var(--ease-out);
+}
+/* Figma Container 94:4458 hover: navy card, white copy, cover zooms in (~6%) */
+.card:hover {
+  background: var(--navy-850);
+  box-shadow: 0 1.08px 2.15px -1.08px rgba(0, 0, 0, 0.1), 0 1.08px 3.23px rgba(0, 0, 0, 0.1);
+}
+.card:hover .cover img {
+  transform: scale(1.06);
+}
+.body time,
+.body h3 {
+  transition: color var(--dur-hover) var(--ease-figma);
+}
+.card:hover .body time,
+.card:hover .body h3 {
+  color: var(--white);
+}
+.body {
+  padding: 10.75px 17.2px 9.68px;
+}
+.body time {
+  display: block;
+  font-size: 10.75px;
+  line-height: 16.13px;
+  color: #000;
+}
+.body h3 {
+  padding-top: 4.3px;
+  font-weight: 700;
+  font-size: 15.06px;
+  line-height: 21.5px;
+  color: #000;
+}
+.body a {
+  display: inline-flex;
+  align-items: center;
+  height: 30.1px;
+  font-weight: 600;
+  font-size: 12.9px;
+  line-height: 17.2px;
+  color: var(--gold-600);
+  text-decoration: underline;
+}
+
+@media (max-width: 1199px) {
+  .title {
+    font-size: clamp(30px, 3.4vw, 42px);
+  }
+  .lead {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .track {
+    gap: 14px;
+  }
+  .card {
+    flex-basis: calc((100% - 3 * 14px) / 4);
+  }
+  .body h3 {
+    font-size: clamp(11px, 1.3vw, 15px);
+  }
+}

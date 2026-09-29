@@ -1,0 +1,654 @@
+{
+  "expires": "2026-10-05",
+  "note": "Temporary Figma MCP asset URLs (valid ~7 days from 2026-09-28 / 2026-09-29).",
+  "assets": [
+    {
+      "path": "header/logo.png",
+      "url": "https://www.figma.com/api/mcp/asset/7d2fb658-b42b-4f66-87ff-786634dc1df2/b8b6d.png"
+    },
+    {
+      "path": "header/search.svg",
+      "url": "https://www.figma.com/api/mcp/asset/7d2fb658-b42b-4f66-87ff-786634dc1df2/5d956.svg"
+    },
+    {
+      "path": "icons/arrow-white.svg",
+      "url": "https://www.figma.com/api/mcp/asset/0e7e74a3-1085-44ce-a1ce-b58b65275867/888fb.svg"
+    },
+    {
+      "path": "icons/arrow-navy.svg",
+      "url": "https://www.figma.com/api/mcp/asset/0e7e74a3-1085-44ce-a1ce-b58b65275867/a5243.svg"
+    },
+    {
+      "path": "form/check-1.svg",
+      "url": "https://www.figma.com/api/mcp/asset/76da240b-1072-4f03-9565-c705ff9d5a5f/0bf29.svg"
+    },
+    {
+      "path": "form/check-2.svg",
+      "url": "https://www.figma.com/api/mcp/asset/76da240b-1072-4f03-9565-c705ff9d5a5f/f6369.svg"
+    },
+    {
+      "path": "form/check-3.svg",
+      "url": "https://www.figma.com/api/mcp/asset/76da240b-1072-4f03-9565-c705ff9d5a5f/b0e22.svg"
+    },
+    {
+      "path": "about/who-we-are-bg.png",
+      "url": "https://www.figma.com/api/mcp/asset/5168fb26-b3e5-4e7b-a84b-f953f3cc6cc9/0b56e.png"
+    },
+    {
+      "path": "about/members-networking.png",
+      "url": "https://www.figma.com/api/mcp/asset/5168fb26-b3e5-4e7b-a84b-f953f3cc6cc9/b38e7.png"
+    },
+    {
+      "path": "leadership/president.png",
+      "url": "https://www.figma.com/api/mcp/asset/a788dd49-4afb-4d15-97f9-e0e3fe3f286d/2739f.png"
+    },
+    {
+      "path": "leadership/senior-vice-president.png",
+      "url": "https://www.figma.com/api/mcp/asset/a788dd49-4afb-4d15-97f9-e0e3fe3f286d/f42a0.png"
+    },
+    {
+      "path": "leadership/vice-president.png",
+      "url": "https://www.figma.com/api/mcp/asset/a788dd49-4afb-4d15-97f9-e0e3fe3f286d/328e5.png"
+    },
+    {
+      "path": "events/women-empowerment.png",
+      "url": "https://www.figma.com/api/mcp/asset/73d0bc26-60a8-4f47-b6c8-ec2a17463446/ef13d.png"
+    },
+    {
+      "path": "events/arrow-prev.svg",
+      "url": "https://www.figma.com/api/mcp/asset/73d0bc26-60a8-4f47-b6c8-ec2a17463446/cc280.svg"
+    },
+    {
+      "path": "events/arrow-next.svg",
+      "url": "https://www.figma.com/api/mcp/asset/73d0bc26-60a8-4f47-b6c8-ec2a17463446/1cc94.svg"
+    },
+    {
+      "path": "events/icon-calendar.svg",
+      "url": "https://www.figma.com/api/mcp/asset/73d0bc26-60a8-4f47-b6c8-ec2a17463446/d0e42.svg"
+    },
+    {
+      "path": "events/icon-location.svg",
+      "url": "https://www.figma.com/api/mcp/asset/73d0bc26-60a8-4f47-b6c8-ec2a17463446/32643.svg"
+    },
+    {
+      "path": "venues/featured-hall.png",
+      "url": "https://www.figma.com/api/mcp/asset/3039323f-f4bc-42a3-a83e-915f4f714a8e/a5882.png"
+    },
+    {
+      "path": "venues/kln-prasad-auditorium.png",
+      "url": "https://www.figma.com/api/mcp/asset/3039323f-f4bc-42a3-a83e-915f4f714a8e/46dde.png"
+    },
+    {
+      "path": "venues/surana-auditorium.png",
+      "url": "https://www.figma.com/api/mcp/asset/3039323f-f4bc-42a3-a83e-915f4f714a8e/dc46d.png"
+    },
+    {
+      "path": "venues/js-krishna-murthy-hall.png",
+      "url": "https://www.figma.com/api/mcp/asset/3039323f-f4bc-42a3-a83e-915f4f714a8e/cddf7.png"
+    },
+    {
+      "path": "venues/banarsilal-gupta-hall.png",
+      "url": "https://www.figma.com/api/mcp/asset/3039323f-f4bc-42a3-a83e-915f4f714a8e/507db.png"
+    },
+    {
+      "path": "venues/dhanjibhai-sawla-hall.png",
+      "url": "https://www.figma.com/api/mcp/asset/3039323f-f4bc-42a3-a83e-915f4f714a8e/47f70.png"
+    },
+    {
+      "path": "venues/opt-board-room.png",
+      "url": "https://www.figma.com/api/mcp/asset/3039323f-f4bc-42a3-a83e-915f4f714a8e/31dcb.png"
+    },
+    {
+      "path": "venues/white-house-board-room.png",
+      "url": "https://www.figma.com/api/mcp/asset/3039323f-f4bc-42a3-a83e-915f4f714a8e/c7a34.png"
+    },
+    {
+      "path": "venues/pokarna-skill-center.png",
+      "url": "https://www.figma.com/api/mcp/asset/3039323f-f4bc-42a3-a83e-915f4f714a8e/bde0a.png"
+    },
+    {
+      "path": "venues/check-1.svg",
+      "url": "https://www.figma.com/api/mcp/asset/3039323f-f4bc-42a3-a83e-915f4f714a8e/56acc.svg"
+    },
+    {
+      "path": "venues/check.svg",
+      "url": "https://www.figma.com/api/mcp/asset/3039323f-f4bc-42a3-a83e-915f4f714a8e/c4e72.svg"
+    },
+    {
+      "path": "news/pre-budget-memorandum.png",
+      "url": "https://www.figma.com/api/mcp/asset/4f03b03c-6573-4554-81a4-c05e9dfcb23c/c1985.png"
+    },
+    {
+      "path": "news/exports-advisory-council.png",
+      "url": "https://www.figma.com/api/mcp/asset/4f03b03c-6573-4554-81a4-c05e9dfcb23c/daeb0.png"
+    },
+    {
+      "path": "news/proposed-tariffs.png",
+      "url": "https://www.figma.com/api/mcp/asset/4f03b03c-6573-4554-81a4-c05e9dfcb23c/5d455.png"
+    },
+    {
+      "path": "news/export-economy.png",
+      "url": "https://www.figma.com/api/mcp/asset/4f03b03c-6573-4554-81a4-c05e9dfcb23c/d9871.png"
+    },
+    {
+      "path": "publications/expo-2020.png",
+      "url": "https://www.figma.com/api/mcp/asset/5bad0500-44fc-4fb5-a10c-54342bf37604/e5a3f.png"
+    },
+    {
+      "path": "publications/report-on-pulses.png",
+      "url": "https://www.figma.com/api/mcp/asset/5bad0500-44fc-4fb5-a10c-54342bf37604/6c8f6.png"
+    },
+    {
+      "path": "publications/green-tvet-germany.png",
+      "url": "https://www.figma.com/api/mcp/asset/5bad0500-44fc-4fb5-a10c-54342bf37604/242f4.png"
+    },
+    {
+      "path": "publications/annual-report-2017-18.png",
+      "url": "https://www.figma.com/api/mcp/asset/5bad0500-44fc-4fb5-a10c-54342bf37604/5fea9.png"
+    },
+    {
+      "path": "publications/annual-report-2025-26-a.png",
+      "url": "https://www.figma.com/api/mcp/asset/5bad0500-44fc-4fb5-a10c-54342bf37604/a3ff5.png"
+    },
+    {
+      "path": "publications/annual-report-2025-26-b.png",
+      "url": "https://www.figma.com/api/mcp/asset/5bad0500-44fc-4fb5-a10c-54342bf37604/6c9fd.png"
+    },
+    {
+      "path": "publications/annual-report-2025-26-c.png",
+      "url": "https://www.figma.com/api/mcp/asset/5bad0500-44fc-4fb5-a10c-54342bf37604/6fae0.png"
+    },
+    {
+      "path": "publications/annual-report-2025-26-d.png",
+      "url": "https://www.figma.com/api/mcp/asset/5bad0500-44fc-4fb5-a10c-54342bf37604/44fd8.png"
+    },
+    {
+      "path": "publications/arrow-next.svg",
+      "url": "https://www.figma.com/api/mcp/asset/5bad0500-44fc-4fb5-a10c-54342bf37604/affad.svg"
+    },
+    {
+      "path": "publications/arrow-prev.svg",
+      "url": "https://www.figma.com/api/mcp/asset/5bad0500-44fc-4fb5-a10c-54342bf37604/b1660.svg"
+    },
+    {
+      "path": "benefits/benefits-bg.png",
+      "url": "https://www.figma.com/api/mcp/asset/1598ab8b-eb01-4e2d-9208-2c9db5776914/7beab.png"
+    },
+    {
+      "path": "benefits/business-summit.png",
+      "url": "https://www.figma.com/api/mcp/asset/1598ab8b-eb01-4e2d-9208-2c9db5776914/1a95d.png"
+    },
+    {
+      "path": "benefits/icon-networking.svg",
+      "url": "https://www.figma.com/api/mcp/asset/1598ab8b-eb01-4e2d-9208-2c9db5776914/82d2a.svg"
+    },
+    {
+      "path": "benefits/icon-policy.svg",
+      "url": "https://www.figma.com/api/mcp/asset/1598ab8b-eb01-4e2d-9208-2c9db5776914/ed18d.svg"
+    },
+    {
+      "path": "benefits/icon-events.svg",
+      "url": "https://www.figma.com/api/mcp/asset/1598ab8b-eb01-4e2d-9208-2c9db5776914/bedae.svg"
+    },
+    {
+      "path": "benefits/icon-insights.svg",
+      "url": "https://www.figma.com/api/mcp/asset/1598ab8b-eb01-4e2d-9208-2c9db5776914/525b8.svg"
+    },
+    {
+      "path": "benefits/icon-trade.svg",
+      "url": "https://www.figma.com/api/mcp/asset/1598ab8b-eb01-4e2d-9208-2c9db5776914/7ae36.svg"
+    },
+    {
+      "path": "benefits/icon-awards.svg",
+      "url": "https://www.figma.com/api/mcp/asset/1598ab8b-eb01-4e2d-9208-2c9db5776914/e808c.svg"
+    },
+    {
+      "path": "card/privilege-card.png",
+      "url": "https://www.figma.com/api/mcp/asset/496f2ca6-3b7f-45d1-878a-245dd0e6859b/ef2dd.png"
+    },
+    {
+      "path": "footer/logo.png",
+      "url": "https://www.figma.com/api/mcp/asset/2578f0fa-9312-4e45-b753-e3218daaaffb/b8b6d.png"
+    },
+    {
+      "path": "footer/youtube.svg",
+      "url": "https://www.figma.com/api/mcp/asset/2578f0fa-9312-4e45-b753-e3218daaaffb/e653b.svg"
+    },
+    {
+      "path": "footer/facebook.svg",
+      "url": "https://www.figma.com/api/mcp/asset/2578f0fa-9312-4e45-b753-e3218daaaffb/a8d77.svg"
+    },
+    {
+      "path": "footer/x.svg",
+      "url": "https://www.figma.com/api/mcp/asset/2578f0fa-9312-4e45-b753-e3218daaaffb/34723.svg"
+    },
+    {
+      "path": "footer/linkedin.svg",
+      "url": "https://www.figma.com/api/mcp/asset/2578f0fa-9312-4e45-b753-e3218daaaffb/82c48.svg"
+    },
+    {
+      "path": "footer/instagram.svg",
+      "url": "https://www.figma.com/api/mcp/asset/2578f0fa-9312-4e45-b753-e3218daaaffb/6e19f.svg"
+    },
+    {
+      "path": "footer/icon-location.svg",
+      "url": "https://www.figma.com/api/mcp/asset/2578f0fa-9312-4e45-b753-e3218daaaffb/cb5c1.svg"
+    },
+    {
+      "path": "footer/icon-phone.svg",
+      "url": "https://www.figma.com/api/mcp/asset/2578f0fa-9312-4e45-b753-e3218daaaffb/b54cc.svg"
+    },
+    {
+      "path": "footer/icon-mail.svg",
+      "url": "https://www.figma.com/api/mcp/asset/2578f0fa-9312-4e45-b753-e3218daaaffb/5cc2e.svg"
+    },
+    {
+      "path": "mobile/menu.svg",
+      "url": "https://www.figma.com/api/mcp/asset/d7a64975-d914-4ca9-a727-b28a9d9c9f53/eb95c.svg"
+    },
+    {
+      "path": "mobile/search.svg",
+      "url": "https://www.figma.com/api/mcp/asset/d7a64975-d914-4ca9-a727-b28a9d9c9f53/b44d4.svg"
+    },
+    {
+      "path": "mobile/icon-user-plus.svg",
+      "url": "https://www.figma.com/api/mcp/asset/88b92a21-ea15-49d2-bf02-c8ec28694f09/d389d.svg"
+    },
+    {
+      "path": "mobile/icon-calendar.svg",
+      "url": "https://www.figma.com/api/mcp/asset/88b92a21-ea15-49d2-bf02-c8ec28694f09/cacf8.svg"
+    },
+    {
+      "path": "mobile/icon-file-text.svg",
+      "url": "https://www.figma.com/api/mcp/asset/88b92a21-ea15-49d2-bf02-c8ec28694f09/0173c.svg"
+    },
+    {
+      "path": "mobile/icon-bell.svg",
+      "url": "https://www.figma.com/api/mcp/asset/88b92a21-ea15-49d2-bf02-c8ec28694f09/e7b0f.svg"
+    },
+    {
+      "path": "mobile/news-exports-advisory-council.png",
+      "url": "https://www.figma.com/api/mcp/asset/c21a2c17-a8b7-445d-ab44-835b924b90dd/fb0d9.png"
+    },
+    {
+      "path": "pages/about-hero.png",
+      "url": "https://www.figma.com/api/mcp/asset/9620ac33-f64e-4bfb-a3ce-3bb57e548de3/a91eb.png"
+    },
+    {
+      "path": "about/timeline-1917.png",
+      "url": "https://www.figma.com/api/mcp/asset/277d5eb4-1960-4387-ba64-409fc65444ea/ba0e4.png"
+    },
+    {
+      "path": "about/timeline-1956.png",
+      "url": "https://www.figma.com/api/mcp/asset/277d5eb4-1960-4387-ba64-409fc65444ea/66b32.png"
+    },
+    {
+      "path": "about/timeline-2014.png",
+      "url": "https://www.figma.com/api/mcp/asset/277d5eb4-1960-4387-ba64-409fc65444ea/71f38.png"
+    },
+    {
+      "path": "about/icon-eye.svg",
+      "url": "https://www.figma.com/api/mcp/asset/c530d17e-7e01-484e-a105-c95b1c810531/4d392.svg"
+    },
+    {
+      "path": "about/icon-target.svg",
+      "url": "https://www.figma.com/api/mcp/asset/c530d17e-7e01-484e-a105-c95b1c810531/14aa3.svg"
+    },
+    {
+      "path": "about/empower-industry.png",
+      "url": "https://www.figma.com/api/mcp/asset/eb8a977b-2124-4b88-a88c-59fe956e89df/6cd9e.png"
+    },
+    {
+      "path": "about/managing-committee.png",
+      "url": "https://www.figma.com/api/mcp/asset/0f665e14-2b64-4937-8c41-f34a8e68f589/2915d.png"
+    },
+    {
+      "path": "membership/benefits-photo.png",
+      "url": "https://www.figma.com/api/mcp/asset/4202d8f6-8d10-49ac-aaa7-43c5d8c3598c/9bf3a.png"
+    },
+    {
+      "path": "membership/icon-users.svg",
+      "url": "https://www.figma.com/api/mcp/asset/4202d8f6-8d10-49ac-aaa7-43c5d8c3598c/dbfd3.svg"
+    },
+    {
+      "path": "membership/icon-file-text.svg",
+      "url": "https://www.figma.com/api/mcp/asset/4202d8f6-8d10-49ac-aaa7-43c5d8c3598c/5303f.svg"
+    },
+    {
+      "path": "membership/icon-calendar.svg",
+      "url": "https://www.figma.com/api/mcp/asset/4202d8f6-8d10-49ac-aaa7-43c5d8c3598c/64b57.svg"
+    },
+    {
+      "path": "membership/icon-briefcase.svg",
+      "url": "https://www.figma.com/api/mcp/asset/4202d8f6-8d10-49ac-aaa7-43c5d8c3598c/8fff5.svg"
+    },
+    {
+      "path": "membership/icon-award.svg",
+      "url": "https://www.figma.com/api/mcp/asset/7be655ce-7db6-4156-bd8e-640288c2788a/3b12e.svg"
+    },
+    {
+      "path": "membership/icon-arrow-right.svg",
+      "url": "https://www.figma.com/api/mcp/asset/7be655ce-7db6-4156-bd8e-640288c2788a/c8389.svg"
+    },
+    {
+      "path": "membership/icon-compass.svg",
+      "url": "https://www.figma.com/api/mcp/asset/7be655ce-7db6-4156-bd8e-640288c2788a/52381.svg"
+    },
+    {
+      "path": "membership/icon-user.svg",
+      "url": "https://www.figma.com/api/mcp/asset/7be655ce-7db6-4156-bd8e-640288c2788a/e45d8.svg"
+    },
+    {
+      "path": "membership/step-line.png",
+      "url": "https://www.figma.com/api/mcp/asset/85325a7f-8cc6-43e3-8a7c-682c9a2891e2/18271.png"
+    },
+    {
+      "path": "membership/experience-bg.png",
+      "url": "https://www.figma.com/api/mcp/asset/201753b5-031f-4c6e-b3a4-826d831d5f29/d0c59.png"
+    },
+    {
+      "path": "membership/icon-arrow-right-white.svg",
+      "url": "https://www.figma.com/api/mcp/asset/cf52e151-fe82-46d3-a57c-085823fa6f72/87f08.svg"
+    },
+    {
+      "path": "services/certificate-of-origin.png",
+      "url": "https://www.figma.com/api/mcp/asset/0f7fb284-de56-4526-a5ed-dba689f367e8/b2a37.png"
+    },
+    {
+      "path": "services/icon-check.svg",
+      "url": "https://www.figma.com/api/mcp/asset/0f7fb284-de56-4526-a5ed-dba689f367e8/0ea25.svg"
+    },
+    {
+      "path": "services/pdf-badge.svg",
+      "url": "https://www.figma.com/api/mcp/asset/0f7fb284-de56-4526-a5ed-dba689f367e8/92449.svg"
+    },
+    {
+      "path": "services/liaison.png",
+      "url": "https://www.figma.com/api/mcp/asset/e6dca481-eaf6-400f-b865-ae91de0d9497/55ccf.png"
+    },
+    {
+      "path": "services/icon-check-dark.svg",
+      "url": "https://www.figma.com/api/mcp/asset/e6dca481-eaf6-400f-b865-ae91de0d9497/b1d4e.svg"
+    },
+    {
+      "path": "services/helpdesk.png",
+      "url": "https://www.figma.com/api/mcp/asset/5bebd448-1ff3-492e-b94e-dccb025889fb/64c08.png"
+    },
+    {
+      "path": "services/icon-check-sm.svg",
+      "url": "https://www.figma.com/api/mcp/asset/5bebd448-1ff3-492e-b94e-dccb025889fb/80498.svg"
+    },
+    {
+      "path": "services/icon-stamp.svg",
+      "url": "https://www.figma.com/api/mcp/asset/da20840e-b0a4-41f4-a1a6-9ad945fa92f5/5e6fb.svg"
+    },
+    {
+      "path": "services/icon-file-text.svg",
+      "url": "https://www.figma.com/api/mcp/asset/da20840e-b0a4-41f4-a1a6-9ad945fa92f5/95872.svg"
+    },
+    {
+      "path": "services/icon-globe.svg",
+      "url": "https://www.figma.com/api/mcp/asset/da20840e-b0a4-41f4-a1a6-9ad945fa92f5/72252.svg"
+    },
+    {
+      "path": "services/icon-handshake.svg",
+      "url": "https://www.figma.com/api/mcp/asset/da20840e-b0a4-41f4-a1a6-9ad945fa92f5/911f5.svg"
+    },
+    {
+      "path": "services/ceo-forum.png",
+      "url": "https://www.figma.com/api/mcp/asset/3cdb3e83-9e21-43c8-9670-e1ec2c51fec2/e53fd.png"
+    },
+    {
+      "path": "events/card-women-empowerment.png",
+      "url": "https://www.figma.com/api/mcp/asset/ef0af4bb-ce27-4cf2-9830-84b606ad9cc7/f5a9c.png"
+    },
+    {
+      "path": "events/card-urban-farming.png",
+      "url": "https://www.figma.com/api/mcp/asset/ef0af4bb-ce27-4cf2-9830-84b606ad9cc7/4bf44.png"
+    },
+    {
+      "path": "events/card-ceo-forum.png",
+      "url": "https://www.figma.com/api/mcp/asset/ef0af4bb-ce27-4cf2-9830-84b606ad9cc7/cbbf5.png"
+    },
+    {
+      "path": "events/icon-calendar-gold.svg",
+      "url": "https://www.figma.com/api/mcp/asset/ef0af4bb-ce27-4cf2-9830-84b606ad9cc7/43068.svg"
+    },
+    {
+      "path": "events/icon-pin-gold.svg",
+      "url": "https://www.figma.com/api/mcp/asset/ef0af4bb-ce27-4cf2-9830-84b606ad9cc7/25fb1.svg"
+    },
+    {
+      "path": "events/detail-check.svg",
+      "url": "https://www.figma.com/api/mcp/asset/edde5ecc-2e50-4600-a0d5-4d2375541c48/abf03.svg"
+    },
+    {
+      "path": "events/detail-calendar.svg",
+      "url": "https://www.figma.com/api/mcp/asset/edde5ecc-2e50-4600-a0d5-4d2375541c48/36dc2.svg"
+    },
+    {
+      "path": "events/detail-pin.svg",
+      "url": "https://www.figma.com/api/mcp/asset/edde5ecc-2e50-4600-a0d5-4d2375541c48/f44fc.svg"
+    },
+    {
+      "path": "events/detail-status.svg",
+      "url": "https://www.figma.com/api/mcp/asset/edde5ecc-2e50-4600-a0d5-4d2375541c48/335e1.svg"
+    },
+    {
+      "path": "events/detail-urban-farming.png",
+      "url": "https://www.figma.com/api/mcp/asset/babf46a1-4f7f-4015-b8f7-2020f892fbad/a9ee2.png"
+    },
+    {
+      "path": "events/detail-agm.png",
+      "url": "https://www.figma.com/api/mcp/asset/97473129-1963-4d4a-92d8-ecec5a404371/0c978.png"
+    },
+    {
+      "path": "knowledge/review-cover-latest.png",
+      "url": "https://www.figma.com/api/mcp/asset/d735c862-b8b7-4f6c-92fb-28468d39d67e/eef73.png"
+    },
+    {
+      "path": "knowledge/review-issue-1.png",
+      "url": "https://www.figma.com/api/mcp/asset/d735c862-b8b7-4f6c-92fb-28468d39d67e/b164d.png"
+    },
+    {
+      "path": "knowledge/review-issue-2.png",
+      "url": "https://www.figma.com/api/mcp/asset/d735c862-b8b7-4f6c-92fb-28468d39d67e/57152.png"
+    },
+    {
+      "path": "knowledge/review-issue-3.png",
+      "url": "https://www.figma.com/api/mcp/asset/d735c862-b8b7-4f6c-92fb-28468d39d67e/e1e1f.png"
+    },
+    {
+      "path": "knowledge/icon-arrow-navy.svg",
+      "url": "https://www.figma.com/api/mcp/asset/d735c862-b8b7-4f6c-92fb-28468d39d67e/20919.svg"
+    },
+    {
+      "path": "knowledge/icon-arrow-dark.svg",
+      "url": "https://www.figma.com/api/mcp/asset/d735c862-b8b7-4f6c-92fb-28468d39d67e/6190e.svg"
+    },
+    {
+      "path": "knowledge/icon-download-navy.svg",
+      "url": "https://www.figma.com/api/mcp/asset/d735c862-b8b7-4f6c-92fb-28468d39d67e/af1ac.svg"
+    },
+    {
+      "path": "knowledge/icon-download-gold.svg",
+      "url": "https://www.figma.com/api/mcp/asset/d735c862-b8b7-4f6c-92fb-28468d39d67e/9f878.svg"
+    },
+    {
+      "path": "knowledge/icon-arrow-up-right.svg",
+      "url": "https://www.figma.com/api/mcp/asset/46d88f82-2c56-4946-a64a-48b5236ef6d1/44cb5.svg"
+    },
+    {
+      "path": "knowledge/icon-search.svg",
+      "url": "https://www.figma.com/api/mcp/asset/293eebf8-4963-46df-ad83-1c1ef125611f/7630d.svg"
+    },
+    {
+      "path": "review/cover-featured.png",
+      "url": "https://www.figma.com/api/mcp/asset/2c54696e-83c2-4a05-8080-b16c56b1dfd0/cc3a9.png"
+    },
+    {
+      "path": "review/cover-issue.png",
+      "url": "https://www.figma.com/api/mcp/asset/2c54696e-83c2-4a05-8080-b16c56b1dfd0/64f8a.png"
+    },
+    {
+      "path": "review/icon-arrow-right.svg",
+      "url": "https://www.figma.com/api/mcp/asset/2c54696e-83c2-4a05-8080-b16c56b1dfd0/d7bfd.svg"
+    },
+    {
+      "path": "knowledge/icon-arrow-up-right-sm.svg",
+      "url": "https://www.figma.com/api/mcp/asset/43d8d368-6473-4be1-852f-3b22a3e4b0a3/23eba.svg"
+    },
+    {
+      "path": "pubs/publications-1.png",
+      "url": "https://www.figma.com/api/mcp/asset/7af950f6-3852-417a-a0f4-7365752d6817/87d10.png"
+    },
+    {
+      "path": "pubs/publications-2.png",
+      "url": "https://www.figma.com/api/mcp/asset/7af950f6-3852-417a-a0f4-7365752d6817/892c2.png"
+    },
+    {
+      "path": "pubs/publications-3.png",
+      "url": "https://www.figma.com/api/mcp/asset/7af950f6-3852-417a-a0f4-7365752d6817/0e0ee.png"
+    },
+    {
+      "path": "pubs/publications-4.png",
+      "url": "https://www.figma.com/api/mcp/asset/7af950f6-3852-417a-a0f4-7365752d6817/4e643.png"
+    },
+    {
+      "path": "pubs/activity-2019-20.png",
+      "url": "https://www.figma.com/api/mcp/asset/32824d8d-aa45-4033-8b64-be2c106644c1/da587.png"
+    },
+    {
+      "path": "pubs/activity-2020-21.png",
+      "url": "https://www.figma.com/api/mcp/asset/32824d8d-aa45-4033-8b64-be2c106644c1/c324a.png"
+    },
+    {
+      "path": "pubs/activity-2021-22.png",
+      "url": "https://www.figma.com/api/mcp/asset/32824d8d-aa45-4033-8b64-be2c106644c1/79739.png"
+    },
+    {
+      "path": "pubs/activity-2022-23.png",
+      "url": "https://www.figma.com/api/mcp/asset/32824d8d-aa45-4033-8b64-be2c106644c1/dcc09.png"
+    },
+    {
+      "path": "pubs/activity-2023-24.png",
+      "url": "https://www.figma.com/api/mcp/asset/32824d8d-aa45-4033-8b64-be2c106644c1/26654.png"
+    },
+    {
+      "path": "pubs/annual-1.png",
+      "url": "https://www.figma.com/api/mcp/asset/aca1791a-0f92-49dd-9c81-6fb12faf4856/1d78c.png"
+    },
+    {
+      "path": "pubs/annual-2.png",
+      "url": "https://www.figma.com/api/mcp/asset/aca1791a-0f92-49dd-9c81-6fb12faf4856/445ba.png"
+    },
+    {
+      "path": "pubs/annual-3.png",
+      "url": "https://www.figma.com/api/mcp/asset/aca1791a-0f92-49dd-9c81-6fb12faf4856/c2f49.png"
+    },
+    {
+      "path": "pubs/annual-4.png",
+      "url": "https://www.figma.com/api/mcp/asset/aca1791a-0f92-49dd-9c81-6fb12faf4856/b8dfa.png"
+    },
+    {
+      "path": "pubs/annual-5.png",
+      "url": "https://www.figma.com/api/mcp/asset/aca1791a-0f92-49dd-9c81-6fb12faf4856/347fe.png"
+    },
+    {
+      "path": "pubs/annual-6.png",
+      "url": "https://www.figma.com/api/mcp/asset/aca1791a-0f92-49dd-9c81-6fb12faf4856/7a68b.png"
+    },
+    {
+      "path": "pubs/annual-7.png",
+      "url": "https://www.figma.com/api/mcp/asset/aca1791a-0f92-49dd-9c81-6fb12faf4856/08968.png"
+    },
+    {
+      "path": "pubs/annual-8.png",
+      "url": "https://www.figma.com/api/mcp/asset/aca1791a-0f92-49dd-9c81-6fb12faf4856/c7a1d.png"
+    },
+    {
+      "path": "pubs/research-1.png",
+      "url": "https://www.figma.com/api/mcp/asset/a1360bab-ccab-4d89-a9a8-4c624d889e3c/31eb4.png"
+    },
+    {
+      "path": "pubs/research-2.png",
+      "url": "https://www.figma.com/api/mcp/asset/a1360bab-ccab-4d89-a9a8-4c624d889e3c/4df7c.png"
+    },
+    {
+      "path": "pubs/research-3.png",
+      "url": "https://www.figma.com/api/mcp/asset/a1360bab-ccab-4d89-a9a8-4c624d889e3c/ea7cd.png"
+    },
+    {
+      "path": "pubs/research-4.png",
+      "url": "https://www.figma.com/api/mcp/asset/a1360bab-ccab-4d89-a9a8-4c624d889e3c/4b195.png"
+    },
+    {
+      "path": "pubs/research-5.png",
+      "url": "https://www.figma.com/api/mcp/asset/a1360bab-ccab-4d89-a9a8-4c624d889e3c/c8258.png"
+    },
+    {
+      "path": "pubs/research-6.png",
+      "url": "https://www.figma.com/api/mcp/asset/a1360bab-ccab-4d89-a9a8-4c624d889e3c/ad135.png"
+    },
+    {
+      "path": "pubs/research-7.png",
+      "url": "https://www.figma.com/api/mcp/asset/a1360bab-ccab-4d89-a9a8-4c624d889e3c/33674.png"
+    },
+    {
+      "path": "pubs/research-8.png",
+      "url": "https://www.figma.com/api/mcp/asset/a1360bab-ccab-4d89-a9a8-4c624d889e3c/1407e.png"
+    },
+    {
+      "path": "pubs/research-9.png",
+      "url": "https://www.figma.com/api/mcp/asset/a1360bab-ccab-4d89-a9a8-4c624d889e3c/3da56.png"
+    },
+    {
+      "path": "pubs/research-10.png",
+      "url": "https://www.figma.com/api/mcp/asset/a1360bab-ccab-4d89-a9a8-4c624d889e3c/1b423.png"
+    },
+    {
+      "path": "pubs/research-11.png",
+      "url": "https://www.figma.com/api/mcp/asset/a1360bab-ccab-4d89-a9a8-4c624d889e3c/04abb.png"
+    },
+    {
+      "path": "pubs/research-12.png",
+      "url": "https://www.figma.com/api/mcp/asset/a1360bab-ccab-4d89-a9a8-4c624d889e3c/08dea.png"
+    },
+    {
+      "path": "pubs/research-13.png",
+      "url": "https://www.figma.com/api/mcp/asset/a1360bab-ccab-4d89-a9a8-4c624d889e3c/742ff.png"
+    },
+    {
+      "path": "pubs/research-14.png",
+      "url": "https://www.figma.com/api/mcp/asset/a1360bab-ccab-4d89-a9a8-4c624d889e3c/bd8c9.png"
+    },
+    {
+      "path": "media/icon-double-arrow.svg",
+      "url": "https://www.figma.com/api/mcp/asset/b4654366-e36b-4eac-99e2-9635a4905fa5/b4807.svg"
+    },
+    {
+      "path": "media/icon-download.svg",
+      "url": "https://www.figma.com/api/mcp/asset/436c41ab-28dc-43b2-b1cd-72e83dfd8436/4ac51.svg"
+    },
+    {
+      "path": "contact/icon-chevron-down.svg",
+      "url": "https://www.figma.com/api/mcp/asset/c1b7d9c2-7048-425a-b2ea-07e0bb2d9744/e731e.svg"
+    },
+    {
+      "path": "contact/icon-send.svg",
+      "url": "https://www.figma.com/api/mcp/asset/c1b7d9c2-7048-425a-b2ea-07e0bb2d9744/ac877.svg"
+    },
+    {
+      "path": "contact/icon-phone.svg",
+      "url": "https://www.figma.com/api/mcp/asset/c1b7d9c2-7048-425a-b2ea-07e0bb2d9744/34f7c.svg"
+    },
+    {
+      "path": "contact/icon-mail.svg",
+      "url": "https://www.figma.com/api/mcp/asset/c1b7d9c2-7048-425a-b2ea-07e0bb2d9744/45a62.svg"
+    },
+    {
+      "path": "contact/icon-globe.svg",
+      "url": "https://www.figma.com/api/mcp/asset/c1b7d9c2-7048-425a-b2ea-07e0bb2d9744/1e54a.svg"
+    }
+  ]
+}

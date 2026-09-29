@@ -1,0 +1,565 @@
+/* ---------- KPI strip ---------- */
+.kpis {
+  background: var(--white);
+  padding: 71px 0 70px;
+}
+.kpiRow {
+  width: min(1243px, 100% - 2 * var(--gutter));
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 47px;
+}
+.kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px;
+  background: var(--white);
+  border-left: 3px solid var(--gold-500);
+  border-radius: var(--radius-md);
+  filter: drop-shadow(1px 1px 7.2px rgba(0, 0, 0, 0.1));
+}
+.kpi strong {
+  font-weight: 700;
+  font-size: 36px;
+  color: var(--indigo-900);
+}
+.kpi span {
+  font-family: var(--font-public);
+  font-size: 14px;
+  color: var(--slate-600);
+}
+
+/* ---------- History ---------- */
+.history {
+  background: var(--surface-lavender);
+  padding: 50px 0 99px;
+  scroll-margin-top: calc(var(--header-h) + var(--subnav-h));
+}
+.timeline {
+  list-style: none;
+  margin: 62px auto 0;
+  padding: 0;
+  width: min(1098px, 100% - 2 * var(--gutter));
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.milestone {
+  display: grid;
+  grid-template-columns: 512fr 586fr;
+  height: 252px;
+}
+.milestone img {
+  width: 100%;
+  height: 0; /* stretch to the row height set by the text column */
+  min-height: 100%;
+  object-fit: cover;
+  border-radius: 12px 0 0 12px;
+}
+.milestoneBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  padding: 47px 64px 49px;
+  background: var(--white);
+  border-radius: 0 8px 8px 0;
+  filter: drop-shadow(0 1px 10px rgba(0, 0, 0, 0.08));
+}
+.milestoneBody h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 28px;
+  color: var(--navy-900);
+}
+.milestoneBody p {
+  max-width: 469px;
+  font-family: var(--font-public);
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--neutral-600);
+}
+.flip {
+  grid-template-columns: 586fr 512fr;
+}
+.flip img {
+  order: 2;
+  border-radius: 0 12px 12px 0;
+}
+.flip .milestoneBody {
+  border-radius: 8px 0 0 8px;
+  padding-left: 58px;
+}
+
+/* ---------- Vision & mission ---------- */
+.vision {
+  background: var(--white);
+  padding: 50px 0;
+}
+.visionRow {
+  margin-top: 29px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.visionCard {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 40px;
+  background: var(--navy-900);
+  border-radius: var(--radius-xl);
+}
+.visionCard img {
+  width: 32px;
+  height: 32px;
+}
+.visionCard h3 {
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--white);
+}
+.visionCard p {
+  font-family: var(--font-public);
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--slate-100);
+}
+
+/* ---------- Objectives ---------- */
+.objectives {
+  background: var(--gray-100);
+  padding: 70px 0;
+}
+.objectivesRow {
+  margin-top: 39px;
+  display: flex;
+  align-items: center;
+  gap: 52px;
+}
+.objectivesRow > img {
+  width: 631px;
+  max-width: 54%;
+  aspect-ratio: 631 / 349;
+  object-fit: cover;
+  border-radius: 15px;
+}
+.objectiveGrid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px 41px;
+  max-width: 539px;
+}
+.objectiveGrid h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--indigo-900);
+}
+.objectiveGrid p {
+  margin-top: 11px;
+  font-family: var(--font-public);
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--slate-600);
+}
+
+/* ---------- Office bearers ---------- */
+.bearers {
+  background: var(--surface-lavender-4);
+  padding: 60px 0;
+}
+.bearerRow {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 348.8px));
+  gap: 68px;
+}
+.bearer {
+  background: var(--navy-900);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.bearerRaised {
+  box-shadow: 0 0 8.94px rgba(0, 0, 0, 0.2);
+}
+.bearerPhoto {
+  width: 100%;
+  aspect-ratio: 348.83 / 218.4;
+  background: #d4cdc2;
+}
+/* Figma about-us leadership cards (→ 143:2616): portrait eases in on hover */
+.bearerPhoto img {
+  transition: transform 0.5s var(--ease-out);
+}
+.bearer:hover .bearerPhoto img {
+  transform: scale(1.075);
+}
+.bearerCaption {
+  margin: 7.58px 0 6.07px 12.13px;
+  padding: 18.2px 18.2px 18.2px 19.41px;
+  border-left: 1.21px solid #c9a84c;
+}
+.bearerCaption h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 21.46px;
+  line-height: 1.1;
+  color: var(--white);
+}
+.bearerCaption p {
+  margin-top: 8.34px;
+  font-size: 11.62px;
+  line-height: 21.23px;
+  color: var(--white);
+}
+
+/* ---------- Managing committee ---------- */
+.committee {
+  background: var(--white);
+  padding: 70px 0;
+}
+.committePhoto {
+  margin-top: 27px;
+  height: 431px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  position: relative;
+}
+.committePhoto img {
+  position: absolute;
+  max-width: none;
+  width: 122.61%;
+  height: 100.11%;
+  left: -8.3%;
+  top: -0.07%;
+}
+.panelTabs {
+  margin-top: 30px;
+  display: flex;
+  gap: 12px;
+  padding: 0 0 18px 20px;
+  border-bottom: 1px solid var(--slate-200);
+  overflow-x: auto;
+}
+.panelTab {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  background: transparent;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  color: var(--slate-500);
+}
+.panelTabActive {
+  padding-inline: 20px;
+  background: var(--gray-100);
+  border-color: #c9a84c;
+  font-weight: 700;
+  color: var(--navy-900);
+}
+.memberGrid {
+  margin: 36px 20px 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px 16px;
+}
+.member {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+  background: var(--white);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+.member h3 {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 26px;
+  color: var(--navy-900);
+}
+.member p {
+  font-family: var(--font-public);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--slate-700);
+}
+.member span {
+  margin-top: 12px;
+  align-self: flex-start;
+  padding: 4px 10px;
+  background: var(--slate-100);
+  border: 1px solid var(--slate-200);
+  border-radius: 6px;
+  font-family: var(--font-public);
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--navy-900);
+}
+.empty {
+  grid-column: 1 / -1;
+  color: var(--slate-600);
+}
+
+/* ---------- Secretariat ---------- */
+.secretariat {
+  background: var(--surface-lavender-4);
+  padding: 70px 0;
+}
+.secretariatIntro {
+  margin-top: 15px;
+  max-width: 910px;
+  font-family: var(--font-public);
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--slate-600);
+}
+.staffGrid {
+  margin-top: 37px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 37px 23px;
+}
+.staff {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px;
+  background: var(--slate-50);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-lg);
+}
+.staff h3 {
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--neutral-900);
+}
+.staff p {
+  font-family: var(--font-public);
+  font-weight: 500;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--neutral-550);
+}
+
+/* ---------- Past presidents ---------- */
+.presidents {
+  background: var(--navy-900);
+  border-bottom: 1px solid var(--gold-600);
+  padding: 90px 0;
+}
+.presidentGrid {
+  margin-top: 42px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 31px 37px;
+}
+.president {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 6px 17px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  color: var(--white);
+}
+.president h3 {
+  font-weight: 600;
+  font-size: 20px;
+}
+.president p {
+  margin-top: 9px;
+  font-size: 14px;
+}
+.president span {
+  flex-shrink: 0;
+  font-family: var(--font-public);
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--gold-500);
+}
+
+.history,
+.vision,
+.objectives,
+.bearers,
+.committee,
+.secretariat,
+.presidents {
+  scroll-margin-top: calc(var(--header-h) + var(--subnav-h));
+}
+
+/* ---------- Tablet ---------- */
+@media (max-width: 1199px) {
+  .kpiRow {
+    gap: 20px;
+  }
+  .kpi strong {
+    font-size: 28px;
+  }
+  .milestone {
+    height: auto;
+    min-height: 252px;
+  }
+  .milestoneBody {
+    padding: 32px;
+  }
+  .flip .milestoneBody {
+    padding-left: 32px;
+  }
+  .milestoneBody h3 {
+    font-size: 26px;
+  }
+  .milestoneBody p {
+    font-size: 14px;
+    line-height: 22px;
+  }
+  .objectivesRow {
+    gap: 32px;
+  }
+  .objectiveGrid {
+    gap: 24px;
+  }
+  .bearerRow {
+    gap: 20px;
+  }
+  .bearerCaption h3 {
+    font-size: clamp(15px, 1.8vw, 21px);
+  }
+  .committePhoto {
+    height: auto;
+    aspect-ratio: 1240 / 431;
+  }
+  .memberGrid {
+    grid-template-columns: repeat(3, 1fr);
+    margin-inline: 0;
+  }
+  .staffGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .presidentGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 1023px) {
+  .kpiRow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .objectivesRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .objectivesRow > img {
+    width: 100%;
+    max-width: none;
+  }
+  .objectiveGrid {
+    max-width: none;
+  }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 767px) {
+  .kpis {
+    padding: 40px 0;
+  }
+  .kpiRow {
+    gap: 16px;
+  }
+  .kpi {
+    padding: 18px;
+  }
+  .kpi strong {
+    font-size: 26px;
+  }
+  .kpi span {
+    font-size: 12px;
+  }
+  .history {
+    padding: 50px 0 60px;
+  }
+  .timeline {
+    margin-top: 28px;
+  }
+  .milestone,
+  .flip {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  .milestone img,
+  .flip img {
+    order: 0;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px 12px 0 0;
+  }
+  .milestoneBody,
+  .flip .milestoneBody {
+    padding: 24px;
+    gap: 12px;
+    border-radius: 0 0 12px 12px;
+  }
+  .visionRow {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .visionCard {
+    padding: 28px;
+  }
+  .visionCard h3 {
+    font-size: 20px;
+  }
+  .visionCard p {
+    font-size: 14px;
+    line-height: 24px;
+  }
+  .objectives,
+  .committee,
+  .secretariat {
+    padding: 50px 0;
+  }
+  .objectiveGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .bearerRow {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .bearerCaption h3 {
+    font-size: 20px;
+  }
+  .panelTabs {
+    padding-left: 0;
+  }
+  .memberGrid,
+  .staffGrid,
+  .presidentGrid {
+    grid-template-columns: 1fr;
+  }
+  .member h3 {
+    font-size: 18px;
+  }
+  .presidents {
+    padding: 50px 0;
+  }
+  .presidentGrid {
+    gap: 20px;
+  }
+  .president h3 {
+    font-size: 17px;
+  }
+  .president span {
+    font-size: 14px;
+  }
+}

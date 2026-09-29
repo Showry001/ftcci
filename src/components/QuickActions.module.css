@@ -1,0 +1,48 @@
+.section {
+  background: var(--white);
+  padding: 50px var(--gutter);
+}
+.eyebrow {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gold-600);
+}
+.title {
+  margin-top: 12px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 30.26px;
+  color: var(--navy-900);
+}
+.grid {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.tile {
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 20px;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-150);
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--navy-900);
+  transition: border-color 0.15s;
+}
+.tile:hover {
+  border-color: var(--gold-500);
+}
+.tile img {
+  width: 24px;
+  height: 24px;
+}

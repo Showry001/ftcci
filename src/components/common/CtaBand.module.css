@@ -1,0 +1,53 @@
+.band {
+  background: var(--gold-500);
+  padding: 48px 0;
+}
+.inner {
+  width: min(1242px, 100% - 2 * var(--gutter));
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  color: var(--indigo-900);
+}
+.copy {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.copy h2 {
+  font-weight: 700;
+  font-size: 28px;
+}
+.copy p {
+  font-family: var(--font-public);
+  font-size: 14px;
+}
+.btn {
+  flex-shrink: 0;
+  padding: 14px 24px;
+  border-radius: var(--radius-md);
+  background: var(--indigo-900);
+  font-family: var(--font-public);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--white);
+  transition: filter 0.15s;
+}
+.btn:hover {
+  filter: brightness(1.2);
+}
+@media (max-width: 767px) {
+  .band {
+    padding: 40px 0;
+  }
+  .inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .copy h2 {
+    font-size: 22px;
+  }
+}

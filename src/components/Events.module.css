@@ -1,0 +1,249 @@
+.section {
+  background: var(--white);
+  padding: 74px 0 83px;
+}
+.wrap {
+  width: min(1363px, 100% - 76px);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+}
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-inline: 62px;
+}
+.title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 40.76px;
+  line-height: 38.82px;
+  color: var(--navy-900);
+}
+.title span {
+  color: var(--gold-600);
+}
+.outline {
+  display: inline-flex;
+  align-items: center;
+  padding: 10.78px 21.57px;
+  border: 1.02px solid var(--navy-900);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 15.1px;
+  line-height: 21.57px;
+  color: var(--navy-900);
+  transition: background 0.15s, color 0.15s;
+}
+.outline:hover {
+  background: var(--navy-900);
+  color: var(--white);
+}
+.stage {
+  position: relative;
+  padding-inline: 59px 62px; /* card inset 4.33% / 4.54% of 1363 */
+}
+.arrow {
+  position: absolute;
+  top: 189px;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  background: none;
+  z-index: 2;
+}
+.arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.arrow img {
+  width: 100%;
+  height: 100%;
+}
+.prev {
+  left: 0;
+}
+.next {
+  right: 0;
+}
+.track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  border-radius: 17.25px;
+  box-shadow: var(--shadow-event);
+}
+.track::-webkit-scrollbar {
+  display: none;
+}
+.slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--navy-900);
+  min-height: 414.05px;
+}
+.media {
+  overflow: hidden;
+}
+.media img {
+  width: 100%;
+  height: 100%;
+  min-height: 414.05px;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease-out);
+}
+.slide:hover .media img {
+  transform: scale(1.03);
+}
+.body {
+  padding: 34.5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.org {
+  padding-bottom: 12.94px;
+  font-weight: 700;
+  font-size: 12.94px;
+  line-height: 17.25px;
+  color: var(--yellow-500);
+}
+.name {
+  padding-bottom: 21.57px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 25.88px;
+  line-height: 35.58px;
+  color: var(--white);
+}
+.meta {
+  display: flex;
+  align-items: flex-start;
+  gap: 8.63px;
+  padding-bottom: 8.63px;
+  font-size: 15.1px;
+  line-height: 21.57px;
+  color: #d1d5dc;
+}
+.meta img {
+  width: 17.25px;
+  height: 17.25px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+.metaLast {
+  padding-bottom: 30.19px;
+}
+.cta {
+  align-self: flex-start;
+  padding: 10.78px 21.57px;
+  border-radius: var(--radius-pill);
+  background: var(--gold-500);
+  font-weight: 600;
+  font-size: 15.1px;
+  line-height: 21.57px;
+  color: var(--navy-900);
+  transition: filter var(--dur-hover) var(--ease-out);
+}
+.cta:hover {
+  filter: brightness(0.95);
+}
+.stage + div {
+  margin-top: 6px;
+}
+
+@media (max-width: 1199px) {
+  .wrap {
+    width: calc(100% - 2 * 16px);
+  }
+  .head {
+    padding-inline: calc(var(--gutter) - 16px);
+  }
+  .stage {
+    padding-inline: calc(var(--gutter) - 16px);
+  }
+  .arrow {
+    top: calc(50% - 18px);
+    width: 30px;
+    height: 30px;
+  }
+  .title {
+    font-size: clamp(30px, 3.3vw, 40.76px);
+  }
+  .name {
+    font-size: clamp(20px, 2.3vw, 25.88px);
+    line-height: 1.35;
+  }
+  .meta {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding: 54px 0;
+  }
+  .wrap {
+    width: calc(100% - 2 * var(--gutter));
+    gap: 38px;
+  }
+  .head,
+  .stage {
+    padding-inline: 0;
+  }
+  .title {
+    font-size: 32px;
+  }
+  .arrow {
+    display: none;
+  }
+  .track {
+    border-radius: 11px;
+  }
+  .slide {
+    grid-template-columns: 1fr;
+  }
+  .media img {
+    height: 220px;
+    min-height: 0;
+  }
+  .body {
+    padding: 34px 16.5px 44px 20px;
+    justify-content: flex-start;
+  }
+  .org {
+    font-size: 11.86px;
+    line-height: 15.81px;
+  }
+  .name {
+    padding-top: 12px;
+    font-size: 22px;
+    line-height: 32.62px;
+  }
+  .meta {
+    font-size: 13.84px;
+    line-height: 19.77px;
+    gap: 7.9px;
+  }
+  .meta img {
+    width: 15.81px;
+    height: 15.81px;
+  }
+  .metaLast {
+    padding-bottom: 38px;
+  }
+  .cta {
+    padding: 9.88px 19.77px;
+    font-size: 13.84px;
+    line-height: 19.77px;
+  }
+  .stage + div {
+    margin-top: -9px;
+  }
+}

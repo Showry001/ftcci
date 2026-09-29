@@ -1,0 +1,168 @@
+.section {
+  background: var(--surface-cream);
+  padding: 43px 0;
+}
+.inner {
+  width: min(1159px, 100% - 2 * var(--gutter));
+  margin-left: max(var(--gutter), calc((100% - 1440px) / 2 + 158px));
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  gap: 81px;
+}
+.copy {
+  width: 539px;
+  flex-shrink: 0;
+}
+.eyebrow {
+  font-family: var(--font-segoe);
+  font-weight: 700;
+  font-size: 13.53px;
+  line-height: 20.29px;
+  text-transform: uppercase;
+  color: var(--gold-600);
+}
+.title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 36.07px;
+  line-height: 54.11px;
+  color: var(--navy-900);
+}
+.body {
+  margin-top: 20px;
+  font-family: var(--font-segoe);
+  font-size: 15.78px;
+  line-height: 26.83px;
+  color: var(--gray-850);
+}
+.ctas {
+  margin-top: 24px;
+  display: flex;
+  gap: 13.53px;
+}
+.primary,
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12.4px 30px;
+  border-radius: var(--radius-md);
+  font-size: 14.66px;
+  line-height: 21.98px;
+  color: var(--navy-900);
+  transition: filter 0.15s, background 0.15s;
+}
+.primary {
+  background: var(--gold-500);
+  font-family: var(--font-segoe);
+  font-weight: 700;
+}
+.primary:hover {
+  filter: brightness(0.95);
+}
+.secondary {
+  border: 0.9px solid var(--navy-900);
+  font-weight: 500;
+}
+.secondary:hover {
+  background: rgba(21, 42, 94, 0.06);
+}
+.cardDesktop {
+  width: 539px;
+  aspect-ratio: 539 / 359;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 1;
+}
+.cardDesktop img {
+  position: absolute;
+  max-width: none;
+  width: 100%;
+  height: 100.09%;
+  left: -0.05%;
+  top: -0.12%;
+}
+.cardMobile {
+  display: none;
+}
+
+@media (max-width: 1199px) {
+  .inner {
+    margin-inline: auto;
+    gap: 40px;
+  }
+  .copy {
+    width: auto;
+    flex: 1;
+  }
+  .cardDesktop {
+    width: 46%;
+  }
+  .title {
+    font-size: clamp(28px, 3vw, 36px);
+    line-height: 1.5;
+  }
+}
+
+/* Mobile: card image sits between the heading and the copy */
+@media (max-width: 767px) {
+  .section {
+    padding: 60px 13px;
+  }
+  .inner {
+    width: 100%;
+    display: block;
+  }
+  .copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .eyebrow,
+  .title,
+  .body,
+  .ctas {
+    width: min(333px, 100%);
+  }
+  .eyebrow {
+    margin-bottom: 12px;
+  }
+  .title {
+    font-size: 32px;
+    line-height: 52px;
+    white-space: nowrap;
+  }
+  .cardDesktop {
+    display: none;
+  }
+  .cardMobile {
+    display: block;
+    margin-top: 13px;
+    width: 100%;
+    aspect-ratio: 364 / 189;
+    position: relative;
+    overflow: hidden;
+  }
+  .cardMobile img {
+    position: absolute;
+    max-width: none;
+    width: 112.72%;
+    height: 145.1%;
+    left: -6.41%;
+    top: -24.5%;
+  }
+  .body {
+    margin-top: 13px;
+    font-size: 15px;
+  }
+  .ctas {
+    margin-top: 42px;
+    height: 48.59px;
+  }
+  .primary,
+  .secondary {
+    flex: 1;
+    padding: 12.4px 16px;
+  }
+}

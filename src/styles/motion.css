@@ -1,0 +1,74 @@
+/*
+ * Site-wide motion.
+ * Figma prototype hovers use Smart Animate · 300ms · ease-out; hover tokens below follow that.
+ * Everything here is opacity/transform only, so no layout shifts, and it is switched off for
+ * people who ask for reduced motion.
+ */
+:root {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1); /* soft, "premium" deceleration for entrances */
+  --ease-figma: cubic-bezier(0, 0, 0.58, 1); /* Figma EASE_OUT */
+  --dur-hover: 0.3s;
+}
+
+/* Page change: a quick fade of the new route */
+@keyframes page-in {
+  from {
+    opacity: 0;
+  }
+}
+.page-enter {
+  animation: page-in 0.45s var(--ease-out);
+}
+
+/* Scroll reveal (driven by useReveal). "backwards" fill keeps hover transforms working afterwards. */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+  }
+}
+@keyframes reveal-item {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+}
+html.reveal-ready [data-reveal="pending"] {
+  opacity: 0;
+}
+[data-reveal="in"] {
+  animation: reveal-up 0.9s var(--ease-out) backwards;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+[data-reveal="in"][data-reveal-kind="item"] {
+  animation-name: reveal-item;
+  animation-duration: 0.7s;
+}
+
+/* Arrow glyphs slide forward a touch when their button/link is hovered */
+.arrow-nudge {
+  transition: transform var(--dur-hover) var(--ease-out);
+}
+a:hover .arrow-nudge,
+button:hover .arrow-nudge {
+  transform: translateX(3px);
+}
+
+@media print {
+  [data-reveal] {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

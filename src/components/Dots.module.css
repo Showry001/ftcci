@@ -1,0 +1,27 @@
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 18px;
+  background: var(--gray-300);
+  transition: width 0.25s, background 0.25s;
+}
+.amber {
+  width: 39px;
+  background: var(--amber-500);
+}
+.gold {
+  width: 36px;
+  background: var(--gold-600);
+}
+@media (max-width: 767px) {
+  .amber {
+    width: 35px;
+  }
+}

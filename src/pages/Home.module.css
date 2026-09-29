@@ -1,0 +1,38 @@
+/* Frame 1000002003: hero + form + who-we-are on a lavender→white gradient */
+.topBand {
+  background: linear-gradient(180deg, var(--surface-lavender-2) 0%, var(--white) 100%);
+  padding: 33px 0 89px;
+}
+.topStack {
+  width: min(var(--content-max), 100% - 2 * var(--gutter));
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.whoWeAre {
+  margin-top: 47px;
+}
+
+@media (max-width: 1199px) {
+  .topBand {
+    padding: 24px 0 56px;
+  }
+  .topStack {
+    gap: 28px;
+  }
+  .whoWeAre {
+    margin-top: 16px;
+  }
+}
+
+@media (max-width: 767px) {
+  .topBand {
+    background: none;
+    padding: 0;
+  }
+  .topStack {
+    width: 100%;
+    gap: 0;
+  }
+}

@@ -1,0 +1,516 @@
+.why, .benefits, .options, .steps, .experience {
+  scroll-margin-top: calc(var(--header-h) + var(--subnav-h));
+}
+
+/* Why join */
+.why {
+  background: var(--white);
+  padding: 84px 0;
+}
+.bigTitle {
+  max-width: 640px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 1.2;
+  color: var(--navy-900);
+}
+.bigTitle span {
+  color: var(--gold-600);
+}
+.pillars {
+  list-style: none;
+  margin: 35px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.pillars li {
+  min-height: 218px;
+  padding: 24px;
+  background: var(--white);
+  border: 1px solid #e6e2d8;
+  border-radius: var(--radius-lg);
+}
+.pillarNo {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 32px;
+  color: #e5a93b;
+}
+.pillars h3 {
+  margin-top: 16px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 20px;
+  color: #0b1b33;
+}
+.pillars p {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #5c6a79;
+}
+
+/* Benefits */
+.benefits {
+  background: var(--gray-100);
+  padding: 67px 0 94px;
+}
+.benefitsInner {
+  width: min(1204.67px, 100% - 2 * var(--gutter));
+  margin-left: max(var(--gutter), calc((100% - 1440px) / 2 + 129px));
+  margin-right: auto;
+}
+.benefitsRow {
+  margin-top: 35px;
+  display: flex;
+  align-items: center;
+  gap: 57px;
+}
+.benefitsRow > img {
+  width: 661px;
+  max-width: 55%;
+  aspect-ratio: 661 / 475;
+  object-fit: cover;
+}
+.benefitList {
+  flex: 1;
+  max-width: 486.67px;
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+}
+.benefitList li {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 19px 25px;
+  background: var(--white);
+  border: 1px solid #e5e9f0;
+  border-radius: 9px;
+}
+.benefitIcon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  background: #fff8ec;
+  border: 1px solid var(--gold-600);
+  border-radius: 100px;
+}
+.benefitIcon img {
+  width: 28px;
+  height: 28px;
+}
+.benefitList h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 18px;
+  color: #000;
+}
+.benefitList p {
+  margin-top: 8px;
+  max-width: 300px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #515151;
+}
+
+/* Options */
+.options {
+  background: var(--surface-lavender-4);
+  padding: 70px 0;
+}
+.optionsHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+}
+.optionsHead > :first-child h2 {
+  font-size: 38px;
+}
+.optionsHead > p {
+  max-width: 480px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #5c6a79;
+}
+.optionGrid {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.option {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 36px;
+  background: var(--white);
+  border: 1px solid #e6e2d8;
+  border-radius: var(--radius-xl);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.03));
+}
+.optionIcon {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 12px;
+  display: grid;
+  place-items: center;
+  background: var(--navy-900);
+  border-radius: 100px;
+}
+.option h3 {
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--navy-900);
+}
+.option p {
+  flex: 1;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #5c6a79;
+}
+.optionBtn {
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 44px;
+  padding: 14px 24px;
+  border: 1px solid var(--navy-900);
+  border-radius: var(--radius-md);
+  font-family: var(--font-nav);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--navy-900);
+  transition: background 0.15s;
+}
+.optionBtn:hover {
+  background: rgba(21, 42, 94, 0.06);
+}
+
+/* How to apply */
+.steps {
+  background: var(--white);
+  padding: 69px 0 123px;
+}
+.stepsHead {
+  text-align: center;
+}
+.stepsHead p {
+  font-family: var(--font-nav);
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #d4a843;
+}
+.stepsHead h2 {
+  margin-top: 16px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 40px;
+  color: var(--navy-900);
+}
+.stepRow {
+  list-style: none;
+  margin: 38px 0 0;
+  padding: 0;
+  display: flex;
+}
+.stepItem {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.stepItem:not(:last-child) {
+  padding-right: 32px;
+}
+.step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+.stepNo {
+  height: 49px;
+  margin-bottom: 8px;
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  background: #f7f2eb;
+  border-radius: 100px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 24px;
+  color: #d4a843;
+}
+.step h3 {
+  font-family: var(--font-nav);
+  font-weight: 700;
+  font-size: 16px;
+  color: #0c1835;
+}
+.step p {
+  font-family: var(--font-nav);
+  font-size: 13px;
+  line-height: 1.5;
+  color: #6b7280;
+}
+.stepLine {
+  width: 64px;
+  height: 7.36px;
+  flex-shrink: 0;
+}
+
+/* Experience */
+.experience {
+  position: relative;
+  overflow: hidden;
+  padding: 80px 0;
+}
+.expBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.expTint {
+  position: absolute;
+  inset: 0;
+  background: rgba(25, 47, 97, 0.89);
+}
+.expInner {
+  position: relative;
+  color: var(--white);
+}
+.expEyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-nav);
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #d4a843;
+}
+.expEyebrow::before {
+  content: "";
+  width: 24px;
+  height: 2px;
+  background: #d4a843;
+}
+.expInner h2 {
+  margin-top: 20px;
+  max-width: 680px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1.2;
+}
+.expText {
+  margin-top: 20px;
+  max-width: 680px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.expStats {
+  margin: 44px 0 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 19px;
+}
+.expStats dt {
+  font-family: var(--font-display);
+  font-size: 44px;
+  color: #d4a843;
+}
+.expStats dd {
+  margin: 8px 0 0;
+  font-family: var(--font-nav);
+  font-weight: 600;
+  font-size: 13px;
+}
+
+/* CTA */
+.cta {
+  background: var(--gold-500);
+  padding: 40px 0;
+}
+.ctaInner {
+  width: min(1239px, 100% - 2 * var(--gutter));
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  color: #0a1b3d;
+}
+.ctaInner h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 24px;
+}
+.ctaInner > div:first-child p {
+  margin-top: 10px;
+  max-width: 780px;
+  font-family: var(--font-nav);
+  font-size: 14px;
+  opacity: 0.8;
+}
+.ctaActions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: #0a1b3d;
+  border-radius: 6px;
+  font-family: var(--font-nav);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--white);
+}
+.ctaActions p {
+  font-family: var(--font-nav);
+  font-size: 12px;
+}
+.ctaActions p a {
+  font-weight: 700;
+}
+
+/* Tablet */
+@media (max-width: 1199px) {
+  .pillars {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .benefitsInner {
+    margin-inline: auto;
+  }
+  .benefitsRow {
+    gap: 32px;
+  }
+  .optionGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .stepRow {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 24px;
+  }
+  .stepItem:not(:last-child) {
+    padding-right: 0;
+  }
+  .stepLine {
+    display: none;
+  }
+  .expStats dt {
+    font-size: 36px;
+  }
+}
+@media (max-width: 1023px) {
+  .benefitsRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .benefitsRow > img {
+    width: 100%;
+    max-width: none;
+  }
+  .benefitList {
+    max-width: none;
+  }
+  .optionsHead {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .expStats {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 28px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .why,
+  .options {
+    padding: 50px 0;
+  }
+  .bigTitle {
+    font-size: 28px;
+  }
+  .pillars {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .pillars li {
+    min-height: 0;
+  }
+  .benefits {
+    padding: 50px 0;
+  }
+  .benefitList li {
+    gap: 16px;
+    padding: 16px;
+  }
+  .optionsHead > :first-child h2 {
+    font-size: 28px;
+  }
+  .optionGrid {
+    margin-top: 32px;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .option {
+    padding: 24px;
+  }
+  .option p {
+    font-size: 14px;
+  }
+  .steps {
+    padding: 50px 0 60px;
+  }
+  .stepsHead h2 {
+    font-size: 28px;
+  }
+  .stepRow {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .experience {
+    padding: 56px 0;
+  }
+  .expInner h2 {
+    font-size: 28px;
+  }
+  .expStats dt {
+    font-size: 32px;
+  }
+  .ctaInner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .ctaActions {
+    align-items: flex-start;
+  }
+  .ctaInner h2 {
+    font-size: 22px;
+  }
+}

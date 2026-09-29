@@ -1,0 +1,24 @@
+/*
+ * Neue Montreal is the display face used throughout the Figma file.
+ * It is a licensed font (Pangram Pangram), so it is not bundled here.
+ * Drop the licensed .woff2 files into /public/fonts with these names and they load automatically;
+ * until then the stack falls back to Inter.
+ */
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}

@@ -1,0 +1,116 @@
+.section {
+  padding: 70px 0;
+}
+.search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 24px;
+  background: var(--white);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-lg);
+  filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.02));
+}
+.search:focus-within {
+  border-color: var(--gold-500);
+}
+.search input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  font-family: var(--font-display);
+  font-size: 15px;
+}
+.search input::placeholder {
+  color: var(--slate-500);
+}
+.groups {
+  margin-top: 57px;
+  display: flex;
+  flex-direction: column;
+  gap: 42px;
+}
+.group h2 {
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--slate-200);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 24px;
+  color: #12225b;
+}
+.cards {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px;
+  background: var(--white);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-md);
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.02));
+  transition: border-color 0.15s;
+}
+.card:hover {
+  border-color: var(--gold-500);
+}
+.cardHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.cardHead strong {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 16px;
+  color: #141414;
+}
+.cardHead img {
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+.cardText {
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--slate-500);
+}
+.empty {
+  color: var(--slate-600);
+}
+@media (max-width: 1023px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 767px) {
+  .section {
+    padding: 36px 0 56px;
+  }
+  .search {
+    padding: 14px 16px;
+  }
+  .groups {
+    margin-top: 32px;
+    gap: 32px;
+  }
+  .group h2 {
+    font-size: 20px;
+    padding-bottom: 16px;
+  }
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .card {
+    padding: 18px;
+  }
+}

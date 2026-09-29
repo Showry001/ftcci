@@ -1,0 +1,276 @@
+.footer {
+  background: var(--navy-900);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 64px 0;
+}
+.grid {
+  width: min(1130.4px, 100% - 2 * var(--gutter));
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 246.6px 198px 246.6px 246.6px;
+  justify-content: space-between;
+  gap: 48px;
+}
+.col h4 {
+  font-family: var(--font-nav);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--white);
+}
+.about {
+  display: flex;
+  flex-direction: column;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.brand > img {
+  width: 70px;
+  height: 88px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.brandName {
+  font-family: var(--font-nav);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--white);
+}
+.brandFull {
+  margin-top: 5px;
+  width: 226px;
+  font-size: 11px;
+  line-height: 15px;
+  color: var(--white);
+}
+.tagline {
+  padding-top: 16px;
+  font-size: 14px;
+  line-height: 22.75px;
+}
+.social {
+  margin-top: auto;
+  padding-top: 24px;
+  display: flex;
+  gap: 12px;
+}
+.tile,
+.tileBare {
+  width: 33px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  transition: background 0.15s;
+}
+.tile {
+  background: rgba(255, 255, 255, 0.1);
+}
+.tile:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+.links ul {
+  padding-top: 20px;
+}
+.links li + li {
+  padding-top: 12px;
+}
+.links a,
+.contact a {
+  font-size: 14px;
+  line-height: 20px;
+  transition: color 0.15s;
+}
+.links a:hover,
+.contact a:hover {
+  color: var(--gold-500);
+}
+.contact address {
+  font-style: normal;
+  padding-top: 20px;
+}
+.contactRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  line-height: 20px;
+}
+.contactRow:first-child {
+  align-items: flex-start;
+  line-height: 22.75px;
+}
+.contactRow + .contactRow {
+  padding-top: 16px;
+}
+.contactRow img {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+.pinIcon {
+  margin-top: 2px;
+}
+.informedText {
+  padding-top: 20px;
+  font-size: 14px;
+  line-height: 20px;
+}
+.subscribe {
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.subscribe input {
+  height: 45.6px;
+  padding: 12.8px 16.8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 0.8px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  font: 14px var(--font-body);
+  color: var(--white);
+  outline: none;
+}
+.subscribe input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+.subscribe input:focus {
+  border-color: var(--gold-500);
+}
+.subscribe button {
+  height: 44px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--gold-500);
+  font-family: var(--font-nav);
+  font-weight: 700;
+  font-size: 14px;
+  color: #001973;
+}
+.subscribe button:hover {
+  filter: brightness(0.95);
+}
+.thanks {
+  font-size: 13px;
+  color: var(--gold-500);
+}
+.legal {
+  width: min(1236px, 100% - 2 * var(--gutter));
+  margin: 48px auto 0;
+  padding-top: 32.8px;
+  border-top: 0.8px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  font-size: 12px;
+  line-height: 16px;
+  color: rgba(255, 255, 255, 0.7);
+}
+.legal ul {
+  display: flex;
+  gap: 24px;
+}
+.legal a:hover {
+  color: var(--white);
+}
+
+@media (max-width: 1199px) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 28px;
+  }
+  .brand {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .brandFull {
+    width: auto;
+  }
+  .social {
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px 32px;
+  }
+  .brand {
+    flex-direction: row;
+    align-items: center;
+  }
+  .legal {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Mobile-Footer (390 frame): stacked About → Contact → Quick Links → Stay Informed → Legal */
+@media (max-width: 767px) {
+  .footer {
+    padding: 48px 0;
+  }
+  .grid {
+    width: auto;
+    padding-inline: 32px;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .about {
+    order: 1;
+  }
+  .contact {
+    order: 2;
+  }
+  .links {
+    order: 3;
+  }
+  .informed {
+    order: 4;
+  }
+  .brand {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+  .brandName {
+    font-size: 16px;
+  }
+  .brandFull {
+    width: 230px;
+    font-size: 13px;
+    line-height: 18px;
+  }
+  .contact address {
+    padding-top: 16px;
+  }
+  .links ul {
+    padding-top: 12px;
+  }
+  .links li + li {
+    padding-top: 10px;
+  }
+  .informed .subscribe input,
+  .informed .subscribe button {
+    width: 100%;
+  }
+  .legal {
+    width: auto;
+    margin: 20px 32px 0;
+    padding-top: 0;
+    border-top: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 11px;
+  }
+  .legal ul {
+    gap: 16px;
+  }
+}
