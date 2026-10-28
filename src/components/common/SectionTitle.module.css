@@ -1,12 +1,13 @@
+/* Metrics vary per section in Figma; pages set --eyebrow-lh / --title-lh (and the -m mobile variants) on className */
 .wrap {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 .eyebrow {
-  font-weight: 500;
+  font-weight: 700;
   font-size: 14px;
-  line-height: 22px;
+  line-height: var(--eyebrow-lh, 22px);
   text-transform: uppercase;
   color: var(--gold-600);
 }
@@ -14,11 +15,11 @@
   font-family: var(--font-display);
   font-weight: 500;
   font-size: 36px;
-  line-height: 46px;
+  line-height: var(--title-lh, 46px);
   color: var(--navy-900);
 }
 .title span {
-  color: var(--gold-600);
+  color: var(--accent, var(--gold-600));
 }
 .light {
   color: var(--white);
@@ -34,9 +35,12 @@
 }
 @media (max-width: 767px) {
   .title {
-    font-size: 28px;
+    font-size: 24px;
+    line-height: var(--title-lh-m, 30px);
   }
   .eyebrow {
-    font-size: 12px;
+    font-weight: var(--eyebrow-weight-m, 500);
+    font-size: var(--eyebrow-size-m, 12px);
+    line-height: var(--eyebrow-lh-m, normal);
   }
 }

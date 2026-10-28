@@ -184,7 +184,7 @@ export default function Services() {
           <div className="container">
             <img className={styles.banner} src={d.ceoImage} alt="FTCCI CEO Forum members" loading="lazy" />
             <h2 className={`${styles.h2} ${styles.h2Sm}`} style={{ marginTop: 42 }}>CEO Forum</h2>
-            <p className={styles.lead} style={{ maxWidth: 873, marginTop: 24, fontSize: 15 }}>
+            <p className={styles.lead} style={{ maxWidth: 873, marginTop: 24, fontSize: 15, lineHeight: "22.5px", color: "#4b5563" }}>
               A platform for CEOs and senior business leaders to connect, exchange perspectives and discuss key industry and
               economic issues.
             </p>

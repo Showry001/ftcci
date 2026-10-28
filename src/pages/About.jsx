@@ -33,7 +33,7 @@ export default function About() {
       {tab === "vision" && (
         <section className={styles.vision}>
           <div className="container">
-            <SectionTitle eyebrow="Core Values" title="Our Vision &" accent="Mission" />
+            <SectionTitle eyebrow="Core Values" title="Our Vision &" accent="Mission" className={styles.titleVision} />
             <div className={styles.visionRow}>
               {[vision, mission].map((v) => (
                 <article key={v.title} className={styles.visionCard}>
@@ -53,7 +53,7 @@ export default function About() {
       {tab === "objectives" && (
         <section className={styles.objectives}>
           <div className="container">
-            <SectionTitle eyebrow="Objectives" title="How We Empower" accent="Industry" />
+            <SectionTitle eyebrow="Objectives" title="How We Empower" accent="Industry" className={styles.titleObjectives} />
             <div className={styles.objectivesRow}>
               <img src={objectivesImage} alt="FTCCI members at the IITEX 2026 expo" loading="lazy" />
               <ul className={styles.objectiveGrid}>
@@ -73,7 +73,7 @@ export default function About() {
       {tab === "office-bearers" && (
         <section className={styles.bearers}>
           <div className="container">
-            <SectionTitle eyebrow="Leadership" title="Office" accent="Bearers" />
+            <SectionTitle eyebrow="Leadership" title="Office" accent="Bearers" className={styles.titleBearers} />
             <ul className={styles.bearerRow}>
               {leaders.map((l, i) => (
                 <li key={l.name} className={`${styles.bearer} ${i === 1 ? styles.bearerRaised : ""}`}>
@@ -93,7 +93,7 @@ export default function About() {
       {tab === "managing-committee" && (
         <section className={styles.committee}>
           <div className="container">
-            <SectionTitle eyebrow="Managing Committee" title="Meet the Managing" accent="Committee" />
+            <SectionTitle eyebrow="Managing Committee" title="Meet the Managing" accent="Committee" className={styles.titleCommittee} />
             <div className={styles.committePhoto}>
               <img src={committeeImage} alt="FTCCI Managing Committee at the 109th Annual General Meeting" loading="lazy" />
             </div>
@@ -129,7 +129,7 @@ export default function About() {
       {tab === "secretariat" && (
         <section className={styles.secretariat}>
           <div className="container">
-            <SectionTitle title="FTCCI" accent="Secretariat" />
+            <SectionTitle title="FTCCI" accent="Secretariat" className={styles.titleSecretariat} />
             <p className={styles.secretariatIntro}>
               The work of the Federation is carried out by a Secretariat consisting of Secretary, Sr.Director, Director,
               Joint Directors, Deputy Director, Assistant Directors and Junior Officers in various Departments.
@@ -150,7 +150,7 @@ export default function About() {
       {tab === "past-presidents" && (
         <section className={styles.presidents}>
           <div className="container">
-            <SectionTitle title="Past" accent="Presidents" light />
+            <SectionTitle title="Past" accent="Presidents" light className={styles.titlePresidents} />
             <ul className={styles.presidentGrid}>
               {pastPresidents.map((p) => (
                 <li key={p.name} className={styles.president}>

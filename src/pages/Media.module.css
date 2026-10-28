@@ -92,6 +92,7 @@
 }
 .meta time {
   font-size: 12.98px;
+  line-height: 17.8px;
   color: #999;
 }
 .metaSm {
@@ -193,7 +194,7 @@
 .kitSub {
   margin-top: 8px;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 20px;
   color: rgba(26, 45, 90, 0.6);
 }
@@ -295,8 +296,9 @@
   }
   .leadBody h3 {
     margin-top: 8px;
-    font-size: 17px;
-    line-height: 1.3;
+    font-size: 13.2px;
+    line-height: 15.1px;
+    color: var(--gray-950);
   }
   .grid {
     margin-top: 12px;
@@ -323,21 +325,53 @@
   }
   .cardBody h3 {
     margin-top: 8px;
-    font-size: 15px;
-    line-height: 1.35;
+    font-size: 12.3px;
+    line-height: 17px;
+    color: var(--gray-900);
   }
   .cardBody p {
     display: none;
   }
+  /* Mobile press kit: white band, Inter type, full-width download buttons */
   .kit {
-    padding: 50px 0;
+    background: var(--white);
+    padding: 49px 0 32px;
   }
   .kitTitle {
-    font-size: 28px;
-    line-height: 1.3;
+    font-family: var(--font-body);
+    font-size: 24px;
+    line-height: 30px;
+    color: #001973;
+  }
+  .kitSub {
+    margin-top: 10px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #656565;
   }
   .kitGrid {
-    margin-top: 28px;
+    margin-top: 20px;
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .tile {
+    gap: 12px;
+    padding: 20px;
+  }
+  .tile h3 {
+    font-family: var(--font-body);
+    color: var(--ink-800);
+  }
+  .tile p {
+    font-family: var(--font-body);
+    font-size: 12px;
+    line-height: 18px;
+    color: #858585;
+  }
+  .dl {
+    align-self: stretch;
+    width: auto;
+    font-family: var(--font-nav);
   }
 }

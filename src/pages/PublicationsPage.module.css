@@ -12,11 +12,11 @@
   font-family: var(--font-display);
   font-weight: 500;
   font-size: 32px;
-  line-height: 1.1;
+  line-height: 20.3px;
   color: var(--navy-900);
 }
 .grid {
-  margin-top: 41px;
+  margin-top: 54px;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 28px 43px;
@@ -107,6 +107,9 @@
 }
 
 @media (max-width: 1199px) {
+  .section h2 {
+    line-height: 1.2;
+  }
   .grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 24px;

@@ -451,6 +451,11 @@
   font-size: 11.37px;
   color: #5f646d;
 }
+.hallCard .filesLabel {
+  font-weight: 800;
+  font-size: 11.37px;
+  color: #5f646d;
+}
 .hallCard dd {
   margin-top: 6.2px;
   font-weight: 600;
@@ -494,10 +499,11 @@
 
 /* Downloads */
 .attachEyebrow {
-  font-weight: 800;
-  font-size: 11px;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: #d59b2d;
+  color: var(--gold-600);
 }
 .attachments {
   margin-top: 48px;
@@ -592,11 +598,20 @@
     padding: 50px 0;
     scroll-margin-top: calc(var(--header-h) + 56px);
   }
-  .h2 {
-    font-size: 28px;
-  }
+  .h2,
   .h2Sm {
-    font-size: 26px;
+    font-size: 24px;
+    line-height: 32px;
+  }
+  .coMain .lead {
+    font-size: 14px;
+    line-height: 22px;
+    color: #5f646d;
+  }
+  .coMain .checklist li {
+    font-family: var(--font-nav);
+    line-height: 20px;
+    color: #22252a;
   }
   .coPhoto {
     margin: 28px 0;
@@ -615,6 +630,25 @@
   }
   .contactCard {
     padding: 24px;
+  }
+  .contactCard h3 {
+    font-family: var(--font-body);
+    font-size: 20px;
+  }
+  .contactCard dt,
+  .filesLabel {
+    font-size: 10px;
+    color: #5f646d;
+  }
+  .contactCard dd {
+    font-size: 13px;
+    line-height: 18px;
+  }
+  .files a {
+    font-size: 12px;
+  }
+  .enquire {
+    font-size: 13px;
   }
   .docCards,
   .committees,

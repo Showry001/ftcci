@@ -326,7 +326,10 @@
     padding: 16px 7px 16px 30px;
     gap: 10px;
   }
+  /* the brand may shrink on very narrow phones so the bar never overflows */
   .brand {
+    flex-shrink: 1;
+    min-width: 0;
     gap: 7px;
   }
   .logo {
@@ -334,7 +337,7 @@
     aspect-ratio: 44 / 45;
   }
   .brandText {
-    width: 142px;
+    width: 156px; /* three lines, as drawn; Figma's box assumes Neue Montreal, Inter needs ~154px */
     font-size: 12px;
     line-height: 14px;
   }

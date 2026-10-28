@@ -261,31 +261,126 @@
     padding: 32px;
   }
 }
+/* Mobile contact frame: compact Manrope form, 8px-radius cards */
 @media (max-width: 767px) {
   .section {
-    padding: 40px 0 60px;
+    padding: 42px 0 60px;
+  }
+  .row {
+    gap: 32px;
   }
   .form {
-    padding: 24px 18px;
-    gap: 24px;
+    gap: 16px;
+    padding: 16px;
+    border-radius: var(--radius-md);
   }
   .formTitle,
   .office h2 {
-    font-size: 26px;
+    font-family: var(--font-body);
+    font-size: 20px;
+    line-height: 26px;
+  }
+  .formSub,
+  .consent {
+    font-family: var(--font-nav);
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 15px;
+  }
+  .formSub {
+    margin-top: 4px;
+  }
+  .fields {
+    gap: 10px;
+  }
+  .field > span:first-child {
+    font-family: var(--font-nav);
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .field input,
+  .field textarea,
+  .field select {
+    padding: 9px 10px;
+    border-radius: 6px;
+    font: 500 13px/18px var(--font-nav);
+  }
+  .field textarea {
+    min-height: 80px;
+    height: 80px;
+  }
+  .consent input {
+    width: 13px;
+    height: 13px;
+  }
+  .submit {
+    padding: 11.5px 24px;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 18px;
+  }
+  .side {
+    gap: 32px;
   }
   .office,
   .donate {
-    padding: 28px 20px;
+    padding: 20px;
+    border-radius: var(--radius-md);
+  }
+  .address {
+    margin-top: 16px;
   }
   .address h3 {
-    font-size: 18px;
+    font-family: var(--font-nav);
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 18px;
   }
-  .desks,
+  .address address,
+  .details li,
+  .donate p {
+    font-family: var(--font-nav);
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 18px;
+  }
+  .address address {
+    margin-top: 6px;
+  }
+  .details {
+    margin-top: 16px;
+    gap: 10px;
+  }
+  .desks {
+    margin-top: 16px;
+    padding-top: 10px;
+    border-top: 1px solid #d9d9d9;
+    font-family: var(--font-nav);
+    font-size: 11px;
+    line-height: 15px;
+  }
+  .desks strong,
   .donate .razor {
-    font-size: 14px;
+    font-family: var(--font-nav);
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 15px;
+  }
+  .donate h3 {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 18px;
+  }
+  .donate p {
+    margin-top: 10px;
+  }
+  .donate .razor {
+    margin-top: 12px;
   }
   .map {
-    margin-top: 40px;
+    margin-top: 32px;
     height: 260px;
+    border-radius: var(--radius-md);
   }
 }

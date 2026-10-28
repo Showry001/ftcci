@@ -219,9 +219,13 @@
     gap: 16px;
     padding-inline: var(--gutter);
   }
+  .eyebrow {
+    font-weight: 500;
+    font-size: 12px;
+  }
   .title {
-    font-size: 28px;
-    line-height: 36px;
+    font-size: 24px;
+    line-height: 30px;
   }
   .arrows {
     align-self: auto;

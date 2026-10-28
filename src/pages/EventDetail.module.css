@@ -252,27 +252,111 @@
     margin-top: 0;
   }
 }
+/* Mobile event frame (390): Inter section headings, grey breadcrumb strip, full-width actions */
 @media (max-width: 767px) {
+  .heroText {
+    padding: 57px var(--gutter) 70px;
+    gap: 16px;
+  }
   .heroText h1 {
-    font-size: 28px;
+    font-size: 24px;
     line-height: 36px;
+    letter-spacing: 0;
+  }
+  .heroText p {
+    margin-top: -6px;
+    line-height: 24px;
+  }
+  .heroImg {
+    aspect-ratio: 390 / 203;
   }
   .body {
-    padding-top: 28px;
+    padding-top: 0;
   }
   .crumbs {
-    padding-inline: 0;
+    flex-wrap: nowrap;
+    margin-inline: calc(-1 * var(--gutter));
+    padding: 12px var(--gutter);
+    background: #f8f9fa;
+    border-bottom: 1px solid var(--slate-200);
     font-size: 12px;
+    line-height: normal;
+    white-space: nowrap;
+    color: #4a5565;
+  }
+  .crumbs [aria-current] {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .grid {
+    margin-top: 37px;
+    row-gap: 24px;
   }
   .grid h2 {
-    font-size: 26px;
-    line-height: 1.6;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
   }
-  .about,
+  .grid .expectTitle {
+    margin-top: 36px;
+    font-size: 22px;
+  }
+  .about {
+    padding-top: 16px;
+    font-size: 14px;
+    line-height: 22px;
+  }
+  .details {
+    padding: 24px;
+  }
+  .details h3 {
+    font-size: 15.8px;
+    line-height: 22.6px;
+  }
+  .factIcon {
+    width: 26px;
+    height: 26px;
+  }
+  .factIcon img {
+    width: 15px;
+    height: 15px;
+  }
+  .details dt {
+    font-size: 13.6px;
+    line-height: 18.6px;
+  }
+  .details dd {
+    font-size: 12.8px;
+    line-height: 20.3px;
+  }
+  .details dl > div:first-child dd {
+    font-size: 11.5px;
+  }
+  .pdf {
+    padding: 10px 16px;
+    font-size: 16px;
+    line-height: 18.4px;
+  }
+  .expect {
+    padding: 16px 0 24px;
+    gap: 12px;
+  }
   .expect li {
-    font-size: 15px;
+    gap: 8px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .expect img {
+    width: 14px;
+    height: 14px;
+    margin-top: 3px;
   }
   .register {
+    display: flex;
+    justify-content: center;
+    padding: 12.75px 24px;
+    border-radius: 8px;
     font-size: 16px;
   }
 }

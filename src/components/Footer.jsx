@@ -98,7 +98,7 @@ export default function Footer() {
       </div>
 
       <div className={styles.legal}>
-        <p>© 2025 Federation of Telangana Chambers of Commerce and Industry. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Federation of Telangana Chambers of Commerce and Industry. All rights reserved.</p>
         <ul>
           {legalLinks.map((l) => (
             <li key={l}><a href="#privacy">{l}</a></li>

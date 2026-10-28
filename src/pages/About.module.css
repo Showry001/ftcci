@@ -5,6 +5,42 @@
   overflow: hidden;
 }
 
+/* Heading line heights per section (Figma desktop / mobile frames) */
+.titleVision {
+  --eyebrow-lh: 26px;
+  --title-lh: 40px;
+  --eyebrow-size-m: 14px;
+  --eyebrow-lh-m: 26px;
+  --title-lh-m: 40px;
+}
+.titleObjectives {
+  --eyebrow-lh: 25px;
+  --title-lh: 56px;
+  --eyebrow-weight-m: 700;
+}
+.titleBearers {
+  --eyebrow-lh: 28px;
+  --title-lh: 42px;
+  --eyebrow-size-m: 14px;
+  --eyebrow-lh-m: 28px;
+  --title-lh-m: 42px;
+}
+.titleCommittee {
+  --eyebrow-lh: 28px;
+  --title-lh: 46px;
+  --eyebrow-lh-m: 16px;
+  --eyebrow-weight-m: 600;
+  --title-lh-m: 46px;
+  --accent: #d79a26;
+}
+.titleSecretariat {
+  --title-lh: 42px;
+}
+.titlePresidents {
+  --title-lh: 52px;
+  --title-lh-m: 52px;
+}
+
 /* ---------- Vision & mission ---------- */
 .vision {
   background: var(--white);
@@ -153,7 +189,7 @@
   font-family: var(--font-display);
   font-weight: 500;
   font-size: 21.46px;
-  line-height: 1.1;
+  line-height: 15.2px;
   color: var(--white);
 }
 .bearerCaption p {
@@ -410,7 +446,7 @@
   }
 }
 
-/* ---------- Mobile ---------- */
+/* ---------- Mobile (390 frames) ---------- */
 @media (max-width: 767px) {
   .history {
     padding: 50px 0 60px;
@@ -423,54 +459,189 @@
     gap: 16px;
   }
   .visionCard {
-    min-height: 0;
-    padding: 32px 24px 28px;
+    min-height: 273px;
+    padding: 27px 24px 28px 26px;
+  }
+  /* mobile cards add gold corner brackets (top-right, bottom-left) */
+  .visionCard::after {
+    content: "";
+    position: absolute;
+    inset: 15.5px 17.5px 17.5px 21.5px;
+    pointer-events: none;
+    background:
+      linear-gradient(#e8b72c, #e8b72c) top right / 20px 1px no-repeat,
+      linear-gradient(#e8b72c, #e8b72c) top right / 1px 20px no-repeat,
+      linear-gradient(#e8b72c, #e8b72c) bottom left / 20px 1px no-repeat,
+      linear-gradient(#e8b72c, #e8b72c) bottom left / 1px 20px no-repeat;
+  }
+  .ornament {
+    height: 28px;
+    padding: 0;
   }
   .visionCard h3 {
     font-size: 26px;
-    line-height: 34px;
+    line-height: 29px;
   }
   .visionCard p {
-    font-size: 16px;
-    line-height: 28px;
+    font-size: 15px;
+    line-height: 24px;
   }
   .objectives,
   .committee,
   .secretariat {
     padding: 50px 0;
   }
+  .objectives {
+    background: var(--white);
+  }
+  .objectivesRow {
+    margin-top: 22px;
+    gap: 32px;
+  }
+  .objectivesRow > img {
+    aspect-ratio: 330 / 200;
+    border-radius: var(--radius-lg);
+  }
   .objectiveGrid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 25px;
+  }
+  .objectiveGrid li {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--slate-200);
+  }
+  .objectiveGrid h3 {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 15px;
+    color: #001973;
+  }
+  .objectiveGrid p {
+    margin-top: 0;
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: normal;
+    color: var(--slate-700);
   }
   .bearerRow {
     grid-template-columns: 1fr;
     gap: 16px;
   }
   .bearerCaption h3 {
-    font-size: 20px;
+    font-size: 21.5px;
+  }
+  .committePhoto {
+    margin-top: 25px;
+    aspect-ratio: auto;
+    height: 220px;
+    border-radius: var(--radius-lg);
+  }
+  .committePhoto img {
+    position: static;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 42% center;
   }
   .panelTabs {
-    padding-left: 0;
+    margin-top: 25px;
+    gap: 0;
+    padding: 0 0 9px;
+  }
+  .panelTab {
+    padding: 8px;
+    border: 0;
+    font-family: var(--font-body);
+    font-size: 13px;
+    letter-spacing: 0;
+  }
+  .panelTabActive {
+    padding: 8px 12px;
+    background: var(--navy-900);
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--white);
+  }
+  .memberGrid {
+    margin: 25px 0 0;
+  }
+  .member {
+    gap: 6px;
+    padding: 16px;
+  }
+  .member h3 {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .member p {
+    font-size: 13px;
+    line-height: 18px;
+  }
+  .member span {
+    margin-top: 6px;
+  }
+  .secretariatIntro {
+    margin-top: 16px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 18px;
+    color: var(--slate-700);
+  }
+  .staffGrid {
+    margin-top: 25px;
+    gap: 24px;
+  }
+  .staff {
+    gap: 10px;
+    padding: 16px;
+    background: var(--white);
+    border-radius: 6px;
+  }
+  .staff p {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--slate-500);
   }
   .memberGrid,
   .staffGrid,
   .presidentGrid {
     grid-template-columns: 1fr;
   }
-  .member h3 {
-    font-size: 18px;
-  }
   .presidents {
-    padding: 50px 0;
+    padding: 54px 0 50px;
   }
   .presidentGrid {
+    margin: 26px 16px 0;
     gap: 20px;
   }
+  .president {
+    grid-template-areas:
+      "name term"
+      "company term";
+    padding: 0 0 11px;
+  }
   .president h3 {
-    font-size: 17px;
+    font-size: 15px;
+  }
+  .president p {
+    margin-top: 4px;
+    font-size: 12px;
+    line-height: 16.8px;
+    color: var(--slate-200);
   }
   .president span {
-    font-size: 14px;
+    align-self: start;
+    padding: 6px 10px;
+    background: rgba(240, 184, 77, 0.08);
+    border: 1px solid var(--gold-500);
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 11px;
+    line-height: normal;
   }
 }

@@ -129,7 +129,7 @@
     margin-bottom: 12px;
   }
   .title {
-    font-size: 32px;
+    font-size: 24px;
     line-height: 52px;
     white-space: nowrap;
   }
@@ -167,11 +167,3 @@
   }
 }
 
-/* Very small phones: the one-line title no longer fits */
-@media (max-width: 359px) {
-  .title {
-    font-size: 28px;
-    line-height: 36px;
-    white-space: normal;
-  }
-}

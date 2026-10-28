@@ -34,7 +34,7 @@ export default function Membership() {
 
       <section id="benefits" className={styles.benefits}>
         <div className={styles.benefitsInner}>
-          <SectionTitle eyebrow="Membership Benefits" title="Everything you need to move business forward." />
+          <SectionTitle eyebrow="Membership Benefits" title="Everything you need to move business forward." className={styles.titleBenefits} />
           <div className={styles.benefitsRow}>
             <img src={benefitsPhoto} alt="FTCCI members at the Parishrama Adalat conciliation conclave" loading="lazy" />
             <ul className={styles.benefitList}>
@@ -57,7 +57,7 @@ export default function Membership() {
       <section id="options" className={styles.options}>
         <div className="container">
           <div className={styles.optionsHead}>
-            <SectionTitle eyebrow="Membership Options" title="A Membership that fits your business." />
+            <SectionTitle eyebrow="Membership Options" title="A Membership that fits your business." className={styles.titleOptions} />
             <p>
               Whether you're an established enterprise, growing company or emerging entrepreneur, FTCCI offers membership
               opportunities designed around your business journey.

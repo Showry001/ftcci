@@ -51,7 +51,7 @@ a.card:hover {
   font-weight: 500;
   font-size: 13.64px;
   line-height: 20.5px;
-  color: #000;
+  color: var(--navy-900);
 }
 .body {
   padding: 19.85px;
@@ -205,27 +205,75 @@ a.card:hover {
     margin-top: 48px;
   }
 }
+/* Mobile Events frame: compact cards with Manrope meta and a divider above it */
 @media (max-width: 767px) {
   .section {
-    padding: 36px 0 56px;
+    padding: 44px 0 40px;
   }
   .heading {
     padding: 0;
-    font-size: 28px;
-    line-height: 38px;
+    font-family: var(--font-nav);
+    font-weight: 700;
+    font-size: 24px;
+    line-height: normal;
     text-align: center;
+    color: var(--navy-900);
   }
   .grid {
-    margin-top: 32px;
+    margin-top: 27px;
     grid-template-columns: 1fr;
     gap: 20px;
   }
   .card {
     min-height: 0;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg);
   }
-  .meta,
+  .media {
+    height: 180px;
+  }
+  .tag {
+    left: 12px;
+    top: 12px;
+    padding: 4px 12px;
+    font-family: var(--font-nav);
+    font-weight: 700;
+    font-size: 11px;
+    line-height: normal;
+    color: var(--navy-950);
+  }
+  .body {
+    padding: 16px;
+  }
+  .body h3 {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0;
+  }
   .subtitle {
-    font-size: 14px;
+    margin-bottom: 12px;
+    padding: 6px 0 12px;
+    border-bottom: 1px solid var(--gray-200);
+    font-family: var(--font-nav);
+    font-size: 13px;
+    line-height: 18px;
+  }
+  .meta {
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-nav);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: normal;
+  }
+  .meta + .meta {
+    margin-top: 8px;
+  }
+  .meta img {
+    width: 14px;
+    height: 14px;
+    margin-top: 0;
   }
 
   /* Mobile Past Events frame (2160:15990) */
