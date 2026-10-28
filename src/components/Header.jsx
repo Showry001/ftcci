@@ -43,9 +43,20 @@ export default function Header() {
 
         <nav className={styles.nav} aria-label="Primary">
           {navLinks.map((l) => (
-            <NavLink key={l.to} to={l.to} className={({ isActive }) => (isActive ? styles.navActive : undefined)}>
-              {l.label}
-            </NavLink>
+            <div key={l.to} className={styles.navItem}>
+              <NavLink to={l.to} className={({ isActive }) => (isActive ? styles.navActive : undefined)}>
+                {l.label}
+              </NavLink>
+              {l.children && (
+                <ul className={styles.dropdown} aria-label={`${l.label} pages`}>
+                  {l.children.map(([label, to]) => (
+                    <li key={to}>
+                      <Link to={to}>{label}</Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           ))}
         </nav>
 
@@ -68,7 +79,7 @@ export default function Header() {
             aria-controls="mobile-menu"
             onClick={() => setOpen((v) => !v)}
           >
-            <img src={assets.menu} alt="" width="38" height="32" />
+            <img src={open ? assets.close : assets.menu} alt="" width="38" height={open ? 34 : 32} />
           </button>
         </div>
       </div>
@@ -99,7 +110,7 @@ export default function Header() {
               </div>
             ) : (
               <Link key={l.to} to={l.to} className={styles.groupBtn} onClick={() => setOpen(false)}>
-                {l.label}
+                {l.menuLabel ?? l.label}
               </Link>
             )
           )}

@@ -11,7 +11,7 @@
   display: flex;
   align-items: center;
   gap: 24px;
-  padding: 16px 0;
+  padding: 15px 0; /* 63px bar: Figma's 16px padding includes the bar's 1px border */
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -20,7 +20,7 @@
 }
 .item {
   flex-shrink: 0;
-  padding: 8px 0;
+  padding: 7px 0; /* Figma's 8px padding includes the 1px pill border */
   border: 1px solid transparent;
   border-radius: 20px;
   font-weight: 600;
@@ -34,7 +34,7 @@
   color: var(--indigo-900);
 }
 .active {
-  padding-inline: 20px;
+  padding-inline: 19px;
   background: #fffcf8;
   border-color: var(--indigo-900);
   font-weight: 700;
@@ -48,37 +48,51 @@
   }
 }
 
-/* Dark variant (Services): navy bar, white labels, gold outlined active item */
-.dark {
-  background: #133063;
+/* Title-case variant (Services): borderless bar 24px below the hero, navy labels, outlined active pill */
+.titleCase {
   border: 0;
-  margin-top: 22px;
+  margin-top: 24px;
 }
-.dark .track {
+.titleCase .track {
   gap: 18px;
   padding: 14px 0 19px;
 }
-.dark .item {
-  padding: 7.75px 7.75px 7.75px 11.6px;
-  border-radius: 6px;
+.titleCase .item {
+  padding: 6.75px 6.75px 6.75px 10.625px;
   font-weight: 500;
   font-size: 13.56px;
   text-transform: none;
-  color: var(--white);
+  color: var(--indigo-900);
 }
-.dark .item:hover {
-  color: var(--gold-500);
+.titleCase .item:hover {
+  color: var(--gold-600);
 }
-.dark .active {
+.titleCase .active {
   background: transparent;
-  border: 0.97px solid var(--gold-600);
+  border-color: var(--indigo-900);
   font-weight: 600;
-  color: var(--white);
+  color: var(--indigo-900);
 }
 
-/* Mobile frames have no banner/tab bar; section navigation lives in the menu accordion. */
+/* Mobile frames have no banner/tab bar; section navigation lives in the menu accordion.
+   Exception: the mobile Publications frame keeps the bar as wrapping pills. */
 @media (max-width: 767px) {
   .bar {
     display: none;
+  }
+  .bar.mobile {
+    display: block;
+    position: static; /* a 96px sticky bar would take too much of a phone screen */
+  }
+  .mobile .track {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 16px 20px;
+    overflow: visible;
+  }
+  .mobile .item {
+    padding: 7px 11px; /* 28px pills, border inside Figma's 8 × 12 padding */
+    font-size: 10px;
+    line-height: 12px;
   }
 }

@@ -11,6 +11,9 @@
 .lavender {
   background: var(--surface-lavender-4);
 }
+.lavenderDeep {
+  background: var(--surface-lavender-3);
+}
 .h2 {
   font-family: var(--font-display);
   font-weight: 500;
@@ -330,12 +333,17 @@
   object-fit: cover;
   border-radius: var(--radius-lg);
 }
-#ceo-forum .checklistLg,
 .section .checklistLg {
   margin-top: 24px;
 }
-#ceo-forum .checklistLg li {
+.ceoForum .checklistLg li {
   color: #323334;
+}
+/* sec-forum: the text block is a fixed 284px in Figma, so the section is 818px tall at desktop */
+@media (min-width: 1200px) {
+  .ceoForum :global(.container) {
+    min-height: 678px;
+  }
 }
 
 /* Halls */

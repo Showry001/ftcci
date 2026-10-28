@@ -9,21 +9,22 @@ export const assets = {
   search: a("header/search.svg"),
   searchMobile: a("mobile/search.svg"),
   menu: a("mobile/menu.svg"),
+  close: a("mobile/close.svg"),
   arrowWhite: a("icons/arrow-white.svg"),
   arrowNavy: a("icons/arrow-navy.svg"),
   heroVideo: a("hero/hero.mp4"),
   checks: [a("form/check-1.svg"), a("form/check-2.svg"), a("form/check-3.svg")],
   whoWeAreBg: a("about/who-we-are-bg.png"),
   membersNetworking: a("about/members-networking.png"),
-  eventArrowPrev: a("events/arrow-prev.svg"),
-  eventArrowNext: a("events/arrow-next.svg"),
   iconCalendar: a("events/icon-calendar.svg"),
   iconLocation: a("events/icon-location.svg"),
+  iconCalendarMobile: a("events/icon-calendar-outline.svg"),
+  iconLocationMobile: a("events/icon-location-outline.svg"),
+  iconPin: a("events/icon-pin-sm.svg"),
+  iconPinMobile: a("events/icon-pin-outline-sm.svg"),
   venueFeatured: a("venues/featured-hall.png"),
   venueCheckFirst: a("venues/check-1.svg"),
   venueCheck: a("venues/check.svg"),
-  pubArrowPrev: a("publications/arrow-prev.svg"),
-  pubArrowNext: a("publications/arrow-next.svg"),
   benefitsBg: a("benefits/benefits-bg.png"),
   businessSummit: a("benefits/business-summit.png"),
   privilegeCard: a("card/privilege-card.png"),
@@ -97,7 +98,14 @@ export const navLinks = [
       ["Press Kit", "/media#press-kit"],
     ],
   },
-  { label: "Contact", to: "/contact" },
+  { label: "Contact", to: "/contact", menuLabel: "Contact Us" },
+];
+
+export const kpis = [
+  { value: "1917", label: "Founded in Hyderabad" },
+  { value: "3,000+", label: "Member enterprises" },
+  { value: "18+", label: "Expert committees" },
+  { value: "100+", label: "Events every year" },
 ];
 
 export const formPerks = ["Weekly updates", "Event invites", "Member deals"];
@@ -131,17 +139,24 @@ export const leaders = [
   },
 ];
 
-// The design shows a 3-slide carousel but only one event is designed.
-// Replace the repeated entries with real events.
-const womenEmpowerment = {
-  organiser: "FTCCI",
+// Home "Upcoming Events": featured card + schedule list.
+export const featuredEvent = {
   title: "International Conference on Women Empowerment",
   date: "Thursday, August 13, 2026 · 9:00 AM – 5:00 PM",
   venue: "Cyber Gardens, Hitech City, Hyderabad",
   image: a("events/women-empowerment.png"),
   href: "/events/women-empowerment-conference",
 };
-export const events = [womenEmpowerment, womenEmpowerment, womenEmpowerment];
+
+export const eventSchedule = [
+  { date: "10 AUG, 2026", time: "10:00 AM", title: "Urban Farming & Kitchen Gardening Expo", venue: "Federation House, Hyderabad", image: a("events/thumb-urban-farming.png"), href: "/events/urban-farming-expo-2026" },
+  { date: "15 AUG, 2026", time: "09:00 AM", title: "International Conference on Women Empowerment", venue: "HICC, Hyderabad", image: a("events/thumb-women-empowerment.png"), href: "/events/women-empowerment-conference" },
+  { date: "22 AUG, 2026", time: "03:00 PM", title: "Export Promotion Seminar for MSMEs", venue: "Federation House, Hyderabad", image: a("events/thumb-export-promotion.png"), href: "/events" },
+  { date: "30 AUG, 2026", time: "11:00 AM", title: "FTCCI Annual General Meeting 2026", venue: "Grand Hyatt, Hyderabad", image: a("events/thumb-agm.png"), href: "/events/agm-2026" },
+];
+
+// Home leadership order (About → Office Bearers keeps `leaders` order).
+export const homeLeaders = [leaders[1], leaders[0], leaders[2]];
 
 export const venueHighlights = [
   "State-of-the-art infrastructure",

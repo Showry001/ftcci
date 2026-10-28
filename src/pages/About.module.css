@@ -1,132 +1,77 @@
-/* ---------- KPI strip ---------- */
-.kpis {
-  background: var(--white);
-  padding: 71px 0 70px;
-}
-.kpiRow {
-  width: min(1243px, 100% - 2 * var(--gutter));
-  margin-inline: auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 47px;
-}
-.kpi {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 24px;
-  background: var(--white);
-  border-left: 3px solid var(--gold-500);
-  border-radius: var(--radius-md);
-  filter: drop-shadow(1px 1px 7.2px rgba(0, 0, 0, 0.1));
-}
-.kpi strong {
-  font-weight: 700;
-  font-size: 36px;
-  color: var(--indigo-900);
-}
-.kpi span {
-  font-family: var(--font-public);
-  font-size: 14px;
-  color: var(--slate-600);
-}
-
-/* ---------- History ---------- */
+/* ---------- History (carousel lives in HistoryCarousel) ---------- */
 .history {
-  background: var(--surface-lavender);
-  padding: 50px 0 99px;
-  scroll-margin-top: calc(var(--header-h) + var(--subnav-h));
-}
-.timeline {
-  list-style: none;
-  margin: 62px auto 0;
-  padding: 0;
-  width: min(1098px, 100% - 2 * var(--gutter));
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-.milestone {
-  display: grid;
-  grid-template-columns: 512fr 586fr;
-  height: 252px;
-}
-.milestone img {
-  width: 100%;
-  height: 0; /* stretch to the row height set by the text column */
-  min-height: 100%;
-  object-fit: cover;
-  border-radius: 12px 0 0 12px;
-}
-.milestoneBody {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 24px;
-  padding: 47px 64px 49px;
-  background: var(--white);
-  border-radius: 0 8px 8px 0;
-  filter: drop-shadow(0 1px 10px rgba(0, 0, 0, 0.08));
-}
-.milestoneBody h3 {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 32px;
-  line-height: 28px;
-  color: var(--navy-900);
-}
-.milestoneBody p {
-  max-width: 469px;
-  font-family: var(--font-public);
-  font-size: 16px;
-  line-height: 26px;
-  color: var(--neutral-600);
-}
-.flip {
-  grid-template-columns: 586fr 512fr;
-}
-.flip img {
-  order: 2;
-  border-radius: 0 12px 12px 0;
-}
-.flip .milestoneBody {
-  border-radius: 8px 0 0 8px;
-  padding-left: 58px;
+  background: var(--navy-950);
+  padding: 87px 0 189px;
+  overflow: hidden;
 }
 
 /* ---------- Vision & mission ---------- */
 .vision {
   background: var(--white);
-  padding: 50px 0;
+  padding: 59px 0 96px;
 }
 .visionRow {
-  margin-top: 29px;
+  margin-top: 45px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  gap: 37px;
 }
 .visionCard {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 40px;
-  background: var(--navy-900);
-  border-radius: var(--radius-xl);
+  position: relative;
+  min-height: 335px;
+  padding: 50.19px 62px 32px 68.19px;
+  overflow: hidden;
+  border: 0.81px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24.28px 6.07px;
+  background: radial-gradient(237px 115px at 90% 6%, rgba(64, 125, 217, 0.34), rgba(64, 125, 217, 0)),
+    linear-gradient(154.93deg, #09265e 3.67%, #103b82 51.85%, #08265e 96.33%);
+  box-shadow: 0 18.21px 40.47px rgba(7, 34, 82, 0.18);
 }
-.visionCard img {
-  width: 32px;
-  height: 32px;
+.visionCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 22%;
+  height: 7.08px;
+  background: #d4a20b;
 }
 .visionCard h3 {
-  font-weight: 700;
-  font-size: 24px;
+  font-family: var(--font-lato);
+  font-weight: 900;
+  font-size: 32px;
+  line-height: 42.49px;
+  letter-spacing: -1.42px;
   color: var(--white);
 }
+.ornament {
+  height: 62.72px;
+  display: flex;
+  align-items: center;
+  padding: 14.16px 0 18.21px;
+}
+.ornament::before {
+  content: "";
+  width: 45.53px;
+  border-top: 2.43px solid #e2ad16;
+}
+.ornament span {
+  padding: 0 7.08px;
+  font-family: Georgia, serif;
+  font-size: 20.23px;
+  line-height: 20.23px;
+  color: #e8b72c;
+}
+.ornament::after {
+  content: "";
+  flex: 1;
+  border-top: 0.81px solid rgba(255, 255, 255, 0.25);
+}
 .visionCard p {
-  font-family: var(--font-public);
-  font-size: 16px;
-  line-height: 26px;
-  color: var(--slate-100);
+  font-family: var(--font-lato);
+  font-size: 20px;
+  line-height: 36.72px;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /* ---------- Objectives ---------- */
@@ -363,23 +308,30 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 31px 37px;
 }
+/* Name and term share the first row; the company line runs the full width beneath (as in Figma) */
 .president {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "name term"
+    "company company";
+  column-gap: 16px;
   padding: 0 6px 17px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.25);
   color: var(--white);
 }
 .president h3 {
+  grid-area: name;
   font-weight: 600;
   font-size: 20px;
 }
 .president p {
+  grid-area: company;
   margin-top: 9px;
   font-size: 14px;
 }
 .president span {
+  grid-area: term;
   flex-shrink: 0;
   font-family: var(--font-public);
   font-weight: 500;
@@ -399,28 +351,18 @@
 
 /* ---------- Tablet ---------- */
 @media (max-width: 1199px) {
-  .kpiRow {
-    gap: 20px;
+  .history {
+    padding: 64px 0 96px;
   }
-  .kpi strong {
+  .visionCard {
+    padding: 40px 36px 36px 40px;
+  }
+  .visionCard h3 {
     font-size: 28px;
   }
-  .milestone {
-    height: auto;
-    min-height: 252px;
-  }
-  .milestoneBody {
-    padding: 32px;
-  }
-  .flip .milestoneBody {
-    padding-left: 32px;
-  }
-  .milestoneBody h3 {
-    font-size: 26px;
-  }
-  .milestoneBody p {
-    font-size: 14px;
-    line-height: 22px;
+  .visionCard p {
+    font-size: 17px;
+    line-height: 30px;
   }
   .objectivesRow {
     gap: 32px;
@@ -451,8 +393,9 @@
   }
 }
 @media (max-width: 1023px) {
-  .kpiRow {
-    grid-template-columns: repeat(2, 1fr);
+  .visionRow {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
   .objectivesRow {
     flex-direction: column;
@@ -469,59 +412,27 @@
 
 /* ---------- Mobile ---------- */
 @media (max-width: 767px) {
-  .kpis {
-    padding: 40px 0;
-  }
-  .kpiRow {
-    gap: 16px;
-  }
-  .kpi {
-    padding: 18px;
-  }
-  .kpi strong {
-    font-size: 26px;
-  }
-  .kpi span {
-    font-size: 12px;
-  }
   .history {
     padding: 50px 0 60px;
   }
-  .timeline {
-    margin-top: 28px;
-  }
-  .milestone,
-  .flip {
-    grid-template-columns: 1fr;
-    min-height: 0;
-  }
-  .milestone img,
-  .flip img {
-    order: 0;
-    height: auto;
-    min-height: 0;
-    aspect-ratio: 16 / 9;
-    border-radius: 12px 12px 0 0;
-  }
-  .milestoneBody,
-  .flip .milestoneBody {
-    padding: 24px;
-    gap: 12px;
-    border-radius: 0 0 12px 12px;
+  .vision {
+    padding: 50px 0;
   }
   .visionRow {
-    grid-template-columns: 1fr;
+    margin-top: 28px;
     gap: 16px;
   }
   .visionCard {
-    padding: 28px;
+    min-height: 0;
+    padding: 32px 24px 28px;
   }
   .visionCard h3 {
-    font-size: 20px;
+    font-size: 26px;
+    line-height: 34px;
   }
   .visionCard p {
-    font-size: 14px;
-    line-height: 24px;
+    font-size: 16px;
+    line-height: 28px;
   }
   .objectives,
   .committee,

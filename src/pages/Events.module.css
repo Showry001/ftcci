@@ -2,32 +2,16 @@
   background: var(--white);
   padding: 52px 0 78px;
 }
-.toggle {
-  width: max-content;
-  margin-inline: auto;
-  display: flex;
-  align-items: center;
-  padding: 5px;
-  background: #e8e8e8;
-  border-radius: 162px;
-}
-.toggle button {
-  padding: 10.84px 27.1px;
-  border: 0;
-  border-radius: 27px;
-  background: transparent;
-  font-weight: 600;
-  font-size: 20px;
-  color: #494949;
-  transition: background 0.2s, color 0.2s;
-}
-.toggle .on {
-  background: var(--navy-900);
-  font-weight: 700;
-  color: var(--white);
+.heading {
+  padding: 10px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 60px;
+  color: #000;
 }
 .grid {
-  margin-top: 66px;
+  margin-top: 42px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px 42.7px;
@@ -105,8 +89,108 @@ a.card:hover {
 }
 .empty {
   grid-column: 1 / -1;
+  padding: 40px 0;
   text-align: center;
   color: var(--slate-600);
+}
+
+/* Past Events: financial-year chips + bordered list */
+.pastSection {
+  padding-bottom: 143px;
+}
+.periods {
+  margin-top: 42px;
+  padding-left: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.period {
+  padding: 8.45px 18.09px; /* Figma's 1.2px stroke sits inside its 9.65 × 19.29 padding */
+  background: var(--white);
+  border: 1.2px solid var(--slate-200);
+  border-radius: 6px;
+  font-family: var(--font-nav);
+  font-weight: 500;
+  font-size: 15.68px;
+  line-height: 21px;
+  color: var(--navy-900);
+  white-space: nowrap;
+  transition: border-color 0.15s;
+}
+.period:hover {
+  border-color: var(--navy-900);
+}
+.periodOn {
+  background: #eaf0ff;
+  border-color: #eaf0ff;
+}
+.pastList {
+  margin-top: 109px;
+  background: var(--white);
+  border: 1px solid rgba(39, 39, 39, 0.21);
+  border-radius: 10.72px;
+  overflow: hidden;
+}
+.pastRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 33px;
+  min-height: 190.78px;
+  padding: 25px 31.79px;
+}
+.pastRow + .pastRow {
+  border-top: 1px solid rgba(39, 39, 39, 0.21);
+}
+.pastImg {
+  width: 144px;
+  height: 140px;
+  flex-shrink: 0;
+  border-radius: 6px;
+}
+.pastBody {
+  flex: 1;
+  min-width: 0;
+  padding-top: 13.79px;
+}
+.pastTag {
+  display: inline-block;
+  padding: 2.48px 12.4px;
+  background: var(--gold-500);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 13.64px;
+  line-height: 20.47px;
+  letter-spacing: 0.08px;
+  color: var(--navy-900);
+}
+.pastBody h3 {
+  max-width: 939px;
+  margin-top: 16.5px;
+  padding-left: 5px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23.88px;
+  letter-spacing: -0.19px;
+  color: #1a3a6b;
+}
+.pastDate {
+  margin-top: 16.1px;
+  padding-left: 5px;
+  display: flex;
+  align-items: flex-start;
+  gap: 9.92px;
+  font-size: 14.88px;
+  line-height: 22.33px;
+  color: #4a5565;
+}
+.pastDate img {
+  width: 17.36px;
+  height: 17.36px;
+  margin-top: 1.24px;
+  flex-shrink: 0;
 }
 
 @media (max-width: 1199px) {
@@ -114,14 +198,22 @@ a.card:hover {
     grid-template-columns: repeat(2, 1fr);
     gap: 28px;
   }
+  .pastSection {
+    padding-bottom: 78px;
+  }
+  .pastList {
+    margin-top: 48px;
+  }
 }
 @media (max-width: 767px) {
   .section {
     padding: 36px 0 56px;
   }
-  .toggle button {
-    padding: 9px 18px;
-    font-size: 15px;
+  .heading {
+    padding: 0;
+    font-size: 28px;
+    line-height: 38px;
+    text-align: center;
   }
   .grid {
     margin-top: 32px;
@@ -134,5 +226,74 @@ a.card:hover {
   .meta,
   .subtitle {
     font-size: 14px;
+  }
+
+  /* Mobile Past Events frame (2160:15990) */
+  .pastSection {
+    padding: 49px 0 56px;
+  }
+  .pastSection .heading {
+    font-size: 22px;
+    line-height: 26px;
+    text-align: left;
+    color: var(--navy-900);
+  }
+  .periods {
+    margin-top: 13px;
+    margin-right: -6px; /* the Figma chip row is 336px wide, 6px past the 30px gutter */
+    padding-left: 0;
+    gap: 4.32px;
+  }
+  .period {
+    padding: 4.55px 9.75px;
+    border-width: 0.65px;
+    border-radius: 3.24px;
+    font-size: 8.47px;
+    line-height: 12px;
+  }
+  .pastList {
+    margin-top: 32px;
+    border-color: rgba(39, 39, 39, 0.08);
+    border-radius: 3px;
+  }
+  .pastRow {
+    gap: 20px;
+    min-height: 124px;
+    padding: 16px 10px;
+  }
+  .pastRow + .pastRow {
+    border-top-color: rgba(39, 39, 39, 0.08);
+  }
+  .pastImg {
+    width: 87px;
+    height: 88px;
+    border-radius: 1.68px;
+  }
+  .pastBody {
+    padding-top: 0;
+  }
+  .pastTag {
+    padding: 1.8px 8.9px;
+    font-size: 9.79px;
+    line-height: 14.7px;
+  }
+  .pastBody h3 {
+    margin-top: 12px;
+    padding-left: 0;
+    font-size: 14.34px;
+    line-height: 17.1px;
+    letter-spacing: -0.13px;
+  }
+  .pastDate {
+    margin-top: 10px;
+    padding-left: 0;
+    gap: 7px;
+    font-size: 10.68px;
+    line-height: 16px;
+  }
+  .pastDate img {
+    width: 12.5px;
+    height: 12.5px;
+    margin-top: 1.7px;
   }
 }

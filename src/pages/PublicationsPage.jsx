@@ -13,12 +13,15 @@ export default function PublicationsPage() {
   return (
     <>
       <PageHero crumb="Knowledge > Publications" title="Publications" />
-      <SubNav items={publicationsSubNav} label="Publication types" />
+      <SubNav items={publicationsSubNav} label="Publication types" mobile />
       <div className={styles.page}>
         <div className="container">
           {publicationSections.map((s) => (
             <section key={s.id} id={s.id} className={styles.section} aria-labelledby={`${s.id}-title`}>
-              <h2 id={`${s.id}-title`}>{s.title}</h2>
+              <h2 id={`${s.id}-title`}>
+                {s.title}
+                {s.accent && <> <span className="accent">{s.accent}</span></>}
+              </h2>
               <ul className={styles.grid}>
                 {s.items.map((it, i) => (
                   <li key={i}>

@@ -37,9 +37,11 @@ export default function EventDetail() {
           </nav>
 
           <div className={styles.grid}>
-            <div>
+            <div className={styles.aboutBlock}>
               <h2>About This Event</h2>
               <p className={styles.about}>{ev.about}</p>
+            </div>
+            <div className={styles.expectBlock}>
               <h2 className={styles.expectTitle}>What to Expect</h2>
               <ul className={styles.expect}>
                 {ev.expect.map((x) => (

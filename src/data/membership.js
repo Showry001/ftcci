@@ -25,10 +25,10 @@ export const memberBenefits = [
 
 export const membershipOptions = [
   { title: "Large Companies", icon: a("membership/icon-award.svg"), iconSize: 30, text: "For large companies and major business organisations seeking representation, networking and industry engagement." },
-  { title: "Associations & Societies", icon: a("membership/icon-compass.svg"), iconSize: 30, text: "Build stronger industry connections and participate in collective policy and networking initiatives." },
+  { title: "Associations & Societies", icon: a("membership/icon-compass.png"), iconSize: 30, text: "Build stronger industry connections and participate in collective policy and networking initiatives." },
   { title: "Companies", icon: a("membership/icon-user.svg"), iconSize: 38, text: "For registered companies seeking FTCCI membership and access to business, policy and networking opportunities." },
   { title: "Professionals / Firms", icon: a("membership/icon-award.svg"), iconSize: 30, text: "For eligible professionals and firms seeking meaningful industry connections and engagement." },
-  { title: "MSMEs", icon: a("membership/icon-compass.svg"), iconSize: 30, text: "Benefit from business networking, knowledge resources, support services and industry engagement." },
+  { title: "MSMEs", icon: a("membership/icon-compass.png"), iconSize: 30, text: "Benefit from business networking, knowledge resources, support services and industry engagement." },
 ];
 export const optionArrow = a("membership/icon-arrow-right.svg");
 

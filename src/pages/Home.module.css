@@ -1,28 +1,31 @@
-/* Frame 1000002003: hero + form + who-we-are on a lavender→white gradient */
+/* hero section: hero + form on a lavender band, 80px insets at 1440 */
 .topBand {
-  background: linear-gradient(180deg, var(--surface-lavender-2) 0%, var(--white) 100%);
-  padding: 33px 0 89px;
+  background: var(--surface-lavender-2);
+  padding: 65px 0;
 }
 .topStack {
-  width: min(var(--content-max), 100% - 2 * var(--gutter));
+  width: min(1280px, 100% - 160px);
   margin-inline: auto;
   display: flex;
   flex-direction: column;
   gap: 40px;
 }
-.whoWeAre {
-  margin-top: 47px;
+/* who we are: card on its own lavender band below the KPI strip */
+.whoBand {
+  background: var(--surface-lavender);
+  padding: 77px 0 78px;
 }
 
 @media (max-width: 1199px) {
   .topBand {
-    padding: 24px 0 56px;
+    padding: 24px 0 40px;
   }
   .topStack {
+    width: min(var(--content-max), 100% - 2 * var(--gutter));
     gap: 28px;
   }
-  .whoWeAre {
-    margin-top: 16px;
+  .whoBand {
+    padding: 40px 0 56px;
   }
 }
 

@@ -73,8 +73,18 @@
   margin-top: 30px;
   display: grid;
   grid-template-columns: minmax(0, 710px) 387px;
-  gap: 42.4px;
-  padding: 0 31.8px 53px;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "about side"
+    "expect side";
+  gap: 0 42.4px;
+  padding: 0 15.8px 53px 31.8px; /* Figma's grid runs 16px past its right padding, keeping the text column at 710px */
+}
+.aboutBlock {
+  grid-area: about;
+}
+.expectBlock {
+  grid-area: expect;
 }
 .grid h2 {
   font-family: var(--font-display);
@@ -131,6 +141,8 @@
   filter: brightness(0.95);
 }
 .side {
+  grid-area: side;
+  align-self: start;
   display: flex;
   flex-direction: column;
   gap: 21px;
@@ -178,9 +190,17 @@
 }
 .details dd {
   margin: 2.65px 0 0;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 23.85px;
   color: #6e6e6e;
+}
+.details dl > div:first-child dd {
+  font-size: 14px;
+}
+@media (min-width: 1200px) {
+  .details dd {
+    white-space: nowrap; /* single-line values, as drawn */
+  }
 }
 .pdf {
   display: flex;
@@ -204,7 +224,7 @@
   .grid {
     grid-template-columns: minmax(0, 1fr) 320px;
     padding-inline: 0;
-    gap: 32px;
+    column-gap: 32px;
   }
 }
 @media (max-width: 1023px) {
@@ -218,8 +238,18 @@
     min-height: 0;
     aspect-ratio: 16 / 9;
   }
+  /* Mobile frame order: about, event details + PDF, what to expect */
   .grid {
     grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-template-areas:
+      "about"
+      "side"
+      "expect";
+    row-gap: 32px;
+  }
+  .expectTitle {
+    margin-top: 0;
   }
 }
 @media (max-width: 767px) {

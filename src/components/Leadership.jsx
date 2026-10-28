@@ -1,4 +1,4 @@
-import { leaders } from "../data/content.js";
+import { homeLeaders } from "../data/content.js";
 import CroppedImage from "./CroppedImage.jsx";
 import styles from "./Leadership.module.css";
 
@@ -16,7 +16,7 @@ export default function Leadership() {
           </p>
         </div>
         <ul className={styles.cards}>
-          {leaders.map((l, i) => (
+          {homeLeaders.map((l, i) => (
             <li key={l.name} className={`${styles.card} ${i === 1 ? styles.raised : ""}`}>
               <CroppedImage src={l.image} crop={l.crop} alt={`Portrait of ${l.name}`} className={styles.photo} />
               <div className={styles.caption}>

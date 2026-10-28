@@ -55,14 +55,6 @@
       "url": "https://www.figma.com/api/mcp/asset/73d0bc26-60a8-4f47-b6c8-ec2a17463446/ef13d.png"
     },
     {
-      "path": "events/arrow-prev.svg",
-      "url": "https://www.figma.com/api/mcp/asset/73d0bc26-60a8-4f47-b6c8-ec2a17463446/cc280.svg"
-    },
-    {
-      "path": "events/arrow-next.svg",
-      "url": "https://www.figma.com/api/mcp/asset/73d0bc26-60a8-4f47-b6c8-ec2a17463446/1cc94.svg"
-    },
-    {
       "path": "events/icon-calendar.svg",
       "url": "https://www.figma.com/api/mcp/asset/73d0bc26-60a8-4f47-b6c8-ec2a17463446/d0e42.svg"
     },
@@ -161,14 +153,6 @@
     {
       "path": "publications/annual-report-2025-26-d.png",
       "url": "https://www.figma.com/api/mcp/asset/5bad0500-44fc-4fb5-a10c-54342bf37604/44fd8.png"
-    },
-    {
-      "path": "publications/arrow-next.svg",
-      "url": "https://www.figma.com/api/mcp/asset/5bad0500-44fc-4fb5-a10c-54342bf37604/affad.svg"
-    },
-    {
-      "path": "publications/arrow-prev.svg",
-      "url": "https://www.figma.com/api/mcp/asset/5bad0500-44fc-4fb5-a10c-54342bf37604/b1660.svg"
     },
     {
       "path": "benefits/benefits-bg.png",
@@ -275,26 +259,6 @@
       "url": "https://www.figma.com/api/mcp/asset/9620ac33-f64e-4bfb-a3ce-3bb57e548de3/a91eb.png"
     },
     {
-      "path": "about/timeline-1917.png",
-      "url": "https://www.figma.com/api/mcp/asset/277d5eb4-1960-4387-ba64-409fc65444ea/ba0e4.png"
-    },
-    {
-      "path": "about/timeline-1956.png",
-      "url": "https://www.figma.com/api/mcp/asset/277d5eb4-1960-4387-ba64-409fc65444ea/66b32.png"
-    },
-    {
-      "path": "about/timeline-2014.png",
-      "url": "https://www.figma.com/api/mcp/asset/277d5eb4-1960-4387-ba64-409fc65444ea/71f38.png"
-    },
-    {
-      "path": "about/icon-eye.svg",
-      "url": "https://www.figma.com/api/mcp/asset/c530d17e-7e01-484e-a105-c95b1c810531/4d392.svg"
-    },
-    {
-      "path": "about/icon-target.svg",
-      "url": "https://www.figma.com/api/mcp/asset/c530d17e-7e01-484e-a105-c95b1c810531/14aa3.svg"
-    },
-    {
       "path": "about/empower-industry.png",
       "url": "https://www.figma.com/api/mcp/asset/eb8a977b-2124-4b88-a88c-59fe956e89df/6cd9e.png"
     },
@@ -329,10 +293,6 @@
     {
       "path": "membership/icon-arrow-right.svg",
       "url": "https://www.figma.com/api/mcp/asset/7be655ce-7db6-4156-bd8e-640288c2788a/c8389.svg"
-    },
-    {
-      "path": "membership/icon-compass.svg",
-      "url": "https://www.figma.com/api/mcp/asset/7be655ce-7db6-4156-bd8e-640288c2788a/52381.svg"
     },
     {
       "path": "membership/icon-user.svg",

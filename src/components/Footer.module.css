@@ -10,6 +10,7 @@
   grid-template-columns: 246.6px 198px 246.6px 246.6px;
   justify-content: space-between;
   gap: 48px;
+  min-height: 316px;
 }
 .col h4 {
   font-family: var(--font-nav);
@@ -219,7 +220,7 @@
   .grid {
     width: auto;
     padding-inline: 32px;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 20px;
   }
   .about {
@@ -242,8 +243,12 @@
   .brandName {
     font-size: 16px;
   }
+  .brand > div {
+    min-width: 0;
+  }
   .brandFull {
-    width: 230px;
+    width: auto;
+    max-width: 230px;
     font-size: 13px;
     line-height: 18px;
   }

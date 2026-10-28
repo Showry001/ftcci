@@ -166,3 +166,12 @@
     padding: 12.4px 16px;
   }
 }
+
+/* Very small phones: the one-line title no longer fits */
+@media (max-width: 359px) {
+  .title {
+    font-size: 28px;
+    line-height: 36px;
+    white-space: normal;
+  }
+}

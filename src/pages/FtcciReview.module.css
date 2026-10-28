@@ -58,7 +58,7 @@
 }
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 43px 22px;
 }
 .card {
@@ -131,44 +131,84 @@
 
 @media (max-width: 1199px) {
   .grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 @media (max-width: 1023px) {
   .grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 @media (max-width: 767px) {
+  /* Mobile FTCCI Review frame (2263:41068): 20px gutters, wrapping year chips, one issue per row */
   .filters {
-    padding-top: 28px;
+    padding: 28px 0 24px;
+  }
+  .filters :global(.container),
+  .gridSection :global(.container) {
+    width: calc(100% - 40px);
   }
   .search {
-    padding: 14px 16px;
+    padding: 15px 16px;
+    filter: none;
+  }
+  .search img {
+    width: 14.4px;
+    height: 14.4px;
+  }
+  .search input {
+    font-family: var(--font-body);
+    font-size: 14px;
   }
   .chips {
     margin-top: 20px;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scrollbar-width: none;
-    margin-right: calc(-1 * var(--gutter));
   }
   .chip {
-    flex-shrink: 0;
+    padding: 9px 15px; /* Figma's 1px stroke sits inside its 10 × 16 padding */
   }
   .gridSection {
-    padding-top: 24px;
+    padding: 0 0 40px;
   }
   .grid {
-    gap: 16px 12px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
   }
   .card {
-    padding: 14px 10px 6px;
+    align-items: stretch;
+    gap: 12px;
+    padding: 14px 24px 16px;
+    border-radius: 9px;
   }
   .badge {
-    right: 10px;
+    position: static;
+    align-self: flex-end;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    line-height: 15px;
+  }
+  .cover {
+    width: 280px;
+    max-width: 100%;
+    align-self: center;
+    aspect-ratio: 280 / 367.4;
   }
   .bottom {
-    padding: 6px 4px;
+    padding: 4px 10px 0;
+  }
+  .bottom h3 {
+    font-size: 15px;
+    line-height: 22px;
+    white-space: normal;
+  }
+  .bottom p {
+    margin-top: 6px;
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .read {
+    margin-top: 6px;
+    height: 38px;
+    font-size: 13px;
   }
 }

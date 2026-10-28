@@ -57,7 +57,7 @@ export default function Membership() {
       <section id="options" className={styles.options}>
         <div className="container">
           <div className={styles.optionsHead}>
-            <SectionTitle eyebrow="Membership Options" title="A membership that fits your business." />
+            <SectionTitle eyebrow="Membership Options" title="A Membership that fits your business." />
             <p>
               Whether you're an established enterprise, growing company or emerging entrepreneur, FTCCI offers membership
               opportunities designed around your business journey.

@@ -22,7 +22,7 @@ export const publicationSections = [
   },
   {
     id: "activity-reports",
-    title: "FTCCI Activity Reports",
+    title: "FTCCI", accent: "Activity Reports",
     items: [
       { date: "2019–20", title: "FTCCI Activity Report 2019–2020", image: a("pubs/activity-2019-20.png"), crop: [136.87, -0.04] },
       { date: "2020–21", title: "FTCCI Activity Report 2020–2021", image: a("pubs/activity-2020-21.png"), crop: [137.56, -4.91] },
@@ -33,7 +33,7 @@ export const publicationSections = [
   },
   {
     id: "annual-reports",
-    title: "FTCCI Annual Reports",
+    title: "FTCCI", accent: "Annual Reports",
     items: [
       { date: "2017–18", title: "101st Annual Report 2017–18", image: a("pubs/annual-1.png"), crop: [136.87, -23.92], href: `${PDF}AR2017-18.pdf` },
       { date: "2018–19", title: "102nd Annual Report 2018–19", image: a("pubs/annual-2.png"), crop: [137.56, -4.91] },
@@ -47,7 +47,7 @@ export const publicationSections = [
   },
   {
     id: "research",
-    title: "Research and Publications",
+    title: "Research and", accent: "Publications",
     items: [
       { date: "2017–18", title: "Annual Day of FTAPCCI", image: a("pubs/research-1.png"), crop: [136.87, -18.58] },
       { date: "2018–19", title: "Report on Pulses", image: a("pubs/research-2.png"), crop: [137.56, -2.09] },

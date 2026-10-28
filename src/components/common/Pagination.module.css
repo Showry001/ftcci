@@ -6,6 +6,12 @@
   gap: 8px;
   padding: 48px 0;
 }
+.nums {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
 .step,
 .num {
   border: 1px solid var(--slate-200);
@@ -38,4 +44,36 @@
   background: #0e2570;
   border-color: #0e2570;
   color: var(--white);
+}
+
+/* Mobile frame: page numbers on one row, Previous / Next on the row below */
+@media (max-width: 767px) {
+  .pager {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "nums nums"
+      "prev next";
+    gap: 16px 0;
+    padding: 32px 0 0;
+  }
+  .nums {
+    grid-area: nums;
+    gap: 6px;
+  }
+  .prev {
+    grid-area: prev;
+    justify-self: start;
+  }
+  .next {
+    grid-area: next;
+    justify-self: end;
+  }
+  .step {
+    padding: 12px 24px;
+  }
+  .num {
+    width: 42px;
+    height: 42px;
+  }
 }

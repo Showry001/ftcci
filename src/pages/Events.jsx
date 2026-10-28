@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import PageHero from "../components/common/PageHero.jsx";
-import { eventIcons, pastEvents, upcomingEvents } from "../data/events.js";
+import CroppedImage from "../components/CroppedImage.jsx";
+import { eventIcons, pastEvents, pastPeriods, upcomingEvents } from "../data/events.js";
 import styles from "./Events.module.css";
 
 export function EventCard({ e }) {
@@ -33,32 +34,76 @@ export function EventCard({ e }) {
   );
 }
 
+// Financial year (June–May) an ISO date falls in, as the start year: 2021-05-31 → 2020.
+const periodOf = (iso) => {
+  const [y, m] = iso.split("-").map(Number);
+  return m >= 6 ? y : y - 1;
+};
+const formatDate = (iso) =>
+  new Date(`${iso}T00:00:00`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+
+function PastEvents() {
+  // Open on the most recent period that has events, so the list is never empty on arrival.
+  const [period, setPeriod] = useState(() => Math.max(...pastEvents.map((e) => periodOf(e.date))));
+  const list = pastEvents.filter((e) => periodOf(e.date) === period);
+
+  return (
+    <>
+      <div className={styles.periods} role="group" aria-label="Filter by financial year">
+        {pastPeriods.map((p) => (
+          <button
+            key={p.start}
+            type="button"
+            aria-pressed={period === p.start}
+            className={`${styles.period} ${period === p.start ? styles.periodOn : ""}`}
+            onClick={() => setPeriod(p.start)}
+          >
+            {p.label}
+          </button>
+        ))}
+      </div>
+      {list.length === 0 ? (
+        <p className={styles.empty}>No past events are listed for this period yet.</p>
+      ) : (
+        <ul className={styles.pastList}>
+          {list.map((e) => (
+            <li key={e.title} className={styles.pastRow}>
+              <CroppedImage src={e.image} crop={e.crop} className={styles.pastImg} />
+              <div className={styles.pastBody}>
+                <span className={styles.pastTag}>{e.tag}</span>
+                <h3>{e.title}</h3>
+                <p className={styles.pastDate}>
+                  <img src={eventIcons.calendar} alt="" width="17.36" height="17.36" />
+                  <time dateTime={e.date}>{formatDate(e.date)}</time>
+                </p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </>
+  );
+}
+
 export default function Events() {
-  const [params, setParams] = useSearchParams();
-  const [tab, setTabState] = useState(params.get("tab") === "past" ? "past" : "upcoming");
-  useEffect(() => setTabState(params.get("tab") === "past" ? "past" : "upcoming"), [params]);
-  const setTab = (t) => setParams(t === "past" ? { tab: "past" } : {}, { replace: true });
-  const list = tab === "upcoming" ? upcomingEvents : pastEvents;
+  const [params] = useSearchParams();
+  const past = params.get("tab") === "past";
 
   return (
     <>
       <PageHero crumb="Home > Events" title="Events & Conference" />
-      <section className={styles.section}>
+      <section className={`${styles.section} ${past ? styles.pastSection : ""}`}>
         <div className="container">
-          <div className={styles.toggle} role="tablist" aria-label="Event timeframe">
-            <button type="button" role="tab" aria-selected={tab === "upcoming"} className={tab === "upcoming" ? styles.on : ""} onClick={() => setTab("upcoming")}>
-              Upcoming Events
-            </button>
-            <button type="button" role="tab" aria-selected={tab === "past"} className={tab === "past" ? styles.on : ""} onClick={() => setTab("past")}>
-              Past Events
-            </button>
-          </div>
-          <div className={styles.grid} role="tabpanel">
-            {list.length === 0 && <p className={styles.empty}>Past events will appear here once they are published.</p>}
-            {list.map((e, i) => (
-              <EventCard key={i} e={e} />
-            ))}
-          </div>
+          <h2 className={styles.heading}>{past ? "Past Events" : "Upcoming Events"}</h2>
+          {past ? (
+            <PastEvents />
+          ) : (
+            <div className={styles.grid}>
+              {upcomingEvents.map((e, i) => (
+                <EventCard key={i} e={e} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </>
