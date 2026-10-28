@@ -73,8 +73,9 @@
 .navItem > a.navActive {
   color: var(--gold-600);
 }
+/* Keyboard focus opens a menu (:focus-visible); a mouse click must not pin it open over the next one */
 .navItem:hover > a,
-.navItem:focus-within > a {
+.navItem:has(:focus-visible) > a {
   color: var(--gold-500);
 }
 .dropdown {
@@ -97,8 +98,8 @@
   transition: opacity var(--dur-hover) var(--ease-figma), transform var(--dur-hover) var(--ease-figma),
     visibility 0s linear var(--dur-hover);
 }
-.navItem:hover > .dropdown,
-.navItem:focus-within > .dropdown {
+.navItem:not(.dismissed):hover > .dropdown,
+.navItem:not(.dismissed):has(:focus-visible) > .dropdown {
   opacity: 1;
   visibility: visible;
   transform: none;

@@ -8,6 +8,8 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const [booking, setBooking] = useState(false);
   const [expanded, setExpanded] = useState(null);
+  // Desktop dropdown closed by a click on one of its links; it can open again once the pointer or focus leaves it.
+  const [dismissed, setDismissed] = useState(null);
   const { pathname, hash, search } = useLocation();
   useEffect(() => setOpen(false), [pathname, hash, search]);
   useEffect(() => {
@@ -43,7 +45,12 @@ export default function Header() {
 
         <nav className={styles.nav} aria-label="Primary">
           {navLinks.map((l) => (
-            <div key={l.to} className={styles.navItem}>
+            <div
+              key={l.to}
+              className={`${styles.navItem} ${dismissed === l.label ? styles.dismissed : ""}`}
+              onMouseLeave={() => setDismissed(null)}
+              onBlur={(e) => !e.currentTarget.contains(e.relatedTarget) && setDismissed(null)}
+            >
               <NavLink to={l.to} className={({ isActive }) => (isActive ? styles.navActive : undefined)}>
                 {l.label}
               </NavLink>
@@ -51,7 +58,7 @@ export default function Header() {
                 <ul className={styles.dropdown} aria-label={`${l.label} pages`}>
                   {l.children.map(([label, to]) => (
                     <li key={to}>
-                      <Link to={to}>{label}</Link>
+                      <Link to={to} onClick={() => setDismissed(l.label)}>{label}</Link>
                     </li>
                   ))}
                 </ul>
