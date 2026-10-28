@@ -286,11 +286,6 @@
   font-size: 12px;
   color: var(--navy-900);
 }
-.empty {
-  grid-column: 1 / -1;
-  color: var(--slate-600);
-}
-
 /* ---------- Secretariat ---------- */
 .secretariat {
   background: var(--surface-lavender-4);
@@ -330,6 +325,34 @@
   font-size: 10px;
   text-transform: uppercase;
   color: var(--neutral-550);
+}
+.staffSubjects {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 12px;
+  border-top: 1px solid var(--slate-200);
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--slate-600);
+}
+.staffContact {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 8px;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--slate-600);
+  overflow-wrap: anywhere;
+}
+.staffContact a {
+  font-weight: 500;
+  color: var(--navy-900);
+}
+.staffContact a:hover {
+  color: var(--gold-600);
 }
 
 /* ---------- Past presidents ---------- */

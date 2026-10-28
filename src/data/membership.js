@@ -1,3 +1,5 @@
+import { ftcciFile } from "./files.js";
+
 const a = (p) => `${import.meta.env.BASE_URL}assets/${p}`;
 
 export const membershipSubNav = [
@@ -23,12 +25,13 @@ export const memberBenefits = [
   { title: "Learning & Development", icon: a("membership/icon-briefcase.svg"), text: "Access workshops, training programmes and expert-led sessions for professional growth." },
 ];
 
+// One card per membership panel; each button jumps to that panel's document checklist.
 export const membershipOptions = [
-  { title: "Large Companies", icon: a("membership/icon-award.svg"), iconSize: 30, text: "For large companies and major business organisations seeking representation, networking and industry engagement." },
-  { title: "Associations & Societies", icon: a("membership/icon-compass.png"), iconSize: 30, text: "Build stronger industry connections and participate in collective policy and networking initiatives." },
-  { title: "Companies", icon: a("membership/icon-user.svg"), iconSize: 38, text: "For registered companies seeking FTCCI membership and access to business, policy and networking opportunities." },
-  { title: "Professionals / Firms", icon: a("membership/icon-award.svg"), iconSize: 30, text: "For eligible professionals and firms seeking meaningful industry connections and engagement." },
-  { title: "MSMEs", icon: a("membership/icon-compass.png"), iconSize: 30, text: "Benefit from business networking, knowledge resources, support services and industry engagement." },
+  { title: "Large Companies", panel: "a", cta: "Join as a Large Company", icon: a("membership/icon-building.svg"), text: "For large companies and major business organisations seeking representation, networking and industry engagement." },
+  { title: "Associations & Societies", panel: "b", cta: "Join as an Association", icon: a("membership/icon-group.svg"), text: "Build stronger industry connections and participate in collective policy and networking initiatives." },
+  { title: "Companies", panel: "c", cta: "Join as a Company", icon: a("membership/icon-briefcase-gold.svg"), text: "For registered companies seeking FTCCI membership and access to business, policy and networking opportunities." },
+  { title: "Professionals / Firms", panel: "d", cta: "Join as a Professional", icon: a("membership/icon-user-check.svg"), text: "For eligible professionals and firms seeking meaningful industry connections and engagement." },
+  { title: "MSMEs", panel: "e", cta: "Join as an MSME", icon: a("membership/icon-factory.svg"), text: "Benefit from business networking, knowledge resources, support services and industry engagement." },
 ];
 export const optionArrow = a("membership/icon-arrow-right.svg");
 
@@ -39,6 +42,26 @@ export const steps = [
   { n: "04", title: "Become part of FTCCI", text: "Receive your official seal, access your member dashboard, and begin networking." },
 ];
 export const stepLine = a("membership/step-line.png");
+
+// Documents to file with the membership application, from ftcci.in/pages/how-to-apply
+const representatives = "Photograph & PAN copies of 3 representatives in the application form (the first is mandatory, the other two optional)";
+export const panelDocuments = [
+  { panel: "a", title: "Panel A · Large Companies", docs: ["GST", "Registration of Firm", "Firm / Company PAN", representatives, "Procuration by firm, company or board resolution, or declaration by individual on letterhead (format in the application)", "Certificate of Partnership / Incorporation / Association", "IEC (optional)"] },
+  { panel: "b", title: "Panel B · Associations & Societies", docs: ["Certificate of GST, or Certificate of Registration of Society / Association", "Association PAN", representatives, "Managing Committee list", "Members list (optional)"] },
+  { panel: "c", title: "Panel C · Companies", docs: ["GST", "Company PAN", representatives, "Resolution of the Board of Directors on letterhead (format in the application)", "Certificate of Incorporation copy", "IEC (optional)", "SSI / MSME / Udyog Aadhar (optional)"] },
+  { panel: "d", title: "Panel D · Professionals / Firms", docs: ["ID", "PAN card", "Photograph", "Professional certificate"] },
+  { panel: "e", title: "Panel E · MSMEs", docs: ["GST", "PAN card of proprietor", "Photograph", "Procuration by firm, Board resolution, or self-declaration by individual on letterhead (prescribed format)", "IEC (optional)", "SSI / MSME / Udyog Aadhar (optional)"] },
+];
+export const membershipFiles = [
+  { title: "Membership application form & tariff", href: ftcciFile("documents/membershipform.pdf") },
+  { title: "Indemnity bond", href: ftcciFile("downloads/IB format.pdf") },
+  { title: "Membership benefits", href: ftcciFile("downloads/Membership Benefits.pdf") },
+  { title: "FTCCI brochure", href: ftcciFile("downloads/FTCCI Brochure.pdf") },
+];
+export const membershipContacts = [
+  { email: "membership@ftcci.in", phone: "+91 91001 99978", tel: "+919100199978" },
+  { email: "membershelp@ftcci.in", phone: "+91 80085 79629", tel: "+918008579629" },
+];
 
 export const experienceBg = a("membership/experience-bg.png");
 export const experienceStats = [

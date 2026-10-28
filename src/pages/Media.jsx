@@ -91,8 +91,7 @@ export default function Media() {
                 <li key={k.title} className={`${styles.tile} ${k.wide ? styles.tileWide : ""}`}>
                   <h3>{k.title}</h3>
                   <p>{k.text}</p>
-                  {/* TODO: link each tile to its asset bundle */}
-                  <a href="#press-kit" className={styles.dl}>
+                  <a href={k.href} download target="_blank" rel="noreferrer" className={styles.dl}>
                     <img src={mediaIcons.download} alt="" width="14" height="14" />
                     Download Assets
                   </a>

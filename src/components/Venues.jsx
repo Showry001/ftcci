@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { assets, venueHighlights, venues } from "../data/content.js";
-import useCarousel from "./useCarousel.js";
+import useMarquee from "./useMarquee.js";
 import CroppedImage from "./CroppedImage.jsx";
 import Dots from "./Dots.jsx";
 import styles from "./Venues.module.css";
 
 export default function Venues() {
-  const c = useCarousel();
+  const m = useMarquee(venues.length);
   return (
     <section className={`${styles.section} desktop-only`} id="venues" aria-labelledby="venues-title">
       <div className="container">
@@ -29,27 +29,29 @@ export default function Venues() {
             </ul>
             <Link to="/services#hall-booking" className={styles.cta}>Book a Hall&nbsp;&nbsp;→</Link>
           </div>
-          <img className={styles.featured} src={assets.venueFeatured} alt="FTCCI board room" loading="lazy" />
+          <img className={styles.featured} src={assets.venueFeatured} alt="K.L.N. Prasad Auditorium" loading="lazy" />
         </div>
 
-        <div className={styles.track} ref={c.trackRef}>
-          {venues.map((v) => (
-            <article key={v.name} className={styles.card}>
-              <CroppedImage
-                src={v.image}
-                crop={v.crop}
-                alt={v.name}
-                className={styles.photo}
-                style={v.crop?.box ? { height: v.crop.box } : undefined}
-              />
-              <div className={styles.caption}>
-                <h3>{v.name}</h3>
-                <p>{v.detail}</p>
-              </div>
-            </article>
-          ))}
+        <div className={styles.track} ref={m.trackRef}>
+          <div className={styles.strip} ref={m.stripRef}>
+            {[...venues, ...venues].map((v, i) => (
+              <article key={i} className={styles.card} aria-hidden={i >= venues.length || undefined}>
+                <CroppedImage
+                  src={v.image}
+                  crop={v.crop}
+                  alt={v.name}
+                  className={styles.photo}
+                  style={v.crop?.box ? { height: v.crop.box } : undefined}
+                />
+                <div className={styles.caption}>
+                  <h3>{v.name}</h3>
+                  <p>{v.detail}</p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
-        <Dots count={c.pages} active={c.page} onSelect={c.goTo} tone="gold" label="Venue slides" />
+        <Dots count={m.pages} active={m.page} onSelect={m.goTo} tone="gold" label="Venue slides" />
       </div>
     </section>
   );

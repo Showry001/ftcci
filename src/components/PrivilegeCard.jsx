@@ -17,8 +17,8 @@ export default function PrivilegeCard() {
             services through FTCCI's growing partner network.
           </p>
           <div className={styles.ctas}>
-            <Link to="/membership#apply" className={styles.primary}>Apply Now</Link>
-            <Link to="/membership#benefits" className={styles.secondary}>Know More</Link>
+            <Link to="/privilege-card" className={styles.primary}>Apply Now</Link>
+            <Link to="/privilege-card#benefits" className={styles.secondary}>Know More</Link>
           </div>
         </div>
         <div className={styles.cardDesktop}>

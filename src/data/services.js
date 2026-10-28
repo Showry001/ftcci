@@ -1,3 +1,5 @@
+import { ftcciFile } from "./files.js";
+
 const a = (p) => `${import.meta.env.BASE_URL}assets/${p}`;
 
 export const servicesSubNav = [
@@ -33,12 +35,11 @@ export const coContact = [
   { label: "UPI (GPay / PhonePe)", value: "8008579630@SBI" },
   { label: "GST", value: "36AAFCT2444K1Z6" },
 ];
-export const coFiles = [
-  "Certificate of Origin form",
-  "Guidelines for issuing CO & document attestation",
-  "Certificate of Origin flyer",
-  "Visa recommendation letter",
-];
+const coForm = { title: "Certificate of Origin form", type: "PDF", href: ftcciFile("documents/Certificate of Origin Form.pdf") };
+const coGuidelines = { title: "Guidelines for issuing CO & document attestation", type: "PDF", href: ftcciFile("documents/Guidelines for issuing CO.pdf") };
+const coFlyer = { title: "Certificate of Origin flyer", type: "PDF", href: ftcciFile("downloads/Certificate of Origin.pdf") };
+const visaLetter = { title: "Visa recommendation letter", type: "PDF", href: ftcciFile("documents/Visa Recommendation.pdf") };
+export const coFiles = [coForm, coGuidelines, coFlyer, visaLetter];
 
 export const liaisonImage = a("services/liaison.png");
 export const liaisonBullets = [
@@ -99,29 +100,44 @@ export const hallBullets = [
   "Centrally air-conditioned auditoria, halls and board rooms",
   "Projector, audio system, podium and stage support",
   "Catering and event-support arrangements on request",
-  "Concessional tariffs for FTCCI members",
+  "20% discount on hall charges for FTCCI members",
 ];
-export const hallVenues = [
-  ["K.L.N. Prasad Auditorium (A/C)", "350 seats"],
-  ["FTCCI Surana Auditorium (A/C)", "130 seats"],
-  ["J.S. Krishna Murthy Hall (A/C)", "40 seats"],
-  ["FTCCI Pokarna Skill Centre (A/C)", "35 seats"],
-  ["OPT Board Room (A/C)", "14 seats"],
-  ["White House Board Room (A/C)", "10 seats"],
-  ["Banarsilal Gupta Exhibition Hall", "2,500 sq ft"],
-  ["Dhanjibhai Sawla Hall (A/C)", "2,300 sq ft"],
+// Halls and tariff from the FTCCI halls flyer (w.e.f. 15 July 2026). Amounts in rupees, plus GST.
+export const halls = [
+  { name: "K.L.N. Prasad Auditorium (A/C)", seats: "350", floor: "III Floor", deposit: "3,000", h4: "15,500", h8: "27,500" },
+  { name: "FTCCI Surana Auditorium (A/C)", seats: "130", floor: "G. Floor", deposit: "2,000", h4: "10,000", h8: "18,000" },
+  { name: "J.S. Krishna Murthy Hall (A/C)", seats: "40", floor: "I Floor", deposit: "1,000", h4: "6,600", h8: "12,700" },
+  { name: "Banarsilal Gupta Exhibition Hall", area: "2,300 sq ft", floor: "G. Floor", deposit: "2,000", h4: "5,500", h8: "10,000" },
+  { name: "Dhanjibhai Sawla Hall (A/C)", area: "2,500 sq ft", floor: "III Floor", deposit: "1,000", h4: "5,000", h8: "8,300" },
+  { name: "OPT Board Room (A/C)", seats: "14", floor: "I Floor", deposit: "1,000", h4: "2,800", h8: "4,500" },
+  { name: "White House Board Room (A/C)", seats: "10", floor: "I Floor", deposit: "1,000", h4: "2,500", h8: "4,000" },
+  { name: "FTCCI Pokarna Skill Centre (A/C)", seats: "35", floor: "II Floor", deposit: "1,000", h4: "6,600", h8: "12,700" },
 ];
-// Hall Requisition Form (Figma "hall booking form", steps 1–4)
-export const bookingHalls = [
-  ["Surana Auditorium", "Cap: 130"],
-  ["Krishna Murthy Hall", "Cap: 40"],
-  ["K.L.N. Prasad Auditorium", "Cap: 350"],
-  ["Banarsilal Exhibition Hall", "Cap: 2500 sft"],
-  ["Dhanjibhai Sawla Hall", "Cap: 2500 sft"],
-  ["OPT Board Room", "Cap: 14"],
-  ["White House Board Room", "Cap: 10"],
-  ["Pokarna Skill Center (A/C)", "Cap: 35"],
+export const hallNotes = [
+  "Tariff in ₹, plus 18% GST",
+  "Extra ₹1,500 on Fridays, Saturdays, Sundays and holidays",
+  "FTCCI members get 20% off hall charges",
+  "Eatables are not allowed in the auditoria",
 ];
+export const hallEquipment = [
+  ["Projector / LED TV – K.L.N. Prasad Auditorium", "2,200"],
+  ["Projector / LED TV – FTCCI Surana Auditorium", "1,600"],
+  ["Projector / LED TV – J.S. Krishna Murthy Hall", "1,600"],
+  ["Projector / LED TV – OPT Board Room", "900"],
+  ["55\" TV – White House Board Room", "900"],
+  ["75\" TV – Skill Centre", "800"],
+  ["Screen only", "300"],
+  ["Cordless / collar microphone (each)", "500"],
+  ["Lighting lamp", "600"],
+  ["Overtime before 9 am and after 6 pm (per hour)", "350"],
+  ["LED wall power charges", "3,000"],
+];
+export const hallFiles = {
+  flyer: { title: "FTCCI halls flyer", type: "JPG", href: ftcciFile("Events/hall flyer 2026_July 15.jpg") },
+  form: { title: "Hall requisition form", type: "PDF", href: ftcciFile("downloads/Hall-Application.pdf") },
+};
+// Hall Requisition Form (Figma "hall booking form", steps 1–4), in the form's order
+export const bookingHalls = [1, 2, 0, 3, 4, 5, 6, 7].map((i) => halls[i]);
 export const bookingEquipment = [
   "Cordless Mic",
   "LCD Projector",
@@ -137,15 +153,16 @@ export const bookingCategories = ["Manufacturing", "Trading", "Services", "Assoc
 export const hallContact = [
   { label: "Bookings", value: "Mr. Rajesh Kumar, Sr. Manager" },
   { label: "Phone", value: "+91 91001 99977", href: "tel:+919100199977" },
-  { label: "Email", value: "rajesh@ftcci.in", href: "mailto:rajesh@ftcci.in", accent: true },
+  { label: "Email", value: "operations@ftcci.in", href: "mailto:operations@ftcci.in", accent: true },
   { label: "Venue", value: "Federation House, 11-6-841 Federation Marg, Red Hills, Hyderabad 500004", regular: true },
 ];
 
 export const downloads = [
-  { type: "PDF", title: "Certificate of Origin form" },
-  { type: "PDF", title: "Guidelines for issuing CO & document attestation" },
-  { type: "PDF", title: "Certificate of Origin flyer" },
-  { type: "PDF", title: "Visa recommendation letter" },
-  { type: "LINK", title: "FTCCI halls flyer & hall requisition form" },
-  { type: "PDF", title: "FTCCI Brochure (about, membership, committees, venues)" },
+  coForm,
+  coGuidelines,
+  coFlyer,
+  visaLetter,
+  hallFiles.flyer,
+  hallFiles.form,
+  { title: "FTCCI Brochure (about, membership, committees, venues)", type: "PDF", href: ftcciFile("downloads/FTCCI Brochure.pdf") },
 ];

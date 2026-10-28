@@ -18,6 +18,10 @@
 .track::-webkit-scrollbar {
   display: none;
 }
+.overflows {
+  mask-image: linear-gradient(to right, transparent, #000 28px, #000 calc(100% - 28px), transparent);
+  padding-inline: 20px;
+}
 .item {
   flex-shrink: 0;
   padding: 7px 0; /* Figma's 8px padding includes the 1px pill border */
@@ -72,6 +76,16 @@
   border-color: var(--indigo-900);
   font-weight: 600;
   color: var(--indigo-900);
+}
+/* Eight Services pills: tighten them so they stay on one line down to 1200px */
+@media (max-width: 1365px) {
+  .titleCase .track {
+    gap: 8px;
+  }
+  .titleCase .item {
+    padding: 6px 8px;
+    font-size: 12.5px;
+  }
 }
 
 /* Mobile frames have no banner/tab bar; section navigation lives in the menu accordion.

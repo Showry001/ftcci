@@ -10,7 +10,6 @@ export function EventCard({ e }) {
     <>
       <div className={styles.media}>
         <img src={e.image} alt="" loading="lazy" />
-        <span className={styles.tag}>{e.tag}</span>
       </div>
       <div className={styles.body}>
         <h3>{e.title}</h3>
@@ -70,7 +69,6 @@ function PastEvents() {
             <li key={e.title} className={styles.pastRow}>
               <CroppedImage src={e.image} crop={e.crop} className={styles.pastImg} />
               <div className={styles.pastBody}>
-                <span className={styles.pastTag}>{e.tag}</span>
                 <h3>{e.title}</h3>
                 <p className={styles.pastDate}>
                   <img src={eventIcons.calendar} alt="" width="17.36" height="17.36" />
@@ -86,7 +84,7 @@ function PastEvents() {
 }
 
 export default function Events() {
-  const [params] = useSearchParams();
+  const [params, setParams] = useSearchParams();
   const past = params.get("tab") === "past";
 
   return (
@@ -94,7 +92,25 @@ export default function Events() {
       <PageHero crumb="Home > Events" title="Events & Conference" />
       <section className={`${styles.section} ${past ? styles.pastSection : ""}`}>
         <div className="container">
-          <h2 className={styles.heading}>{past ? "Past Events" : "Upcoming Events"}</h2>
+          <div className={styles.headRow}>
+            <h2 className={styles.heading}>{past ? "Past Events" : "Upcoming Events"}</h2>
+            <div className={styles.toggle} role="group" aria-label="Show events">
+              {[
+                ["Upcoming", false],
+                ["Past", true],
+              ].map(([label, isPast]) => (
+                <button
+                  key={label}
+                  type="button"
+                  aria-pressed={past === isPast}
+                  className={past === isPast ? styles.toggleOn : undefined}
+                  onClick={() => setParams(isPast ? { tab: "past" } : {})}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
           {past ? (
             <PastEvents />
           ) : (

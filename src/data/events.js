@@ -11,28 +11,28 @@ export const eventIcons = {
 
 // Event listing (Events page). `slug` links to a detail page when one is designed.
 export const upcomingEvents = [
-  { tag: "Conference", title: "International Conference on Women Empowerment", subtitle: "Driving Inclusive Growth and Leadership", date: "2026-09-10 | 09:00 AM – 05:00 PM", venue: "Cyber Gardens, Hitech City, Hyderabad", image: a("events/card-women-empowerment.png"), slug: "women-empowerment-conference" },
-  { tag: "Expo", title: "Urban Farming & Kitchen Gardening Expo 2026", subtitle: "Sustainable Agriculture and Green Living", date: "2026-08-12 | 10:00 AM – 06:00 PM", venue: "Federation House, Hyderabad", image: a("events/card-urban-farming.png"), slug: "urban-farming-expo-2026" },
-  { tag: "Forum", title: "CEO Forum – Quarterly Business Meet", subtitle: "Industry Outlook & Growth Strategies", date: "2026-08-25 | 03:00 PM – 07:00 PM", venue: "FTCCI Board Room, Hyderabad", image: a("events/card-ceo-forum.png"), href: "/services#ceo-forum" },
-  { tag: "Conference", title: "International Conference on Women Empowerment", subtitle: "Driving Inclusive Growth and Leadership", date: "2026-09-10 | 09:00 AM – 05:00 PM", venue: "Cyber Gardens, Hitech City, Hyderabad", image: a("events/card-women-empowerment.png"), slug: "women-empowerment-conference" },
-  { tag: "Expo", title: "Urban Farming & Kitchen Gardening Expo 2026", subtitle: "Sustainable Agriculture and Green Living", date: "2026-08-12 | 10:00 AM – 06:00 PM", venue: "Federation House, Hyderabad", image: a("events/card-urban-farming.png"), slug: "urban-farming-expo-2026" },
-  { tag: "Forum", title: "CEO Forum – Quarterly Business Meet", subtitle: "Industry Outlook & Growth Strategies", date: "2026-08-25 | 03:00 PM – 07:00 PM", venue: "FTCCI Board Room, Hyderabad", image: a("events/card-ceo-forum.png"), href: "/services#ceo-forum" },
+  { title: "International Conference on Women Empowerment", subtitle: "Driving Inclusive Growth and Leadership", date: "2026-09-10 | 09:00 AM – 05:00 PM", venue: "Cyber Gardens, Hitech City, Hyderabad", image: a("events/card-women-empowerment.png"), slug: "women-empowerment-conference" },
+  { title: "Urban Farming & Kitchen Gardening Expo 2026", subtitle: "Sustainable Agriculture and Green Living", date: "2026-08-12 | 10:00 AM – 06:00 PM", venue: "Federation House, Hyderabad", image: a("events/card-urban-farming.png"), slug: "urban-farming-expo-2026" },
+  { title: "CEO Forum – Quarterly Business Meet", subtitle: "Industry Outlook & Growth Strategies", date: "2026-08-25 | 03:00 PM – 07:00 PM", venue: "FTCCI Board Room, Hyderabad", image: a("events/card-ceo-forum.png"), href: "/services#ceo-forum" },
+  { title: "International Conference on Women Empowerment", subtitle: "Driving Inclusive Growth and Leadership", date: "2026-09-10 | 09:00 AM – 05:00 PM", venue: "Cyber Gardens, Hitech City, Hyderabad", image: a("events/card-women-empowerment.png"), slug: "women-empowerment-conference" },
+  { title: "Urban Farming & Kitchen Gardening Expo 2026", subtitle: "Sustainable Agriculture and Green Living", date: "2026-08-12 | 10:00 AM – 06:00 PM", venue: "Federation House, Hyderabad", image: a("events/card-urban-farming.png"), slug: "urban-farming-expo-2026" },
+  { title: "CEO Forum – Quarterly Business Meet", subtitle: "Industry Outlook & Growth Strategies", date: "2026-08-25 | 03:00 PM – 07:00 PM", venue: "FTCCI Board Room, Hyderabad", image: a("events/card-ceo-forum.png"), href: "/services#ceo-forum" },
 ];
 // Past Events (Figma "events" 2102:32572): financial-year filters (June–May) and the event list.
 export const pastPeriods = [2025, 2024, 2023, 2022, 2021, 2020].map((y) => ({ start: y, label: `June ${y} - May ${y + 1}` }));
 
 // `date` is ISO so the list can be filtered by period; `crop` reproduces the Figma image crops.
 export const pastEvents = [
-  { tag: "Virtual Talk", title: "Virtual Talk on 2-Deoxy-D-Glucose (2-DG)", date: "2021-06-08", image: a("events/past/2dg-virtual-talk.png"), crop: { width: "352.49%", height: "100%", left: "-164.71%", top: "-0.02%" } },
-  { tag: "Webinar", title: "Combating Mucormycosis (Black Fungus)", date: "2021-06-04", image: a("events/past/mucormycosis.png"), crop: { width: "435.47%", height: "100%", left: "-217.99%", top: "0.22%" } },
-  { tag: "Webinar", title: "Corporate Governance and Risk Management", date: "2021-06-03", image: a("events/past/corporate-governance.png") },
-  { tag: "Interaction", title: "Interaction with Mr. Anjani Kumar, IPS, Commissioner of Police, Hyderabad City", date: "2021-05-31", image: a("events/past/anjani-kumar.png") },
-  { tag: "Webinar", title: "Rebooting the MSME through Financial Re-engineering", date: "2021-05-29", image: a("events/past/msme-rebooting.png") },
-  { tag: "Webinar", title: "Fund Raising for SMEs and Start-ups through Capital Markets and Role of Intermediaries in Channeling Funds", date: "2021-05-28", image: a("events/past/fund-raising.png"), crop: { width: "173.28%", height: "100%", left: "-0.22%", top: "0.29%" } },
-  { tag: "Interaction", title: "Interaction with Mr. V. C. Sajjanar, IPS, Commissioner of Police, Cyberabad", date: "2021-05-22", image: a("events/past/sajjanar.png"), crop: { width: "100%", height: "135.68%", left: "0", top: "-17.55%" } },
-  { tag: "Webinar", title: "Naturopathy & COVID-19", date: "2021-05-21", image: a("events/past/naturopathy.png") },
-  { tag: "Interaction", title: "Interaction with Mr. Mahesh Bhagwat, IPS, Commissioner of Police, Rachakonda", date: "2021-05-18", image: a("events/past/mahesh-bhagwat.png") },
-  { tag: "Discussion", title: "How FTCCI Can Help Associations / Business Chambers", date: "2021-04-30", image: a("events/past/associations.png") },
+  { title: "Virtual Talk on 2-Deoxy-D-Glucose (2-DG)", date: "2021-06-08", image: a("events/past/2dg-virtual-talk.png"), crop: { width: "352.49%", height: "100%", left: "-164.71%", top: "-0.02%" } },
+  { title: "Combating Mucormycosis (Black Fungus)", date: "2021-06-04", image: a("events/past/mucormycosis.png"), crop: { width: "435.47%", height: "100%", left: "-217.99%", top: "0.22%" } },
+  { title: "Corporate Governance and Risk Management", date: "2021-06-03", image: a("events/past/corporate-governance.png") },
+  { title: "Interaction with Mr. Anjani Kumar, IPS, Commissioner of Police, Hyderabad City", date: "2021-05-31", image: a("events/past/anjani-kumar.png") },
+  { title: "Rebooting the MSME through Financial Re-engineering", date: "2021-05-29", image: a("events/past/msme-rebooting.png") },
+  { title: "Fund Raising for SMEs and Start-ups through Capital Markets and Role of Intermediaries in Channeling Funds", date: "2021-05-28", image: a("events/past/fund-raising.png"), crop: { width: "173.28%", height: "100%", left: "-0.22%", top: "0.29%" } },
+  { title: "Interaction with Mr. V. C. Sajjanar, IPS, Commissioner of Police, Cyberabad", date: "2021-05-22", image: a("events/past/sajjanar.png"), crop: { width: "100%", height: "135.68%", left: "0", top: "-17.55%" } },
+  { title: "Naturopathy & COVID-19", date: "2021-05-21", image: a("events/past/naturopathy.png") },
+  { title: "Interaction with Mr. Mahesh Bhagwat, IPS, Commissioner of Police, Rachakonda", date: "2021-05-18", image: a("events/past/mahesh-bhagwat.png") },
+  { title: "How FTCCI Can Help Associations / Business Chambers", date: "2021-04-30", image: a("events/past/associations.png") },
 ];
 
 const expectDefault = [

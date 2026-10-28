@@ -23,18 +23,14 @@ export default function PublicationsPage() {
                 {s.accent && <> <span className="accent">{s.accent}</span></>}
               </h2>
               <ul className={styles.grid}>
-                {s.items.map((it, i) => (
-                  <li key={i}>
-                    <a
-                      className={styles.card}
-                      href={it.href || "#download"}
-                      {...(it.href ? { target: "_blank", rel: "noreferrer" } : {})}
-                    >
+                {s.items.map((it) => (
+                  <li key={it.title}>
+                    <a className={styles.card} href={it.href} download target="_blank" rel="noreferrer">
                       <span className={styles.cover}>
                         <Cover item={it} />
                       </span>
                       <span className={styles.body}>
-                        <time>{it.date}</time>
+                        <span className={styles.meta}>{it.meta}</span>
                         <strong>{it.title}</strong>
                         <span className={styles.dl}>Download PDF --&gt;</span>
                       </span>

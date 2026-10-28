@@ -45,11 +45,11 @@
 .card:hover .cover img {
   transform: scale(1.06);
 }
-.body time,
+.body .meta,
 .body strong {
   transition: color var(--dur-hover) var(--ease-figma);
 }
-.card:hover .body time,
+.card:hover .body .meta,
 .card:hover .body strong {
   color: var(--white);
 }
@@ -76,7 +76,7 @@
   flex-direction: column;
   padding: 13px 16px 12px;
 }
-.body time {
+.body .meta {
   font-size: 10.15px;
   line-height: 15.2px;
   color: #000;
@@ -148,7 +148,7 @@
     gap: 6px;
     padding: 16px;
   }
-  .body time {
+  .body .meta {
     font-size: 12px;
     line-height: 18px;
     color: #141414;

@@ -37,7 +37,7 @@ export default function Footer() {
           <ul className={styles.social}>
             {socialLinks.map((s) => (
               <li key={s.label}>
-                <a href={s.href} aria-label={s.label} className={s.fullTile ? styles.tileBare : styles.tile}>
+                <a href={s.href} target="_blank" rel="noreferrer" aria-label={`FTCCI on ${s.label}`} className={s.fullTile ? styles.tileBare : styles.tile}>
                   <img src={s.icon} alt="" width={s.w} height={s.h} style={{ width: s.w, height: s.h }} />
                 </a>
               </li>

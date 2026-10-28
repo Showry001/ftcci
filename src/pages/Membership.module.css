@@ -399,12 +399,114 @@
   font-size: 14px;
   color: var(--white);
 }
-.ctaActions p {
-  font-family: var(--font-nav);
-  font-size: 12px;
+
+/* How to apply: documents per panel and forms (ftcci.in "Join FTCCI" / "How to Apply") */
+.docsHead {
+  margin-top: 80px;
+  text-align: center;
 }
-.ctaActions p a {
-  font-weight: 700;
+.docsHead h3 {
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--navy-900);
+}
+.docsHead p {
+  margin: 8px auto 0;
+  max-width: 620px;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--slate-600);
+}
+.docsGrid {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+}
+.docsCard {
+  scroll-margin-top: calc(var(--header-h) + var(--subnav-h) + 16px);
+  padding: 20px;
+  background: var(--white);
+  border: 1px solid #e6e2d8;
+  border-radius: var(--radius-lg);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.docsCard:target {
+  border-color: var(--gold-500);
+  box-shadow: 0 0 0 3px rgba(229, 169, 59, 0.18);
+}
+.docsCard h4 {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--navy-900);
+}
+.docsCard ul {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 19px;
+  color: var(--slate-600);
+}
+.docsCard li {
+  position: relative;
+  padding-left: 14px;
+}
+.docsCard li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold-500);
+}
+.applyInfo {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 32px;
+  padding: 24px 28px;
+  background: var(--surface-lavender-4);
+  border-radius: var(--radius-lg);
+}
+.applyInfo h4 {
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--navy-900);
+}
+.applyInfo p,
+.applyFiles,
+.applyContacts {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--slate-600);
+}
+.applyFiles,
+.applyContacts li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.applyContacts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.applyFiles a,
+.applyContacts a {
+  font-weight: 500;
+  color: var(--navy-900);
+}
+.applyFiles a:hover,
+.applyContacts a:hover {
+  color: var(--gold-600);
 }
 
 /* Tablet */
@@ -420,6 +522,12 @@
   }
   .optionGrid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .docsGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .applyInfo {
+    grid-template-columns: 1fr 1fr;
   }
   .stepRow {
     display: grid;
@@ -621,5 +729,19 @@
   }
   .ctaInner h2 {
     font-size: 22px;
+  }
+  .docsHead {
+    margin-top: 56px;
+  }
+  .docsHead h3 {
+    font-size: 20px;
+  }
+  .docsGrid,
+  .applyInfo {
+    grid-template-columns: 1fr;
+  }
+  .applyInfo {
+    gap: 20px;
+    padding: 20px;
   }
 }

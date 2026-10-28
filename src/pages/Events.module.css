@@ -2,6 +2,13 @@
   background: var(--white);
   padding: 52px 0 78px;
 }
+.headRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+}
 .heading {
   padding: 10px;
   font-family: var(--font-display);
@@ -9,6 +16,39 @@
   font-size: 40px;
   line-height: 60px;
   color: #000;
+}
+/* Upcoming / Past switch */
+.toggle {
+  display: inline-flex;
+  padding: 4px;
+  background: var(--white);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-pill);
+}
+.toggle button {
+  min-width: 112px;
+  padding: 9px 22px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--navy-900);
+  transition: background-color 0.2s, color 0.2s;
+}
+.toggle button:hover {
+  background: var(--surface-lavender-4);
+}
+.toggle .toggleOn,
+.toggle .toggleOn:hover {
+  background: var(--navy-900);
+  color: var(--white);
+}
+.toggle button:focus-visible {
+  outline: 2px solid var(--gold-500);
+  outline-offset: 2px;
 }
 .grid {
   margin-top: 42px;
@@ -39,19 +79,6 @@ a.card:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-.tag {
-  position: absolute;
-  left: 14.9px;
-  top: 14.9px;
-  padding: 2.5px 12.4px;
-  background: var(--gold-500);
-  border-radius: 999px;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 13.64px;
-  line-height: 20.5px;
-  color: var(--navy-900);
 }
 .body {
   padding: 19.85px;
@@ -153,21 +180,8 @@ a.card:hover {
   min-width: 0;
   padding-top: 13.79px;
 }
-.pastTag {
-  display: inline-block;
-  padding: 2.48px 12.4px;
-  background: var(--gold-500);
-  border-radius: var(--radius-pill);
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 13.64px;
-  line-height: 20.47px;
-  letter-spacing: 0.08px;
-  color: var(--navy-900);
-}
 .pastBody h3 {
   max-width: 939px;
-  margin-top: 16.5px;
   padding-left: 5px;
   font-family: var(--font-display);
   font-weight: 500;
@@ -210,6 +224,18 @@ a.card:hover {
   .section {
     padding: 44px 0 40px;
   }
+  .headRow {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .pastSection .headRow {
+    align-items: flex-start;
+  }
+  .toggle button {
+    min-width: 96px;
+    padding: 7px 18px;
+    font-size: 14px;
+  }
   .heading {
     padding: 0;
     font-family: var(--font-nav);
@@ -231,16 +257,6 @@ a.card:hover {
   }
   .media {
     height: 180px;
-  }
-  .tag {
-    left: 12px;
-    top: 12px;
-    padding: 4px 12px;
-    font-family: var(--font-nav);
-    font-weight: 700;
-    font-size: 11px;
-    line-height: normal;
-    color: var(--navy-950);
   }
   .body {
     padding: 16px;
@@ -320,13 +336,7 @@ a.card:hover {
   .pastBody {
     padding-top: 0;
   }
-  .pastTag {
-    padding: 1.8px 8.9px;
-    font-size: 9.79px;
-    line-height: 14.7px;
-  }
   .pastBody h3 {
-    margin-top: 12px;
     padding-left: 0;
     font-size: 14.34px;
     line-height: 17.1px;

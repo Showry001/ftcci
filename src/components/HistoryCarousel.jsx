@@ -1,13 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { historyArrow, timeline } from "../data/about.js";
+import useDragScroll from "./useDragScroll.js";
 import styles from "./HistoryCarousel.module.css";
 
-// "A Century of Business Leadership": scroll-snap milestone cards with arrows and a year scrubber
-// that follows the slide aligned to the left edge.
+// "A Century of Business Leadership": scroll-snap milestone cards (drag, swipe or arrows) and a year
+// scrubber that follows the slide aligned to the left edge.
 export default function HistoryCarousel() {
   const trackRef = useRef(null);
   const yearsRef = useRef(null);
   const [active, setActive] = useState(0);
+  useDragScroll(trackRef);
 
   useEffect(() => {
     const track = trackRef.current;
@@ -64,7 +66,7 @@ export default function HistoryCarousel() {
         {timeline.map((t) => (
           <li key={t.year} className={styles.slide}>
             <div className={styles.photo}>
-              <img src={t.image} alt={`FTCCI, ${t.year}`} loading="lazy" />
+              <img src={t.image} alt={`FTCCI, ${t.year}`} loading="lazy" draggable="false" />
             </div>
             <div className={styles.panel}>
               <p className={styles.year}>{t.year}</p>

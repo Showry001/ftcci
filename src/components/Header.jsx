@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { assets, navLinks } from "../data/content.js";
-import HallBookingForm from "./HallBookingForm.jsx";
+import { useHallBooking } from "./HallBooking.jsx";
 import styles from "./Header.module.css";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const [booking, setBooking] = useState(false);
+  const { open: booking, openBooking: showBooking } = useHallBooking();
   const [expanded, setExpanded] = useState(null);
   // Desktop dropdown closed by a click on one of its links; it can open again once the pointer or focus leaves it.
   const [dismissed, setDismissed] = useState(null);
@@ -25,11 +25,10 @@ export default function Header() {
 
   const openBooking = () => {
     setOpen(false);
-    setBooking(true);
+    showBooking();
   };
 
   return (
-    <>
     <header className={styles.header}>
       <div className={styles.inner}>
         <Link to="/" className={styles.brand} aria-label="FTCCI home">
@@ -130,7 +129,5 @@ export default function Header() {
         </div>
       </div>
     </header>
-    <HallBookingForm open={booking} onClose={() => setBooking(false)} />
-    </>
   );
 }

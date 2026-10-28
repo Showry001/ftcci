@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
+import { HallBookingProvider } from "./HallBooking.jsx";
 import useReveal from "./useReveal.js";
 
 // Shared shell: header + page + footer. Scrolls to top (or to #hash) on navigation.
@@ -32,12 +33,12 @@ export default function Layout() {
   }, [pathname, hash]);
 
   return (
-    <>
+    <HallBookingProvider>
       <Header />
       <main id="main" key={pathname} ref={mainRef} className="page-enter">
         <Outlet />
       </main>
       <Footer />
-    </>
+    </HallBookingProvider>
   );
 }

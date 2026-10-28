@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import styles from "./SubNav.module.css";
 
@@ -11,6 +11,21 @@ export default function SubNav({ items, label = "Section navigation", variant = 
   const [spied, setSpied] = useState(anchors[0]);
   const tab = useTab(tabs ? anchors : []);
   const active = tabs ? tab : spied;
+  const trackRef = useRef(null);
+  const [overflows, setOverflows] = useState(false);
+
+  // When the pills don't fit (narrow screens), fade the edges and keep the active pill in view.
+  useEffect(() => {
+    const track = trackRef.current;
+    const ro = new ResizeObserver(() => setOverflows(track.scrollWidth > track.clientWidth + 1));
+    ro.observe(track);
+    return () => ro.disconnect();
+  }, []);
+  useEffect(() => {
+    const track = trackRef.current;
+    const el = track.querySelector("[aria-current]");
+    if (overflows && el) track.scrollTo({ left: el.offsetLeft - (track.clientWidth - el.offsetWidth) / 2, behavior: "smooth" });
+  }, [active, overflows]);
 
   useEffect(() => {
     if (tabs || !anchors.length) return;
@@ -35,7 +50,7 @@ export default function SubNav({ items, label = "Section navigation", variant = 
       aria-label={label}
       data-tabs={tabs || undefined}
     >
-      <div className={styles.track}>
+      <div ref={trackRef} className={`${styles.track} ${overflows ? styles.overflows : ""}`}>
         {items.map((item) => {
           if (!item.href.startsWith("#")) {
             return (

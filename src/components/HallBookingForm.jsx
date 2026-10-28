@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { bookingCatering, bookingCategories, bookingEquipment, bookingHalls } from "../data/services.js";
+import { bookingCatering, bookingCategories, bookingEquipment, bookingHalls, hallFiles } from "../data/services.js";
 import styles from "./HallBookingForm.module.css";
 
 const steps = ["Hall", "Schedule", "Needs", "Details"];
@@ -140,24 +140,38 @@ export default function HallBookingForm({ open, onClose }) {
                 <fieldset className={styles.fieldset}>
                   <legend className={styles.hint}>Select one or more halls for your event</legend>
                   <div className={styles.halls}>
-                    {bookingHalls.map(([name, cap]) => (
-                      <label key={name} className={styles.hall}>
-                        <input
-                          type="checkbox"
-                          className="visually-hidden"
-                          checked={v.halls.includes(name)}
-                          onChange={() => toggle("halls", name)}
-                        />
-                        <span className={styles.box} aria-hidden="true" />
-                        <span>
-                          <span className={styles.hallName}>{name}</span>
-                          <span className={styles.hallCap}>{cap}</span>
-                        </span>
-                      </label>
+                    {bookingHalls.map((h, i) => (
+                      <div key={h.name} className={styles.hall}>
+                        <label className={styles.hallPick}>
+                          <input
+                            type="checkbox"
+                            className="visually-hidden"
+                            checked={v.halls.includes(h.name)}
+                            onChange={() => toggle("halls", h.name)}
+                          />
+                          <span className={styles.box} aria-hidden="true" />
+                          <span>
+                            <span className={styles.hallName}>{h.name}</span>
+                            <span className={styles.hallCap}>Cap: {h.seats ?? h.area}</span>
+                          </span>
+                        </label>
+                        <button
+                          type="button"
+                          className={styles.info}
+                          popovertarget={`hb-tariff-${i}`}
+                          aria-label={`Capacity and tariff: ${h.name}`}
+                        >
+                          <InfoIcon />
+                        </button>
+                        <TariffCard id={`hb-tariff-${i}`} hall={h} />
+                      </div>
                     ))}
                   </div>
                 </fieldset>
                 <p className={styles.note}>* Eatables not allowed in Auditorium</p>
+                <a className={styles.requisition} href={hallFiles.form.href} download target="_blank" rel="noreferrer">
+                  Hall Requisition Form
+                </a>
               </>
             )}
 
@@ -285,6 +299,55 @@ export default function HallBookingForm({ open, onClose }) {
         </div>
       </form>
     </dialog>
+  );
+}
+
+// Figma "carbon:information" icon
+function InfoIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+      <path d="M17 22v-8h-4v2h2v6h-3v2h8v-2h-3zM16 8a1.5 1.5 0 1 0 1.5 1.5A1.5 1.5 0 0 0 16 8z" />
+      <path d="M16 30a14 14 0 1 1 14-14 14 14 0 0 1-14 14zm0-26a12 12 0 1 0 12 12A12 12 0 0 0 16 4z" />
+    </svg>
+  );
+}
+
+// Capacity and tariff card shown from a hall's "i" button (Figma frames 2082:11014 and siblings).
+function TariffCard({ id, hall }) {
+  return (
+    <div id={id} popover="auto" className={styles.tariff} role="dialog" aria-labelledby={`${id}-title`}>
+      <div className={styles.tariffHead}>
+        <p id={`${id}-title`}>{hall.name}</p>
+        <button type="button" popovertarget={id} popovertargetaction="hide" aria-label="Close">
+          ×
+        </button>
+      </div>
+      <div className={styles.tariffBody}>
+        <div>
+          <p className={styles.tariffLabel}>{hall.seats ? "Seating Capacity" : "Area"}</p>
+          <p className={styles.tariffValue}>{hall.seats ? `${hall.seats} nos.` : hall.area}</p>
+        </div>
+        <div>
+          <p className={styles.tariffLabel}>Floor</p>
+          <p className={styles.tariffValue}>{hall.floor}</p>
+        </div>
+        <hr />
+        <div>
+          <p className={styles.tariffLabel}>Refundable Caution Deposit</p>
+          <p className={styles.tariffValue}>{hall.deposit}/-</p>
+        </div>
+        <div>
+          <p className={styles.tariffLabel}>Tariff</p>
+          <div className={styles.rates}>
+            <span>for 4hrs</span>
+            <span>for 8hrs</span>
+            <strong>{hall.h4}/-</strong>
+            <strong>{hall.h8}/-</strong>
+          </div>
+        </div>
+      </div>
+      <p className={styles.tariffNote}>Amounts in ₹, plus 18% GST. FTCCI members get 20% off hall charges.</p>
+    </div>
   );
 }
 

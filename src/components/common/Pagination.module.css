@@ -40,6 +40,14 @@
 .num:hover {
   border-color: #0e2570;
 }
+.gap {
+  align-self: center;
+  width: 20px;
+  text-align: center;
+  font-family: var(--font-nav);
+  font-weight: 700;
+  color: var(--slate-500);
+}
 .current {
   background: #0e2570;
   border-color: #0e2570;

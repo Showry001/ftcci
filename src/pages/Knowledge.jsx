@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import PageHero from "../components/common/PageHero.jsx";
 import SubNav from "../components/common/SubNav.jsx";
+import useReader from "../components/useReader.jsx";
 import { IssueRow, KHeader, LatestIssue, PublicationCard, QuickLink } from "../components/common/KnowledgeCards.jsx";
 import { kIcons, knowledgeSubNav, latestReview, recentReviews, usefulLinks } from "../data/knowledge.js";
 import { publications } from "../data/content.js";
 import styles from "./Knowledge.module.css";
 
 export default function Knowledge() {
+  const [reader, openReader] = useReader();
   return (
     <>
       <PageHero crumb="Home > Knowledge Centre" title="Knowledge Centre" />
@@ -17,14 +19,17 @@ export default function Knowledge() {
           <KHeader
             title="FTCCI"
             accent="Review"
-            text="The flagship monthly journal of the Federation - economic commentary, policy analysis, member spotlights and chamber activity."
+            text="The flagship weekly journal of the Federation - economic commentary, policy analysis, member spotlights and chamber activity."
             to="/knowledge/ftcci-review"
           />
           <div className={styles.reviewRow}>
-            <LatestIssue issue={latestReview} />
+            <LatestIssue
+              issue={latestReview}
+              onRead={() => openReader({ src: latestReview.pdf, title: `FTCCI Review – ${latestReview.date}` })}
+            />
             <div className={styles.issueList}>
-              {recentReviews.map((r, i) => (
-                <IssueRow key={i} issue={r} />
+              {recentReviews.map((r) => (
+                <IssueRow key={r.id} issue={r} />
               ))}
             </div>
           </div>
@@ -61,6 +66,7 @@ export default function Knowledge() {
           </div>
         </div>
       </section>
+      {reader}
     </>
   );
 }

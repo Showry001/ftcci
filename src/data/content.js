@@ -1,5 +1,6 @@
 // All copy and asset paths for the FTCCI home page, taken from the Figma file.
 // Assets live in /public/assets and are fetched from Figma by `npm run assets`.
+import { ftcciFile } from "./files.js";
 
 const a = (p) => `${import.meta.env.BASE_URL}assets/${p}`;
 
@@ -22,7 +23,7 @@ export const assets = {
   iconLocationMobile: a("events/icon-location-outline.svg"),
   iconPin: a("events/icon-pin-sm.svg"),
   iconPinMobile: a("events/icon-pin-outline-sm.svg"),
-  venueFeatured: a("venues/featured-hall.png"),
+  venueFeatured: a("venues/kln-prasad-featured.jpg"),
   venueCheckFirst: a("venues/check-1.svg"),
   venueCheck: a("venues/check.svg"),
   benefitsBg: a("benefits/benefits-bg.png"),
@@ -155,8 +156,8 @@ export const eventSchedule = [
   { date: "30 AUG, 2026", time: "11:00 AM", title: "FTCCI Annual General Meeting 2026", venue: "Grand Hyatt, Hyderabad", image: a("events/thumb-agm.png"), href: "/events/agm-2026" },
 ];
 
-// Home leadership order (About → Office Bearers keeps `leaders` order).
-export const homeLeaders = [leaders[1], leaders[0], leaders[2]];
+// Office bearers as shown on Home and About: Senior Vice President, President (centre), Vice President.
+export const officeBearers = [leaders[1], leaders[0], leaders[2]];
 
 export const venueHighlights = [
   "State-of-the-art infrastructure",
@@ -207,16 +208,11 @@ export const news = [
   },
 ];
 
-const PDF = "https://www.ftcci.in/source/";
 export const publications = [
-  { date: "30 Jun 2026", title: "Telangana Delegation to EXPO 2020", image: a("publications/expo-2020.png"), href: `${PDF}Research%20and%20Publications/FTCCI%20Delegation%20to%20EXPO%202020_web.pdf` },
-  { date: "30 Jun 2026", title: "Report on Pulses", image: a("publications/report-on-pulses.png"), href: `${PDF}Research%20and%20Publications/Report%20on%20Pulses_final_April%2012.pdf` },
-  { date: "30 Jun 2026", title: "Study Tour on Green TVET in Germany", image: a("publications/green-tvet-germany.png"), href: `${PDF}Research%20and%20Publications/Study%20Tour%20Report.pdf` },
-  { date: "30 Jun 2026", title: "101 Annual Report 2017-18", image: a("publications/annual-report-2017-18.png"), href: `${PDF}AR2017-18.pdf` },
-  { date: "30 Jun 2026", title: "109th Annual Report 2025-26", image: a("publications/annual-report-2025-26-a.png"), href: "#" },
-  { date: "30 Jun 2026", title: "109th Annual Report 2025-26", image: a("publications/annual-report-2025-26-b.png"), href: "#" },
-  { date: "30 Jun 2026", title: "109th Annual Report 2025-26", image: a("publications/annual-report-2025-26-c.png"), href: "#" },
-  { date: "30 Jun 2026", title: "109th Annual Report 2025-26", image: a("publications/annual-report-2025-26-d.png"), href: "#" },
+  { date: "30 Jun 2026", title: "Telangana Delegation to EXPO 2020", image: a("publications/expo-2020.png"), href: ftcciFile("Research and Publications/FTCCI Delegation to EXPO 2020_web.pdf") },
+  { date: "30 Jun 2026", title: "Report on Pulses", image: a("publications/report-on-pulses.png"), href: ftcciFile("Research and Publications/Report on Pulses_final_April 12.pdf") },
+  { date: "30 Jun 2026", title: "Study Tour on Green TVET in Germany", image: a("publications/green-tvet-germany.png"), href: ftcciFile("Research and Publications/Study Tour Report.pdf") },
+  { date: "30 Jun 2026", title: "101 Annual Report 2017-18", image: a("publications/annual-report-2017-18.png"), href: ftcciFile("AR2017-18.pdf") },
 ];
 
 export const benefits = [
@@ -229,11 +225,11 @@ export const benefits = [
 ];
 
 export const socialLinks = [
-  { label: "YouTube", icon: a("footer/youtube.svg"), w: 19.68, h: 13.78, href: "#" },
-  { label: "Facebook", icon: a("footer/facebook.svg"), w: 19.68, h: 19.68, href: "#" },
-  { label: "X", icon: a("footer/x.svg"), w: 33, h: 34, href: "#", fullTile: true },
-  { label: "LinkedIn", icon: a("footer/linkedin.svg"), w: 18.76, h: 18.76, href: "#" },
-  { label: "Instagram", icon: a("footer/instagram.svg"), w: 19.68, h: 19.68, href: "#" },
+  { label: "YouTube", icon: a("footer/youtube.svg"), w: 19.68, h: 13.78, href: "https://www.youtube.com/channel/UCcc_0SLIiND3vNykgFfMvKA" },
+  { label: "Facebook", icon: a("footer/facebook.svg"), w: 19.68, h: 19.68, href: "https://www.facebook.com/FTCCIofficial" },
+  { label: "X", icon: a("footer/x.svg"), w: 33, h: 34, href: "https://twitter.com/FTCCI", fullTile: true },
+  { label: "LinkedIn", icon: a("footer/linkedin.svg"), w: 18.76, h: 18.76, href: "https://www.linkedin.com/company/ftcci/" },
+  { label: "Instagram", icon: a("footer/instagram.svg"), w: 19.68, h: 19.68, href: "https://www.instagram.com/FTCCIofficial" },
 ];
 
 export const quickLinks = [
@@ -244,7 +240,7 @@ export const quickLinks = [
   { label: "Committees", to: "/services#expert-committee" },
   { label: "Awards", to: "/media" },
   { label: "Media Gallery", to: "/media" },
-  { label: "Career", to: "/contact" },
+  { label: "Career", to: "/careers" },
 ];
 
 export const legalLinks = ["Privacy Policy", "Terms of Use", "Sitemap"];

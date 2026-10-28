@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import PageHero from "../components/common/PageHero.jsx";
 import Pagination from "../components/common/Pagination.jsx";
+import useReader from "../components/useReader.jsx";
 import { reviewArrow, reviewIssues, reviewYears, searchIcon } from "../data/knowledge.js";
 import styles from "./FtcciReview.module.css";
 
@@ -10,11 +11,12 @@ export default function FtcciReview() {
   const [query, setQuery] = useState("");
   const [year, setYear] = useState(reviewYears[0]);
   const [page, setPage] = useState(1);
+  const [reader, openReader] = useReader();
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return reviewIssues.filter(
-      (r) => (year === "All years" || r.year === year) && (!q || `${r.title} ${r.year} ${r.meta}`.toLowerCase().includes(q))
+      (r) => (year === "All years" || r.year === year) && (!q || r.date.toLowerCase().includes(q))
     );
   }, [query, year]);
 
@@ -32,7 +34,7 @@ export default function FtcciReview() {
             <span className="visually-hidden">Search issues</span>
             <input
               type="search"
-              placeholder="Search issues by month, theme or volume"
+              placeholder="Search issues by month or year"
               value={query}
               onChange={(e) => {
                 setQuery(e.target.value);
@@ -68,13 +70,23 @@ export default function FtcciReview() {
               {visible.map((r) => (
                 <li key={r.id} className={styles.card}>
                   <span className={styles.badge}>{r.year}</span>
-                  <img className={styles.cover} src={r.cover} alt={`FTCCI Review – ${r.title}`} loading="lazy" />
+                  <img className={styles.cover} src={r.cover} alt={`FTCCI Review, ${r.date} cover`} loading="lazy" />
                   <div className={styles.bottom}>
-                    <h3>{r.title}</h3>
-                    <p>{r.meta}</p>
-                    <a href={r.href} className={styles.read}>
+                    <h3>{r.date}</h3>
+                    <p>
+                      Weekly issue ·{" "}
+                      <a href={r.pdf} download target="_blank" rel="noreferrer" className={styles.download}>
+                        Download PDF
+                      </a>
+                    </p>
+                    <button
+                      type="button"
+                      className={styles.read}
+                      aria-haspopup="dialog"
+                      onClick={() => openReader({ src: r.pdf, title: `FTCCI Review – ${r.date}` })}
+                    >
                       Read Issue <img src={reviewArrow} alt="" width="18" height="18" />
-                    </a>
+                    </button>
                   </div>
                 </li>
               ))}
@@ -83,6 +95,7 @@ export default function FtcciReview() {
           <Pagination page={current} pages={pages} onChange={setPage} />
         </div>
       </section>
+      {reader}
     </>
   );
 }

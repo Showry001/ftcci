@@ -110,8 +110,16 @@
   font-size: 10.46px;
   color: var(--slate-500);
 }
+.download {
+  color: #0e2570;
+  text-decoration: underline;
+}
 .read {
+  width: 100%;
   margin-top: 8px;
+  padding: 0;
+  border: 0;
+  background: none;
   display: flex;
   align-items: center;
   justify-content: space-between;

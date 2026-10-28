@@ -1,4 +1,5 @@
-import { featuredNews, news } from "./content.js";
+import { assets, featuredNews, news } from "./content.js";
+import { ftcciFile } from "./files.js";
 
 const a = (p) => `${import.meta.env.BASE_URL}assets/${p}`;
 
@@ -15,14 +16,15 @@ export const coverage = [
   { tag: "News", date: "Jul 23, 2026", title: "FTCCI's Reaction to India's Inclusion on the Trade Compliance Watch List", excerpt: "Indian exporters should not be unfairly targeted here.", image: news[2].image },
 ];
 
+// Files from ftcci.in/pages/press-kit. The emblem is the site's own logo until FTCCI supplies print-ready logo files.
 export const pressKit = [
-  { title: "FTCCI Brand Logos", text: "Official FTCCI logo files for digital and print use." },
-  { title: "FTCCI Brochure", text: "Official FTCCI organisation and membership information." },
-  { title: "FTCCI Halls Flyer", text: "Details of FTCCI halls, facilities and booking information." },
-  { title: "FTCCI Membership Benefits", text: "Overview of benefits available to FTCCI members." },
-  { title: "MSME Advisory Services", text: "Information on FTCCI's support and advisory services for MSMEs." },
-  { title: "FTCCI Pokarna Skill Centre Brochure", text: "Information about skill development and training programmes." },
-  { title: "Certificate of origin - Attestation of Export Documenets :", text: "Forms and guidelines for Certificate of Origin and document attestation.", wide: true },
+  { title: "FTCCI Brand Logos", text: "Official FTCCI emblem for digital use.", href: assets.logo },
+  { title: "FTCCI Brochure", text: "Official FTCCI organisation and membership information.", href: ftcciFile("downloads/FTCCI Brochure.pdf") },
+  { title: "FTCCI Halls Flyer", text: "Details of FTCCI halls, facilities and booking information.", href: ftcciFile("Events/hall flyer 2026_July 15.jpg") },
+  { title: "FTCCI Membership Benefits", text: "Overview of benefits available to FTCCI members.", href: ftcciFile("downloads/Membership Benefits.pdf") },
+  { title: "MSME Advisory Services", text: "Information on FTCCI's support and advisory services for MSMEs.", href: ftcciFile("downloads/MSME advisory services.pdf") },
+  { title: "FTCCI Pokarna Skill Centre Brochure", text: "Information about skill development and training programmes.", href: ftcciFile("downloads/SC brochure.pdf") },
+  { title: "Certificate of Origin – Attestation of Export Documents", text: "Forms and guidelines for Certificate of Origin and document attestation.", href: ftcciFile("downloads/Certificate of Origin.pdf"), wide: true },
 ];
 
 export const mediaIcons = {

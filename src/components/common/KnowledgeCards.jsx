@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import CroppedImage from "../CroppedImage.jsx";
 import { kIcons } from "../../data/knowledge.js";
 import styles from "./KnowledgeCards.module.css";
 
@@ -22,7 +21,7 @@ export function KHeader({ title, accent, text, to, dark = false }) {
   );
 }
 
-export function LatestIssue({ issue }) {
+export function LatestIssue({ issue, onRead }) {
   return (
     <article className={styles.latest}>
       <img className={styles.latestCover} src={issue.cover} alt={`FTCCI Review ${issue.date} cover`} loading="lazy" />
@@ -31,11 +30,10 @@ export function LatestIssue({ issue }) {
         <h3>{issue.date}</h3>
         <p className={styles.latestText}>{issue.text}</p>
         <div className={styles.latestActions}>
-          {/* TODO: point Read Now / Download PDF at the issue file */}
-          <a href="#read" className={styles.readNow}>
+          <button type="button" className={styles.readNow} aria-haspopup="dialog" onClick={onRead}>
             Read Now <img src={kIcons.arrowDark} alt="" width="14" height="14" />
-          </a>
-          <a href="#download" className={styles.downloadBtn}>
+          </button>
+          <a href={issue.pdf} download target="_blank" rel="noreferrer" className={styles.downloadBtn}>
             Download PDF <img src={kIcons.downloadNavy} alt="" width="20" height="20" />
           </a>
         </div>
@@ -47,10 +45,10 @@ export function LatestIssue({ issue }) {
 export function IssueRow({ issue }) {
   return (
     <article className={styles.issue}>
-      <CroppedImage src={issue.cover} crop={issue.crop} alt="" className={styles.issueCover} />
+      <img className={styles.issueCover} src={issue.cover} alt="" loading="lazy" />
       <div>
         <h3>{issue.date}</h3>
-        <a href="#download" className={styles.issueDl}>
+        <a href={issue.pdf} download target="_blank" rel="noreferrer" className={styles.issueDl}>
           Download PDF <img src={kIcons.downloadGold} alt="" width="16" height="16" />
         </a>
       </div>

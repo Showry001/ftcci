@@ -187,14 +187,41 @@
 .hall {
   position: relative;
   display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  padding: 10px;
+  align-items: center;
   border: 0.8px solid var(--hb-line);
   border-radius: var(--radius-md);
   background: var(--white);
-  cursor: pointer;
   transition: border-color 0.15s, background-color 0.15s;
+}
+.hallPick {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px;
+  cursor: pointer;
+}
+.info {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin-right: 4px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #152a5e;
+  transition: background-color 0.15s;
+}
+.info:hover {
+  background: var(--hb-line-soft);
+}
+.info:focus-visible {
+  outline: 2px solid var(--hb-gold);
+  outline-offset: 1px;
 }
 .hall:hover {
   border-color: var(--hb-gold);
@@ -203,7 +230,7 @@
   border-color: var(--hb-gold);
   background: var(--hb-cream);
 }
-.hall:has(input:focus-visible) {
+.hall:has(.hallPick input:focus-visible) {
   outline: 2px solid var(--hb-gold);
   outline-offset: 2px;
 }
@@ -242,6 +269,113 @@ input:checked + .box::after {
   font-size: 10px;
   line-height: 15px;
   color: var(--hb-faint);
+}
+.requisition {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 12px;
+  padding: 9px 16px;
+  background: #f0b84d;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 17px;
+  text-transform: uppercase;
+  text-decoration: underline;
+  color: #152a5e;
+  transition: filter 0.15s;
+}
+.requisition:hover {
+  filter: brightness(0.95);
+}
+
+/* Tariff card: Figma frames 2082:11014 … 2082:11181 (popover, centred in the top layer) */
+.tariff {
+  width: min(420px, 100vw - 32px);
+  padding: 0 0 18px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: 0 24px 48px -12px rgba(0, 18, 46, 0.35);
+  color: #152a5e;
+  font-family: var(--font-body);
+}
+.tariff:popover-open {
+  animation: hb-in 0.22s var(--ease-out);
+}
+.tariff::backdrop {
+  background: rgba(0, 18, 46, 0.2);
+}
+.tariffHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 55px;
+  padding: 0 14px 0 28px;
+  background: #152a5e;
+  border-bottom: 2px solid #c8922a;
+}
+.tariffHead p {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22.75px;
+  color: var(--white);
+}
+.tariffHead button {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--white);
+}
+.tariffHead button:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+.tariffBody {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 24px;
+  padding: 20px 28px 0;
+}
+.tariffBody hr {
+  grid-column: 1 / -1;
+  margin: 10px 0 11px;
+  border: 0;
+  border-top: 0.5px solid #152a5e;
+}
+.tariffLabel {
+  font-size: 14px;
+  line-height: 22.75px;
+  color: #434343;
+}
+.tariffValue {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 22.75px;
+}
+.rates {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: start;
+  gap: 4px 22px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22.75px;
+}
+.rates strong {
+  font-weight: 600;
+}
+.tariffNote {
+  margin-top: 12px;
+  padding: 0 28px;
+  font-size: 11px;
+  line-height: 16px;
+  color: rgba(26, 45, 90, 0.6);
 }
 
 /* Fields */

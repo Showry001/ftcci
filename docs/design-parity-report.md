@@ -97,9 +97,29 @@ The Figma tablet frames are the desktop frames scaled to 56%. The text is identi
 ## Open questions
 
 1. **Neue Montreal licence.** The site asks for `/fonts/NeueMontreal-*.woff2`, and those files don't exist. Each page load logs three 404s in the console, and Inter is shown instead. Either FTCCI supplies the licensed web-font files (recommended; drop them into `public/fonts/`), or the `@font-face` rules are removed until it does.
-2. **Membership option buttons.** On desktop all five option cards say "Explore Corporate Membership". The mobile frame names each option ("Explore Corporate", "Explore Associate", …). Should each button name its own option?
+2. ~~Membership option buttons~~: answered in the 28 Oct review; each card now has its own label and icon.
 3. **Past Events default period.** Figma shows June 2025 – May 2026 selected. That period has no events in the current data, so the page opens on the latest period that does.
-4. **Privilege Card page.** Figma "Desktop - 203" (`1873:22502`) isn't built yet. Should it be part of Phase 1?
+4. ~~Privilege Card page~~: answered in the 28 Oct review; built at `/privilege-card`.
+
+## Client review round (28 Oct 2026)
+
+Changes from the client's Phase 1 review. Items that need a server or the admin are listed under "Later phases".
+
+| Page | Change |
+|------|--------|
+| Hall booking form | Figma "i" tariff cards next to each hall (popover; Esc or a click outside closes it), and the gold "Hall Requisition Form" PDF button. Tariffs are from the FTCCI halls flyer effective 15 July 2026. Figma shows older rates (e.g. K.L.N. Prasad ₹14,000/₹25,000; the flyer says ₹15,500/₹27,500). |
+| Home | Bigger email icon in Stay Connected. The halls strip now moves right to left at a constant speed, with clickable dots; it pauses on hover or focus and stays still for reduced motion. The featured hall photo is the K.L.N. Prasad Auditorium. Footer socials go to FTCCI's real accounts. "Career" opens `/careers`. "Apply Now" and "Know More" go to `/privilege-card`. |
+| About | One scrolling page with scroll-spy (like Membership) instead of tabs. The History carousel can be dragged with a mouse. Office bearers are ordered Senior VP, President (centre), VP, as on Home. Managing Committee panels A–E, Secretariat (12 officers and one desk, with subjects, email and phone) and all 30 past presidents come from ftcci.in. |
+| Membership | Each option card has its own button and icon, and jumps to that panel's document checklist. New "Documents to file" block (panels A–E), forms and downloads, life-membership note and membership desk contacts, all from ftcci.in. "Already a member? Member Login" removed. |
+| Services | One scrolling page instead of tabs. The section bar fits on one line from 1200px; narrower screens scroll it with faded edges. Halls: a "Hall Booking" button opens the booking form, plus flyer and requisition-form links, a tariff table, notes and equipment charges from the flyer, and the bookings email `operations@ftcci.in` (flyer and Secretariat page). Every download goes to its real file. |
+| Events | Upcoming / Past toggle; tags removed from the event cards (event detail pages keep theirs). |
+| Knowledge | 155 weekly FTCCI Review issues (Oct 2023 – Oct 2026) from ftcci.in, each with "Read" (flipbook reader: pdf.js and page-flip, two-page spreads, arrows and keys) and "Download". The year filters come from the data, and the pager shortens long ranges (1 … 4 5 6 … 13). Useful Links match the ftcci.in directory. Every publication has its PDF and full title. Research cards show "Research report" instead of Figma's placeholder years. |
+| Media | Every Press Kit tile downloads its file. "Brand Logos" offers the site emblem until FTCCI supplies print-ready logo files. |
+| New pages | `/privilege-card` (Figma "Desktop - 203"): the buttons go to the live portal at privilegecard.ftcci.in; FAQ answers come from the portal; 46 partners have filters, search and "View More". `/careers` shows "No vacancy" (as on ftcci.in) and lists jobs once they're added. |
+
+**Where documents come from.** Forms, flyers, reports and Review issues still live on ftcci.in. The dev server relays them under `/ftcci/ftcci-files/` so the reader and downloads work locally (`vite.config.js`, `src/data/files.js`). A production build links to ftcci.in directly: those PDFs open in a new tab, and the reader falls back to "Open the PDF in a new tab", because ftcci.in doesn't allow cross-site reads. Phase 3 moves these files into the CMS media library.
+
+**Later phases (recorded, not built):** the hall booking server and email (Phase 2), the membership application form (Phase 2), event "Register interest" form (Phase 2), the hero image carousel managed in admin (Phase 3), careers and committee editing in admin (Phase 3), and the legacy file import (Phase 3).
 
 ## Verification
 
@@ -107,3 +127,4 @@ The Figma tablet frames are the desktop frames scaled to 56%. The text is identi
 - Horizontal overflow: none at 320, 360, 390, 414, 600, 768, 820, 1024, 1180, 1200, 1280, 1366, 1440 and 1920 px on all routes.
 - Desktop page heights versus Figma: within ±17px on every route except Publications (+18). The remaining differences come from the Inter fallback.
 - Every desktop item D1–D18 was re-checked in the browser's computed styles. Mobile pages were compared side by side with the Figma renders.
+- 28 Oct round: all 66 document links resolve through the relay; overflow sweep re-run on every route including `/privilege-card` and `/careers`; tariff popover, booking modal, flipbook (open, turn, keys, close), halls strip and dots, About drag and scroll-spy checked in headless Chrome.

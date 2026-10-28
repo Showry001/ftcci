@@ -7,7 +7,7 @@ const fields = [
   { name: "firstName", placeholder: "First Name *", icon: "👤", required: true, type: "text", autoComplete: "given-name" },
   { name: "lastName", placeholder: "Last Name *", icon: "👤", required: true, type: "text", autoComplete: "family-name" },
   { name: "phone", placeholder: "Phone Number *", icon: "📞", required: true, type: "tel", autoComplete: "tel" },
-  { name: "email", placeholder: "Email Address *", icon: "✉", required: true, type: "email", autoComplete: "email" },
+  { name: "email", placeholder: "Email Address *", icon: "✉", iconLarge: true, required: true, type: "email", autoComplete: "email" },
   { name: "business", placeholder: "Business / Occupation", icon: "🏢", required: false, type: "text", autoComplete: "organization" },
 ];
 
@@ -84,7 +84,7 @@ function Field({ f, values, setValues }) {
   return (
     <label className={styles.field}>
       <span className="visually-hidden">{f.placeholder.replace(" *", "")}</span>
-      <span className={styles.icon} aria-hidden="true">{f.icon}</span>
+      <span className={`${styles.icon} ${f.iconLarge ? styles.iconLarge : ""}`} aria-hidden="true">{f.icon}</span>
       <input
         type={f.type}
         name={f.name}
