@@ -128,6 +128,7 @@
   align-items: center;
   gap: 10.6px;
   padding: 13.25px 26.5px;
+  border: 0;
   background: var(--yellow-500);
   border-radius: 10.6px;
   font-family: var(--font-sf);

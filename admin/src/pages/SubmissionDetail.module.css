@@ -1,0 +1,165 @@
+/* Submission detail: not drawn in Figma; uses the admin card, pill and button styles. */
+.back {
+  display: inline-block;
+  margin-bottom: 14px;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--muted-2);
+  text-decoration: none;
+}
+.back:hover {
+  color: var(--navy);
+}
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(300px, 1fr);
+  align-items: start;
+  gap: 24px;
+  margin-top: 32px;
+}
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.side > p {
+  margin-top: -8px;
+}
+.card {
+  padding: 24px 28px;
+  background: #fff;
+  border: 0.5px solid var(--card-line);
+  border-radius: 8px;
+}
+.card h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 26px;
+}
+.help {
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 19px;
+  color: var(--muted-2);
+}
+.fields {
+  margin-top: 12px;
+}
+.fields div {
+  display: grid;
+  grid-template-columns: minmax(140px, 34%) minmax(0, 1fr);
+  gap: 16px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--row-line);
+  font-size: 14px;
+  line-height: 21px;
+}
+.fields div:last-child {
+  border-bottom: 0;
+}
+.fields dt {
+  color: var(--muted-2);
+}
+.fields dd {
+  font-weight: 500;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+.statuses {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 16px;
+}
+.statuses button {
+  height: 44px;
+  border: 0.84px solid rgba(181, 181, 181, 0.67);
+  border-radius: 6px;
+  background: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--navy);
+}
+.statuses button:hover:not(:disabled) {
+  border-color: var(--navy);
+}
+.statuses button[aria-pressed="true"] {
+  border-color: var(--navy);
+  background: var(--navy);
+  color: #fff;
+}
+.card textarea {
+  display: block;
+  width: 100%;
+  margin-top: 14px;
+  padding: 12px 14px;
+  border: 0.42px solid #939ea9;
+  border-radius: 6.75px;
+  background: var(--field);
+  font-size: 14px;
+  line-height: 21px;
+  resize: vertical;
+}
+.primaryButton,
+.retry {
+  margin-top: 12px;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--navy);
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff;
+}
+.retry {
+  margin-top: 8px;
+  padding: 7px 14px;
+  font-size: 13px;
+}
+.primaryButton:disabled,
+.retry:disabled,
+.statuses button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.emails {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 14px;
+}
+.emails li + li {
+  padding-top: 16px;
+  border-top: 1px solid var(--row-line);
+}
+.emailHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+.error {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 17px;
+  color: var(--red);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 1199px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 599px) {
+  .card {
+    padding: 20px;
+  }
+  .fields div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+  }
+}

@@ -1,0 +1,82 @@
+/* Admin tokens, read from the Figma admin screens ("Desktop - 217" Events list, 2538:43797). */
+:root {
+  --navy: #152a5e;
+  --page: #f7f9fb;
+  --field: #f6f9fc;
+  --head-row: #f4f8fc;
+  --card-line: rgba(21, 42, 94, 0.33);
+  --row-line: #e7eaf0;
+  --muted: #a6a6a6;
+  --muted-2: #6b7280;
+  --placeholder: #afafaf;
+  --gold: #f0b84d;
+  --blue-bg: #f0f9ff;
+  --blue: #0283fc;
+  --green-bg: #f3ffef;
+  --green: #02a72c;
+  --orange-bg: #fff5de;
+  --orange: #f58a00;
+  --red-bg: #fff1f0;
+  --red: #d92d20;
+  --font-display: "Neue Montreal", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --sidebar-w: clamp(250px, 25.9vw, 373px);
+  --topbar-h: 101px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--page);
+  color: var(--navy);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+dl,
+dd {
+  margin: 0;
+  padding: 0;
+}
+ul,
+ol {
+  list-style: none;
+}
+a {
+  color: inherit;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+button {
+  cursor: pointer;
+}
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

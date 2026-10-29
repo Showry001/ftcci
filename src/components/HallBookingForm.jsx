@@ -1,8 +1,19 @@
-import { useEffect, useRef, useState } from "react";
-import { bookingCatering, bookingCategories, bookingEquipment, bookingHalls, hallFiles } from "../data/services.js";
-import styles from "./HallBookingForm.module.css";
+import { useEffect, useState } from "react";
+import { cateringOptions, equipmentOptions, forms, organisationCategories, todayInIndia, validate } from "../../shared/forms.js";
+import { bookingHalls } from "../../shared/halls.js";
+import { hallFiles } from "../data/services.js";
+import { FormError, firstError, prepareProof, sendForm } from "../lib/api.js";
+import FormDialog, { Chips, Field, Honeypot, Toggles } from "./FormDialog.jsx";
+import styles from "./FormDialog.module.css";
 
 const steps = ["Hall", "Schedule", "Needs", "Details"];
+const stepFields = [
+  ["halls"],
+  ["date", "from", "to", "purpose", "request"],
+  ["equipment", "catering", "category"],
+  ["company", "address", "pin", "phone", "fax", "email", "website", "gst", "member", "contact", "cell", "office", "residence"],
+];
+const order = stepFields.flat();
 
 const empty = {
   halls: [], date: "", from: "", to: "", purpose: "", request: "",
@@ -11,294 +22,248 @@ const empty = {
   member: "", contact: "", cell: "", office: "", residence: "",
 };
 
+const limits = forms.hallBooking.fields;
 const companyFields = [
-  { name: "pin", label: "PIN", placeholder: "500 004", inputMode: "numeric", autoComplete: "postal-code" },
-  { name: "phone", label: "Phone (STD)", placeholder: "040-XXXXX", type: "tel", autoComplete: "tel" },
-  { name: "fax", label: "Fax (STD)", placeholder: "040-XXXXX", type: "tel" },
-  { name: "email", label: "Email *", placeholder: "info@company.com", type: "email", required: true, autoComplete: "email" },
-  { name: "website", label: "Website", placeholder: "www.company.com", inputMode: "url", autoComplete: "url" },
-  { name: "gst", label: "GST No.", placeholder: "36XXXXX" },
+  { name: "pin", label: "PIN", placeholder: "500 004", inputMode: "numeric", autoComplete: "postal-code", maxLength: 7 },
+  { name: "phone", label: "Phone (STD)", placeholder: "040-XXXXX", type: "tel", autoComplete: "tel", maxLength: 20 },
+  { name: "fax", label: "Fax (STD)", placeholder: "040-XXXXX", type: "tel", maxLength: 20 },
+  { name: "email", label: "Email *", placeholder: "info@company.com", type: "email", required: true, autoComplete: "email", maxLength: 254 },
+  { name: "website", label: "Website", placeholder: "www.company.com", inputMode: "url", autoComplete: "url", maxLength: 200 },
+  { name: "gst", label: "GST No.", placeholder: "36XXXXX", maxLength: 15 },
 ];
 const contactFields = [
-  { name: "cell", label: "Cell", placeholder: "+91 XXXXX", type: "tel", autoComplete: "tel" },
-  { name: "office", label: "Office", placeholder: "040-XXXXX", type: "tel" },
-  { name: "residence", label: "Residence", placeholder: "040-XXXXX", type: "tel" },
+  { name: "cell", label: "Cell", placeholder: "+91 XXXXX", type: "tel", autoComplete: "tel", maxLength: 20 },
+  { name: "office", label: "Office", placeholder: "040-XXXXX", type: "tel", maxLength: 20 },
+  { name: "residence", label: "Residence", placeholder: "040-XXXXX", type: "tel", maxLength: 20 },
 ];
 
-const today = () => new Date().toLocaleDateString("en-CA"); // local YYYY-MM-DD
-
-// Four-step hall requisition modal opened from the header's "Hall Booking" button.
+// Four-step hall requisition modal opened from the header's "Hall Booking" button and the Services page.
 export default function HallBookingForm({ open, onClose }) {
-  const dialogRef = useRef(null);
   const [step, setStep] = useState(0);
   const [v, setV] = useState(empty);
-  const [error, setError] = useState("");
-  const [sent, setSent] = useState(false);
+  const [hp, setHp] = useState("");
+  const [error, setError] = useState(null);
+  const [sending, setSending] = useState(false);
+  const [reference, setReference] = useState("");
 
   useEffect(() => {
-    const d = dialogRef.current;
-    if (open && !d.open) d.showModal();
-    if (!open && d.open) d.close();
+    if (open) prepareProof();
   }, [open]);
-
-  // Escape fires "cancel" right away while "close" can lag, so sync state from "cancel" too.
-  const closeRef = useRef(null);
-  useEffect(() => {
-    const d = dialogRef.current;
-    const onCancel = () => closeRef.current();
-    d.addEventListener("cancel", onCancel);
-    return () => d.removeEventListener("cancel", onCancel);
-  }, []);
-
-  useEffect(() => setError(""), [v]);
+  useEffect(() => setError(null), [v]);
 
   const set = (name) => (e) => setV((s) => ({ ...s, [name]: e.target.value }));
   const toggle = (name, item) =>
     setV((s) => ({ ...s, [name]: s[name].includes(item) ? s[name].filter((x) => x !== item) : [...s[name], item] }));
   const pick = (name, item) => setV((s) => ({ ...s, [name]: s[name] === item ? "" : item }));
-  const input = (name, extra = {}) => ({ id: `hb-${name}`, name, value: v[name], onChange: set(name), ...extra });
+  const input = (name, extra = {}) => ({
+    id: `hb-${name}`,
+    name,
+    value: v[name],
+    onChange: set(name),
+    maxLength: limits[name].max,
+    "aria-invalid": error?.field === name || undefined,
+    "aria-describedby": error?.field === name ? "hb-error" : undefined,
+    ...extra,
+  });
 
   const goTo = (i) => {
-    setError("");
+    setError(null);
     setStep(i);
   };
 
-  const onSubmit = (e) => {
+  // Shows the first problem, on its own step, and puts the cursor there.
+  const showError = (errors, message) => {
+    const field = firstError(errors, order);
+    if (field) setStep(stepFields.findIndex((f) => f.includes(field)));
+    setError({ field, message: field ? errors[field] : message });
+    if (field) requestAnimationFrame(() => document.getElementById(`hb-${field}`)?.focus());
+  };
+
+  const onSubmit = async (e) => {
     e.preventDefault();
-    if (step === 0 && !v.halls.length) return setError("Select at least one hall to continue.");
-    if (step === 1 && v.to <= v.from) return setError("The end time must be after the start time.");
-    if (step < steps.length - 1) return goTo(step + 1);
-    // TODO: connect to the FTCCI hall-booking endpoint.
-    setError("");
-    setSent(true);
+    const last = step === steps.length - 1;
+    const { ok, values, errors } = validate("hallBooking", v, last ? {} : { fields: stepFields[step] });
+    if (!ok) return showError(errors);
+    if (!last) return goTo(step + 1);
+
+    setSending(true);
+    try {
+      const res = await sendForm("hall-booking", values, hp);
+      setReference(res.reference);
+    } catch (err) {
+      showError(err instanceof FormError ? err.fields : {}, err.message);
+    } finally {
+      setSending(false);
+    }
   };
 
   // Called by the buttons, backdrop, Escape and the native "close" event — safe to run more than once.
   const close = () => {
     onClose();
-    setError("");
-    if (sent) {
+    setError(null);
+    if (reference) {
       setV(empty);
       setStep(0);
-      setSent(false);
+      setReference("");
     }
   };
-  closeRef.current = close;
 
   const day = v.date ? new Date(`${v.date}T00:00`).toLocaleDateString("en-IN", { weekday: "long" }) : "—";
-  const last = step === steps.length - 1;
 
   return (
-    <dialog
-      ref={dialogRef}
-      className={styles.dialog}
-      aria-labelledby="hb-title"
+    <FormDialog
+      id="hb"
+      title="Hall Requisition Form"
+      open={open}
       onClose={close}
-      onClick={(e) => e.target === dialogRef.current && close()}
+      steps={steps}
+      step={step}
+      onStep={goTo}
+      sent={Boolean(reference)}
+      sending={sending}
+      error={error?.message}
+      onSubmit={onSubmit}
+      done={
+        <>
+          <p className={styles.doneTitle}>Request received</p>
+          <p className={styles.hint}>
+            Thank you, {v.contact}. Our bookings team will check hall availability and contact you at {v.email}. This is an
+            enquiry, not a confirmed booking.
+          </p>
+          <p className={styles.reference}>
+            <span>Your reference number</span>
+            <strong>{reference}</strong>
+          </p>
+          <p className={styles.hint}>A confirmation email with this number is on its way to you.</p>
+        </>
+      }
     >
-      <form className={styles.card} onSubmit={onSubmit}>
-        <div className={styles.head}>
-          <h2 id="hb-title" className={styles.title}>Hall Requisition Form</h2>
-          <div className={styles.headRight}>
-            <span className={styles.badge}>Step {step + 1} / {steps.length}</span>
-            <button type="button" className={styles.close} aria-label="Close" onClick={close}>
-              ×
-            </button>
-          </div>
-        </div>
-
-        <div className={styles.tabs}>
-          {steps.map((s, i) => {
-            const done = sent || i < step;
-            return (
-              <button
-                key={s}
-                type="button"
-                className={`${styles.tab} ${i === step && !sent ? styles.tabActive : ""} ${done ? styles.tabDone : ""}`}
-                aria-current={i === step && !sent ? "step" : undefined}
-                disabled={!done || sent}
-                onClick={() => goTo(i)}
-              >
-                {done ? `✓ ${s}` : s}
-              </button>
-            );
-          })}
-        </div>
-
-        {sent ? (
-          <div key="sent" className={styles.body}>
-            <p className={styles.doneTitle}>Request received</p>
-            <p className={styles.hint}>
-              Thank you{v.contact ? `, ${v.contact}` : ""}. Our bookings team will confirm hall availability
-              {v.email ? ` at ${v.email}` : ""} shortly.
-            </p>
-          </div>
-        ) : (
-          <div key={step} className={styles.body}>
-            {step === 0 && (
-              <>
-                <fieldset className={styles.fieldset}>
-                  <legend className={styles.hint}>Select one or more halls for your event</legend>
-                  <div className={styles.halls}>
-                    {bookingHalls.map((h, i) => (
-                      <div key={h.name} className={styles.hall}>
-                        <label className={styles.hallPick}>
-                          <input
-                            type="checkbox"
-                            className="visually-hidden"
-                            checked={v.halls.includes(h.name)}
-                            onChange={() => toggle("halls", h.name)}
-                          />
-                          <span className={styles.box} aria-hidden="true" />
-                          <span>
-                            <span className={styles.hallName}>{h.name}</span>
-                            <span className={styles.hallCap}>Cap: {h.seats ?? h.area}</span>
-                          </span>
-                        </label>
-                        <button
-                          type="button"
-                          className={styles.info}
-                          popovertarget={`hb-tariff-${i}`}
-                          aria-label={`Capacity and tariff: ${h.name}`}
-                        >
-                          <InfoIcon />
-                        </button>
-                        <TariffCard id={`hb-tariff-${i}`} hall={h} />
-                      </div>
-                    ))}
-                  </div>
-                </fieldset>
-                <p className={styles.note}>* Eatables not allowed in Auditorium</p>
-                <a className={styles.requisition} href={hallFiles.form.href} download target="_blank" rel="noreferrer">
-                  Hall Requisition Form
-                </a>
-              </>
-            )}
-
-            {step === 1 && (
-              <>
-                <p className={styles.hint}>Pick your event date and time slot</p>
-                <div className={styles.grid2}>
-                  <Field id="hb-date" label="Date *">
-                    <input {...input("date", { type: "date", required: true, min: today() })} className={styles.input} />
-                  </Field>
-                  <Field id="hb-day" label="Day">
-                    <output id="hb-day" className={styles.readonly}>{day}</output>
-                  </Field>
-                  <Field id="hb-from" label="From *">
-                    <input {...input("from", { type: "time", required: true })} className={styles.input} />
-                  </Field>
-                  <Field id="hb-to" label="To *">
-                    <input {...input("to", { type: "time", required: true })} className={styles.input} />
-                  </Field>
-                </div>
-                <Field id="hb-purpose" label="Purpose of Event" className={styles.section}>
-                  <textarea
-                    {...input("purpose", { rows: 2, placeholder: "Brief description of your event..." })}
-                    className={`${styles.input} ${styles.textarea}`}
-                  />
-                </Field>
-                <Field id="hb-request" label="Special Request" className={styles.section}>
-                  <input {...input("request", { placeholder: "Any special arrangements..." })} className={styles.input} />
-                </Field>
-              </>
-            )}
-
-            {step === 2 && (
-              <>
-                <Chips id="hb-equipment" label="Equipment Required" items={bookingEquipment}
-                  isOn={(x) => v.equipment.includes(x)} onPick={(x) => toggle("equipment", x)} />
-                <Chips id="hb-catering" label="Catering / Serving" items={bookingCatering}
-                  isOn={(x) => v.catering.includes(x)} onPick={(x) => toggle("catering", x)}>
-                  <p className={`${styles.note} ${styles.noteTight}`}>* Eatables not allowed in Auditorium</p>
-                </Chips>
-                <Chips id="hb-category" label="Organisation Category" items={bookingCategories}
-                  isOn={(x) => v.category === x} onPick={(x) => pick("category", x)} />
-              </>
-            )}
-
-            {step === 3 && (
-              <>
-                <Field id="hb-company" label="Name of the Company *" strong>
-                  <input
-                    {...input("company", { required: true, placeholder: "Organisation / Company name", autoComplete: "organization" })}
-                    className={`${styles.input} ${styles.inputLg}`}
-                  />
-                </Field>
-                <Field id="hb-address" label="Address" strong className={styles.section}>
-                  <textarea
-                    {...input("address", { rows: 2, placeholder: "Full postal address", autoComplete: "street-address" })}
-                    className={`${styles.input} ${styles.inputLg} ${styles.textarea}`}
-                  />
-                </Field>
-                <div className={`${styles.grid3} ${styles.section}`}>
-                  {companyFields.map(({ name, label, ...rest }) => (
-                    <Field key={name} id={`hb-${name}`} label={label} strong>
-                      <input {...input(name, rest)} className={`${styles.input} ${styles.inputLg}`} />
-                    </Field>
-                  ))}
-                </div>
-                <div className={styles.divided}>
-                  <p id="hb-member" className={styles.labelStrong}>FTCCI Member?</p>
-                  <div className={styles.toggles} role="group" aria-labelledby="hb-member">
-                    {["yes", "no"].map((x) => (
-                      <button key={x} type="button" className={styles.toggle} aria-pressed={v.member === x}
-                        onClick={() => pick("member", x)}>
-                        {x}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-                <div className={styles.divided}>
-                  <Field id="hb-contact" label="Contact Person *" strong>
+      <Honeypot value={hp} onChange={setHp} />
+      {step === 0 && (
+        <>
+          <fieldset className={styles.fieldset}>
+            <legend className={styles.hint}>Select one or more halls for your event</legend>
+            <div className={styles.halls}>
+              {bookingHalls.map((h, i) => (
+                <div key={h.name} className={styles.hall}>
+                  <label className={styles.hallPick}>
                     <input
-                      {...input("contact", { required: true, placeholder: "Full name", autoComplete: "name" })}
-                      className={`${styles.input} ${styles.inputLg}`}
+                      type="checkbox"
+                      id={i === 0 ? "hb-halls" : undefined}
+                      className="visually-hidden"
+                      checked={v.halls.includes(h.name)}
+                      onChange={() => toggle("halls", h.name)}
                     />
-                  </Field>
-                  <div className={`${styles.grid3} ${styles.sectionTight}`}>
-                    {contactFields.map(({ name, label, ...rest }) => (
-                      <Field key={name} id={`hb-${name}`} label={label} strong>
-                        <input {...input(name, rest)} className={`${styles.input} ${styles.inputLg}`} />
-                      </Field>
-                    ))}
-                  </div>
+                    <span className={styles.box} aria-hidden="true" />
+                    <span>
+                      <span className={styles.hallName}>{h.name}</span>
+                      <span className={styles.hallCap}>Cap: {h.seats ?? h.area}</span>
+                    </span>
+                  </label>
+                  <button
+                    type="button"
+                    className={styles.info}
+                    popovertarget={`hb-tariff-${i}`}
+                    aria-label={`Capacity and tariff: ${h.name}`}
+                  >
+                    <InfoIcon />
+                  </button>
+                  <TariffCard id={`hb-tariff-${i}`} hall={h} />
                 </div>
-              </>
-            )}
+              ))}
+            </div>
+          </fieldset>
+          <p className={styles.note}>* Eatables not allowed in Auditorium</p>
+          <a className={styles.requisition} href={hallFiles.form.href} download target="_blank" rel="noreferrer">
+            Hall Requisition Form
+          </a>
+        </>
+      )}
+
+      {step === 1 && (
+        <>
+          <p className={styles.hint}>Pick your event date and time slot</p>
+          <div className={styles.grid2}>
+            <Field id="hb-date" label="Date *">
+              <input {...input("date", { type: "date", required: true, min: todayInIndia() })} className={styles.input} />
+            </Field>
+            <Field id="hb-day" label="Day">
+              <output id="hb-day" className={styles.readonly}>{day}</output>
+            </Field>
+            <Field id="hb-from" label="From *">
+              <input {...input("from", { type: "time", required: true })} className={styles.input} />
+            </Field>
+            <Field id="hb-to" label="To *">
+              <input {...input("to", { type: "time", required: true })} className={styles.input} />
+            </Field>
           </div>
-        )}
+          <Field id="hb-purpose" label="Purpose of Event" className={styles.section}>
+            <textarea
+              {...input("purpose", { rows: 2, placeholder: "Brief description of your event..." })}
+              className={`${styles.input} ${styles.textarea}`}
+            />
+          </Field>
+          <Field id="hb-request" label="Special Request" className={styles.section}>
+            <input {...input("request", { placeholder: "Any special arrangements..." })} className={styles.input} />
+          </Field>
+        </>
+      )}
 
-        {error && <p className={styles.error} role="alert">{error}</p>}
+      {step === 2 && (
+        <>
+          <Chips id="hb-equipment" label="Equipment Required" items={equipmentOptions}
+            isOn={(x) => v.equipment.includes(x)} onPick={(x) => toggle("equipment", x)} />
+          <Chips id="hb-catering" label="Catering / Serving" items={cateringOptions}
+            isOn={(x) => v.catering.includes(x)} onPick={(x) => toggle("catering", x)}>
+            <p className={`${styles.note} ${styles.noteTight}`}>* Eatables not allowed in Auditorium</p>
+          </Chips>
+          <Chips id="hb-category" label="Organisation Category" items={organisationCategories}
+            isOn={(x) => v.category === x} onPick={(x) => pick("category", x)} />
+        </>
+      )}
 
-        <div className={styles.foot}>
-          {sent ? (
-            <span />
-          ) : (
-            <button type="button" className={styles.back} disabled={step === 0} onClick={() => goTo(step - 1)}>
-              ← Back
-            </button>
-          )}
-          <div className={styles.dots} aria-hidden="true">
-            {steps.map((s, i) => (
-              <span
-                key={s}
-                className={`${styles.dot} ${i === step && !sent ? styles.dotActive : ""} ${sent || i < step ? styles.dotDone : ""}`}
-              />
+      {step === 3 && (
+        <>
+          <Field id="hb-company" label="Name of the Company *" strong>
+            <input
+              {...input("company", { required: true, placeholder: "Organisation / Company name", autoComplete: "organization" })}
+              className={`${styles.input} ${styles.inputLg}`}
+            />
+          </Field>
+          <Field id="hb-address" label="Address" strong className={styles.section}>
+            <textarea
+              {...input("address", { rows: 2, placeholder: "Full postal address", autoComplete: "street-address" })}
+              className={`${styles.input} ${styles.inputLg} ${styles.textarea}`}
+            />
+          </Field>
+          <div className={`${styles.grid3} ${styles.section}`}>
+            {companyFields.map(({ name, label, ...rest }) => (
+              <Field key={name} id={`hb-${name}`} label={label} strong>
+                <input {...input(name, rest)} className={`${styles.input} ${styles.inputLg}`} />
+              </Field>
             ))}
           </div>
-          {sent ? (
-            <button type="button" className={styles.next} onClick={close}>Close</button>
-          ) : last ? (
-            <button type="submit" className={styles.submit}>
-              Submit <span aria-hidden="true">✓</span>
-            </button>
-          ) : (
-            <button type="submit" className={styles.next}>Next →</button>
-          )}
-        </div>
-      </form>
-    </dialog>
+          <div className={styles.divided}>
+            <Toggles id="hb-member" label="FTCCI Member?" items={["yes", "no"]} value={v.member} onPick={(x) => pick("member", x)} />
+          </div>
+          <div className={styles.divided}>
+            <Field id="hb-contact" label="Contact Person *" strong>
+              <input
+                {...input("contact", { required: true, placeholder: "Full name", autoComplete: "name" })}
+                className={`${styles.input} ${styles.inputLg}`}
+              />
+            </Field>
+            <div className={`${styles.grid3} ${styles.sectionTight}`}>
+              {contactFields.map(({ name, label, ...rest }) => (
+                <Field key={name} id={`hb-${name}`} label={label} strong>
+                  <input {...input(name, rest)} className={`${styles.input} ${styles.inputLg}`} />
+                </Field>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
+    </FormDialog>
   );
 }
 
@@ -347,31 +312,6 @@ function TariffCard({ id, hall }) {
         </div>
       </div>
       <p className={styles.tariffNote}>Amounts in ₹, plus 18% GST. FTCCI members get 20% off hall charges.</p>
-    </div>
-  );
-}
-
-function Field({ id, label, strong, className = "", children }) {
-  return (
-    <div className={`${styles.field} ${className}`}>
-      <label htmlFor={id} className={strong ? styles.labelStrong : styles.label}>{label}</label>
-      {children}
-    </div>
-  );
-}
-
-function Chips({ id, label, items, isOn, onPick, children }) {
-  return (
-    <div className={styles.group}>
-      <p id={id} className={styles.label}>{label}</p>
-      <div className={styles.chips} role="group" aria-labelledby={id}>
-        {items.map((x) => (
-          <button key={x} type="button" className={styles.chip} aria-pressed={isOn(x)} onClick={() => onPick(x)}>
-            {x}
-          </button>
-        ))}
-      </div>
-      {children}
     </div>
   );
 }

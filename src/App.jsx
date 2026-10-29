@@ -14,6 +14,7 @@ import Media from "./pages/Media.jsx";
 import Contact from "./pages/Contact.jsx";
 import PrivilegeCard from "./pages/PrivilegeCard.jsx";
 import Careers from "./pages/Careers.jsx";
+import NewsletterConfirm from "./pages/NewsletterConfirm.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
 export default function App() {
@@ -35,6 +36,7 @@ export default function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="privilege-card" element={<PrivilegeCard />} />
           <Route path="careers" element={<Careers />} />
+          <Route path="newsletter/confirm" element={<NewsletterConfirm />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

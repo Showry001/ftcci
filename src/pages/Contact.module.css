@@ -79,6 +79,9 @@
   position: relative;
   display: block;
 }
+.field [aria-invalid="true"] {
+  border-color: #b42318;
+}
 .select select {
   appearance: none;
   padding-right: 40px;

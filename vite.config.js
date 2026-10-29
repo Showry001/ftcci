@@ -5,8 +5,10 @@ export default defineConfig({
   plugins: [react()],
   base: '/ftcci/',
   server: {
-    // Relays ftcci.in documents same-origin in development (see src/data/files.js).
     proxy: {
+      // The FTCCI API (api/), started with `npm --prefix api run dev`.
+      "/api/": "http://127.0.0.1:8787",
+      // Relays ftcci.in documents same-origin in development (see src/data/files.js).
       "/ftcci/ftcci-files/": {
         target: "https://www.ftcci.in",
         changeOrigin: true,

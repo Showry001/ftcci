@@ -1,5 +1,8 @@
 import { useState } from "react";
+import { contactSubjects as subjects, validate } from "../../shared/forms.js";
 import PageHero from "../components/common/PageHero.jsx";
+import { Honeypot } from "../components/FormDialog.jsx";
+import { FormError, firstError, prepareProof, sendForm } from "../lib/api.js";
 import styles from "./Contact.module.css";
 
 const a = (p) => `${import.meta.env.BASE_URL}assets/${p}`;
@@ -10,29 +13,44 @@ const icons = {
   mail: a("contact/icon-mail.svg"),
   globe: a("contact/icon-globe.svg"),
 };
-// Subject options are not specified in the design; adjust as needed.
-const subjects = ["General enquiry", "Membership", "Certificate of Origin", "Halls & Booking", "Events", "Media & Press"];
+const order = ["name", "email", "phone", "subject", "message", "agree"];
+const empty = { name: "", email: "", phone: "", subject: "", message: "" };
 
 export default function Contact() {
-  const [values, setValues] = useState({ name: "", email: "", phone: "", subject: "", message: "" });
+  const [values, setValues] = useState(empty);
   const [agree, setAgree] = useState(false);
+  const [hp, setHp] = useState("");
   const [status, setStatus] = useState(null);
+  const [sending, setSending] = useState(false);
   const set = (k) => (e) => setValues((v) => ({ ...v, [k]: e.target.value }));
+  const invalid = (k) => (status?.field === k ? { "aria-invalid": true, "aria-describedby": "contact-status" } : {});
 
-  const submit = (e) => {
+  const fail = (form, errors, msg) => {
+    const field = firstError(errors, order);
+    setStatus({ ok: false, field, msg: field ? errors[field] : msg });
+    if (field) form.elements[field]?.focus();
+  };
+
+  const submit = async (e) => {
     e.preventDefault();
-    if (!e.currentTarget.checkValidity()) {
-      e.currentTarget.reportValidity();
+    const form = e.currentTarget;
+    if (!form.checkValidity()) {
+      form.reportValidity();
       return;
     }
-    if (!agree) {
-      setStatus({ ok: false, msg: "Please accept the Privacy Policy and Terms & Conditions." });
-      return;
+    const { ok, values: clean, errors } = validate("contact", { ...values, agree });
+    if (!ok) return fail(form, errors);
+    setSending(true);
+    try {
+      const { reference } = await sendForm("contact", clean, hp);
+      setStatus({ ok: true, msg: `Thank you — your message has been sent (reference ${reference}). Our team will get back to you shortly.` });
+      setValues(empty);
+      setAgree(false);
+    } catch (err) {
+      fail(form, err instanceof FormError ? err.fields : {}, err.message);
+    } finally {
+      setSending(false);
     }
-    // TODO: POST to the FTCCI enquiry endpoint.
-    setStatus({ ok: true, msg: "Thank you — your message has been sent. Our team will get back to you shortly." });
-    setValues({ name: "", email: "", phone: "", subject: "", message: "" });
-    setAgree(false);
   };
 
   return (
@@ -41,7 +59,7 @@ export default function Contact() {
       <section className={styles.section}>
         <div className="container">
           <div className={styles.row}>
-            <form className={styles.form} onSubmit={submit} noValidate>
+            <form className={styles.form} onSubmit={submit} onFocus={prepareProof} noValidate>
               <div>
                 <h2 className={styles.formTitle}>Send Us a Message</h2>
                 <p className={styles.formSub}>Fill in the details below and our team will get back to you shortly.</p>
@@ -49,20 +67,20 @@ export default function Contact() {
               <div className={styles.fields}>
                 <label className={styles.field}>
                   <span>Full Name <em>*</em></span>
-                  <input required value={values.name} onChange={set("name")} placeholder="Enter your full name" autoComplete="name" />
+                  <input name="name" required maxLength={100} value={values.name} onChange={set("name")} placeholder="Enter your full name" autoComplete="name" {...invalid("name")} />
                 </label>
                 <label className={styles.field}>
                   <span>Email Address <em>*</em></span>
-                  <input required type="email" value={values.email} onChange={set("email")} placeholder="Enter your email address" autoComplete="email" />
+                  <input name="email" required type="email" maxLength={254} value={values.email} onChange={set("email")} placeholder="Enter your email address" autoComplete="email" {...invalid("email")} />
                 </label>
                 <label className={styles.field}>
                   <span>Phone Number</span>
-                  <input type="tel" value={values.phone} onChange={set("phone")} placeholder="Enter your phone number" autoComplete="tel" />
+                  <input name="phone" type="tel" maxLength={20} value={values.phone} onChange={set("phone")} placeholder="Enter your phone number" autoComplete="tel" {...invalid("phone")} />
                 </label>
                 <label className={styles.field}>
                   <span>Subject <em>*</em></span>
                   <span className={styles.select}>
-                    <select required value={values.subject} onChange={set("subject")}>
+                    <select name="subject" required value={values.subject} onChange={set("subject")} {...invalid("subject")}>
                       <option value="" disabled>Select a subject</option>
                       {subjects.map((s) => (
                         <option key={s}>{s}</option>
@@ -73,20 +91,21 @@ export default function Contact() {
                 </label>
                 <label className={styles.field}>
                   <span>Message <em>*</em></span>
-                  <textarea required rows={5} value={values.message} onChange={set("message")} placeholder="Type your message here..." />
+                  <textarea name="message" required rows={5} maxLength={2000} value={values.message} onChange={set("message")} placeholder="Type your message here..." {...invalid("message")} />
                 </label>
               </div>
               <label className={styles.consent}>
-                <input type="checkbox" checked={agree} onChange={(e) => setAgree(e.target.checked)} />
+                <input name="agree" type="checkbox" checked={agree} onChange={(e) => setAgree(e.target.checked)} {...invalid("agree")} />
                 <span>
                   I agree to the <a href="#privacy">Privacy Policy</a> and <a href="#terms">Terms &amp; Conditions</a>.
                 </span>
               </label>
-              <button type="submit" className={styles.submit}>
-                Send Message <img src={icons.send} alt="" width="14" height="14" />
+              <Honeypot value={hp} onChange={setHp} />
+              <button type="submit" className={styles.submit} disabled={sending}>
+                {sending ? "Sending…" : "Send Message"} <img src={icons.send} alt="" width="14" height="14" />
               </button>
               {status && (
-                <p role="status" className={status.ok ? styles.ok : styles.err}>{status.msg}</p>
+                <p id="contact-status" role="status" className={status.ok ? styles.ok : styles.err}>{status.msg}</p>
               )}
             </form>
 

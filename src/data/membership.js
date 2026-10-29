@@ -1,3 +1,4 @@
+import { membershipPanels } from "../../shared/forms.js";
 import { ftcciFile } from "./files.js";
 
 const a = (p) => `${import.meta.env.BASE_URL}assets/${p}`;
@@ -25,14 +26,16 @@ export const memberBenefits = [
   { title: "Learning & Development", icon: a("membership/icon-briefcase.svg"), text: "Access workshops, training programmes and expert-led sessions for professional growth." },
 ];
 
-// One card per membership panel; each button jumps to that panel's document checklist.
-export const membershipOptions = [
-  { title: "Large Companies", panel: "a", cta: "Join as a Large Company", icon: a("membership/icon-building.svg"), text: "For large companies and major business organisations seeking representation, networking and industry engagement." },
-  { title: "Associations & Societies", panel: "b", cta: "Join as an Association", icon: a("membership/icon-group.svg"), text: "Build stronger industry connections and participate in collective policy and networking initiatives." },
-  { title: "Companies", panel: "c", cta: "Join as a Company", icon: a("membership/icon-briefcase-gold.svg"), text: "For registered companies seeking FTCCI membership and access to business, policy and networking opportunities." },
-  { title: "Professionals / Firms", panel: "d", cta: "Join as a Professional", icon: a("membership/icon-user-check.svg"), text: "For eligible professionals and firms seeking meaningful industry connections and engagement." },
-  { title: "MSMEs", panel: "e", cta: "Join as an MSME", icon: a("membership/icon-factory.svg"), text: "Benefit from business networking, knowledge resources, support services and industry engagement." },
-];
+// One card per membership panel (names shared with the application form); each button jumps to that
+// panel's document checklist.
+const optionDetails = {
+  a: { cta: "Join as a Large Company", icon: a("membership/icon-building.svg"), text: "For large companies and major business organisations seeking representation, networking and industry engagement." },
+  b: { cta: "Join as an Association", icon: a("membership/icon-group.svg"), text: "Build stronger industry connections and participate in collective policy and networking initiatives." },
+  c: { cta: "Join as a Company", icon: a("membership/icon-briefcase-gold.svg"), text: "For registered companies seeking FTCCI membership and access to business, policy and networking opportunities." },
+  d: { cta: "Join as a Professional", icon: a("membership/icon-user-check.svg"), text: "For eligible professionals and firms seeking meaningful industry connections and engagement." },
+  e: { cta: "Join as an MSME", icon: a("membership/icon-factory.svg"), text: "Benefit from business networking, knowledge resources, support services and industry engagement." },
+};
+export const membershipOptions = membershipPanels.map((p) => ({ title: p.label, panel: p.value, ...optionDetails[p.value] }));
 export const optionArrow = a("membership/icon-arrow-right.svg");
 
 export const steps = [

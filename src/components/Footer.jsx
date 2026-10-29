@@ -1,21 +1,35 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { validate } from "../../shared/forms.js";
 import { assets, legalLinks, quickLinks, socialLinks } from "../data/content.js";
+import { joinNewsletter, prepareProof } from "../lib/api.js";
+import { Honeypot } from "./FormDialog.jsx";
 import styles from "./Footer.module.css";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
-  const [done, setDone] = useState(false);
+  const [hp, setHp] = useState("");
+  const [status, setStatus] = useState(null);
+  const [sending, setSending] = useState(false);
 
-  const subscribe = (e) => {
+  const subscribe = async (e) => {
     e.preventDefault();
     if (!e.currentTarget.checkValidity()) {
       e.currentTarget.reportValidity();
       return;
     }
-    // TODO: connect to the FTCCI newsletter endpoint.
-    setDone(true);
-    setEmail("");
+    const { ok, values, errors } = validate("newsletterQuick", { email });
+    if (!ok) return setStatus({ ok: false, msg: errors.email });
+    setSending(true);
+    try {
+      await joinNewsletter("footer", values, hp);
+      setStatus({ ok: true, msg: "Thanks! Check your inbox to confirm your subscription." });
+      setEmail("");
+    } catch (err) {
+      setStatus({ ok: false, msg: err.fields?.email ?? err.message });
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -81,18 +95,25 @@ export default function Footer() {
         <div className={`${styles.col} ${styles.informed}`}>
           <h4>Stay Informed</h4>
           <p className={styles.informedText}>Get policy updates, event invites, and industry insights directly in your inbox.</p>
-          <form className={styles.subscribe} onSubmit={subscribe} noValidate>
+          <form className={styles.subscribe} onSubmit={subscribe} onFocus={prepareProof} noValidate>
             <label className="visually-hidden" htmlFor="footer-email">Email address</label>
             <input
               id="footer-email"
               type="email"
               required
+              maxLength={254}
+              autoComplete="email"
               placeholder="Enter your email"
               value={email}
-              onChange={(e) => { setEmail(e.target.value); setDone(false); }}
+              aria-invalid={status?.ok === false || undefined}
+              aria-describedby={status ? "footer-subscribe-status" : undefined}
+              onChange={(e) => { setEmail(e.target.value); setStatus(null); }}
             />
-            <button type="submit">Subscribe</button>
-            {done && <p className={styles.thanks} role="status">Thanks for subscribing!</p>}
+            <Honeypot value={hp} onChange={setHp} />
+            <button type="submit" disabled={sending}>{sending ? "Sending…" : "Subscribe"}</button>
+            {status && (
+              <p id="footer-subscribe-status" className={status.ok ? styles.thanks : styles.problem} role="status">{status.msg}</p>
+            )}
           </form>
         </div>
       </div>

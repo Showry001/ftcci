@@ -156,9 +156,17 @@
 .subscribe button:hover {
   filter: brightness(0.95);
 }
-.thanks {
+.subscribe button:disabled {
+  cursor: default;
+  opacity: 0.75;
+}
+.thanks,
+.problem {
   font-size: 13px;
   color: var(--gold-500);
+}
+.problem {
+  color: #ffb4a8;
 }
 .legal {
   width: min(1236px, 100% - 2 * var(--gutter));

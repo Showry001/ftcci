@@ -1,11 +1,14 @@
+import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import CroppedImage from "../components/CroppedImage.jsx";
+import EventInterestForm from "../components/EventInterestForm.jsx";
 import NotFound from "./NotFound.jsx";
 import { eventDetails, eventIcons } from "../data/events.js";
 import styles from "./EventDetail.module.css";
 
 export default function EventDetail() {
   const { slug } = useParams();
+  const [registering, setRegistering] = useState(false);
   const ev = eventDetails[slug];
   if (!ev) return <NotFound />;
 
@@ -51,12 +54,9 @@ export default function EventDetail() {
                   </li>
                 ))}
               </ul>
-              <a
-                className={styles.register}
-                href={`mailto:info@ftcci.in?subject=${encodeURIComponent(`Register interest: ${ev.title}`)}`}
-              >
+              <button type="button" className={styles.register} onClick={() => setRegistering(true)}>
                 Register Interest <span aria-hidden="true">→</span>
-              </a>
+              </button>
             </div>
 
             <aside className={styles.side}>
@@ -82,6 +82,7 @@ export default function EventDetail() {
           </div>
         </div>
       </section>
+      <EventInterestForm open={registering} onClose={() => setRegistering(false)} event={slug} eventTitle={ev.title} />
     </>
   );
 }

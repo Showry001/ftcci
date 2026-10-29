@@ -1,6 +1,8 @@
+import { useState } from "react";
 import PageHero from "../components/common/PageHero.jsx";
 import SubNav from "../components/common/SubNav.jsx";
 import SectionTitle from "../components/common/SectionTitle.jsx";
+import MembershipForm from "../components/MembershipForm.jsx";
 import {
   benefitsPhoto, ctaArrowWhite, experienceBg, experienceStats, memberBenefits, membershipContacts,
   membershipFiles, membershipOptions, membershipSubNav, optionArrow, panelDocuments, pillars, stepLine, steps,
@@ -8,6 +10,9 @@ import {
 import styles from "./Membership.module.css";
 
 export default function Membership() {
+  const [applying, setApplying] = useState(false);
+  const apply = () => setApplying(true);
+
   return (
     <>
       <PageHero crumb="Home > Membership" title="Membership" />
@@ -98,6 +103,11 @@ export default function Membership() {
               </li>
             ))}
           </ol>
+          <p className={styles.applyNow}>
+            <button type="button" className={styles.ctaBtn} onClick={apply}>
+              Apply Online <img src={ctaArrowWhite} alt="" width="16" height="16" />
+            </button>
+          </p>
 
           <div className={styles.docsHead}>
             <h3>Documents to file with your application</h3>
@@ -178,12 +188,13 @@ export default function Membership() {
             <p>Become part of Telangana's leading business network and unlock opportunities to connect, influence and grow.</p>
           </div>
           <div className={styles.ctaActions}>
-            <a href="#apply" className={styles.ctaBtn}>
+            <button type="button" className={styles.ctaBtn} onClick={apply}>
               Apply for Membership <img src={ctaArrowWhite} alt="" width="16" height="16" />
-            </a>
+            </button>
           </div>
         </div>
       </section>
+      <MembershipForm open={applying} onClose={() => setApplying(false)} />
     </>
   );
 }

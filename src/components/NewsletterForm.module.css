@@ -121,6 +121,9 @@
 .field input:focus {
   border-color: var(--gold-500);
 }
+.field input[aria-invalid="true"] {
+  border-color: #b42318;
+}
 .bottom {
   display: flex;
   align-items: flex-start;

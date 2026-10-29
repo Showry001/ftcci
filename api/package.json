@@ -1,0 +1,36 @@
+{
+  "name": "ftcci-api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "node --env-file-if-exists=.env scripts/dev.ts",
+    "start": "node --env-file-if-exists=.env src/server.ts",
+    "migrate": "node --env-file-if-exists=.env src/migrate.ts",
+    "mail:check": "node --env-file-if-exists=.env scripts/check-mail.ts",
+    "test": "node --test --test-concurrency=1 --test-global-setup=test/setup.ts \"test/**/*.test.ts\"",
+    "typecheck": "tsc -p ."
+  },
+  "dependencies": {
+    "@fastify/rate-limit": "11.2.1",
+    "altcha-lib": "2.6.0",
+    "fastify": "5.12.7",
+    "kysely": "0.29.6",
+    "nodemailer": "10.2.1",
+    "pg": "8.23.1"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "@types/pg": "8.23.1",
+    "embedded-postgres": "17.10.0-beta.17",
+    "mailparser": "3.12.4",
+    "smtp-server": "3.21.1",
+    "typescript": "7.0.2"
+  },
+  "allowScripts": {
+    "@embedded-postgres/darwin-arm64@17.10.0-beta.17": true
+  }
+}
