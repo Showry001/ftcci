@@ -1,22 +1,38 @@
 import { useState } from "react";
+import { useLoaderData } from "react-router";
+import { membershipPanels } from "../../shared/forms.js";
 import PageHero from "../components/common/PageHero.jsx";
 import SubNav from "../components/common/SubNav.jsx";
 import SectionTitle from "../components/common/SectionTitle.jsx";
 import MembershipForm from "../components/MembershipForm.jsx";
-import {
-  benefitsPhoto, ctaArrowWhite, experienceBg, experienceStats, memberBenefits, membershipContacts,
-  membershipFiles, membershipOptions, membershipSubNav, optionArrow, panelDocuments, pillars, stepLine, steps,
-} from "../data/membership.js";
+import Img from "../components/Img.jsx";
+import { single } from "../lib/content.server.js";
+import { icons, pickIcons, subNav } from "../ui/assets.js";
 import styles from "./Membership.module.css";
 
+const { ctaArrowWhite, optionArrow, stepLine } = icons.membership;
+const panelTitle = Object.fromEntries(membershipPanels.map((p) => [p.value, p.label]));
+const no = (i) => String(i + 1).padStart(2, "0");
+
+export async function loader({ request }) {
+  return { page: await single("membership", request) };
+}
+
+export const meta = () => [
+  { title: "Membership – FTCCI" },
+  { name: "description", content: "Why join FTCCI, membership benefits and options, how to apply online, and the documents each panel needs." },
+];
+
 export default function Membership() {
+  const { page } = useLoaderData();
+  const { contacts, experienceStats, files, memberBenefits, options, panelDocuments, pillars, steps } = page;
   const [applying, setApplying] = useState(false);
   const apply = () => setApplying(true);
 
   return (
     <>
       <PageHero crumb="Home > Membership" title="Membership" />
-      <SubNav items={membershipSubNav} label="Membership sections" />
+      <SubNav items={subNav.membership} label="Membership sections" />
 
       <section id="why-join" className={styles.why}>
         <div className="container">
@@ -26,9 +42,9 @@ export default function Membership() {
             A network built for <span>Growth</span>.
           </h2>
           <ol className={styles.pillars}>
-            {pillars.map((p) => (
-              <li key={p.n}>
-                <span className={styles.pillarNo}>{p.n}</span>
+            {pillars.map((p, i) => (
+              <li key={p.title}>
+                <span className={styles.pillarNo}>{no(i)}</span>
                 <h3>{p.title}</h3>
                 <p>{p.text}</p>
               </li>
@@ -41,12 +57,12 @@ export default function Membership() {
         <div className={styles.benefitsInner}>
           <SectionTitle eyebrow="Membership Benefits" title="Everything you need to move business forward." className={styles.titleBenefits} />
           <div className={styles.benefitsRow}>
-            <img src={benefitsPhoto} alt="FTCCI members at the Parishrama Adalat conciliation conclave" loading="lazy" />
+            <Img media={page.benefitsPhoto} sizes="(min-width: 1200px) 600px, 100vw" />
             <ul className={styles.benefitList}>
               {memberBenefits.map((b) => (
                 <li key={b.title}>
                   <span className={styles.benefitIcon}>
-                    <img src={b.icon} alt="" width="28" height="28" />
+                    <img src={pickIcons.memberBenefit[b.icon]} alt="" width="28" height="28" />
                   </span>
                   <div>
                     <h3>{b.title}</h3>
@@ -69,12 +85,12 @@ export default function Membership() {
             </p>
           </div>
           <div className={styles.optionGrid}>
-            {membershipOptions.map((o) => (
-              <article key={o.title} className={styles.option}>
+            {options.map((o) => (
+              <article key={o.panel} className={styles.option}>
                 <span className={styles.optionIcon}>
-                  <img src={o.icon} alt="" width="30" height="30" />
+                  <img src={pickIcons.membershipOption[o.icon]} alt="" width="30" height="30" />
                 </span>
-                <h3>{o.title}</h3>
+                <h3>{panelTitle[o.panel]}</h3>
                 <p>{o.text}</p>
                 <a href={`#docs-panel-${o.panel}`} className={styles.optionBtn}>
                   {o.cta} <img src={optionArrow} alt="" width="14" height="14" />
@@ -93,9 +109,9 @@ export default function Membership() {
           </div>
           <ol className={styles.stepRow}>
             {steps.map((s, i) => (
-              <li key={s.n} className={styles.stepItem}>
+              <li key={s.title} className={styles.stepItem}>
                 <div className={styles.step}>
-                  <span className={styles.stepNo}>{s.n}</span>
+                  <span className={styles.stepNo}>{no(i)}</span>
                   <h3>{s.title}</h3>
                   <p>{s.text}</p>
                 </div>
@@ -132,9 +148,9 @@ export default function Membership() {
             <div>
               <h4>Forms &amp; downloads</h4>
               <ul className={styles.applyFiles}>
-                {membershipFiles.map((f) => (
+                {files.map((f) => (
                   <li key={f.title}>
-                    <a href={f.href} download target="_blank" rel="noreferrer">
+                    <a href={f.file?.url} download target="_blank" rel="noreferrer">
                       {f.title} <span aria-hidden="true">↓</span>
                     </a>
                   </li>
@@ -143,15 +159,15 @@ export default function Membership() {
             </div>
             <div>
               <h4>Life membership</h4>
-              <p>Apart from the admission fee, the life membership fee is ten times the annual subscription.</p>
+              <p>{page.lifeMembership}</p>
             </div>
             <div>
               <h4>Membership desk</h4>
               <ul className={styles.applyContacts}>
-                {membershipContacts.map((c) => (
+                {contacts.map((c) => (
                   <li key={c.email}>
                     <a href={`mailto:${c.email}`}>{c.email}</a>
-                    <a href={`tel:${c.tel}`}>{c.phone}</a>
+                    <a href={`tel:${c.phone.replace(/[^\d+]/g, "")}`}>{c.phone}</a>
                   </li>
                 ))}
               </ul>
@@ -161,7 +177,7 @@ export default function Membership() {
       </section>
 
       <section id="experience" className={styles.experience}>
-        <img className={styles.expBg} src={experienceBg} alt="" aria-hidden="true" />
+        <Img className={styles.expBg} media={page.experienceImage} alt="" aria-hidden="true" sizes="100vw" />
         <div className={styles.expTint} aria-hidden="true" />
         <div className={`container ${styles.expInner}`}>
           <p className={styles.expEyebrow}>The FTCCI Experience</p>

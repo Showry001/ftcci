@@ -1,29 +1,40 @@
 import { useState } from "react";
+import { useLoaderData } from "react-router";
+import { panels } from "../../shared/content.js";
 import PageHero from "../components/common/PageHero.jsx";
 import SubNav from "../components/common/SubNav.jsx";
 import SectionTitle from "../components/common/SectionTitle.jsx";
 import CtaBand from "../components/common/CtaBand.jsx";
-import CroppedImage from "../components/CroppedImage.jsx";
 import HistoryCarousel from "../components/HistoryCarousel.jsx";
-import { officeBearers } from "../data/content.js";
-import {
-  aboutSubNav, committee, committeeImage, committeePanels, mission,
-  objectives, objectivesImage, pastPresidents, secretariat, vision,
-} from "../data/about.js";
+import Img, { CoverImage } from "../components/Img.jsx";
+import { single } from "../lib/content.server.js";
+import { subNav } from "../ui/assets.js";
 import styles from "./About.module.css";
 
+export async function loader({ request }) {
+  return { about: await single("about", request) };
+}
+
+export const meta = () => [
+  { title: "About Us – FTCCI" },
+  { name: "description", content: "FTCCI's history since 1917, vision and objectives, office bearers, managing committee, secretariat and past presidents." },
+];
+
 export default function About() {
-  const [panel, setPanel] = useState(committeePanels[0]);
+  const { about } = useLoaderData();
+  const { committee, mission, objectives, objectivesImage, officeBearers, pastPresidents, secretariat, timeline, vision } = about;
+  const panelKeys = Object.keys(panels).filter((p) => committee.some((m) => m.panel === p));
+  const [panel, setPanel] = useState(panelKeys[0]);
   const members = committee.filter((m) => m.panel === panel);
 
   return (
     <>
       <PageHero crumb="Home > About" title="About Us" image={`${import.meta.env.BASE_URL}assets/pages/about-hero.png`} />
-      <SubNav items={aboutSubNav} label="About sections" />
+      <SubNav items={subNav.about} label="About sections" />
 
       {/* History */}
       <section id="history" className={styles.history}>
-        <HistoryCarousel />
+        <HistoryCarousel timeline={timeline} />
       </section>
 
       {/* Vision & Mission */}
@@ -49,7 +60,7 @@ export default function About() {
         <div className="container">
           <SectionTitle eyebrow="Objectives" title="How We Empower" accent="Industry" className={styles.titleObjectives} />
           <div className={styles.objectivesRow}>
-            <img src={objectivesImage} alt="FTCCI members at the IITEX 2026 expo" loading="lazy" />
+            <Img media={objectivesImage} sizes="(min-width: 1200px) 560px, 100vw" />
             <ul className={styles.objectiveGrid}>
               {objectives.map((o) => (
                 <li key={o.title}>
@@ -69,7 +80,7 @@ export default function About() {
           <ul className={styles.bearerRow}>
             {officeBearers.map((l, i) => (
               <li key={l.name} className={`${styles.bearer} ${i === 1 ? styles.bearerRaised : ""}`}>
-                <CroppedImage src={l.image} crop={l.crop} alt={`Portrait of ${l.name}`} className={styles.bearerPhoto} />
+                <CoverImage media={l.image} alt={`Portrait of ${l.name}`} className={styles.bearerPhoto} sizes="200px" />
                 <div className={styles.bearerCaption}>
                   <h3>{l.name}</h3>
                   <p>{l.role}</p>
@@ -85,10 +96,10 @@ export default function About() {
         <div className="container">
           <SectionTitle eyebrow="Managing Committee" title="Meet the Managing" accent="Committee" className={styles.titleCommittee} />
           <div className={styles.committePhoto}>
-            <img src={committeeImage} alt="FTCCI Managing Committee at the 109th Annual General Meeting" loading="lazy" />
+            <Img media={about.committeeImage} sizes="(min-width: 1200px) 1240px, 100vw" />
           </div>
           <div className={styles.panelTabs} role="tablist" aria-label="Committee panels">
-            {committeePanels.map((p) => (
+            {panelKeys.map((p) => (
               <button
                 key={p}
                 type="button"
@@ -97,7 +108,7 @@ export default function About() {
                 className={`${styles.panelTab} ${panel === p ? styles.panelTabActive : ""}`}
                 onClick={() => setPanel(p)}
               >
-                {p}
+                {panels[p]}
               </button>
             ))}
           </div>
@@ -106,7 +117,7 @@ export default function About() {
               <article key={m.name} className={styles.member}>
                 <h3>{m.name}</h3>
                 <p>{m.company}</p>
-                <span>{m.panel}</span>
+                <span>{panels[m.panel]}</span>
               </article>
             ))}
           </div>
@@ -127,15 +138,15 @@ export default function About() {
                 <h3>{s.name}</h3>
                 <p>{s.role}</p>
                 <ul className={styles.staffSubjects}>
-                  {s.subjects.map((t) => (
+                  {(s.subjects ?? []).map((t) => (
                     <li key={t}>{t}</li>
                   ))}
                 </ul>
                 <div className={styles.staffContact}>
-                  {s.emails.map((e) => (
+                  {(s.emails ?? []).map((e) => (
                     <a key={e} href={`mailto:${e}`}>{e}</a>
                   ))}
-                  <span>{s.phone}</span>
+                  {s.phone && <span>{s.phone}</span>}
                 </div>
               </li>
             ))}

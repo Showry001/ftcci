@@ -1,9 +1,22 @@
+import { useLoaderData } from "react-router";
 import PageHero from "../components/common/PageHero.jsx";
 import SectionTitle from "../components/common/SectionTitle.jsx";
-import { careersEmail, vacancies } from "../data/careers.js";
+import { list, single } from "../lib/content.server.js";
+import { dayMonthYear } from "../lib/format.js";
 import styles from "./Careers.module.css";
 
+export async function loader({ request }) {
+  const [page, vacancies] = await Promise.all([single("careers", request), list("vacancy", { limit: 50 })]);
+  return { careersEmail: page.email, vacancies: vacancies.items };
+}
+
+export const meta = () => [
+  { title: "Careers – FTCCI" },
+  { name: "description", content: "Open positions at the FTCCI Secretariat." },
+];
+
 export default function Careers() {
+  const { careersEmail, vacancies } = useLoaderData();
   return (
     <>
       <PageHero crumb="Home > Careers" title="Careers" />
@@ -31,14 +44,14 @@ export default function Careers() {
           ) : (
             <ul className={styles.list}>
               {vacancies.map((v) => (
-                <li key={v.title} className={styles.job}>
+                <li key={v.slug} className={styles.job}>
                   <div>
                     <h2>{v.title}</h2>
-                    <p className={styles.meta}>{[v.department, v.location, v.type].filter(Boolean).join(" · ")}</p>
+                    <p className={styles.meta}>{[v.department, v.location, v.employment].filter(Boolean).join(" · ")}</p>
                     <p className={styles.summary}>{v.summary}</p>
                   </div>
                   <div className={styles.apply}>
-                    {v.closes && <p>Apply by {v.closes}</p>}
+                    {v.closes && <p>Apply by {dayMonthYear(v.closes)}</p>}
                     <p>{v.apply}</p>
                   </div>
                 </li>

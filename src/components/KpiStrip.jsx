@@ -1,7 +1,6 @@
-import { kpis } from "../data/content.js";
 import styles from "./KpiStrip.module.css";
 
-export default function KpiStrip() {
+export default function KpiStrip({ kpis }) {
   return (
     <section className={styles.section} aria-label="FTCCI at a glance">
       <div className={styles.row}>

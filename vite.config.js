@@ -1,19 +1,14 @@
+import { reactRouter } from "@react-router/dev/vite";
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  plugins: [react()],
-  base: '/ftcci/',
+  plugins: [reactRouter()],
+  base: "/ftcci/",
   server: {
     proxy: {
-      // The FTCCI API (api/), started with `npm --prefix api run dev`.
+      // The FTCCI API (api/), started with `npm --prefix api run dev`, and the media library files it serves.
       "/api/": "http://127.0.0.1:8787",
-      // Relays ftcci.in documents same-origin in development (see src/data/files.js).
-      "/ftcci/ftcci-files/": {
-        target: "https://www.ftcci.in",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/ftcci\/ftcci-files\//, "/source/"),
-      },
+      "/media/": "http://127.0.0.1:8787",
     },
   },
 });

@@ -1,9 +1,7 @@
 // What each public form accepts. The public site, the admin and the API all read this file, so the
 // browser and the server apply the same rules. `validate()` trims and normalises input, drops fields
 // a form does not define, and returns plain-language messages keyed by field name.
-import { halls } from "./halls.js";
 
-export const hallNames = halls.map((h) => h.name);
 export const equipmentOptions = [
   "Cordless Mic",
   "LCD Projector",
@@ -48,7 +46,8 @@ export const forms = {
   hallBooking: {
     title: "Hall booking request",
     fields: {
-      halls: { kind: "choices", label: "Halls", options: hallNames, min: 1, minMessage: "Select at least one hall to continue." },
+      // The halls come from the Services page in the CMS; pass them as options.halls.
+      halls: { kind: "choices", label: "Halls", options: [], min: 1, minMessage: "Select at least one hall to continue." },
       date: { kind: "date", label: "Date", required: true },
       from: { kind: "time", label: "From", required: true, requiredMessage: "Choose a start time." },
       to: { kind: "time", label: "To", required: true, requiredMessage: "Choose an end time." },
@@ -177,6 +176,11 @@ const DATE = /^(\d{4})-(\d{2})-(\d{2})$/;
 const TIME = /^([01][0-9]|2[0-3]):[0-5][0-9]$/;
 
 export const isEmail = (s) => typeof s === "string" && s.length <= 254 && EMAIL.test(s);
+export const isPhone = (s) => {
+  const digits = s.replace(/\D/g, "").length;
+  return PHONE.test(s) && digits >= 6 && digits <= 15;
+};
+export { line as normalizeLine, block as normalizeBlock };
 
 // Bookings are made in India, so "today" is the calendar date in IST wherever the code runs.
 export const todayInIndia = (now = new Date()) => now.toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" });
@@ -206,11 +210,8 @@ function checkString(spec, raw, now) {
     case "email":
       if (value.length > 254 || !EMAIL.test(value)) return { error: "Enter a valid email address, like name@company.com." };
       return { value };
-    case "phone": {
-      const digits = value.replace(/\D/g, "").length;
-      if (!PHONE.test(value) || digits < 6 || digits > 15) return { error: "Enter a valid phone number, using digits, spaces, + or -." };
-      return { value };
-    }
+    case "phone":
+      return isPhone(value) ? { value } : { error: "Enter a valid phone number, using digits, spaces, + or -." };
     case "pin":
       return PIN.test(value) ? { value } : { error: "Enter a 6-digit PIN code." };
     case "gstin":
@@ -271,17 +272,18 @@ function checkField(spec, raw, now) {
 /**
  * @param {keyof typeof forms} formName
  * @param {Record<string, unknown>} input
- * @param {{ fields?: string[], now?: Date }} [options] `fields` limits the check to some fields (one step of a form).
+ * @param {{ fields?: string[], now?: Date, options?: Record<string, string[]> }} [settings] `fields` limits the
+ *   check to some fields (one step of a form); `options` supplies option lists that live in the CMS.
  * @returns {{ ok: boolean, values: Record<string, any>, errors: Record<string, string> }}
  */
-export function validate(formName, input, { fields, now = new Date() } = {}) {
+export function validate(formName, input, { fields, now = new Date(), options = {} } = {}) {
   const form = forms[formName];
   const source = input && typeof input === "object" && !Array.isArray(input) ? input : {};
   const values = {};
   const errors = {};
   for (const [name, spec] of Object.entries(form.fields)) {
     if (fields && !fields.includes(name)) continue;
-    const result = checkField(spec, source[name], now);
+    const result = checkField(options[name] ? { ...spec, options: options[name] } : spec, source[name], now);
     if (result.error) errors[name] = result.error;
     else values[name] = result.value;
   }

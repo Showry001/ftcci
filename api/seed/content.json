@@ -1,0 +1,4828 @@
+{
+ "singles": {
+  "hero": {
+   "mode": "video",
+   "video": {
+    "$asset": "hero/hero.mp4"
+   },
+   "title": "Empowering Industries.",
+   "titleAccent": "Shaping Telangana's Future.",
+   "primary": {
+    "label": "Become a Member",
+    "href": "/membership"
+   },
+   "secondary": {
+    "label": "Explore FTCCI",
+    "href": "/about"
+   }
+  },
+  "home": {
+   "kpis": [
+    {
+     "value": "1917",
+     "label": "Founded in Hyderabad"
+    },
+    {
+     "value": "3,000+",
+     "label": "Member enterprises"
+    },
+    {
+     "value": "18+",
+     "label": "Expert committees"
+    },
+    {
+     "value": "100+",
+     "label": "Events every year"
+    }
+   ],
+   "quickActions": [
+    {
+     "label": "Become a Member",
+     "icon": "user-plus",
+     "href": "/membership"
+    },
+    {
+     "label": "Book a Hall",
+     "icon": "calendar",
+     "href": "/services#hall-booking"
+    },
+    {
+     "label": "Certificate of Origin",
+     "icon": "file-text",
+     "href": "/services#certificate-of-origin"
+    },
+    {
+     "label": "Upcoming Events",
+     "icon": "bell",
+     "href": "/events"
+    }
+   ],
+   "whoWeAreImage": {
+    "$asset": "about/who-we-are-bg.png",
+    "alt": ""
+   },
+   "whoWeArePhoto": {
+    "$asset": "about/members-networking.png",
+    "alt": "FTCCI members networking at a chamber event"
+   },
+   "venueHighlights": [
+    "State-of-the-art infrastructure",
+    "Centrally located in Hyderabad",
+    "Professional support for seamless events",
+    "Customizable spaces to suit different requirements"
+   ],
+   "venueFeatured": {
+    "$asset": "venues/kln-prasad-featured.jpg",
+    "alt": "K.L.N. Prasad Auditorium"
+   },
+   "venues": [
+    {
+     "name": "KLN Prasad Auditorium",
+     "detail": "350 seating capacity",
+     "image": {
+      "$asset": "venues/kln-prasad-auditorium.png",
+      "crop": {
+       "x": 0.14097232181270614,
+       "y": 0,
+       "w": 0.7170514842965725,
+       "h": 0.5361067924730607
+      }
+     }
+    },
+    {
+     "name": "FTCCI Surana Auditorium",
+     "detail": "130 seating capacity",
+     "image": {
+      "$asset": "venues/surana-auditorium.png"
+     }
+    },
+    {
+     "name": "JS Krishna Murthy Hall",
+     "detail": "40 seating capacity",
+     "image": {
+      "$asset": "venues/js-krishna-murthy-hall.png",
+      "crop": {
+       "x": 0.20403619649525997,
+       "y": 0,
+       "w": 0.7181844297615627,
+       "h": 1
+      }
+     }
+    },
+    {
+     "name": "Banarsilal Gupta Exhibition Hall",
+     "detail": "2500 sq. ft.",
+     "image": {
+      "$asset": "venues/banarsilal-gupta-hall.png"
+     }
+    },
+    {
+     "name": "Dhanjibhai Sawla Hall",
+     "detail": "2500 sq. ft.",
+     "image": {
+      "$asset": "venues/dhanjibhai-sawla-hall.png",
+      "crop": {
+       "x": 0.2821597590707013,
+       "y": 0.0007000000000000001,
+       "w": 0.7170514842965725,
+       "h": 1
+      }
+     }
+    },
+    {
+     "name": "OPT Board Room",
+     "detail": "14 seating capacity",
+     "image": {
+      "$asset": "venues/opt-board-room.png"
+     }
+    },
+    {
+     "name": "White House Board Room",
+     "detail": "10 seating capacity",
+     "image": {
+      "$asset": "venues/white-house-board-room.png"
+     }
+    },
+    {
+     "name": "FTCCI Pokarna Skill Center Hall",
+     "detail": "35 seating capacity",
+     "image": {
+      "$asset": "venues/pokarna-skill-center.png"
+     }
+    }
+   ],
+   "benefitsImage": {
+    "$asset": "benefits/benefits-bg.png",
+    "alt": ""
+   },
+   "benefitsPhoto": {
+    "$asset": "benefits/business-summit.png",
+    "alt": "FTCCI leaders at the Business Summit"
+   },
+   "benefits": [
+    {
+     "label": "Business Networking",
+     "icon": "networking"
+    },
+    {
+     "label": "Policy Advocacy",
+     "icon": "policy"
+    },
+    {
+     "label": "Exclusive Events",
+     "icon": "events"
+    },
+    {
+     "label": "Industry Insights",
+     "icon": "insights"
+    },
+    {
+     "label": "Trade & B2B Opportunities",
+     "icon": "trade"
+    },
+    {
+     "label": "Awards & Recognition",
+     "icon": "awards"
+    }
+   ],
+   "privilegeCardImage": {
+    "$asset": "card/privilege-card.png",
+    "alt": "The FTCCI Privilege Card"
+   },
+   "formPerks": [
+    "Weekly updates",
+    "Event invites",
+    "Member deals"
+   ]
+  },
+  "about": {
+   "timeline": [
+    {
+     "year": "1917",
+     "title": "The Beginning of a Legacy",
+     "text": "The Hyderabad Chamber of Commerce was established to represent the business and trading community across the erstwhile Hyderabad State",
+     "image": {
+      "$asset": "about/history-1917.jpg"
+     }
+    },
+    {
+     "year": "1956",
+     "title": "A Federation Is Established",
+     "text": "The formation of Andhra Pradesh marked a major administrative change, paving the way for the Chamber's broader regional role.",
+     "image": {
+      "$asset": "about/history-1956.jpg"
+     }
+    },
+    {
+     "year": "1958",
+     "title": "A Federation Is Established",
+     "text": "The organisation became the Federation of Andhra Pradesh Chambers of Commerce and Industry (FAPCCI), expanding its representation across the state.",
+     "image": {
+      "$asset": "about/history-1958.jpg"
+     }
+    },
+    {
+     "year": "2002",
+     "title": "Industry Connections",
+     "text": "FTAPCCI continued bringing together industry representatives and business leaders.",
+     "image": {
+      "$asset": "about/history-2002.jpg"
+     }
+    },
+    {
+     "year": "2005",
+     "title": "Government Engagement",
+     "text": "FTAPCCI hosted interactions with national leaders, supporting dialogue on business and economic matters.",
+     "image": {
+      "$asset": "about/history-2005.jpg"
+     }
+    },
+    {
+     "year": "2010",
+     "title": "Engaging with National Leaders",
+     "text": "FTAPCCI welcomed distinguished leaders and facilitated interactions with the industry community.",
+     "image": {
+      "$asset": "about/history-2010.jpg"
+     }
+    },
+    {
+     "year": "2012",
+     "title": "Industry\u2013Government Dialogue",
+     "text": "FTAPCCI continued representing business interests through discussions with government and industry stakeholders.",
+     "image": {
+      "$asset": "about/history-2012.jpg"
+     }
+    },
+    {
+     "year": "2013",
+     "title": "Promoting Industry Growth",
+     "text": "FTAPCCI continued its work connecting businesses, policymakers and industry representatives.",
+     "image": {
+      "$asset": "about/history-2013.jpg"
+     }
+    },
+    {
+     "year": "2014",
+     "title": "A New Chapter for Telangana",
+     "text": "The formation of Telangana marked a new phase in the Federation's regional representation.",
+     "image": {
+      "$asset": "about/history-2014.jpg"
+     }
+    },
+    {
+     "year": "2015",
+     "title": "A New Identity",
+     "text": "On 14 January 2015, the Federation became the Federation of Telangana and Andhra Pradesh Chambers of Commerce and Industry (FTAPCCI).",
+     "image": {
+      "$asset": "about/history-2015.jpg"
+     }
+    },
+    {
+     "year": "2016\u20132017",
+     "title": "Celebrating a Century",
+     "text": "FTCCI marked 100 years of supporting trade and industry, with its centenary celebration held in December 2016.",
+     "image": {
+      "$asset": "about/history-2016-2017.jpg"
+     }
+    },
+    {
+     "year": "2018",
+     "title": "Expanding Industry Representation",
+     "text": "FTCCI continued its role in representing businesses and connecting industry with government and policymakers.",
+     "image": {
+      "$asset": "about/history-2018.jpg"
+     }
+    },
+    {
+     "year": "2019",
+     "title": "A New Identity for Telangana",
+     "text": "On 2 April 2019, the Federation adopted the name Federation of Telangana Chambers of Commerce and Industry (FTCCI), strengthening its focus on Telangana\u2019s economic development.",
+     "image": {
+      "$asset": "about/history-2019.jpg"
+     }
+    },
+    {
+     "year": "2020",
+     "title": "Supporting Business Through Uncertainty",
+     "text": "FTCCI continued sharing government notifications and compliance updates to help businesses navigate the COVID-19 period.",
+     "image": {
+      "$asset": "about/history-2020.jpg"
+     }
+    },
+    {
+     "year": "2021",
+     "title": "Strengthening Industry Support",
+     "text": "FTCCI continued providing industry updates, policy information and business resources during the economic recovery.",
+     "image": {
+      "$asset": "about/history-2021.jpg"
+     }
+    },
+    {
+     "year": "2022",
+     "title": "Driving MSME Development",
+     "text": "FTCCI collaborated with MSME authorities on awareness programmes supporting cluster development and the competitiveness of micro and small enterprises.",
+     "image": {
+      "$asset": "about/history-2022.jpg"
+     }
+    },
+    {
+     "year": "2023",
+     "title": "Showcasing Industrial Innovation",
+     "text": "FTCCI organised the Industrial Innovation & Technology Expo (IITEX 2023), bringing together industry, technology and business opportunities.",
+     "image": {
+      "$asset": "about/history-2023.jpg"
+     }
+    },
+    {
+     "year": "2024",
+     "title": "Building Skills for Global Trade",
+     "text": "FTCCI expanded export-import training initiatives, helping entrepreneurs and businesses strengthen their international trade capabilities.",
+     "image": {
+      "$asset": "about/history-2024.jpg"
+     }
+    },
+    {
+     "year": "2025",
+     "title": "Advancing Industrial Innovation",
+     "text": "FTCCI hosted the second edition of IITEX, connecting manufacturers, innovators and industry leaders through exhibitions and business networking.",
+     "image": {
+      "$asset": "about/history-2025.jpg"
+     }
+    },
+    {
+     "year": "2026",
+     "title": "Recognising Excellence and Enabling Growth",
+     "text": "FTCCI continued supporting Telangana\u2019s industry through its Excellence Awards, MSME initiatives and programmes focused on sustainable industrial growth.",
+     "image": {
+      "$asset": "about/history-2026.jpg"
+     }
+    }
+   ],
+   "vision": {
+    "title": "Our Vision",
+    "text": "Be the voice of Industry, Commerce and Trade, foster healthy & pro-business environment, aim on issue advocacy while nurturing sustainable industrial development."
+   },
+   "mission": {
+    "title": "Our Mission",
+    "text": "To be the vibrant apex federation and voice of business, shaping policy, strengthening business\u2013government coordination, and driving economic growth in Telangana and Andhra Pradesh."
+   },
+   "objectivesImage": {
+    "$asset": "about/empower-industry.png",
+    "alt": "FTCCI members at the IITEX 2026 expo"
+   },
+   "objectives": [
+    {
+     "title": "Policy Advocacy",
+     "text": "Shaping business-friendly policies and regulations."
+    },
+    {
+     "title": "Global Linkages",
+     "text": "Connecting Telangana businesses with global networks."
+    },
+    {
+     "title": "Business Facilitation",
+     "text": "Expanding trade and market opportunities."
+    },
+    {
+     "title": "MSME Support",
+     "text": "Supporting growth, compliance, and digital adoption."
+    },
+    {
+     "title": "Knowledge & Capacity",
+     "text": "Building skills through seminars and workshops."
+    },
+    {
+     "title": "Institution Building",
+     "text": "Strengthening business, innovation, and dispute-resolution ecosystems."
+    }
+   ],
+   "officeBearers": [
+    {
+     "name": "Mr. Srinivas Garimella",
+     "role": "Senior Vice President, FTCCI",
+     "image": {
+      "$asset": "leadership/senior-vice-president.png",
+      "crop": {
+       "x": 0.05085354896675652,
+       "y": 0.07384857818207866,
+       "w": 0.8984725965858041,
+       "h": 0.7162810686913544
+      }
+     }
+    },
+    {
+     "name": "Mr. K. K. Maheshwari",
+     "role": "President, FTCCI",
+     "image": {
+      "$asset": "leadership/president.png",
+      "crop": {
+       "x": 0,
+       "y": 0.0009701887458105487,
+       "w": 1,
+       "h": 0.8819897689186806
+      }
+     }
+    },
+    {
+     "name": "Mr. Vinod Kumar Agarwal",
+     "role": "Vice President, FTCCI",
+     "image": {
+      "$asset": "leadership/vice-president.png",
+      "crop": {
+       "x": 0.012807377049180326,
+       "y": 0.020203590022534777,
+       "w": 0.8538251366120219,
+       "h": 0.777061154712876
+      }
+     }
+    }
+   ],
+   "committeeImage": {
+    "$asset": "about/managing-committee.png",
+    "alt": "FTCCI Managing Committee at the 109th Annual General Meeting"
+   },
+   "committee": [
+    {
+     "panel": "a",
+     "name": "Sri C. V. Anirudh Rao",
+     "company": "CVSV Agritech & Exim Ltd"
+    },
+    {
+     "panel": "a",
+     "name": "Sri Manoj Kumar Agarwal",
+     "company": "DSL Infrastructure and Space Developers Pvt. Ltd."
+    },
+    {
+     "panel": "a",
+     "name": "Sri Brij Gopal Asawa",
+     "company": "Suryauday Spinning Mills Pvt Ltd"
+    },
+    {
+     "panel": "a",
+     "name": "Sri Pankaj Kumar Diwan",
+     "company": "Jeevaka Industries Pvt Ltd"
+    },
+    {
+     "panel": "a",
+     "name": "Sri Chakravarthi AVPS",
+     "company": "Ecobliss India Private Limited"
+    },
+    {
+     "panel": "a",
+     "name": "Sri Meela Sanjay",
+     "company": "Sudhakar PVC Product Pvt Ltd"
+    },
+    {
+     "panel": "a",
+     "name": "Sri Manish Gupta",
+     "company": "Dilip Re-Rolling Pvt Ltd"
+    },
+    {
+     "panel": "b",
+     "name": "Sri A. Prakash",
+     "company": "The Telangana State Federation of Textile Assn"
+    },
+    {
+     "panel": "b",
+     "name": "Sri Prakash Chandra Garg",
+     "company": "Capacitors Trade Association"
+    },
+    {
+     "panel": "b",
+     "name": "Sri Abhishek Tibrewala",
+     "company": "Real Estate Developer Assn."
+    },
+    {
+     "panel": "b",
+     "name": "Sri Sanjay Kumar Agarwal",
+     "company": "Hotels & Resorts Owners Assn"
+    },
+    {
+     "panel": "b",
+     "name": "Sri Sushil Kumar Sancheti",
+     "company": "Telangana Spinning & Textile Mills Assn"
+    },
+    {
+     "panel": "b",
+     "name": "Sri Nakirikanti Ananth",
+     "company": "Telangana Solar Open Access Developers Assn"
+    },
+    {
+     "panel": "b",
+     "name": "Sri Manish Surana",
+     "company": "Indian Solar Power Producers Associations"
+    },
+    {
+     "panel": "c",
+     "name": "Sri Naresh Kumar Dasari",
+     "company": "Macro Media Digital Imaging (P) Ltd"
+    },
+    {
+     "panel": "c",
+     "name": "Sri Musunuri Ramakrishna Prasad",
+     "company": "Macro Media Outdoor Solutions Pvt Ltd"
+    },
+    {
+     "panel": "c",
+     "name": "CA Sudhir VS",
+     "company": "H N A & CO. LLP"
+    },
+    {
+     "panel": "c",
+     "name": "Sri Prem Chand Kankaria",
+     "company": "Raj Packaging Industries Ltd"
+    },
+    {
+     "panel": "c",
+     "name": "Sri Karan Agrawal",
+     "company": "Manaksia Coated Metals & Industries Ltd"
+    },
+    {
+     "panel": "c",
+     "name": "Sri Siva Prasad KV",
+     "company": "Standard Glass Lining"
+    },
+    {
+     "panel": "c",
+     "name": "Sri Jitender Kumar Kedia",
+     "company": "Om Shiv Shakti Metals Pvt Ltd"
+    },
+    {
+     "panel": "d",
+     "name": "CA Naresh Chandra Gelli V",
+     "company": "Chartered Accountant"
+    },
+    {
+     "panel": "d",
+     "name": "Sri B. Sunil Chandra Reddy",
+     "company": "Sunil Constructions"
+    },
+    {
+     "panel": "d",
+     "name": "Dr. Tasneem Shariff",
+     "company": "Company Secretary"
+    },
+    {
+     "panel": "d",
+     "name": "Sri Kripaniwas Sharma",
+     "company": "Laxminiwas & Co"
+    },
+    {
+     "panel": "d",
+     "name": "Sri Pawan Kumar Bansal",
+     "company": "J.B. Handlooms"
+    },
+    {
+     "panel": "d",
+     "name": "Sri Ritesh Kumar Naredi",
+     "company": "Yash International"
+    },
+    {
+     "panel": "d",
+     "name": "Sri J. Nagarajan",
+     "company": "Advocate"
+    },
+    {
+     "panel": "e",
+     "name": "CA Ritesh Mittal",
+     "company": "Praneta Packaging"
+    },
+    {
+     "panel": "e",
+     "name": "Sri Mohammed Irshad Ahmed",
+     "company": "Hansa Products"
+    },
+    {
+     "panel": "e",
+     "name": "Sri Kukkadapu Srinivas",
+     "company": "Solarbull Energy LLP"
+    },
+    {
+     "panel": "e",
+     "name": "Sri P. Krishna",
+     "company": "Eqic Dies & Moulds Engineers (P) Ltd"
+    },
+    {
+     "panel": "e",
+     "name": "Sri Vimalesh Gupta",
+     "company": "Vivek Polymers"
+    },
+    {
+     "panel": "e",
+     "name": "Sri Kamal Jain",
+     "company": "Cargomen Logistics India Pvt Ltd"
+    },
+    {
+     "panel": "e",
+     "name": "Sri Rohit Mittal",
+     "company": "Sree Industries"
+    }
+   ],
+   "secretariat": [
+    {
+     "name": "Smt. Mattathammal Veena",
+     "role": "Secretary",
+     "subjects": [
+      "Overall Supervision",
+      "Membership Development & Chamber Networking"
+     ],
+     "emails": [
+      "secretary@ftcci.in"
+     ],
+     "phone": "80085 79623 (Extn 204)"
+    },
+    {
+     "name": "Smt. T. Sujatha",
+     "role": "Sr. Director",
+     "subjects": [
+      "Industrial Development",
+      "Human Resources & Industrial Relations",
+      "Energy (Power & Renewable Energy)"
+     ],
+     "emails": [
+      "sr.director@ftcci.in",
+      "idc@ftcci.in",
+      "hrir@ftcci.in",
+      "energy@ftcci.in"
+     ],
+     "phone": "80085 79731 (Extn 205)"
+    },
+    {
+     "name": "Smt. P. Sangeetha",
+     "role": "Director",
+     "subjects": [
+      "ICT and Startups",
+      "Tourism, Hospitality, Media & Entertainment (MICE) / Events"
+     ],
+     "emails": [
+      "director@ftcci.in",
+      "ict@ftcci.in"
+     ],
+     "phone": "80085 79622 (Extn 206)"
+    },
+    {
+     "name": "Dr. Ankit Bhatnagar",
+     "role": "Director",
+     "subjects": [
+      "FTCCI Pokarna Skill Centre",
+      "Environmental, Social and Governance (ESG)",
+      "Infrastructure, Real Estate and Smart Cities"
+     ],
+     "emails": [
+      "directortraining@ftcci.in",
+      "environment@ftcci.in",
+      "infra@ftcci.in"
+     ],
+     "phone": "Extn 207"
+    },
+    {
+     "name": "Mr. Lokesh Fatehpuria",
+     "role": "Director",
+     "subjects": [
+      "Banking, Finance, Insurance & Capital Markets",
+      "International Trade and Business Relations",
+      "Shipping & Logistics"
+     ],
+     "emails": [
+      "banking@ftcci.in",
+      "logistics@ftcci.in",
+      "capitalmarket@ftcci.in"
+     ],
+     "phone": "83097 88764 (Extn 212)"
+    },
+    {
+     "name": "Ms. Kavitha",
+     "role": "Sr. Manager (Accounts)",
+     "subjects": [
+      "Accounts"
+     ],
+     "emails": [
+      "accounts@ftcci.in"
+     ],
+     "phone": "80085 79630 (Extn 223)"
+    },
+    {
+     "name": "Mr. Firasath Ali Khan",
+     "role": "Sr. Manager (CO Section)",
+     "subjects": [
+      "Certificate of Origin Section"
+     ],
+     "emails": [
+      "co@ftcci.in"
+     ],
+     "phone": "83097 87225 (Extn 224)"
+    },
+    {
+     "name": "Mr. Rajesh",
+     "role": "Sr. Manager (Purchase Dept)",
+     "subjects": [
+      "Hall Booking & Maintenance"
+     ],
+     "emails": [
+      "operations@ftcci.in"
+     ],
+     "phone": "91001 99977 (Extn 218)"
+    },
+    {
+     "name": "Ms. Reena Rao",
+     "role": "Manager (Skill Center)",
+     "subjects": [
+      "Healthcare"
+     ],
+     "emails": [
+      "healthcare@ftcci.in"
+     ],
+     "phone": "86884 00897 (Extn 227)"
+    },
+    {
+     "name": "Mr. S. Mahesh",
+     "role": "Dy. Manager",
+     "subjects": [
+      "Agro, Food Processing & Rural Development"
+     ],
+     "emails": [
+      "agro@ftcci.in"
+     ],
+     "phone": "86884 00903 (Extn 238)"
+    },
+    {
+     "name": "Ms. S. Sai Ankitha",
+     "role": "Dy. Manager",
+     "subjects": [
+      "Direct Taxes",
+      "GST and Customs"
+     ],
+     "emails": [
+      "incometax@ftcci.in",
+      "gstcustoms@ftcci.in"
+     ],
+     "phone": "040-2339 5515 (Extn 234)"
+    },
+    {
+     "name": "Ms. Vishalakshmi",
+     "role": "Asst. Manager",
+     "subjects": [
+      "Ladies Wing / Women Empowerment"
+     ],
+     "emails": [],
+     "phone": "91210 00199 (Extn 233)"
+    },
+    {
+     "name": "Corporate Laws Desk",
+     "role": "FTCCI Secretariat",
+     "subjects": [
+      "Corporate Laws, Insolvency and Bankruptcy Code (IBC) & Alternative Dispute Redressal (ADR)"
+     ],
+     "emails": [
+      "secretariat@ftcci.in"
+     ],
+     "phone": "040-2339 5515 (Extn 220)"
+    }
+   ],
+   "pastPresidents": [
+    {
+     "name": "Sri R. Ravi Kumar",
+     "company": "Zetatek Technologies Pvt. Ltd.",
+     "term": "2025\u201326"
+    },
+    {
+     "name": "Dr. Suresh Kumar Singhal",
+     "company": "Vijay Iron Foundry Pvt. Ltd.",
+     "term": "2024\u201325"
+    },
+    {
+     "name": "Sri Meela Jayadev",
+     "company": "Sudhakar Polymers Pvt. Ltd.",
+     "term": "2023\u201324"
+    },
+    {
+     "name": "Sri Anil Agarwal",
+     "company": "Jeevaka Industries Pvt. Ltd.",
+     "term": "2022\u201323"
+    },
+    {
+     "name": "Sri K. Bhasker Reddy",
+     "company": "Managing Director, Creamline Dairy Products Ltd.",
+     "term": "2021\u201322"
+    },
+    {
+     "name": "Sri Ramakanth Inani",
+     "company": "Director, Inani Securities Limited",
+     "term": "2020\u201321"
+    },
+    {
+     "name": "Sri Karunendra S. Jasti",
+     "company": "Managing Director, 3D Foamcut Pvt. Ltd.",
+     "term": "2019\u201320"
+    },
+    {
+     "name": "CA Arun Luharuka",
+     "company": "Partner, Luharuka & Associates",
+     "term": "2018\u201319"
+    },
+    {
+     "name": "Sri Gowra Srinivas",
+     "company": "Vice President, Telangana Hire Purchase Association",
+     "term": "2017\u201318"
+    },
+    {
+     "name": "Sri Ravindra Modi",
+     "company": "Managing Director, Hyderabad Food Products Pvt. Ltd.",
+     "term": "2016\u201317"
+    },
+    {
+     "name": "Sri Anil Reddy Vennam",
+     "company": "Technical Director, Nayastrap Private Limited",
+     "term": "2015\u201316"
+    },
+    {
+     "name": "Sri Shiv Kumar Rungta",
+     "company": "The A.P. Plywood Laminate & Glass Dealers Welfare Assn.",
+     "term": "2014\u201315"
+    },
+    {
+     "name": "Sri Srinivas Ayyadevara",
+     "company": "Chartered Accountant",
+     "term": "2013\u201314"
+    },
+    {
+     "name": "Sri Devendra Surana",
+     "company": "Managing Director, Bhagyanagar India Ltd.",
+     "term": "2012\u201313"
+    },
+    {
+     "name": "Sri V. S. Raju",
+     "company": "Advocate",
+     "term": "2011\u201312"
+    },
+    {
+     "name": "Sri Shekhar Agarwal",
+     "company": "Managing Director, Bhagyanagar Polymers Pvt. Ltd.",
+     "term": "2010\u201311"
+    },
+    {
+     "name": "Sri K. Harishchandra Prasad",
+     "company": "Managing Director, Lakshmi Finance & Indl. Corpn. Ltd.",
+     "term": "2009\u201310"
+    },
+    {
+     "name": "Sri Atluri Subba Rao",
+     "company": "Chairman, Nekkanti Sea Foods Ltd.",
+     "term": "2007\u201308"
+    },
+    {
+     "name": "Sri C. V. Atchut Rao",
+     "company": "Managing Director, CVSV Agritech & Exim Limited",
+     "term": "2005\u201306"
+    },
+    {
+     "name": "Sri O. P. Goenka",
+     "company": "Technical Director, Foods Fats & Fertilisers Ltd.",
+     "term": "2004\u201305"
+    },
+    {
+     "name": "CA Koteshwara Rao SSR",
+     "company": "Partner, Brahmayya & Co.",
+     "term": "2003\u201304"
+    },
+    {
+     "name": "Sri S. Thirumalai",
+     "company": "Advisor, VST Industries Ltd.",
+     "term": "2001\u201302"
+    },
+    {
+     "name": "Er. J. S. Rao",
+     "company": "Managing Director, Keerthi Industries Limited",
+     "term": "1999\u201300"
+    },
+    {
+     "name": "Sri Laxminiwas Sharma",
+     "company": "Sr. Partner, Laxminiwas & Jain, Chartered Accountants",
+     "term": "1998\u201399"
+    },
+    {
+     "name": "Sri N. Prabhakar",
+     "company": "Managing Director, Hyderabad Tulaman Private Limited",
+     "term": "1997\u201398"
+    },
+    {
+     "name": "Sri Narendra Surana",
+     "company": "Managing Director, Surana Telecom Ltd.",
+     "term": "1996\u201397"
+    },
+    {
+     "name": "Sri K. Satyanarayana",
+     "company": "Managing Director, Spectra Shares & Scrips Ltd.",
+     "term": "1995\u201396"
+    },
+    {
+     "name": "Sri M. L. Agarwal",
+     "company": "Managing Director, Ankit Packaging Ltd.",
+     "term": "1994\u201395"
+    },
+    {
+     "name": "Sri A. Krishnamurthy",
+     "company": "Chairman, Model Finance Corporation",
+     "term": "1991\u201392"
+    },
+    {
+     "name": "Sri O. Swaminatha Reddy",
+     "company": "Chairman, Sagar Cements Ltd.",
+     "term": "1980\u201381"
+    }
+   ]
+  },
+  "membership": {
+   "pillars": [
+    {
+     "title": "Connect",
+     "text": "Build meaningful relationships with business leaders, entrepreneurs and industry experts."
+    },
+    {
+     "title": "Inspire",
+     "text": "Represent your business interests and contribute to conversations shaping industry and policy."
+    },
+    {
+     "title": "Grow",
+     "text": "Access knowledge, events, business opportunities and platforms designed to help your organisation grow."
+    },
+    {
+     "title": "Lead",
+     "text": "Position your organisation within Telangana\u2019s leading business community and participate in industry initiatives."
+    }
+   ],
+   "benefitsPhoto": {
+    "$asset": "membership/benefits-photo.png",
+    "alt": "FTCCI members at the Parishrama Adalat conciliation conclave"
+   },
+   "memberBenefits": [
+    {
+     "title": "Business Networking",
+     "icon": "users",
+     "text": "Connect with entrepreneurs, corporates and industry leaders through FTCCI's extensive business network."
+    },
+    {
+     "title": "Policy Advocacy",
+     "icon": "file-text",
+     "text": "Get a stronger platform to raise business concerns and contribute to policy discussions."
+    },
+    {
+     "title": "Events & Opportunities",
+     "icon": "calendar",
+     "text": "Participate in conferences, seminars, trade events, exhibitions and business forums."
+    },
+    {
+     "title": "Learning & Development",
+     "icon": "briefcase",
+     "text": "Access workshops, training programmes and expert-led sessions for professional growth."
+    }
+   ],
+   "options": [
+    {
+     "panel": "a",
+     "cta": "Join as a Large Company",
+     "icon": "building",
+     "text": "For large companies and major business organisations seeking representation, networking and industry engagement."
+    },
+    {
+     "panel": "b",
+     "cta": "Join as an Association",
+     "icon": "group",
+     "text": "Build stronger industry connections and participate in collective policy and networking initiatives."
+    },
+    {
+     "panel": "c",
+     "cta": "Join as a Company",
+     "icon": "briefcase-gold",
+     "text": "For registered companies seeking FTCCI membership and access to business, policy and networking opportunities."
+    },
+    {
+     "panel": "d",
+     "cta": "Join as a Professional",
+     "icon": "user-check",
+     "text": "For eligible professionals and firms seeking meaningful industry connections and engagement."
+    },
+    {
+     "panel": "e",
+     "cta": "Join as an MSME",
+     "icon": "factory",
+     "text": "Benefit from business networking, knowledge resources, support services and industry engagement."
+    }
+   ],
+   "steps": [
+    {
+     "title": "Choose your membership",
+     "text": "Review our corporate, associate, and professional tiers to find the right scope of features."
+    },
+    {
+     "title": "Submit your application",
+     "text": "Fill out our streamlined online directory registration form with your commercial credentials."
+    },
+    {
+     "title": "Membership review",
+     "text": "Our vetting committee reviews your application package to ensure community alignment."
+    },
+    {
+     "title": "Become part of FTCCI",
+     "text": "Receive your official seal, access your member dashboard, and begin networking."
+    }
+   ],
+   "panelDocuments": [
+    {
+     "panel": "a",
+     "title": "Panel A \u00b7 Large Companies",
+     "docs": [
+      "GST",
+      "Registration of Firm",
+      "Firm / Company PAN",
+      "Photograph & PAN copies of 3 representatives in the application form (the first is mandatory, the other two optional)",
+      "Procuration by firm, company or board resolution, or declaration by individual on letterhead (format in the application)",
+      "Certificate of Partnership / Incorporation / Association",
+      "IEC (optional)"
+     ]
+    },
+    {
+     "panel": "b",
+     "title": "Panel B \u00b7 Associations & Societies",
+     "docs": [
+      "Certificate of GST, or Certificate of Registration of Society / Association",
+      "Association PAN",
+      "Photograph & PAN copies of 3 representatives in the application form (the first is mandatory, the other two optional)",
+      "Managing Committee list",
+      "Members list (optional)"
+     ]
+    },
+    {
+     "panel": "c",
+     "title": "Panel C \u00b7 Companies",
+     "docs": [
+      "GST",
+      "Company PAN",
+      "Photograph & PAN copies of 3 representatives in the application form (the first is mandatory, the other two optional)",
+      "Resolution of the Board of Directors on letterhead (format in the application)",
+      "Certificate of Incorporation copy",
+      "IEC (optional)",
+      "SSI / MSME / Udyog Aadhar (optional)"
+     ]
+    },
+    {
+     "panel": "d",
+     "title": "Panel D \u00b7 Professionals / Firms",
+     "docs": [
+      "ID",
+      "PAN card",
+      "Photograph",
+      "Professional certificate"
+     ]
+    },
+    {
+     "panel": "e",
+     "title": "Panel E \u00b7 MSMEs",
+     "docs": [
+      "GST",
+      "PAN card of proprietor",
+      "Photograph",
+      "Procuration by firm, Board resolution, or self-declaration by individual on letterhead (prescribed format)",
+      "IEC (optional)",
+      "SSI / MSME / Udyog Aadhar (optional)"
+     ]
+    }
+   ],
+   "files": [
+    {
+     "title": "Membership application form & tariff",
+     "file": {
+      "$ftcci": "documents/membershipform.pdf"
+     }
+    },
+    {
+     "title": "Indemnity bond",
+     "file": {
+      "$ftcci": "downloads/IB format.pdf"
+     }
+    },
+    {
+     "title": "Membership benefits",
+     "file": {
+      "$ftcci": "downloads/Membership Benefits.pdf"
+     }
+    },
+    {
+     "title": "FTCCI brochure",
+     "file": {
+      "$ftcci": "downloads/FTCCI Brochure.pdf"
+     }
+    }
+   ],
+   "lifeMembership": "Apart from the admission fee, the life membership fee is ten times the annual subscription.",
+   "contacts": [
+    {
+     "email": "membership@ftcci.in",
+     "phone": "+91 91001 99978"
+    },
+    {
+     "email": "membershelp@ftcci.in",
+     "phone": "+91 80085 79629"
+    }
+   ],
+   "experienceImage": {
+    "$asset": "membership/experience-bg.png",
+    "alt": ""
+   },
+   "experienceStats": [
+    {
+     "value": "3,000+",
+     "label": "Member organizations"
+    },
+    {
+     "value": "100+",
+     "label": "Events every year"
+    },
+    {
+     "value": "18+",
+     "label": "Expert committees"
+    },
+    {
+     "value": "100+",
+     "label": "Years of legacy"
+    }
+   ]
+  },
+  "services": {
+   "coImage": {
+    "$asset": "services/certificate-of-origin.png",
+    "alt": "Export documentation"
+   },
+   "coBullets": [
+    "Authorized issuer under Foreign Trade Policy regulations.",
+    "Attestation of invoices and allied commercial documents.",
+    "Express online processing and high-security stamp verification."
+   ],
+   "coPricing": [
+    {
+     "sno": "1",
+     "form": "1",
+     "price": "200.00"
+    }
+   ],
+   "coContact": [
+    {
+     "label": "Contact",
+     "value": "Mr. Firasath Ali Khan",
+     "href": null
+    },
+    {
+     "label": "Email",
+     "value": "co@ftcci.in",
+     "href": "mailto:co@ftcci.in"
+    },
+    {
+     "label": "Cheque / DD",
+     "value": "Drawn in favour of FTCCI, payable at Hyderabad",
+     "href": null
+    },
+    {
+     "label": "NEFT / RTGS",
+     "value": "FTCCI, SBI Bazarghat (Br), Hyderabad \u2014 A/c 10005356049, IFSC SBIN0005893",
+     "href": null
+    },
+    {
+     "label": "UPI (GPay / PhonePe)",
+     "value": "8008579630@SBI",
+     "href": null
+    },
+    {
+     "label": "GST",
+     "value": "36AAFCT2444K1Z6",
+     "href": null
+    }
+   ],
+   "coFiles": [
+    {
+     "title": "Certificate of Origin form",
+     "file": {
+      "$ftcci": "documents/Certificate of Origin Form.pdf"
+     }
+    },
+    {
+     "title": "Guidelines for issuing CO & document attestation",
+     "file": {
+      "$ftcci": "documents/Guidelines for issuing CO.pdf"
+     }
+    },
+    {
+     "title": "Certificate of Origin flyer",
+     "file": {
+      "$ftcci": "downloads/Certificate of Origin.pdf"
+     }
+    },
+    {
+     "title": "Visa recommendation letter",
+     "file": {
+      "$ftcci": "documents/Visa Recommendation.pdf"
+     }
+    }
+   ],
+   "liaisonImage": {
+    "$asset": "services/liaison.png",
+    "alt": "FTCCI auditorium"
+   },
+   "liaisonBullets": [
+    "Representation in state advisory committees and industrial task forces.",
+    "Pre-budget recommendations and direct policy critique to finance desks.",
+    "Lobbying for developmental infrastructure and regulatory ease of business."
+   ],
+   "helpdeskImage": {
+    "$asset": "services/helpdesk.png",
+    "alt": "FTCCI Help Desk flyer"
+   },
+   "helpdeskBullets": [
+    "Direct guidance on GST, Custom duties, and state commercial taxes.",
+    "Assistance with industrial permit bottlenecks and licensing guidance.",
+    "Expert pool access for complex trade-law dispute advisory."
+   ],
+   "certificationCards": [
+    {
+     "icon": "stamp",
+     "text": "Attestation of invoices, packing lists and commercial documents"
+    },
+    {
+     "icon": "file-text",
+     "text": "Certification supporting embassy, consular and bank requirements"
+    },
+    {
+     "icon": "globe",
+     "text": "Verification of member standing and business credentials"
+    },
+    {
+     "icon": "handshake",
+     "text": "Processed at the same desk as the Certificate of Origin"
+    }
+   ],
+   "expertBullets": [
+    "Sector and subject committees led by practising experts",
+    "Study papers, memoranda and pre-budget representations",
+    "Member clinics, seminars and knowledge sessions",
+    "Research reports such as Ease of Doing Business and Cost of Doing Business"
+   ],
+   "expertCommittees": [
+    "Agro, Food Processing & Rural Development",
+    "Industrial Development",
+    "Human Resources & Industrial Relations",
+    "Information & Communication Technology (ICT) and Startups",
+    "Energy (Power & Renewable Energy)",
+    "Banking, Finance, Insurance & Capital Markets",
+    "Tourism, Hospitality, Media & Entertainment",
+    "Direct Taxes",
+    "GST and Customs",
+    "International Trade and Business Relations",
+    "Shipping and Logistics",
+    "Ladies Wing / Women Empowerment",
+    "Membership Development & Chamber Networking",
+    "Corporate Laws, Insolvency and Bankruptcy Code (IBC) & Alternative Dispute Redressal (ADR)",
+    "Healthcare",
+    "Environmental, Social, and Governance (ESG)",
+    "Infrastructure, Real Estate and Smart Cities"
+   ],
+   "ceoImage": {
+    "$asset": "services/ceo-forum.png",
+    "alt": "FTCCI CEO Forum members"
+   },
+   "ceoBullets": [
+    "Executive-only networking luncheons and global trade meetups.",
+    "Interactive sessions with visiting diplomatic trade delegations.",
+    "Exclusive access to state planning committee forecasts."
+   ],
+   "hallsImage": {
+    "$asset": "venues/featured-hall.png",
+    "alt": "FTCCI board room"
+   },
+   "hallBullets": [
+    "Centrally air-conditioned auditoria, halls and board rooms",
+    "Projector, audio system, podium and stage support",
+    "Catering and event-support arrangements on request",
+    "20% discount on hall charges for FTCCI members"
+   ],
+   "halls": [
+    {
+     "name": "K.L.N. Prasad Auditorium (A/C)",
+     "seats": "350",
+     "area": null,
+     "floor": "III Floor",
+     "deposit": "3,000",
+     "h4": "15,500",
+     "h8": "27,500"
+    },
+    {
+     "name": "FTCCI Surana Auditorium (A/C)",
+     "seats": "130",
+     "area": null,
+     "floor": "G. Floor",
+     "deposit": "2,000",
+     "h4": "10,000",
+     "h8": "18,000"
+    },
+    {
+     "name": "J.S. Krishna Murthy Hall (A/C)",
+     "seats": "40",
+     "area": null,
+     "floor": "I Floor",
+     "deposit": "1,000",
+     "h4": "6,600",
+     "h8": "12,700"
+    },
+    {
+     "name": "Banarsilal Gupta Exhibition Hall",
+     "seats": null,
+     "area": "2,300 sq ft",
+     "floor": "G. Floor",
+     "deposit": "2,000",
+     "h4": "5,500",
+     "h8": "10,000"
+    },
+    {
+     "name": "Dhanjibhai Sawla Hall (A/C)",
+     "seats": null,
+     "area": "2,500 sq ft",
+     "floor": "III Floor",
+     "deposit": "1,000",
+     "h4": "5,000",
+     "h8": "8,300"
+    },
+    {
+     "name": "OPT Board Room (A/C)",
+     "seats": "14",
+     "area": null,
+     "floor": "I Floor",
+     "deposit": "1,000",
+     "h4": "2,800",
+     "h8": "4,500"
+    },
+    {
+     "name": "White House Board Room (A/C)",
+     "seats": "10",
+     "area": null,
+     "floor": "I Floor",
+     "deposit": "1,000",
+     "h4": "2,500",
+     "h8": "4,000"
+    },
+    {
+     "name": "FTCCI Pokarna Skill Centre (A/C)",
+     "seats": "35",
+     "area": null,
+     "floor": "II Floor",
+     "deposit": "1,000",
+     "h4": "6,600",
+     "h8": "12,700"
+    }
+   ],
+   "hallNotes": [
+    "Tariff in \u20b9, plus 18% GST",
+    "Extra \u20b91,500 on Fridays, Saturdays, Sundays and holidays",
+    "FTCCI members get 20% off hall charges",
+    "Eatables are not allowed in the auditoria"
+   ],
+   "hallEquipment": [
+    {
+     "item": "Projector / LED TV \u2013 K.L.N. Prasad Auditorium",
+     "price": "2,200"
+    },
+    {
+     "item": "Projector / LED TV \u2013 FTCCI Surana Auditorium",
+     "price": "1,600"
+    },
+    {
+     "item": "Projector / LED TV \u2013 J.S. Krishna Murthy Hall",
+     "price": "1,600"
+    },
+    {
+     "item": "Projector / LED TV \u2013 OPT Board Room",
+     "price": "900"
+    },
+    {
+     "item": "55\" TV \u2013 White House Board Room",
+     "price": "900"
+    },
+    {
+     "item": "75\" TV \u2013 Skill Centre",
+     "price": "800"
+    },
+    {
+     "item": "Screen only",
+     "price": "300"
+    },
+    {
+     "item": "Cordless / collar microphone (each)",
+     "price": "500"
+    },
+    {
+     "item": "Lighting lamp",
+     "price": "600"
+    },
+    {
+     "item": "Overtime before 9 am and after 6 pm (per hour)",
+     "price": "350"
+    },
+    {
+     "item": "LED wall power charges",
+     "price": "3,000"
+    }
+   ],
+   "hallFlyer": {
+    "$ftcci": "Events/hall flyer 2026_July 15.jpg"
+   },
+   "hallForm": {
+    "$ftcci": "downloads/Hall-Application.pdf"
+   },
+   "hallContact": [
+    {
+     "label": "Bookings",
+     "value": "Mr. Rajesh Kumar, Sr. Manager",
+     "href": null
+    },
+    {
+     "label": "Phone",
+     "value": "+91 91001 99977",
+     "href": "tel:+919100199977"
+    },
+    {
+     "label": "Email",
+     "value": "operations@ftcci.in",
+     "href": "mailto:operations@ftcci.in"
+    },
+    {
+     "label": "Venue",
+     "value": "Federation House, 11-6-841 Federation Marg, Red Hills, Hyderabad 500004",
+     "href": null
+    }
+   ],
+   "downloads": [
+    {
+     "title": "Certificate of Origin form",
+     "file": {
+      "$ftcci": "documents/Certificate of Origin Form.pdf"
+     }
+    },
+    {
+     "title": "Guidelines for issuing CO & document attestation",
+     "file": {
+      "$ftcci": "documents/Guidelines for issuing CO.pdf"
+     }
+    },
+    {
+     "title": "Certificate of Origin flyer",
+     "file": {
+      "$ftcci": "downloads/Certificate of Origin.pdf"
+     }
+    },
+    {
+     "title": "Visa recommendation letter",
+     "file": {
+      "$ftcci": "documents/Visa Recommendation.pdf"
+     }
+    },
+    {
+     "title": "FTCCI halls flyer",
+     "file": {
+      "$ftcci": "Events/hall flyer 2026_July 15.jpg"
+     }
+    },
+    {
+     "title": "Hall requisition form",
+     "file": {
+      "$ftcci": "downloads/Hall-Application.pdf"
+     }
+    },
+    {
+     "title": "FTCCI Brochure (about, membership, committees, venues)",
+     "file": {
+      "$ftcci": "downloads/FTCCI Brochure.pdf"
+     }
+    }
+   ]
+  },
+  "knowledge": {
+   "latestReviewText": "This issue covers key policy updates, industry insights, international trade developments, and FTCCI's recent events and initiatives.",
+   "featuredLinks": [
+    "Government of India",
+    "Telangana State",
+    "Reserve Bank of India",
+    "DGFT",
+    "SEBI",
+    "FICCI",
+    "CII",
+    "The Economic Times"
+   ],
+   "linkDirectory": [
+    {
+     "group": "Governments",
+     "links": [
+      {
+       "title": "Government of India",
+       "text": "National portal for government services, schemes and information.",
+       "href": "https://www.india.gov.in/"
+      },
+      {
+       "title": "Telangana State",
+       "text": "State profile, departments and citizen services of Telangana.",
+       "href": "https://www.telangana.gov.in/about/state-profile"
+      },
+      {
+       "title": "Andhra Pradesh",
+       "text": "Official portal of the Government of Andhra Pradesh.",
+       "href": "https://www.ap.gov.in/"
+      }
+     ]
+    },
+    {
+     "group": "Apex Business Chambers",
+     "links": [
+      {
+       "title": "FICCI",
+       "text": "Federation of Indian Chambers of Commerce and Industry.",
+       "href": "https://www.ficci.in/"
+      },
+      {
+       "title": "ASSOCHAM",
+       "text": "The Associated Chambers of Commerce and Industry of India.",
+       "href": "https://www.assocham.org/"
+      },
+      {
+       "title": "CII",
+       "text": "Confederation of Indian Industry.",
+       "href": "https://www.cii.in/"
+      },
+      {
+       "title": "FAPCCI",
+       "text": "Federation of Andhra Pradesh Chambers of Commerce and Industry.",
+       "href": "https://www.fapcci.in/"
+      }
+     ]
+    },
+    {
+     "group": "Print & Electronic Media",
+     "links": [
+      {
+       "title": "CNBC",
+       "text": "Business news television, streamed on Moneycontrol.",
+       "href": "https://www.moneycontrol.com/tv"
+      },
+      {
+       "title": "Reuters",
+       "text": "Global business, markets and world news.",
+       "href": "https://www.reuters.com/"
+      },
+      {
+       "title": "Business Standard",
+       "text": "Business, economy and markets news.",
+       "href": "https://www.business-standard.com/"
+      },
+      {
+       "title": "The Economic Times",
+       "text": "Business news, markets and economic policy.",
+       "href": "https://economictimes.indiatimes.com/"
+      },
+      {
+       "title": "The Times of India",
+       "text": "National and world news.",
+       "href": "https://timesofindia.indiatimes.com/"
+      },
+      {
+       "title": "BusinessLine",
+       "text": "Business news from The Hindu group.",
+       "href": "https://www.thehindubusinessline.com/"
+      },
+      {
+       "title": "Financial Express",
+       "text": "Financial Express e-paper.",
+       "href": "https://epaper.financialexpress.com/"
+      },
+      {
+       "title": "Live Mint",
+       "text": "Business, finance and economy news.",
+       "href": "https://www.livemint.com/"
+      }
+     ]
+    },
+    {
+     "group": "Global Financial Institutions",
+     "links": [
+      {
+       "title": "International Monetary Fund",
+       "text": "Global economic outlook, data and policy.",
+       "href": "https://www.imf.org/"
+      },
+      {
+       "title": "World Bank",
+       "text": "Development finance, research and country data.",
+       "href": "https://www.worldbank.org/"
+      },
+      {
+       "title": "International Finance Corporation",
+       "text": "Private-sector investment arm of the World Bank Group.",
+       "href": "https://www.ifc.org/"
+      },
+      {
+       "title": "Asian Development Bank",
+       "text": "Development finance across Asia and the Pacific.",
+       "href": "https://www.adb.org/"
+      }
+     ]
+    },
+    {
+     "group": "Regulatory Bodies",
+     "links": [
+      {
+       "title": "Reserve Bank of India",
+       "text": "Monetary policy, FEMA guidelines and banking circulars.",
+       "href": "https://www.rbi.org.in/"
+      },
+      {
+       "title": "DGFT",
+       "text": "Foreign trade policy, IEC registration and export schemes.",
+       "href": "https://www.dgft.gov.in/"
+      },
+      {
+       "title": "SEBI",
+       "text": "Securities market regulations and investor guidance.",
+       "href": "https://www.sebi.gov.in/"
+      }
+     ]
+    }
+   ]
+  },
+  "media": {
+   "pressKit": [
+    {
+     "title": "FTCCI Brand Logos",
+     "text": "Official FTCCI emblem for digital use.",
+     "file": {
+      "$asset": "header/logo.png"
+     }
+    },
+    {
+     "title": "FTCCI Brochure",
+     "text": "Official FTCCI organisation and membership information.",
+     "file": {
+      "$ftcci": "downloads/FTCCI Brochure.pdf"
+     }
+    },
+    {
+     "title": "FTCCI Halls Flyer",
+     "text": "Details of FTCCI halls, facilities and booking information.",
+     "file": {
+      "$ftcci": "Events/hall flyer 2026_July 15.jpg"
+     }
+    },
+    {
+     "title": "FTCCI Membership Benefits",
+     "text": "Overview of benefits available to FTCCI members.",
+     "file": {
+      "$ftcci": "downloads/Membership Benefits.pdf"
+     }
+    },
+    {
+     "title": "MSME Advisory Services",
+     "text": "Information on FTCCI's support and advisory services for MSMEs.",
+     "file": {
+      "$ftcci": "downloads/MSME advisory services.pdf"
+     }
+    },
+    {
+     "title": "FTCCI Pokarna Skill Centre Brochure",
+     "text": "Information about skill development and training programmes.",
+     "file": {
+      "$ftcci": "downloads/SC brochure.pdf"
+     }
+    },
+    {
+     "title": "Certificate of Origin \u2013 Attestation of Export Documents",
+     "text": "Forms and guidelines for Certificate of Origin and document attestation.",
+     "file": {
+      "$ftcci": "downloads/Certificate of Origin.pdf"
+     }
+    }
+   ]
+  },
+  "privilege": {
+   "registerUrl": "https://privilegecard.ftcci.in/register",
+   "benefitsUrl": "https://privilegecard.ftcci.in/benefits",
+   "companyLoginUrl": "https://privilegecard.ftcci.in/company-login",
+   "employeeLoginUrl": "https://privilegecard.ftcci.in/employee-login",
+   "heroCard": {
+    "$asset": "privilege/hero-card.png",
+    "alt": "The FTCCI Privilege Card"
+   },
+   "heroFeatures": [
+    {
+     "title": "Your privilege, anywhere.",
+     "text": "Simply present your FTCCI card.",
+     "icon": "card"
+    },
+    {
+     "title": "Quality care first.",
+     "text": "Access a verified network.",
+     "icon": "handshake"
+    },
+    {
+     "title": "Trusted benefits.",
+     "text": "Transparent, preferred rates.",
+     "icon": "badge"
+    }
+   ],
+   "advantages": [
+    {
+     "title": "Quality you can trust",
+     "text": "Carefully selected healthcare partners."
+    },
+    {
+     "title": "Savings that matter",
+     "text": "Preferred benefits across key services."
+    },
+    {
+     "title": "Convenience for everyone",
+     "text": "Easy access for members and families."
+    }
+   ],
+   "benefits": [
+    {
+     "title": "Healthcare",
+     "category": "Hospitals",
+     "icon": "healthcare",
+     "text": "Care that puts you first. Exclusive discounts on outpatient and inpatient services at renowned partner hospitals and diagnostic centres."
+    },
+    {
+     "title": "Pharmacy",
+     "category": "Pharmacy",
+     "icon": "pharmacy",
+     "text": "Everyday essentials, better value. Save on prescribed medications at partner pharmacies, making healthcare expenses more manageable."
+    },
+    {
+     "title": "Dining & lifestyle",
+     "category": "Restaurant",
+     "icon": "dining",
+     "text": "More moments to enjoy. Enjoy special discounts at partner restaurants and services when you dine with your loved ones."
+    },
+    {
+     "title": "Easy access",
+     "category": "All partners",
+     "icon": "access",
+     "text": "One card. Instant benefits. Connect with quality healthcare and lifestyle partners, with discounts applied right at the point of service."
+    }
+   ],
+   "steps": [
+    {
+     "title": "Present your card",
+     "text": "Show your FTCCI Health Privilege Card at a participating provider."
+    },
+    {
+     "title": "Verify your identity",
+     "text": "The partner confirms your active membership in moments."
+    },
+    {
+     "title": "Enjoy your savings",
+     "text": "Access eligible benefits directly on your bill."
+    }
+   ],
+   "eligibility": [
+    {
+     "title": "FTCCI members",
+     "text": "All registered members of FTCCI",
+     "icon": "members"
+    },
+    {
+     "title": "Staff & employees",
+     "text": "100% staff and employees of member organisations",
+     "icon": "staff"
+    },
+    {
+     "title": "Family members",
+     "text": "Includes family members of eligible members, staff and employees",
+     "icon": "family"
+    }
+   ],
+   "partners": [
+    {
+     "name": "GVK Diagnostics",
+     "category": "Diagnostics",
+     "location": "All branches",
+     "logo": {
+      "$asset": "privilege/partners/gvk-diagnostics.png"
+     }
+    },
+    {
+     "name": "Focus Diagnostics",
+     "category": "Diagnostics",
+     "location": "Punjagutta and Kukatpally",
+     "logo": {
+      "$asset": "privilege/partners/focus-diagnostics.png"
+     }
+    },
+    {
+     "name": "Tenet Diagnostics",
+     "category": "Diagnostics",
+     "location": "All branches",
+     "logo": {
+      "$asset": "privilege/partners/tenet-diagnostics.png"
+     }
+    },
+    {
+     "name": "Konnect Diagnostics",
+     "category": "Diagnostics",
+     "location": "All branches",
+     "logo": {
+      "$asset": "privilege/partners/konnect-diagnostics.png"
+     }
+    },
+    {
+     "name": "Lucid Diagnostics",
+     "category": "Diagnostics",
+     "location": "All branches",
+     "logo": {
+      "$asset": "privilege/partners/lucid-diagnostics.png"
+     }
+    },
+    {
+     "name": "Vijaya Diagnostic Centre",
+     "category": "Diagnostics",
+     "location": "All branches",
+     "logo": {
+      "$asset": "privilege/partners/vijaya-diagnostic-center.png"
+     }
+    },
+    {
+     "name": "Tapadia Diagnostic Centre",
+     "category": "Diagnostics",
+     "location": "All branches",
+     "logo": {
+      "$asset": "privilege/partners/tapadia-diagnostic-centre.png"
+     }
+    },
+    {
+     "name": "Tesla Diagnostics",
+     "category": "Diagnostics",
+     "location": "All branches",
+     "logo": {
+      "$asset": "privilege/partners/tesla-diagnostics.png"
+     }
+    },
+    {
+     "name": "NURA AI Health Screening Centre",
+     "category": "Diagnostics",
+     "location": "All branches",
+     "logo": {
+      "$asset": "privilege/partners/nura-ai-health-screening-center.png"
+     }
+    },
+    {
+     "name": "Sunshine Hospitals",
+     "category": "Hospitals",
+     "location": "All branches",
+     "logo": {
+      "$asset": "privilege/partners/sunshine-hospitals.png"
+     }
+    },
+    {
+     "name": "Arete Hospital",
+     "category": "Hospitals",
+     "location": "Gachibowli",
+     "logo": {
+      "$asset": "privilege/partners/arete-hospital.png"
+     }
+    },
+    {
+     "name": "Care Hospitals",
+     "category": "Hospitals",
+     "location": "Banjara Hills, HITEC City, Nampally, Malakpet and Musheerabad",
+     "logo": {
+      "$asset": "privilege/partners/care-hospitals.png"
+     }
+    },
+    {
+     "name": "Medicover Hospital",
+     "category": "Hospitals",
+     "location": "HITEC City",
+     "logo": {
+      "$asset": "privilege/partners/medicover-hospital.png"
+     }
+    },
+    {
+     "name": "KIMS Hospitals",
+     "category": "Hospitals",
+     "location": "Minister Road, Secunderabad branch only",
+     "logo": {
+      "$asset": "privilege/partners/kims-hospitals.png"
+     }
+    },
+    {
+     "name": "Yashoda Hospitals",
+     "category": "Hospitals",
+     "location": "Secunderabad, HITEC City, Somajiguda and Malakpet",
+     "logo": {
+      "$asset": "privilege/partners/yashoda-hospitals.png"
+     }
+    },
+    {
+     "name": "Gleneagles Hospital",
+     "category": "Hospitals",
+     "location": "Lakdikapul",
+     "logo": {
+      "$asset": "privilege/partners/gleneagles-hospital.png"
+     }
+    },
+    {
+     "name": "Premier Hospital",
+     "category": "Hospitals",
+     "location": "All branches",
+     "logo": {
+      "$asset": "privilege/partners/premier-hospital.png"
+     }
+    },
+    {
+     "name": "Star Hospitals",
+     "category": "Hospitals",
+     "location": "All branches",
+     "logo": {
+      "$asset": "privilege/partners/star-hospitals.png"
+     }
+    },
+    {
+     "name": "Virinchi Hospital",
+     "category": "Hospitals",
+     "location": "Banjara Hills",
+     "logo": {
+      "$asset": "privilege/partners/virinchi-hospital.png"
+     }
+    },
+    {
+     "name": "Kamineni Hospitals",
+     "category": "Hospitals",
+     "location": "L.B. Nagar",
+     "logo": {
+      "$asset": "privilege/partners/kamineni-hospitals.png"
+     }
+    },
+    {
+     "name": "ZOI Hospitals",
+     "category": "Hospitals",
+     "location": "Somajiguda and Attapur",
+     "logo": {
+      "$asset": "privilege/partners/zoi-hospitals.png"
+     }
+    },
+    {
+     "name": "Srikara Hospitals",
+     "category": "Hospitals",
+     "location": "Hyderabad, Vijayawada and Rajahmundry branches",
+     "logo": {
+      "$asset": "privilege/partners/srikara-hospitals.png"
+     }
+    },
+    {
+     "name": "Renova Hospitals",
+     "category": "Hospitals",
+     "location": "All branches",
+     "logo": {
+      "$asset": "privilege/partners/renova-hospitals.png"
+     }
+    },
+    {
+     "name": "Apollo Hospitals",
+     "category": "Hospitals",
+     "location": "Jubilee Hills, Secunderabad and Hyderguda",
+     "logo": {
+      "$asset": "privilege/partners/apollo-hospitals.png"
+     }
+    },
+    {
+     "name": "AIG Hospitals",
+     "category": "Hospitals",
+     "location": "Banjara Hills branch only",
+     "logo": {
+      "$asset": "privilege/partners/aig-hospitals-banjara-hills.png"
+     }
+    },
+    {
+     "name": "MAA ENT Hospitals",
+     "category": "Hospitals",
+     "location": "Hyderabad, Kolkata and Navi Mumbai branches",
+     "logo": {
+      "$asset": "privilege/partners/maa-ent-hospitals.png"
+     }
+    },
+    {
+     "name": "Ankura Hospital",
+     "category": "Hospitals",
+     "location": "Madhapur",
+     "logo": {
+      "$asset": "privilege/partners/ankura-hospital.png"
+     }
+    },
+    {
+     "name": "Sri Sathya Sai Sanjeevani Hospitals",
+     "category": "Hospitals",
+     "location": "All branches across India",
+     "logo": {
+      "$asset": "privilege/partners/sri-sathya-sai-sanjeevani.png"
+     }
+    },
+    {
+     "name": "Mahavir Hospital",
+     "category": "Hospitals",
+     "location": "AC Guards, Masab Tank",
+     "logo": {
+      "$asset": "privilege/partners/mahavir-hospital.png"
+     }
+    },
+    {
+     "name": "Mor Chemists & Druggists",
+     "category": "Pharmacy",
+     "location": "All branches",
+     "logo": {
+      "$asset": "privilege/partners/mor-chemists-druggists.png"
+     }
+    },
+    {
+     "name": "Pharma Plus",
+     "category": "Pharmacy",
+     "location": "All branches",
+     "logo": {
+      "$asset": "privilege/partners/pharma-plus.png"
+     }
+    },
+    {
+     "name": "Apollo Pharmacy",
+     "category": "Pharmacy",
+     "location": "Apollo retail pharmacies across India",
+     "logo": {
+      "$asset": "privilege/partners/apollo-pharmacy.png"
+     }
+    },
+    {
+     "name": "Bhagwati Medical Agencies",
+     "category": "Pharmacy",
+     "location": "Begum Bazar",
+     "logo": {
+      "$asset": "privilege/partners/bhagwati-medical-agencies.png"
+     }
+    },
+    {
+     "name": "Tatva Restaurant",
+     "category": "Restaurant",
+     "location": "Jubilee Hills",
+     "logo": {
+      "$asset": "privilege/partners/tatva-restaurant.png"
+     }
+    },
+    {
+     "name": "Hotel Rajdhani",
+     "category": "Restaurant",
+     "location": "All branches",
+     "logo": {
+      "$asset": "privilege/partners/hotel-rajdhani.png"
+     }
+    },
+    {
+     "name": "Mercure Hotel Hyderabad KCP",
+     "category": "Restaurant",
+     "location": "Punjagutta",
+     "logo": {
+      "$asset": "privilege/partners/mercure-hotel-hyderabad-kcp.png"
+     }
+    },
+    {
+     "name": "Chubby Cho",
+     "category": "Restaurant",
+     "location": "All branches",
+     "logo": {
+      "$asset": "privilege/partners/chubby-cho.png"
+     }
+    },
+    {
+     "name": "Makobrew World Coffee Bar",
+     "category": "Restaurant",
+     "location": "Jubilee Hills",
+     "logo": {
+      "$asset": "privilege/partners/makobrew-world-coffee-bar.png"
+     }
+    },
+    {
+     "name": "Peanuts Bar",
+     "category": "Restaurant",
+     "location": "All branches",
+     "logo": {
+      "$asset": "privilege/partners/peanuts-bar.png"
+     }
+    },
+    {
+     "name": "The Platinum Hotel",
+     "category": "Restaurant",
+     "location": "All branches",
+     "logo": {
+      "$asset": "privilege/partners/the-platinum-hotel.png"
+     }
+    },
+    {
+     "name": "Hyderabad Marriott Hotel & Convention Centre",
+     "category": "Restaurant",
+     "location": "Hyderabad",
+     "logo": {
+      "$asset": "privilege/partners/hyderabad-marriott.png"
+     }
+    },
+    {
+     "name": "Taj Deccan",
+     "category": "Restaurant",
+     "location": "Banjara Hills",
+     "logo": {
+      "$asset": "privilege/partners/taj-deccan-hyderabad.png"
+     }
+    },
+    {
+     "name": "Hyatt Place Hyderabad Banjara Hills",
+     "category": "Restaurant",
+     "location": "Banjara Hills",
+     "logo": {
+      "$asset": "privilege/partners/hyatt-place-hyderabad-banjara-hills.png"
+     }
+    },
+    {
+     "name": "Parampara \u2013 The Mithai Shop",
+     "category": "Restaurant",
+     "location": "All branches",
+     "logo": {
+      "$asset": "privilege/partners/parampara-the-mithai-shop.png"
+     }
+    },
+    {
+     "name": "Aalankrita Resorts and Convention",
+     "category": "Restaurant",
+     "location": "Shameerpet",
+     "logo": {
+      "$asset": "privilege/partners/aalankrita-resorts-and-convention.png"
+     }
+    },
+    {
+     "name": "Cream Stone Icecreams",
+     "category": "Restaurant",
+     "location": "Selected outlets",
+     "logo": {
+      "$asset": "privilege/partners/cream-stone-icecreams.png"
+     }
+    }
+   ],
+   "faqs": [
+    {
+     "q": "Do I need to carry Physical Card to avail benefit?",
+     "a": "You can carry either the physical card or the e-card, along with your Aadhaar card, to avail the benefit from the service provider."
+    },
+    {
+     "q": "I want to avail service now; do I get the card instantly?",
+     "a": "You have to register your details under your company's registration link on the FTCCI Privilege Card portal."
+    },
+    {
+     "q": "I am registering online. Can I pay in cash to anyone?",
+     "a": "Your organisation's team will coordinate with you to complete your registration and the payment."
+    },
+    {
+     "q": "I am registering offline. Can I make payment online?",
+     "a": "Your organisation's team will coordinate with you to complete your registration and the payment."
+    },
+    {
+     "q": "Is this a Family Card?",
+     "a": "Every family member can avail the benefit after individual registration and an individual payment of Rs. 200/-."
+    },
+    {
+     "q": "Do all Family Members need to register personally?",
+     "a": "Family members can be registered by the employee of the registered member organisation covered under this offer."
+    },
+    {
+     "q": "Can kids use the card of their parents?",
+     "a": "No. Every individual is issued a separate card with a unique ID."
+    },
+    {
+     "q": "Kids/Parents do not have Mobile Number/Email",
+     "a": "The card is issued under the guardian member's mobile number, with the child's or parent's Aadhaar details registered."
+    },
+    {
+     "q": "Will registration charges be less if I register at later date?",
+     "a": "No. The registration charges stay the same whenever you register for the FTCCI Privilege Card."
+    }
+   ],
+   "contactEmail": "privilegecard@ftcci.in",
+   "contactPhones": [
+    {
+     "phone": "+91 86884 00904"
+    },
+    {
+     "phone": "+91 78159 50242"
+    }
+   ],
+   "contactHours": "10 AM to 6 PM"
+  },
+  "careers": {
+   "email": "info@ftcci.in"
+  },
+  "site": {
+   "tagline": "Championing industry and enabling growth across Telangana since 1917.",
+   "address": "FTCCI Bhavan, Red Hills,\nLakdikapul, Hyderabad \u2013 500 004,\nTelangana, India",
+   "phone": "+91-40-2332 3426",
+   "email": "info@ftcci.in",
+   "social": [
+    {
+     "platform": "youtube",
+     "href": "https://www.youtube.com/channel/UCcc_0SLIiND3vNykgFfMvKA"
+    },
+    {
+     "platform": "facebook",
+     "href": "https://www.facebook.com/FTCCIofficial"
+    },
+    {
+     "platform": "x",
+     "href": "https://twitter.com/FTCCI"
+    },
+    {
+     "platform": "linkedin",
+     "href": "https://www.linkedin.com/company/ftcci/"
+    },
+    {
+     "platform": "instagram",
+     "href": "https://www.instagram.com/FTCCIofficial"
+    }
+   ]
+  }
+ },
+ "collections": {
+  "event": [
+   {
+    "slug": "women-empowerment-conference",
+    "data": {
+     "title": "International Conference on Women Empowerment",
+     "category": "Conference",
+     "subtitle": "Driving Inclusive Growth and Leadership",
+     "date": "2026-09-10",
+     "startTime": "09:00",
+     "endTime": "18:00",
+     "venue": "Cyber Gardens, Hitech City, Hyderabad",
+     "image": {
+      "$asset": "events/women-empowerment.png"
+     },
+     "intro": "A platform bringing together business leaders, entrepreneurs, policymakers, and professionals to discuss women\u2019s leadership, entrepreneurship, economic participation, and opportunities for inclusive growth.",
+     "about": "The International Conference on Women Empowerment brings together women entrepreneurs, policymakers, MSMEs, industry leaders, investors, academicians, innovators and global experts to explore new pathways for women\u2019s economic empowerment and leadership.",
+     "expect": [
+      "Keynote addresses from industry leaders and policymakers",
+      "Panel discussions on current business trends and opportunities",
+      "Networking sessions with 500+ business professionals",
+      "Exhibition area showcasing innovative products and services"
+     ],
+     "featured": true
+    }
+   },
+   {
+    "slug": "urban-farming-expo-2026",
+    "data": {
+     "title": "Urban Farming & Kitchen Gardening Expo 2026",
+     "category": "Expo",
+     "subtitle": "Sustainable Agriculture and Green Living",
+     "date": "2026-08-12",
+     "startTime": "10:00",
+     "endTime": "18:00",
+     "venue": "Federation House, Red Hills, Hyderabad",
+     "image": {
+      "$asset": "events/detail-urban-farming.png",
+      "crop": {
+       "x": 0,
+       "y": 0.05864661654135338,
+       "w": 1,
+       "h": 0.8845643520566121
+      }
+     },
+     "intro": "Discover innovative urban farming and kitchen gardening solutions for healthier, more sustainable city living.",
+     "about": "Urban Farming & Kitchen Gardening Expo 2026 brings together urban farming enthusiasts, growers, businesses, and experts to explore sustainable ways of growing fresh food in urban spaces.",
+     "expect": [
+      "Urban farming and kitchen gardening solutions",
+      "Innovative gardening products and techniques",
+      "Expert insights on sustainable cultivation",
+      "Ideas for growing fresh food at home"
+     ]
+    }
+   },
+   {
+    "slug": "agm-2026",
+    "data": {
+     "title": "Annual General Meeting 2026",
+     "category": "AGM",
+     "date": "2026-08-30",
+     "startTime": "11:00",
+     "venue": "Federation Marg, Red Hills, Hyderabad",
+     "image": {
+      "$asset": "events/detail-agm.png",
+      "crop": {
+       "x": 0.0007986423080762703,
+       "y": 0.01477832512315271,
+       "w": 0.9983028850953379,
+       "h": 0.9852216748768474
+      }
+     },
+     "intro": "Annual General Meeting 2026 brings FTCCI members together to review the Chamber\u2019s activities and achievements, discuss key priorities, and outline the direction for the year ahead.",
+     "about": "The Annual General Meeting brings FTCCI members together to review the Federation\u2019s activities and achievements, consider the annual report and financial statements, and discuss key matters concerning the Federation.",
+     "expect": [
+      "Keynote addresses from industry leaders and policymakers",
+      "Panel discussions on current business trends and opportunities",
+      "Networking sessions with 500+ business professionals",
+      "Exhibition area showcasing innovative products and services"
+     ]
+    }
+   },
+   {
+    "slug": "ceo-forum-quarterly-business-meet",
+    "data": {
+     "title": "CEO Forum \u2013 Quarterly Business Meet",
+     "category": "Forum",
+     "subtitle": "Industry Outlook & Growth Strategies",
+     "date": "2026-08-25",
+     "startTime": "15:00",
+     "endTime": "19:00",
+     "venue": "FTCCI Board Room, Hyderabad",
+     "image": {
+      "$asset": "events/card-ceo-forum.png"
+     }
+    }
+   },
+   {
+    "slug": "export-promotion-seminar-for-msmes",
+    "data": {
+     "title": "Export Promotion Seminar for MSMEs",
+     "category": "Seminar",
+     "date": "2026-08-22",
+     "startTime": "15:00",
+     "venue": "Federation House, Hyderabad",
+     "image": {
+      "$asset": "events/thumb-export-promotion.png"
+     }
+    }
+   },
+   {
+    "slug": "virtual-talk-on-2-deoxy-d-glucose-2-dg",
+    "data": {
+     "title": "Virtual Talk on 2-Deoxy-D-Glucose (2-DG)",
+     "date": "2021-06-08",
+     "image": {
+      "$asset": "events/past/2dg-virtual-talk.png",
+      "crop": {
+       "x": 0.4672756673948197,
+       "y": 0.0002,
+       "w": 0.28369599137564183,
+       "h": 1
+      }
+     }
+    }
+   },
+   {
+    "slug": "combating-mucormycosis-black-fungus",
+    "data": {
+     "title": "Combating Mucormycosis (Black Fungus)",
+     "date": "2021-06-04",
+     "image": {
+      "$asset": "events/past/mucormycosis.png",
+      "crop": {
+       "x": 0.5005855742071784,
+       "y": 0,
+       "w": 0.22963694399154935,
+       "h": 1
+      }
+     }
+    }
+   },
+   {
+    "slug": "corporate-governance-and-risk-management",
+    "data": {
+     "title": "Corporate Governance and Risk Management",
+     "date": "2021-06-03",
+     "image": {
+      "$asset": "events/past/corporate-governance.png"
+     }
+    }
+   },
+   {
+    "slug": "interaction-with-mr-anjani-kumar-ips-commissioner-of-police-hyderabad-city",
+    "data": {
+     "title": "Interaction with Mr. Anjani Kumar, IPS, Commissioner of Police, Hyderabad City",
+     "date": "2021-05-31",
+     "image": {
+      "$asset": "events/past/anjani-kumar.png"
+     }
+    }
+   },
+   {
+    "slug": "rebooting-the-msme-through-financial-re-engineering",
+    "data": {
+     "title": "Rebooting the MSME through Financial Re-engineering",
+     "date": "2021-05-29",
+     "image": {
+      "$asset": "events/past/msme-rebooting.png"
+     }
+    }
+   },
+   {
+    "slug": "fund-raising-for-smes-and-start-ups-through-capital-markets-and-role-of-intermed",
+    "data": {
+     "title": "Fund Raising for SMEs and Start-ups through Capital Markets and Role of Intermediaries in Channeling Funds",
+     "date": "2021-05-28",
+     "image": {
+      "$asset": "events/past/fund-raising.png",
+      "crop": {
+       "x": 0.0012696214219759926,
+       "y": 0,
+       "w": 0.5771006463527238,
+       "h": 1
+      }
+     }
+    }
+   },
+   {
+    "slug": "interaction-with-mr-v-c-sajjanar-ips-commissioner-of-police-cyberabad",
+    "data": {
+     "title": "Interaction with Mr. V. C. Sajjanar, IPS, Commissioner of Police, Cyberabad",
+     "date": "2021-05-22",
+     "image": {
+      "$asset": "events/past/sajjanar.png",
+      "crop": {
+       "x": 0,
+       "y": 0.1293484669811321,
+       "w": 1,
+       "h": 0.7370283018867925
+      }
+     }
+    }
+   },
+   {
+    "slug": "naturopathy-covid-19",
+    "data": {
+     "title": "Naturopathy & COVID-19",
+     "date": "2021-05-21",
+     "image": {
+      "$asset": "events/past/naturopathy.png"
+     }
+    }
+   },
+   {
+    "slug": "interaction-with-mr-mahesh-bhagwat-ips-commissioner-of-police-rachakonda",
+    "data": {
+     "title": "Interaction with Mr. Mahesh Bhagwat, IPS, Commissioner of Police, Rachakonda",
+     "date": "2021-05-18",
+     "image": {
+      "$asset": "events/past/mahesh-bhagwat.png"
+     }
+    }
+   },
+   {
+    "slug": "how-ftcci-can-help-associations-business-chambers",
+    "data": {
+     "title": "How FTCCI Can Help Associations / Business Chambers",
+     "date": "2021-04-30",
+     "image": {
+      "$asset": "events/past/associations.png"
+     }
+    }
+   }
+  ],
+  "article": [
+   {
+    "data": {
+     "title": "FTCCI submits pre-budget memorandum to the State Government",
+     "tag": "News",
+     "date": "2026-08-07",
+     "image": {
+      "$asset": "news/pre-budget-memorandum.png"
+     },
+     "excerpt": "This is welcome news for traders, businesses, communities and those relying on the movement of time-sensitive goods across Telangana and beyond.",
+     "featured": true
+    }
+   },
+   {
+    "data": {
+     "title": "Chamber's Industry Leaders Join Trade Minister's Strategic Exports Advisory Council",
+     "tag": "News",
+     "date": "2026-07-31",
+     "image": {
+      "$asset": "news/exports-advisory-council.png"
+     },
+     "excerpt": "The Strategic Exports Office will bring together diplomatic, commercial and financial expertise to help Telangana businesses compete for major international contracts.",
+     "featured": false
+    }
+   },
+   {
+    "data": {
+     "title": "Proposed Tariffs Stack onto the Ongoing Investment Freeze",
+     "tag": "News",
+     "date": "2026-07-28",
+     "image": {
+      "$asset": "news/proposed-tariffs.png"
+     },
+     "excerpt": "Renewed tariff threats have fueled a feeling of uneasiness for affected businesses across Telangana's export economy.",
+     "featured": false
+    }
+   },
+   {
+    "data": {
+     "title": "Export Economy Sees Renewed Growth Amid Policy Shifts",
+     "tag": "News",
+     "date": "2026-07-26",
+     "image": {
+      "$asset": "news/export-economy.png"
+     },
+     "excerpt": null,
+     "featured": false
+    }
+   },
+   {
+    "data": {
+     "title": "FTCCI's Reaction to India's Inclusion on the Trade Compliance Watch List",
+     "tag": "News",
+     "date": "2026-07-23",
+     "image": {
+      "$asset": "news/export-economy.png"
+     },
+     "excerpt": "Indian exporters should not be unfairly targeted here.",
+     "featured": false
+    }
+   }
+  ],
+  "publication": [
+   {
+    "data": {
+     "title": "Study Tour on Green TVET in Germany",
+     "section": "publications",
+     "meta": "23 Sep 2023",
+     "cover": {
+      "$asset": "pubs/publications-1.png",
+      "crop": {
+       "x": 0,
+       "y": 0.0417272462925269,
+       "w": 1,
+       "h": 0.7269555103227683
+      }
+     },
+     "file": {
+      "$ftcci": "Research and Publications/Study Tour Report.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "FTCCI Business Delegation to Thailand",
+     "section": "publications",
+     "meta": "8 Sep 2022",
+     "cover": {
+      "$asset": "pubs/publications-2.png",
+      "crop": {
+       "x": 0,
+       "y": 0.0417272462925269,
+       "w": 1,
+       "h": 0.7269555103227683
+      }
+     },
+     "file": {
+      "$ftcci": "in news/Thailand Report.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "Telangana Delegation to EXPO 2020",
+     "section": "publications",
+     "meta": "7 Nov 2021",
+     "cover": {
+      "$asset": "pubs/publications-3.png",
+      "crop": {
+       "x": 0,
+       "y": 0.0417272462925269,
+       "w": 1,
+       "h": 0.7269555103227683
+      }
+     },
+     "file": {
+      "$ftcci": "Research and Publications/FTCCI Delegation to EXPO 2020_web.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "Report on Pulses",
+     "section": "publications",
+     "meta": "10 Feb 2021",
+     "cover": {
+      "$asset": "pubs/publications-4.png",
+      "crop": {
+       "x": 0,
+       "y": 0.0417272462925269,
+       "w": 1,
+       "h": 0.7269555103227683
+      }
+     },
+     "file": {
+      "$ftcci": "Research and Publications/Report on Pulses_final_April 12.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "FTCCI Activity Report 2019\u20132020",
+     "section": "activity",
+     "meta": "2019\u201320",
+     "cover": {
+      "$asset": "pubs/activity-2019-20.png",
+      "crop": {
+       "x": 0,
+       "y": 0.0002922481186527362,
+       "w": 1,
+       "h": 0.7306202966318405
+      }
+     },
+     "file": {
+      "$ftcci": "Research and Publications/Activity_Report 2019-20.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "FTCCI Activity Report 2020\u20132021",
+     "section": "activity",
+     "meta": "2020\u201321",
+     "cover": {
+      "$asset": "pubs/activity-2020-21.png",
+      "crop": {
+       "x": 0,
+       "y": 0.035693515556847924,
+       "w": 1,
+       "h": 0.7269555103227683
+      }
+     },
+     "file": {
+      "$ftcci": "Research and Publications/Activity Report_2020-2021.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "FTCCI Activity Report 2021\u20132022",
+     "section": "activity",
+     "meta": "2021\u201322",
+     "cover": {
+      "$asset": "pubs/activity-2021-22.png",
+      "crop": {
+       "x": 0,
+       "y": 0.0417272462925269,
+       "w": 1,
+       "h": 0.7269555103227683
+      }
+     },
+     "file": {
+      "$ftcci": "downloads/Activity Report 2021-22.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "FTCCI Activity Report 2022\u20132023",
+     "section": "activity",
+     "meta": "2022\u201323",
+     "cover": {
+      "$asset": "pubs/activity-2022-23.png",
+      "crop": {
+       "x": 0,
+       "y": 0.0348211689444606,
+       "w": 1,
+       "h": 0.7269555103227683
+      }
+     },
+     "file": {
+      "$ftcci": "Research and Publications/Activity Report 2022.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "FTCCI Activity Report 2023\u20132024",
+     "section": "activity",
+     "meta": "2023\u201324",
+     "cover": {
+      "$asset": "pubs/activity-2023-24.png",
+      "crop": {
+       "x": 0,
+       "y": 0.0348211689444606,
+       "w": 1,
+       "h": 0.7269555103227683
+      }
+     },
+     "file": {
+      "$ftcci": "downloads/Activity Report 2023-24.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "101st Annual Report 2017\u201318",
+     "section": "annual",
+     "meta": "2017\u201318",
+     "cover": {
+      "$asset": "pubs/annual-1.png",
+      "crop": {
+       "x": 0,
+       "y": 0.17476437495433625,
+       "w": 1,
+       "h": 0.7306202966318405
+      }
+     },
+     "file": {
+      "$ftcci": "AR2017-18.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "102nd Annual Report 2018\u201319",
+     "section": "annual",
+     "meta": "2018\u201319",
+     "cover": {
+      "$asset": "pubs/annual-2.png",
+      "crop": {
+       "x": 0,
+       "y": 0.035693515556847924,
+       "w": 1,
+       "h": 0.7269555103227683
+      }
+     },
+     "file": {
+      "$ftcci": "documents/Annual_Report_2019.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "103rd Annual Report 2019\u201320",
+     "section": "annual",
+     "meta": "2019\u201320",
+     "cover": {
+      "$asset": "pubs/annual-3.png",
+      "crop": {
+       "x": 0,
+       "y": 0.029369002617039838,
+       "w": 1,
+       "h": 0.7269555103227683
+      }
+     },
+     "file": {
+      "$ftcci": "documents/Annual Report 2019-20.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "104th Annual Report 2020\u201321",
+     "section": "annual",
+     "meta": "2020\u201321",
+     "cover": {
+      "$asset": "pubs/annual-4.png",
+      "crop": {
+       "x": 0,
+       "y": 0.0004361733061936609,
+       "w": 1,
+       "h": 0.7269555103227683
+      }
+     },
+     "file": {
+      "$ftcci": "documents/Annual Report 2020-21.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "105th Annual Report 2021\u201322",
+     "section": "annual",
+     "meta": "2021\u201322",
+     "cover": {
+      "$asset": "pubs/annual-5.png",
+      "crop": {
+       "x": 0,
+       "y": 0.0348211689444606,
+       "w": 1,
+       "h": 0.7269555103227683
+      }
+     },
+     "file": {
+      "$ftcci": "documents/105_Annual_Report.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "107th Annual Report 2023\u201324",
+     "section": "annual",
+     "meta": "2023\u201324",
+     "cover": {
+      "$asset": "pubs/annual-6.png",
+      "crop": {
+       "x": 0,
+       "y": 0.0002922481186527362,
+       "w": 1,
+       "h": 0.7306202966318405
+      }
+     },
+     "file": {
+      "$ftcci": "downloads/AGM 2024/107 Annual Report.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "108th Annual Report 2024\u201325",
+     "section": "annual",
+     "meta": "2024\u201325",
+     "cover": {
+      "$asset": "pubs/annual-7.png",
+      "crop": {
+       "x": 0,
+       "y": 0.035693515556847924,
+       "w": 1,
+       "h": 0.7269555103227683
+      }
+     },
+     "file": {
+      "$ftcci": "documents/Annual Report 2024-25.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "109th Annual Report 2025\u201326",
+     "section": "annual",
+     "meta": "2025\u201326",
+     "cover": {
+      "$asset": "pubs/annual-8.png",
+      "crop": {
+       "x": 0,
+       "y": 0.0417272462925269,
+       "w": 1,
+       "h": 0.7269555103227683
+      }
+     },
+     "file": {
+      "$ftcci": "documents/FTCCI 109th Annual Report_final.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "Annual Day of FTAPCCI in its Centenary Year",
+     "section": "research",
+     "meta": "Research report",
+     "cover": {
+      "$asset": "pubs/research-1.png",
+      "crop": {
+       "x": 0,
+       "y": 0.13574925111419595,
+       "w": 1,
+       "h": 0.7306202966318405
+      }
+     },
+     "file": {
+      "$ftcci": "Annual Day of FTAPCCI_Report.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "Report on Pulses: Opportunities & Way Forward",
+     "section": "research",
+     "meta": "Research report",
+     "cover": {
+      "$asset": "pubs/research-2.png",
+      "crop": {
+       "x": 0,
+       "y": 0.015193370165745856,
+       "w": 1,
+       "h": 0.7269555103227683
+      }
+     },
+     "file": {
+      "$ftcci": "Research and Publications/Report on Pulses_final_April 12.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "Rice Exports from Telangana: Opportunities & Way Forward",
+     "section": "research",
+     "meta": "Research report",
+     "cover": {
+      "$asset": "pubs/research-3.png",
+      "crop": {
+       "x": 0,
+       "y": 0,
+       "w": 1,
+       "h": 0.71285999429712
+      }
+     },
+     "file": {
+      "$ftcci": "Research and Publications/Report on Rice Export.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "Industry Outlook Post COVID-19",
+     "section": "research",
+     "meta": "Research report",
+     "cover": {
+      "$asset": "pubs/research-4.png",
+      "crop": {
+       "x": 0,
+       "y": 0.05848920863309354,
+       "w": 1,
+       "h": 0.7194244604316548
+      }
+     },
+     "file": {
+      "$ftcci": "Research and Publications/Industry Outlook Post COVID-19.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "Report on Telangana Tourism",
+     "section": "research",
+     "meta": "Research report",
+     "cover": {
+      "$asset": "pubs/research-5.png",
+      "crop": {
+       "x": 0,
+       "y": 0,
+       "w": 1,
+       "h": 0.7242178447276941
+      }
+     },
+     "file": {
+      "$ftcci": "TOURISM.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "TS-iPASS and Industrial Growth of Telangana",
+     "section": "research",
+     "meta": "Research report",
+     "cover": {
+      "$asset": "pubs/research-6.png"
+     },
+     "file": {
+      "$ftcci": "TS-iPASS Report.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "Food Processing Industry Conclave 2018",
+     "section": "research",
+     "meta": "Research report",
+     "cover": {
+      "$asset": "pubs/research-7.png",
+      "crop": {
+       "x": 0,
+       "y": 0,
+       "w": 1,
+       "h": 0.7308338814587444
+      }
+     },
+     "file": {
+      "$ftcci": "foodprocessingconclave.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "Milking Dairy Opportunities",
+     "section": "research",
+     "meta": "Research report",
+     "cover": {
+      "$asset": "pubs/research-8.png"
+     },
+     "file": {
+      "$ftcci": "Research and Publications/Milking_Dairy_Opportunity.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "Evolution of Indian Industrial Landscape",
+     "section": "research",
+     "meta": "Research report",
+     "cover": {
+      "$asset": "pubs/research-9.png",
+      "crop": {
+       "x": 0,
+       "y": 0.0014493753882255504,
+       "w": 1,
+       "h": 0.6901787562978812
+      }
+     },
+     "file": {
+      "$ftcci": "Research and Publications/Industial Landscape.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "Cost of Doing Business in Telangana",
+     "section": "research",
+     "meta": "Research report",
+     "cover": {
+      "$asset": "pubs/research-10.png",
+      "crop": {
+       "x": 0,
+       "y": 0,
+       "w": 1,
+       "h": 0.702543206407194
+      }
+     },
+     "file": {
+      "$ftcci": "downloads/Report on Cost of Doing.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "Major Achievements of FTCCI",
+     "section": "research",
+     "meta": "Research report",
+     "cover": {
+      "$asset": "pubs/research-11.png"
+     },
+     "file": {
+      "$ftcci": "downloads/Major Achievements of FTCCI_Booklet.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "Report on Organisational HR Practices",
+     "section": "research",
+     "meta": "Research report",
+     "cover": {
+      "$asset": "pubs/research-12.png",
+      "crop": {
+       "x": 0,
+       "y": 0,
+       "w": 1,
+       "h": 0.7019021548396153
+      }
+     },
+     "file": {
+      "$ftcci": "downloads/Report on Best HR Practices.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "Current Practices and Challenges of MSMEs",
+     "section": "research",
+     "meta": "Research report",
+     "cover": {
+      "$asset": "pubs/research-13.png",
+      "crop": {
+       "x": 0,
+       "y": 0.0009893992932862193,
+       "w": 1,
+       "h": 0.7067137809187279
+      }
+     },
+     "file": {
+      "$ftcci": "downloads/MSME Report.pdf"
+     }
+    }
+   },
+   {
+    "data": {
+     "title": "I Do Commit: Atithi Devo Bhava",
+     "section": "research",
+     "meta": "Research report",
+     "cover": {
+      "$asset": "pubs/research-14.png"
+     },
+     "file": {
+      "$ftcci": "downloads/I DO COMMIT_Booklet.pdf"
+     }
+    }
+   }
+  ],
+  "review": [
+   {
+    "data": {
+     "date": "2026-10-28",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 10 28.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 10 28.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-10-21",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 10 21.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 10 21.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-10-14",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 10 14.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 10 14.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-10-07",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 10 07.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 10 07.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-09-30",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 09 30.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 09 30.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-09-23",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 09 23.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 09 23.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-09-16",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 09 16.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 09 16.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-09-09",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 09 09.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 09 09.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-09-02",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 09 02.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 09 02.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-08-26",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 08 26.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 08 26.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-08-19",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 08 19.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 08 19.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-08-12",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 08 12.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 08 12.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-08-05",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 08 05.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 08 05.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-07-29",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 07 29.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 07 29.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-07-22",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 07 22.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 07 22.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-07-15",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 07 15.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 07 15.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-07-08",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 07 08.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 07 08.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-07-01",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 07 01.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 07 01.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-06-24",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 06 24.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 06 24.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-06-17",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 06 17.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 06 17.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-06-10",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 06 10.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 06 10.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-06-03",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 06 03.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 06 03.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-05-27",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 05 27.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 05 27.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-05-20",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 05 20.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 05 20.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-05-13",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 05 13.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 05 13.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-05-06",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 05 06.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 05 06.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-04-29",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 04 29.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 04 29.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-04-22",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 04 22.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 04 22.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-04-15",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 04 15.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 04 15.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-04-08",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 04 08.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 04 08.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-04-01",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 04 01.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 04 01.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-03-25",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 03 25.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 03 25.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-03-18",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 03 18.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 03 18.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-03-11",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 03 11.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 03 11.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-03-04",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 03 04.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 03 04.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-02-25",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 02 25.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 02 25.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-02-18",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 02 18.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 02 18.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-02-11",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 02 11.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 02 11.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-02-04",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 02 04.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 02 04.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-01-28",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 01 28.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 01 28.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-01-21",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 01 21.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 01 21.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-01-14",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 01 14.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 01 14.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2026-01-07",
+     "file": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 01 07.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2026/FR 2026 01 07.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-12-31",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 12 31.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 12 31.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-12-24",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 12 24.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 12 24.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-12-17",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 12 17.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 12 17.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-12-10",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 12 10.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 12 10.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-12-03",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 12 03.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 12 03.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-11-26",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 11 26.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 11 26.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-11-19",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 11 19.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 11 19.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-11-12",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 11 12.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 11 12.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-11-05",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 11 05.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 11 05.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-10-29",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 10 29.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 10 29.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-10-22",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 10 22.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 10 22.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-10-15",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 10 15.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 10 15.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-10-08",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 10 08.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 10 08.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-10-01",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 10 01.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 10 01.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-09-24",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 09 24.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 09 24.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-09-17",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 09 17.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 09 17.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-09-10",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 09 10.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 09 10.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-09-03",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 09 03.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 09 03.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-08-27",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 08 27.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 08 27.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-08-20",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 08 20.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 08 20.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-08-13",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 08 13.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 08 13.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-08-06",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 08 06.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 08 06.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-07-30",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 07 30.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 07 30.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-07-23",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 07 23.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 07 23.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-07-16",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 07 16.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 07 16.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-07-09",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 07 09.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 07 09.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-07-02",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 07 02.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 07 02.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-06-25",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 06 25.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 06 25.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-06-18",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 06 18.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 06 18.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-06-11",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 06 11.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 06 11.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-06-04",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 06 04.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 06 04.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-05-28",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 05 28.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 05 28.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-05-21",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 05 21.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 05 21.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-05-14",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 05 14.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 05 14.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-05-07",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 05 07.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 05 07.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-04-30",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 04 30.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 04 30.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-04-23",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 04 23.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 04 23.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-04-16",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 04 16.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 04 16.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-04-09",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 04 09.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 04 09.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-04-02",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 04 02.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 04 02.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-03-26",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 03 26.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 03 26.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-03-19",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 03 19.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 03 19.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-03-12",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 03 12.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 03 12.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-03-05",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 03 05.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 03 05.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-02-26",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 02 26.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 02 26.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-02-19",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 02 19.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 02 19.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-02-12",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 02 12.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 02 12.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-02-05",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 02 05.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 02 05.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-01-29",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 01 29.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 01 29.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-01-22",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 01 22.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 01 22.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-01-15",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 01 15.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 01 15.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-01-08",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 01 08.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 01 08.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2025-01-01",
+     "file": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 01 01.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2025/FR 2025 01 01.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-12-25",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 12 25.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 12 25.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-12-18",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 12 18.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 12 18.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-12-11",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 12 11.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 12 11.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-12-04",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 12 04.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 12 04.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-11-27",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 11 27.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 11 27.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-11-20",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 11 20.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 11 20.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-11-13",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 11 13.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 11 13.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-11-06",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 11 06.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 11 06.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-10-23",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 10 23.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 10 23.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-10-16",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 10 16.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 10 16.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-10-09",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 10 09.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 10 09.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-10-02",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 10 02.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 10 02.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-09-25",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 09 25.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 09 25.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-09-18",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 09 18.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 09 18.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-09-11",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 09 11.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 09 11.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-09-04",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 09 04.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 09 04.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-08-28",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 08 28.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 08 28.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-08-21",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 08 21.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 08 21.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-08-14",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 08 14.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 08 14.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-08-07",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 08 07.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 08 07.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-07-31",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 07 31.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 07 31.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-07-24",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 07 24.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 07 24.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-07-17",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 07 17.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 07 17.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-07-10",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 07 10.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 07 10.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-07-03",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 07 03.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 07 03.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-06-26",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 06 26.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 06 26.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-06-19",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 06 19.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 06 19.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-06-12",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 06 12.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 06 12.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-06-05",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 06 05.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 06 05.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-05-29",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 05 29.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 05 29.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-05-22",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 05 22.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 05 22.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-05-15",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 05 15.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 05 15.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-05-08",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 05 08.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 05 08.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-05-01",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 05 01.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 05 01.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-04-24",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 04 24.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 04 24.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-04-17",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 04 17.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 04 17.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-04-10",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 04 10.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 04 10.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-04-03",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 04 03.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 04 03.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-03-27",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 03 27.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 03 27.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-03-20",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 03 20.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 03 20.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-03-13",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 03 13.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 03 13.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-03-06",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 03 06.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 03 06.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-02-28",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 02 28.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 02 28.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-02-21",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 02 21.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 02 21.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-02-14",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 02 14.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 02 14.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-02-07",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 02 07.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 02 07.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-01-31",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 01 31.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 01 31.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-01-24",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 01 24.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 01 24.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-01-17",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 01 17.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 01 17.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-01-10",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 01 10.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 01 10.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2024-01-03",
+     "file": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 01 03.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2024/FR 2024 01 03.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2023-12-27",
+     "file": {
+      "$ftcci": "ftapcci/FR 2023/FR 2023 12 27.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2023/FR 2023 12 27.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2023-12-20",
+     "file": {
+      "$ftcci": "ftapcci/FR 2023/FR 2023 12 20.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2023/FR 2023 12 20.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2023-11-29",
+     "file": {
+      "$ftcci": "ftapcci/FR 2023/FR 2023 11 29.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2023/FR 2023 11 29.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2023-11-22",
+     "file": {
+      "$ftcci": "ftapcci/FR 2023/FR 2023 11 22.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2023/FR 2023 11 22.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2023-11-15",
+     "file": {
+      "$ftcci": "ftapcci/FR 2023/FR 2023 11 15.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2023/FR 2023 11 15.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2023-11-01",
+     "file": {
+      "$ftcci": "ftapcci/FR 2023/FR 2023 11 01.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2023/FR 2023 11 01.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2023-10-25",
+     "file": {
+      "$ftcci": "ftapcci/FR 2023/FR 2023 10 25.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2023/FR 2023 10 25.jpg"
+     }
+    }
+   },
+   {
+    "data": {
+     "date": "2023-10-18",
+     "file": {
+      "$ftcci": "ftapcci/FR 2023/FR 2023 10 18.pdf"
+     },
+     "cover": {
+      "$ftcci": "ftapcci/FR 2023/FR 2023 10 18.jpg"
+     }
+    }
+   }
+  ]
+ }
+}

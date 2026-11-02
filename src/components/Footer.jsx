@@ -1,12 +1,14 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useRouteLoaderData } from "react-router";
+import { socialPlatforms } from "../../shared/icons.js";
 import { validate } from "../../shared/forms.js";
-import { assets, legalLinks, quickLinks, socialLinks } from "../data/content.js";
+import { assets, legalLinks, pickIcons, quickLinks } from "../ui/assets.js";
 import { joinNewsletter, prepareProof } from "../lib/api.js";
 import { Honeypot } from "./FormDialog.jsx";
 import styles from "./Footer.module.css";
 
 export default function Footer() {
+  const { site } = useRouteLoaderData("site");
   const [email, setEmail] = useState("");
   const [hp, setHp] = useState("");
   const [status, setStatus] = useState(null);
@@ -47,14 +49,10 @@ export default function Footer() {
               </p>
             </div>
           </div>
-          <p className={styles.tagline}>Championing industry and enabling growth across Telangana since 1917.</p>
+          {site.tagline && <p className={styles.tagline}>{site.tagline}</p>}
           <ul className={styles.social}>
-            {socialLinks.map((s) => (
-              <li key={s.label}>
-                <a href={s.href} target="_blank" rel="noreferrer" aria-label={`FTCCI on ${s.label}`} className={s.fullTile ? styles.tileBare : styles.tile}>
-                  <img src={s.icon} alt="" width={s.w} height={s.h} style={{ width: s.w, height: s.h }} />
-                </a>
-              </li>
+            {site.social.map((s) => (
+              <SocialLink key={s.platform} {...s} />
             ))}
           </ul>
         </div>
@@ -73,22 +71,20 @@ export default function Footer() {
           <address>
             <p className={styles.contactRow}>
               <img src={assets.footerLocation} alt="" width="14" height="14" className={styles.pinIcon} />
-              <span>
-                FTCCI Bhavan, Red Hills,
-                <br />
-                Lakdikapul, Hyderabad – 500 004,
-                <br />
-                Telangana, India
-              </span>
+              <span className={styles.address}>{site.address}</span>
             </p>
-            <p className={styles.contactRow}>
-              <img src={assets.footerPhone} alt="" width="14" height="14" />
-              <a href="tel:+914023323426">+91-40-2332 3426</a>
-            </p>
-            <p className={styles.contactRow}>
-              <img src={assets.footerMail} alt="" width="14" height="14" />
-              <a href="mailto:info@ftcci.in">info@ftcci.in</a>
-            </p>
+            {site.phone && (
+              <p className={styles.contactRow}>
+                <img src={assets.footerPhone} alt="" width="14" height="14" />
+                <a href={`tel:${site.phone.replace(/[^\d+]/g, "")}`}>{site.phone}</a>
+              </p>
+            )}
+            {site.email && (
+              <p className={styles.contactRow}>
+                <img src={assets.footerMail} alt="" width="14" height="14" />
+                <a href={`mailto:${site.email}`}>{site.email}</a>
+              </p>
+            )}
           </address>
         </div>
 
@@ -127,5 +123,16 @@ export default function Footer() {
         </ul>
       </div>
     </footer>
+  );
+}
+
+function SocialLink({ platform, href }) {
+  const icon = pickIcons.social[platform];
+  return (
+    <li>
+      <a href={href} target="_blank" rel="noreferrer" aria-label={`FTCCI on ${socialPlatforms[platform]}`} className={icon.fullTile ? styles.tileBare : styles.tile}>
+        <img src={icon.src} alt="" width={icon.w} height={icon.h} style={{ width: icon.w, height: icon.h }} />
+      </a>
+    </li>
   );
 }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router";
 import PageHero from "../components/common/PageHero.jsx";
 import { confirmNewsletter } from "../lib/api.js";
 import styles from "./NewsletterConfirm.module.css";

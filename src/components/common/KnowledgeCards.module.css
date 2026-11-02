@@ -223,18 +223,18 @@
 .pub:hover .pubCover img {
   transform: scale(1.06);
 }
-.pubBody time,
+.pubBody span,
 .pubBody h3 {
   transition: color var(--dur-hover) var(--ease-figma);
 }
-.pub:hover .pubBody time,
+.pub:hover .pubBody span,
 .pub:hover .pubBody h3 {
   color: var(--white);
 }
 .pubBody {
   padding: 10.75px 17.2px 9.68px;
 }
-.pubBody time {
+.pubBody span {
   display: block;
   font-size: 10.75px;
   line-height: 16.13px;

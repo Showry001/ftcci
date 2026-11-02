@@ -1,9 +1,23 @@
 import { useState } from "react";
+import { useLoaderData } from "react-router";
 import PageHero from "../components/common/PageHero.jsx";
 import SubNav from "../components/common/SubNav.jsx";
 import { useHallBooking } from "../components/HallBooking.jsx";
-import * as d from "../data/services.js";
+import Img from "../components/Img.jsx";
+import { single } from "../lib/content.server.js";
+import { icons, pickIcons, subNav } from "../ui/assets.js";
 import styles from "./Services.module.css";
+
+export async function loader({ request }) {
+  return { page: await single("services", request) };
+}
+
+export const meta = () => [
+  { title: "Services – FTCCI" },
+  { name: "description", content: "Certificate of Origin, liaison, help desk, document certification, expert committees, CEO Forum, halls and downloads." },
+];
+
+const fileType = (file) => (file?.kind === "pdf" ? "PDF" : "JPG");
 
 function Checklist({ items, icon, size = 16, className = "" }) {
   return (
@@ -39,9 +53,9 @@ function FileList({ files }) {
     <ul className={styles.files}>
       {files.map((f) => (
         <li key={f.title}>
-          <img src={d.icons.pdf} alt="" width="28" height="18" />
-          <a href={f.href} download target="_blank" rel="noreferrer">
-            {f.title} <span className="visually-hidden">({f.type})</span>
+          <img src={icons.services.pdf} alt="" width="28" height="18" />
+          <a href={f.file?.url} download target="_blank" rel="noreferrer">
+            {f.title} <span className="visually-hidden">({fileType(f.file)})</span>
           </a>
         </li>
       ))}
@@ -50,11 +64,12 @@ function FileList({ files }) {
 }
 
 export default function Services() {
+  const d = { ...useLoaderData().page, icons: icons.services };
   const { openBooking } = useHallBooking();
   return (
     <>
       <PageHero crumb="Home > Services" title="Services" />
-      <SubNav items={d.servicesSubNav} variant="titleCase" label="Services" />
+      <SubNav items={subNav.services} variant="titleCase" label="Services" />
 
       <section id="certificate-of-origin" className={`${styles.section} ${styles.white}`}>
         <div className={`container ${styles.coRow}`}>
@@ -66,7 +81,7 @@ export default function Services() {
               destinations.
             </p>
             <div className={styles.coPhoto}>
-              <img src={d.coImage} alt="Export documentation" loading="lazy" />
+              <Img media={d.coImage} sizes="(min-width: 1200px) 560px, 100vw" />
             </div>
             <Checklist items={d.coBullets} icon={d.icons.check} />
             <div className={styles.pricing}>
@@ -119,13 +134,13 @@ export default function Services() {
             </p>
             <Checklist items={d.liaisonBullets} icon={d.icons.checkDark} className={styles.checklistLg} />
           </div>
-          <img className={styles.splitImg} style={{ aspectRatio: "583 / 328" }} src={d.liaisonImage} alt="FTCCI auditorium" loading="lazy" />
+          <Img className={styles.splitImg} style={{ aspectRatio: "583 / 328" }} media={d.liaisonImage} sizes="(min-width: 1200px) 583px, 100vw" />
         </div>
       </section>
 
       <section id="help-desk" className={`${styles.section} ${styles.white}`}>
         <div className={`container ${styles.split} ${styles.splitReverse}`}>
-          <img className={styles.splitImg} style={{ aspectRatio: "498 / 340", maxWidth: 498 }} src={d.helpdeskImage} alt="FTCCI Help Desk flyer" loading="lazy" />
+          <Img className={styles.splitImg} style={{ aspectRatio: "498 / 340", maxWidth: 498 }} media={d.helpdeskImage} sizes="(min-width: 1200px) 498px, 100vw" />
           <div className={styles.splitText} style={{ maxWidth: 678 }}>
             <h2 className={`${styles.h2} ${styles.h2Sm}`}>Help Desk</h2>
             <p className={styles.lead} style={{ fontSize: 15 }}>
@@ -147,7 +162,7 @@ export default function Services() {
           <ul className={styles.docCards}>
             {d.certificationCards.map((c) => (
               <li key={c.text}>
-                <img src={c.icon} alt="" width="28" height="28" />
+                <img src={pickIcons.certification[c.icon]} alt="" width="28" height="28" />
                 <p>{c.text}</p>
               </li>
             ))}
@@ -181,7 +196,7 @@ export default function Services() {
 
       <section id="ceo-forum" className={`${styles.section} ${styles.grey} ${styles.ceoForum}`}>
         <div className="container">
-          <img className={styles.banner} src={d.ceoImage} alt="FTCCI CEO Forum members" loading="lazy" />
+          <Img className={styles.banner} media={d.ceoImage} sizes="(min-width: 1200px) 1240px, 100vw" />
           <h2 className={`${styles.h2} ${styles.h2Sm}`} style={{ marginTop: 42 }}>CEO Forum</h2>
           <p className={styles.lead} style={{ maxWidth: 873, marginTop: 24, fontSize: 15, lineHeight: "22.5px", color: "#4b5563" }}>
             A platform for CEOs and senior business leaders to connect, exchange perspectives and discuss key industry and
@@ -243,7 +258,7 @@ export default function Services() {
               <p className={styles.venueTitle}>Equipment &amp; other charges</p>
               <table>
                 <tbody>
-                  {d.hallEquipment.map(([item, price]) => (
+                  {d.hallEquipment.map(({ item, price }) => (
                     <tr key={item}>
                       <td>{item}</td>
                       <td>₹{price}</td>
@@ -254,14 +269,14 @@ export default function Services() {
             </div>
           </div>
           <div className={styles.hallsSide}>
-            <img src={d.hallsImage} alt="FTCCI board room" loading="lazy" />
+            <Img media={d.hallsImage} sizes="(min-width: 1200px) 400px, 100vw" />
             <aside className={`${styles.contactCard} ${styles.hallCard}`}>
               <h3>Details &amp; contact</h3>
               <dl>
                 {d.hallContact.map((c) => (
                   <div key={c.label}>
                     <dt>{c.label}</dt>
-                    <dd className={c.accent ? styles.ddAccent : c.regular ? styles.ddRegular : ""}>
+                    <dd className={c.href?.startsWith("mailto:") ? styles.ddAccent : !c.href && c.value.length > 40 ? styles.ddRegular : ""}>
                       {c.href ? <a href={c.href}>{c.value}</a> : c.value}
                     </dd>
                   </div>
@@ -269,7 +284,12 @@ export default function Services() {
               </dl>
               <hr />
               <p className={styles.filesLabel}>Files</p>
-              <FileList files={[d.hallFiles.flyer, d.hallFiles.form]} />
+              <FileList
+                files={[
+                  { title: "FTCCI halls flyer", file: d.hallFlyer },
+                  { title: "Hall requisition form", file: d.hallForm },
+                ].filter((f) => f.file)}
+              />
               <button type="button" className={styles.enquire} aria-haspopup="dialog" onClick={openBooking}>
                 Hall Booking
               </button>
@@ -285,8 +305,8 @@ export default function Services() {
           <ul className={styles.attachments}>
             {d.downloads.map((f) => (
               <li key={f.title}>
-                <a href={f.href} download target="_blank" rel="noreferrer">
-                  <span className={styles.badge}>{f.type}</span>
+                <a href={f.file?.url} download target="_blank" rel="noreferrer">
+                  <span className={styles.badge}>{fileType(f.file)}</span>
                   {f.title}
                 </a>
               </li>

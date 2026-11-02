@@ -1,9 +1,14 @@
+import { mkdirSync } from "node:fs";
 import rateLimit from "@fastify/rate-limit";
+import fastifyStatic from "@fastify/static";
 import Fastify, { type FastifyServerOptions } from "fastify";
 import type { Config } from "./config.ts";
 import type { Db } from "./db/schema.ts";
+import { createJobRunner } from "./jobs.ts";
 import { createMailer, type Transport } from "./mail/outbox.ts";
+import { adminContentRoutes } from "./routes/admin-content.ts";
 import { adminRoutes } from "./routes/admin.ts";
+import { contentRoutes } from "./routes/content.ts";
 import { publicRoutes } from "./routes/public.ts";
 
 const SERVER_ERROR = "Something went wrong on our side. Please try again in a few minutes, or email info@ftcci.in.";
@@ -19,9 +24,10 @@ export async function buildApp({ config, db, transport, logger = true }: { confi
   app.removeContentTypeParser("text/plain");
 
   const mailer = createMailer(db, transport, config, app.log);
+  const jobs = createJobRunner(db, config, app.log);
 
   app.addHook("onSend", async (_req, reply) => {
-    reply.header("cache-control", "no-store");
+    if (!reply.hasHeader("cache-control")) reply.header("cache-control", "no-store");
     reply.header("x-content-type-options", "nosniff");
     reply.header("x-frame-options", "DENY");
     reply.header("referrer-policy", "no-referrer");
@@ -45,10 +51,30 @@ export async function buildApp({ config, db, transport, logger = true }: { confi
 
   await app.register(rateLimit, { global: false });
   await app.register(publicRoutes, { db, config, mailer });
-  if (config.adminLocalOnly) await app.register(adminRoutes, { db, mailer });
+  await app.register(contentRoutes, { db, config });
+  if (config.adminLocalOnly) {
+    await app.register(adminRoutes, { db, mailer });
+    await app.register(adminContentRoutes, { db, config, jobs });
+  }
+
+  // Uploaded files. In production Nginx serves MEDIA_DIR directly; this covers development.
+  mkdirSync(config.media.dir, { recursive: true });
+  await app.register(fastifyStatic, {
+    root: config.media.dir,
+    prefix: "/media/",
+    decorateReply: false,
+    index: false,
+    dotfiles: "deny",
+    allowedPath: (path) => !path.startsWith("/tmp/"),
+    // Every upload gets a new folder, so its files never change and can be cached for a year.
+    setHeaders: (reply) => {
+      reply.header("cache-control", "public, max-age=31536000, immutable");
+    },
+  });
 
   app.addHook("onClose", async () => {
     await mailer.stop();
+    await jobs.stop();
   });
-  return { app, mailer };
+  return { app, mailer, jobs };
 }

@@ -1,5 +1,9 @@
-import { Link } from "react-router-dom";
+import { data, Link } from "react-router";
 import PageHero from "../components/common/PageHero.jsx";
+
+// Unknown addresses render this page with a real 404 status.
+export const loader = () => data(null, { status: 404 });
+export const meta = () => [{ title: "Page not found – FTCCI" }];
 
 export default function NotFound() {
   return (

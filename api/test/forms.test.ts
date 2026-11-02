@@ -4,6 +4,8 @@ import { displayValue, isEmail, todayInIndia, validate } from "../../shared/form
 
 // 29 Oct 2026, 10:00 IST
 const now = new Date("2026-10-29T04:30:00Z");
+// Hall names come from the published Services page.
+const options = { halls: ["OPT Board Room (A/C)", "FTCCI Surana Auditorium (A/C)"] };
 
 describe("shared form rules", () => {
   it("trims, collapses whitespace and strips control and direction characters", () => {
@@ -44,10 +46,10 @@ describe("shared form rules", () => {
   it("keeps bookings between today (IST) and two years ahead", () => {
     const base = { halls: ["OPT Board Room (A/C)"], from: "10:00", to: "11:00", company: "A", email: "a@b.in", contact: "A" };
     assert.equal(todayInIndia(now), "2026-10-29");
-    assert.equal(validate("hallBooking", { ...base, date: "2026-10-29" }, { now }).ok, true);
-    assert.match(validate("hallBooking", { ...base, date: "2026-10-28" }, { now }).errors.date, /today/);
-    assert.match(validate("hallBooking", { ...base, date: "2029-01-01" }, { now }).errors.date, /two years/);
-    assert.match(validate("hallBooking", { ...base, date: "2026-02-30" }, { now }).errors.date, /valid date/);
+    assert.equal(validate("hallBooking", { ...base, date: "2026-10-29" }, { now, options }).ok, true);
+    assert.match(validate("hallBooking", { ...base, date: "2026-10-28" }, { now, options }).errors.date, /today/);
+    assert.match(validate("hallBooking", { ...base, date: "2029-01-01" }, { now, options }).errors.date, /two years/);
+    assert.match(validate("hallBooking", { ...base, date: "2026-02-30" }, { now, options }).errors.date, /valid date/);
   });
 
   it("needs the end time after the start time", () => {
@@ -56,9 +58,11 @@ describe("shared form rules", () => {
   });
 
   it("only accepts listed options and validates one step at a time", () => {
-    assert.match(validate("hallBooking", { halls: ["Main Hall"] }, { fields: ["halls"] }).errors.halls, /from the list/);
-    assert.equal(validate("hallBooking", { halls: [] }, { fields: ["halls"] }).errors.halls, "Select at least one hall to continue.");
-    const step = validate("hallBooking", { halls: ["OPT Board Room (A/C)"] }, { fields: ["halls"] });
+    assert.match(validate("hallBooking", { halls: ["Main Hall"] }, { fields: ["halls"], options }).errors.halls, /from the list/);
+    assert.equal(validate("hallBooking", { halls: [] }, { fields: ["halls"], options }).errors.halls, "Select at least one hall to continue.");
+    // Without the Services page's halls nothing can be booked.
+    assert.match(validate("hallBooking", { halls: ["OPT Board Room (A/C)"] }, { fields: ["halls"] }).errors.halls, /from the list/);
+    const step = validate("hallBooking", { halls: ["OPT Board Room (A/C)"] }, { fields: ["halls"], options });
     assert.deepEqual(step, { ok: true, values: { halls: ["OPT Board Room (A/C)"] }, errors: {} });
   });
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { validate } from "../../shared/forms.js";
-import { assets, formPerks } from "../data/content.js";
+import { assets } from "../ui/assets.js";
 import { FormError, firstError, joinNewsletter, prepareProof } from "../lib/api.js";
 import Arrow from "./Arrow.jsx";
 import { Honeypot } from "./FormDialog.jsx";
@@ -15,7 +15,7 @@ const fields = [
 ];
 const order = [...fields.map((f) => f.name), "consent"];
 
-export default function NewsletterForm() {
+export default function NewsletterForm({ perks }) {
   const [values, setValues] = useState({});
   const [consent, setConsent] = useState(false);
   const [hp, setHp] = useState("");
@@ -61,7 +61,7 @@ export default function NewsletterForm() {
           Get updates on FTCCI events, industry developments, business opportunities and initiatives.
         </p>
         <ul className={styles.perks}>
-          {formPerks.map((p, i) => (
+          {perks.map((p, i) => (
             <li key={p}>
               <img src={assets.checks[i]} alt="" width="14.3" height="14.3" />
               {p}

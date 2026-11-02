@@ -1,32 +1,57 @@
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import CroppedImage from "../components/CroppedImage.jsx";
+import { isRouteErrorResponse, Link, useLoaderData, useRouteError } from "react-router";
+import { todayInIndia } from "../../shared/forms.js";
 import EventInterestForm from "../components/EventInterestForm.jsx";
+import { CoverImage } from "../components/Img.jsx";
+import { isPreview, item } from "../lib/content.server.js";
+import { dayMonthYear, timeRange } from "../lib/format.js";
+import { icons } from "../ui/assets.js";
 import NotFound from "./NotFound.jsx";
-import { eventDetails, eventIcons } from "../data/events.js";
 import styles from "./EventDetail.module.css";
 
+const eventIcons = icons.event;
+
+export async function loader({ params, request }) {
+  const event = await item("event", params.slug, request);
+  const ogImage = event.image ? new URL(event.image.url, request.url).href : null;
+  return Response.json({ event, ogImage, upcoming: !event.archived && event.date >= todayInIndia() }, isPreview(request) ? { headers: { "Cache-Control": "private, no-store" } } : undefined);
+}
+
+export const meta = ({ data }) =>
+  data
+    ? [
+        { title: `${data.event.title} – FTCCI` },
+        { name: "description", content: data.event.intro ?? data.event.subtitle ?? data.event.title },
+        { property: "og:title", content: data.event.title },
+        ...(data.ogImage ? [{ property: "og:image", content: data.ogImage }] : []),
+      ]
+    : [];
+
+export function ErrorBoundary() {
+  const error = useRouteError();
+  if (isRouteErrorResponse(error) && error.status === 404) return <NotFound />;
+  throw error;
+}
+
 export default function EventDetail() {
-  const { slug } = useParams();
+  const { event: ev, upcoming } = useLoaderData();
   const [registering, setRegistering] = useState(false);
-  const ev = eventDetails[slug];
-  if (!ev) return <NotFound />;
 
   const facts = [
-    { label: "Date", value: ev.date, icon: eventIcons.detailCalendar },
-    { label: "Venue", value: ev.venue, icon: eventIcons.detailPin },
-    { label: "Status", value: ev.status, icon: eventIcons.detailStatus },
-  ];
+    { label: "Date", value: `${dayMonthYear(ev.date)}${ev.startTime ? ` | ${timeRange(ev.startTime, ev.endTime, true)}` : ""}`, icon: eventIcons.detailCalendar },
+    ev.venue && { label: "Venue", value: ev.venue, icon: eventIcons.detailPin },
+    { label: "Status", value: upcoming ? "Upcoming" : "Past event", icon: eventIcons.detailStatus },
+  ].filter(Boolean);
 
   return (
     <>
       <section className={styles.hero}>
         <div className={styles.heroText}>
-          <span className={styles.tag}>{ev.tag}</span>
+          {ev.category && <span className={styles.tag}>{ev.category}</span>}
           <h1>{ev.title}</h1>
-          <p>{ev.intro}</p>
+          {(ev.intro || ev.subtitle) && <p>{ev.intro || ev.subtitle}</p>}
         </div>
-        <CroppedImage src={ev.image} crop={ev.crop} alt={ev.title} className={styles.heroImg} />
+        <CoverImage media={ev.image} alt={ev.title} className={styles.heroImg} sizes="(min-width: 1200px) 727px, 100vw" loading="eager" />
       </section>
 
       <section className={styles.body}>
@@ -41,22 +66,37 @@ export default function EventDetail() {
 
           <div className={styles.grid}>
             <div className={styles.aboutBlock}>
-              <h2>About This Event</h2>
-              <p className={styles.about}>{ev.about}</p>
+              {ev.about && (
+                <>
+                  <h2>About This Event</h2>
+                  <p className={styles.about}>{ev.about}</p>
+                </>
+              )}
             </div>
             <div className={styles.expectBlock}>
-              <h2 className={styles.expectTitle}>What to Expect</h2>
-              <ul className={styles.expect}>
-                {ev.expect.map((x) => (
-                  <li key={x}>
-                    <img src={eventIcons.check} alt="" width="18.5" height="18.5" />
-                    {x}
-                  </li>
+              {ev.expect?.length > 0 && (
+                <>
+                  <h2 className={styles.expectTitle}>What to Expect</h2>
+                  <ul className={styles.expect}>
+                    {ev.expect.map((x) => (
+                      <li key={x}>
+                        <img src={eventIcons.check} alt="" width="18.5" height="18.5" />
+                        {x}
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+              {upcoming &&
+                (ev.registrationUrl ? (
+                  <a className={styles.register} href={ev.registrationUrl} target="_blank" rel="noreferrer">
+                    Register <span aria-hidden="true">→</span>
+                  </a>
+                ) : (
+                  <button type="button" className={styles.register} onClick={() => setRegistering(true)}>
+                    Register Interest <span aria-hidden="true">→</span>
+                  </button>
                 ))}
-              </ul>
-              <button type="button" className={styles.register} onClick={() => setRegistering(true)}>
-                Register Interest <span aria-hidden="true">→</span>
-              </button>
             </div>
 
             <aside className={styles.side}>
@@ -76,13 +116,16 @@ export default function EventDetail() {
                   ))}
                 </dl>
               </div>
-              {/* TODO: link to the event brochure PDF */}
-              <a className={styles.pdf} href="#download">Download PDF</a>
+              {ev.brochure && (
+                <a className={styles.pdf} href={ev.brochure.url} download target="_blank" rel="noreferrer">Download PDF</a>
+              )}
             </aside>
           </div>
         </div>
       </section>
-      <EventInterestForm open={registering} onClose={() => setRegistering(false)} event={slug} eventTitle={ev.title} />
+      {upcoming && !ev.registrationUrl && (
+        <EventInterestForm open={registering} onClose={() => setRegistering(false)} event={ev.slug} eventTitle={ev.title} />
+      )}
     </>
   );
 }

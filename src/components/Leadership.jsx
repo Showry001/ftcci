@@ -1,8 +1,7 @@
-import { officeBearers } from "../data/content.js";
-import CroppedImage from "./CroppedImage.jsx";
+import { CoverImage } from "./Img.jsx";
 import styles from "./Leadership.module.css";
 
-export default function Leadership() {
+export default function Leadership({ bearers }) {
   return (
     <section className={styles.section} aria-labelledby="leadership-title">
       <div className={`container ${styles.inner}`}>
@@ -16,9 +15,9 @@ export default function Leadership() {
           </p>
         </div>
         <ul className={styles.cards}>
-          {officeBearers.map((l, i) => (
+          {bearers.map((l, i) => (
             <li key={l.name} className={`${styles.card} ${i === 1 ? styles.raised : ""}`}>
-              <CroppedImage src={l.image} crop={l.crop} alt={`Portrait of ${l.name}`} className={styles.photo} />
+              <CoverImage media={l.image} alt={`Portrait of ${l.name}`} className={styles.photo} sizes="180px" />
               <div className={styles.caption}>
                 <div className={styles.captionInner}>
                   <h3>{l.name}</h3>

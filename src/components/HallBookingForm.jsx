@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
+import { useRouteLoaderData } from "react-router";
 import { cateringOptions, equipmentOptions, forms, organisationCategories, todayInIndia, validate } from "../../shared/forms.js";
-import { bookingHalls } from "../../shared/halls.js";
-import { hallFiles } from "../data/services.js";
 import { FormError, firstError, prepareProof, sendForm } from "../lib/api.js";
 import FormDialog, { Chips, Field, Honeypot, Toggles } from "./FormDialog.jsx";
 import styles from "./FormDialog.module.css";
@@ -39,6 +38,7 @@ const contactFields = [
 
 // Four-step hall requisition modal opened from the header's "Hall Booking" button and the Services page.
 export default function HallBookingForm({ open, onClose }) {
+  const { halls, hallForm } = useRouteLoaderData("site");
   const [step, setStep] = useState(0);
   const [v, setV] = useState(empty);
   const [hp, setHp] = useState("");
@@ -82,7 +82,8 @@ export default function HallBookingForm({ open, onClose }) {
   const onSubmit = async (e) => {
     e.preventDefault();
     const last = step === steps.length - 1;
-    const { ok, values, errors } = validate("hallBooking", v, last ? {} : { fields: stepFields[step] });
+    const options = { halls: halls.map((h) => h.name) };
+    const { ok, values, errors } = validate("hallBooking", v, last ? { options } : { fields: stepFields[step], options });
     if (!ok) return showError(errors);
     if (!last) return goTo(step + 1);
 
@@ -144,7 +145,7 @@ export default function HallBookingForm({ open, onClose }) {
           <fieldset className={styles.fieldset}>
             <legend className={styles.hint}>Select one or more halls for your event</legend>
             <div className={styles.halls}>
-              {bookingHalls.map((h, i) => (
+              {halls.map((h, i) => (
                 <div key={h.name} className={styles.hall}>
                   <label className={styles.hallPick}>
                     <input
@@ -174,9 +175,11 @@ export default function HallBookingForm({ open, onClose }) {
             </div>
           </fieldset>
           <p className={styles.note}>* Eatables not allowed in Auditorium</p>
-          <a className={styles.requisition} href={hallFiles.form.href} download target="_blank" rel="noreferrer">
-            Hall Requisition Form
-          </a>
+          {hallForm && (
+            <a className={styles.requisition} href={hallForm.url} download target="_blank" rel="noreferrer">
+              Hall Requisition Form
+            </a>
+          )}
         </>
       )}
 

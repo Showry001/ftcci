@@ -4,3 +4,6 @@ dist
 .env.*
 !.env.example
 api/.data
+build
+# React Router type generation
+.react-router

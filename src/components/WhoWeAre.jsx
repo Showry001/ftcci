@@ -1,10 +1,10 @@
-import { assets } from "../data/content.js";
+import Img from "./Img.jsx";
 import styles from "./WhoWeAre.module.css";
 
-export default function WhoWeAre() {
+export default function WhoWeAre({ image, photo }) {
   return (
     <section className={styles.section} id="about" aria-labelledby="who-title">
-      <img className={styles.bg} src={assets.whoWeAreBg} alt="" aria-hidden="true" />
+      <Img className={styles.bg} media={image} alt="" aria-hidden="true" loading="eager" sizes="(min-width: 1200px) 1240px, 100vw" />
       <div className={styles.tint} aria-hidden="true" />
       <div className={styles.inner}>
         <div className={styles.copy}>
@@ -29,7 +29,7 @@ export default function WhoWeAre() {
           </div>
         </div>
         <figure className={styles.media}>
-          <img src={assets.membersNetworking} alt="FTCCI members networking at a chamber event" loading="lazy" />
+          <Img media={photo} sizes="(min-width: 1200px) 560px, 100vw" />
           <figcaption className={styles.quote}>
             <span className={styles.quoteLabel}>Member Voice</span>
             <blockquote>

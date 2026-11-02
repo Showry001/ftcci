@@ -1,4 +1,4 @@
-import { assets } from "../data/content.js";
+import { assets } from "../ui/assets.js";
 
 // 9×8 arrow glyph exported from Figma (navy on light buttons, white on dark buttons).
 // The SVG has a 6.25% / 5.56% bleed, reproduced with the negative inset wrapper.

@@ -12,7 +12,7 @@ try {
 }
 
 const db = createDb(config.databaseUrl);
-const { app, mailer } = await buildApp({
+const { app, mailer, jobs } = await buildApp({
   config,
   db,
   transport: smtpTransport(config),
@@ -20,7 +20,10 @@ const { app, mailer } = await buildApp({
 });
 
 await app.listen({ host: config.host, port: config.port });
-if (config.runWorker) mailer.start();
+if (config.runWorker) {
+  mailer.start();
+  jobs.start();
+}
 app.log.info(`Email goes out through ${config.smtp.host}:${config.smtp.port} as ${config.mailFrom.address}`);
 app.log.info(config.adminLocalOnly ? "Admin API is on for this computer only (development)." : "Admin API is off until Phase 4 adds login.");
 

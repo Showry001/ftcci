@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
-import { assets, venueHighlights, venues } from "../data/content.js";
+import { Link } from "react-router";
+import { assets } from "../ui/assets.js";
+import Img, { CoverImage } from "./Img.jsx";
 import useMarquee from "./useMarquee.js";
-import CroppedImage from "./CroppedImage.jsx";
 import Dots from "./Dots.jsx";
 import styles from "./Venues.module.css";
 
-export default function Venues() {
+export default function Venues({ highlights, featured, venues }) {
   const m = useMarquee(venues.length);
   return (
     <section className={`${styles.section} desktop-only`} id="venues" aria-labelledby="venues-title">
@@ -20,7 +20,7 @@ export default function Venues() {
               venues designed to host impactful business gatherings.
             </p>
             <ul className={styles.list}>
-              {venueHighlights.map((h, i) => (
+              {highlights.map((h, i) => (
                 <li key={h}>
                   <img src={i === 0 ? assets.venueCheckFirst : assets.venueCheck} alt="" width="20" height="20" />
                   {h}
@@ -29,20 +29,14 @@ export default function Venues() {
             </ul>
             <Link to="/services#hall-booking" className={styles.cta}>Book a Hall&nbsp;&nbsp;→</Link>
           </div>
-          <img className={styles.featured} src={assets.venueFeatured} alt="K.L.N. Prasad Auditorium" loading="lazy" />
+          <Img className={styles.featured} media={featured} sizes="(min-width: 1200px) 600px, 100vw" />
         </div>
 
         <div className={styles.track} ref={m.trackRef}>
           <div className={styles.strip} ref={m.stripRef}>
             {[...venues, ...venues].map((v, i) => (
               <article key={i} className={styles.card} aria-hidden={i >= venues.length || undefined}>
-                <CroppedImage
-                  src={v.image}
-                  crop={v.crop}
-                  alt={v.name}
-                  className={styles.photo}
-                  style={v.crop?.box ? { height: v.crop.box } : undefined}
-                />
+                <CoverImage media={v.image} alt={v.name} className={styles.photo} sizes="300px" />
                 <div className={styles.caption}>
                   <h3>{v.name}</h3>
                   <p>{v.detail}</p>

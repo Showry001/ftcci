@@ -1,6 +1,10 @@
-import { Link } from "react-router-dom";
-import { kIcons } from "../../data/knowledge.js";
+import { Link } from "react-router";
+import { reviewDate } from "../../lib/format.js";
+import { icons } from "../../ui/assets.js";
+import Img from "../Img.jsx";
 import styles from "./KnowledgeCards.module.css";
+
+const kIcons = icons.knowledge;
 
 // Section header with a title (accent word) + blurb and an optional "View all" link.
 export function KHeader({ title, accent, text, to, dark = false }) {
@@ -21,19 +25,19 @@ export function KHeader({ title, accent, text, to, dark = false }) {
   );
 }
 
-export function LatestIssue({ issue, onRead }) {
+export function LatestIssue({ issue, text, onRead }) {
   return (
     <article className={styles.latest}>
-      <img className={styles.latestCover} src={issue.cover} alt={`FTCCI Review ${issue.date} cover`} loading="lazy" />
+      <Img className={styles.latestCover} media={issue.cover} alt={`FTCCI Review ${reviewDate(issue.date)} cover`} sizes="300px" />
       <div className={styles.latestBody}>
         <p className={styles.latestEyebrow}>Latest Issue</p>
-        <h3>{issue.date}</h3>
-        <p className={styles.latestText}>{issue.text}</p>
+        <h3>{reviewDate(issue.date)}</h3>
+        {(issue.summary || text) && <p className={styles.latestText}>{issue.summary || text}</p>}
         <div className={styles.latestActions}>
           <button type="button" className={styles.readNow} aria-haspopup="dialog" onClick={onRead}>
             Read Now <img src={kIcons.arrowDark} alt="" width="14" height="14" />
           </button>
-          <a href={issue.pdf} download target="_blank" rel="noreferrer" className={styles.downloadBtn}>
+          <a href={issue.file?.url} download target="_blank" rel="noreferrer" className={styles.downloadBtn}>
             Download PDF <img src={kIcons.downloadNavy} alt="" width="20" height="20" />
           </a>
         </div>
@@ -45,10 +49,10 @@ export function LatestIssue({ issue, onRead }) {
 export function IssueRow({ issue }) {
   return (
     <article className={styles.issue}>
-      <img className={styles.issueCover} src={issue.cover} alt="" loading="lazy" />
+      <Img className={styles.issueCover} media={issue.cover} alt="" sizes="120px" />
       <div>
-        <h3>{issue.date}</h3>
-        <a href={issue.pdf} download target="_blank" rel="noreferrer" className={styles.issueDl}>
+        <h3>{reviewDate(issue.date)}</h3>
+        <a href={issue.file?.url} download target="_blank" rel="noreferrer" className={styles.issueDl}>
           Download PDF <img src={kIcons.downloadGold} alt="" width="16" height="16" />
         </a>
       </div>
@@ -61,7 +65,7 @@ export function QuickLink({ link }) {
     <a href={link.href} target="_blank" rel="noreferrer" className={styles.quick}>
       <span>
         <strong>{link.title}</strong>
-        <small>{link.sub}</small>
+        <small>{link.group}</small>
       </span>
       <img src={kIcons.upRight} alt="" width="14" height="14" />
     </a>
@@ -72,12 +76,12 @@ export function PublicationCard({ pub }) {
   return (
     <article className={styles.pub}>
       <div className={styles.pubCover}>
-        <img src={pub.image} alt={`${pub.title} cover`} loading="lazy" />
+        <Img media={pub.cover} alt={`${pub.title} cover`} sizes="300px" />
       </div>
       <div className={styles.pubBody}>
-        <time>{pub.date}</time>
+        <span>{pub.meta}</span>
         <h3>{pub.title}</h3>
-        <a href={pub.href} target="_blank" rel="noreferrer">Download PDF --&gt;</a>
+        <a href={pub.file?.url} target="_blank" rel="noreferrer">Download PDF --&gt;</a>
       </div>
     </article>
   );

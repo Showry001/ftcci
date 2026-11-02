@@ -340,3 +340,44 @@
     justify-content: center;
   }
 }
+
+/* Buttons from the Figma "Add New Event" screen (2538:44201): navy outline and navy filled. */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 10.8px 21.6px;
+  border: 1px solid var(--navy);
+  border-radius: 8px;
+  background: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--navy);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.button:hover:not(:disabled) {
+  background: var(--head-row);
+}
+.button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.primaryButton {
+  padding-inline: 32px;
+  background: var(--navy);
+  color: #fff;
+}
+.primaryButton:hover:not(:disabled) {
+  background: #0f1f47;
+}
+.dangerButton {
+  border-color: var(--red);
+  color: var(--red);
+}
+.dangerButton:hover:not(:disabled) {
+  background: var(--red-bg);
+}

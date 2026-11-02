@@ -117,7 +117,7 @@ Changes from the client's Phase 1 review. Items that need a server or the admin 
 | Media | Every Press Kit tile downloads its file. "Brand Logos" offers the site emblem until FTCCI supplies print-ready logo files. |
 | New pages | `/privilege-card` (Figma "Desktop - 203"): the buttons go to the live portal at privilegecard.ftcci.in; FAQ answers come from the portal; 46 partners have filters, search and "View More". `/careers` shows "No vacancy" (as on ftcci.in) and lists jobs once they're added. |
 
-**Where documents come from.** Forms, flyers, reports and Review issues still live on ftcci.in. The dev server relays them under `/ftcci/ftcci-files/` so the reader and downloads work locally (`vite.config.js`, `src/data/files.js`). A production build links to ftcci.in directly: those PDFs open in a new tab, and the reader falls back to "Open the PDF in a new tab", because ftcci.in doesn't allow cross-site reads. Phase 3 moves these files into the CMS media library.
+**Where documents come from** (superseded in Phase 3, see below). Forms, flyers, reports and Review issues still live on ftcci.in. The dev server relays them under `/ftcci/ftcci-files/` so the reader and downloads work locally (`vite.config.js`, `src/data/files.js`). A production build links to ftcci.in directly: those PDFs open in a new tab, and the reader falls back to "Open the PDF in a new tab", because ftcci.in doesn't allow cross-site reads. Phase 3 moves these files into the CMS media library.
 
 **Later phases (recorded, not built):** the hall booking server and email (Phase 2), the membership application form (Phase 2), event "Register interest" form (Phase 2), the hero image carousel managed in admin (Phase 3), careers and committee editing in admin (Phase 3), and the legacy file import (Phase 3).
 
@@ -128,3 +128,26 @@ Changes from the client's Phase 1 review. Items that need a server or the admin 
 - Desktop page heights versus Figma: within ±17px on every route except Publications (+18). The remaining differences come from the Inter fallback.
 - Every desktop item D1–D18 was re-checked in the browser's computed styles. Mobile pages were compared side by side with the Figma renders.
 - 28 Oct round: all 66 document links resolve through the relay; overflow sweep re-run on every route including `/privilege-card` and `/careers`; tariff popover, booking modal, flipbook (open, turn, keys, close), halls strip and dots, About drag and scroll-spy checked in headless Chrome.
+
+## Phase 3 notes (29 Oct 2026)
+
+**Public site.** Every page now renders on the server from CMS content. The seed (`npm --prefix api run seed`) reproduces the Phase 1 pages exactly: same text, images cropped to the same frames, and the same order. All documents from ftcci.in (forms, flyers, reports, 155 Review issues) are now in the media library and served from `/media`, so the flipbook reader and downloads work in production too; the dev relay and `src/data/` are gone. Differences from Phase 1:
+
+| Area | Change | Reason |
+|------|--------|--------|
+| Home events | Shows "Recent Events" when nothing is upcoming | The sample events are dated Aug–Sep 2026, which is now past |
+| Booking form hall order | Follows the Services tariff table (K.L.N. Prasad first) | One list, edited on the Services page |
+| Venues strip | The first card has the same height as the others | Cards are now generated from the halls list |
+| FTCCI Review covers | 90 px thumbnails from ftcci.in | Larger covers can be generated from the PDFs if wanted |
+
+**Admin screens** follow the Figma admin frames: the Events list (2538:43797) for every content list, "Add New Event" (2538:44201), "Publish News" (2538:44294) and "Upload Publication" (2538:44371) for the editors, with their Live Preview cards, and "Manage Media" (2538:44446) for the media library. Differences:
+
+| Figma | Admin | Reason |
+|-------|-------|--------|
+| Editors without the sidebar | Editors keep the sidebar; the form switches to one column when narrow | Staff move between sections often; the sidebar holds the submissions counts |
+| Top bar search, notifications and admin profile | Not shown | They need sign-in and roles (Phase 4) |
+| Dashboard Overview (2538:44033), Users & Roles, Activity Log, Settings | Not built | Phase 4 |
+| News "Author", "Registration URL" and "Status" fields; Publication "Author / Editor" | Not added | Not in the brief or on the current site; state is set with the publishing buttons |
+| Media library tabs per page | Tabs filter files by where they are used, plus "Not used" | Files are shared between pages |
+| Row actions eye / edit / "…" | Eye (view on the website) and edit; reorder arrows on Publications and Careers | Every other action is on the editor, with a confirmation |
+

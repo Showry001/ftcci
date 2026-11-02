@@ -1,6 +1,8 @@
 // Settings come from environment variables only (api/.env in development; see api/.env.example).
 // Startup fails with a clear message when something is missing; secret values are never logged.
 import { createHmac } from "node:crypto";
+import { isAbsolute, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { isEmail } from "../../shared/forms.js";
 
 export type Address = { name: string; address: string };
@@ -17,6 +19,10 @@ export interface Config {
   mailReplyTo: string | null;
   notify: { hallBooking: string; membership: string; eventInterest: string; contact: string; newsletter: string };
   altcha: { secret: string; keySecret: string; counterMin: number; counterMax: number };
+  /** Uploaded files live in `dir` (outside the repo in production) and are served at `url`. */
+  media: { dir: string; url: string; ffmpeg: string };
+  /** Signs admin preview links for unpublished content. */
+  previewSecret: string;
   runWorker: boolean;
   /** The admin API exists only on a developer machine until Phase 4 adds login. */
   adminLocalOnly: boolean;
@@ -73,6 +79,11 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
   if (!/^https?:\/\/[^\s/]+/.test(site)) fail("PUBLIC_SITE_URL must start with http:// or https://.");
   if (mode === "production" && !site.startsWith("https://")) fail("PUBLIC_SITE_URL must use https:// in production.");
   const replyTo = env.MAIL_REPLY_TO?.trim() || null;
+  const devMedia = fileURLToPath(new URL("../.data/media", import.meta.url));
+  const mediaDir = resolve(read(env, "MEDIA_DIR", mode === "production" ? undefined : devMedia));
+  if (mode === "production" && !isAbsolute(env.MEDIA_DIR ?? "")) fail("MEDIA_DIR must be an absolute path outside the app folder in production.");
+  const mediaUrl = read(env, "MEDIA_URL", "/media").replace(/\/+$/, "");
+  if (!/^(\/[\w-]+)+$|^https:\/\/[^\s]+$/.test(mediaUrl)) fail("MEDIA_URL must be a path like /media or an https:// address.");
   if (replyTo && !isEmail(replyTo)) fail("MAIL_REPLY_TO must be one email address.");
 
   return {
@@ -104,6 +115,8 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
       counterMin: 10_000,
       counterMax: 40_000,
     },
+    media: { dir: mediaDir, url: mediaUrl, ffmpeg: read(env, "FFMPEG_PATH", "ffmpeg") },
+    previewSecret: createHmac("sha256", secret).update("content-preview").digest("hex"),
     runWorker: env.RUN_WORKER !== "false",
     adminLocalOnly: mode !== "production",
   };

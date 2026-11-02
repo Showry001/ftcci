@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { assets, navLinks } from "../data/content.js";
+import { Link, NavLink, useLocation } from "react-router";
+import { assets, navLinks } from "../ui/assets.js";
 import { useHallBooking } from "./HallBooking.jsx";
 import styles from "./Header.module.css";
 

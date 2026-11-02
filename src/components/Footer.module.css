@@ -48,6 +48,9 @@
   line-height: 15px;
   color: var(--white);
 }
+.address {
+  white-space: pre-line;
+}
 .tagline {
   padding-top: 16px;
   font-size: 14px;

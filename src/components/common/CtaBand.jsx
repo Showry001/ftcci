@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import styles from "./CtaBand.module.css";
 
 // Yellow "Become part of Telangana's business voice" band (MembershipCta).

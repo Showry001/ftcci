@@ -1,16 +1,17 @@
-import { assets, benefits } from "../data/content.js";
+import { pickIcons } from "../ui/assets.js";
+import Img from "./Img.jsx";
 import styles from "./Benefits.module.css";
 
-export default function Benefits() {
+export default function Benefits({ image, photo, benefits }) {
   return (
     <section className={`${styles.section} desktop-only`} id="membership" aria-labelledby="benefits-title">
       <div className={styles.bg} aria-hidden="true">
-        <img src={assets.benefitsBg} alt="" />
+        <Img media={image} alt="" sizes="100vw" />
       </div>
       <div className={styles.gradient} aria-hidden="true" />
       <div className={styles.inner}>
         <figure className={styles.media}>
-          <img src={assets.businessSummit} alt="FTCCI leaders at the Business Summit" loading="lazy" />
+          <Img media={photo} sizes="(min-width: 1200px) 600px, 100vw" />
           <figcaption className={styles.badge}>
             <span className={styles.badgeEyebrow}>HYDERABAD CHAMBER OF COMMERCE</span>
             <span className={styles.badgeTitle}>BUSINESS SUMMIT 2024</span>
@@ -25,7 +26,7 @@ export default function Benefits() {
             {benefits.map((b) => (
               <li key={b.label} className={styles.item}>
                 <span className={styles.iconTile}>
-                  <img src={b.icon} alt="" width="15.12" height="15.12" />
+                  <img src={pickIcons.homeBenefit[b.icon]} alt="" width="15.12" height="15.12" />
                 </span>
                 {b.label}
               </li>

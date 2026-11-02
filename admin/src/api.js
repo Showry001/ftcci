@@ -13,7 +13,12 @@ async function request(method, path, body) {
     throw new Error(OFFLINE);
   }
   const json = await res.json().catch(() => null);
-  if (!res.ok) throw new Error(json?.message ?? OFFLINE);
+  if (!res.ok) {
+    // Content errors also name the fields to fix, keyed by path ("timeline.3.title").
+    const err = new Error(json?.message ?? OFFLINE);
+    err.fields = json?.fields ?? {};
+    throw err;
+  }
   return json;
 }
 
@@ -21,6 +26,8 @@ export const api = {
   get: (path) => request("GET", path),
   patch: (path, body) => request("PATCH", path, body),
   post: (path, body) => request("POST", path, body),
+  put: (path, body) => request("PUT", path, body),
+  delete: (path) => request("DELETE", path),
 };
 
 export const query = (params) => {

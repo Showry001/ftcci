@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
-import { assets } from "../data/content.js";
+import { Link } from "react-router";
+import Img from "./Img.jsx";
 import styles from "./PrivilegeCard.module.css";
 
-export default function PrivilegeCard() {
+export default function PrivilegeCard({ image }) {
   return (
     <section className={styles.section} id="services" aria-labelledby="privilege-title">
       <div className={styles.inner}>
@@ -10,7 +10,7 @@ export default function PrivilegeCard() {
           <p className={styles.eyebrow}>Exclusive Benefits</p>
           <h2 id="privilege-title" className={styles.title}>FTCCI Privilege Card</h2>
           <div className={styles.cardMobile}>
-            <img src={assets.privilegeCard} alt="FTCCI Privilege Card" loading="lazy" />
+            <Img media={image} alt="FTCCI Privilege Card" sizes="(min-width: 1200px) 560px, 100vw" />
           </div>
           <p className={styles.body}>
             Enjoy exclusive savings and benefits across healthcare, diagnostics, pharmacy, wellness, dining and lifestyle
@@ -22,7 +22,7 @@ export default function PrivilegeCard() {
           </div>
         </div>
         <div className={styles.cardDesktop}>
-          <img src={assets.privilegeCard} alt="FTCCI Privilege Card" loading="lazy" />
+          <Img media={image} alt="FTCCI Privilege Card" sizes="(min-width: 1200px) 560px, 100vw" />
         </div>
       </div>
     </section>

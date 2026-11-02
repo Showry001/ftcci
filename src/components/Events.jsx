@@ -1,5 +1,7 @@
-import { Link } from "react-router-dom";
-import { assets, eventSchedule, featuredEvent as f } from "../data/content.js";
+import { Link } from "react-router";
+import { longDate, scheduleDate, time12, timeRange } from "../lib/format.js";
+import { assets } from "../ui/assets.js";
+import Img from "./Img.jsx";
 import styles from "./Events.module.css";
 
 // The mobile frame uses outline icons; desktop uses the filled ones.
@@ -12,52 +14,63 @@ function Icon({ src, mobileSrc, className }) {
   );
 }
 
-export default function Events() {
+// Home "Upcoming Events": a featured card and the next few events. When nothing is scheduled yet, the
+// most recent events are shown instead.
+export default function Events({ upcoming, recent }) {
+  const events = upcoming.length ? upcoming : recent;
+  if (!events.length) return null;
+  const f = events.find((e) => e.featured) ?? events[0];
+  const schedule = events.filter((e) => e !== f).slice(0, 4);
   return (
     <section className={styles.section} id="events" aria-labelledby="events-title">
       <div className={styles.grid}>
         <h2 id="events-title" className={styles.title}>
-          Upcoming <span>Events</span>
+          {upcoming.length ? "Upcoming" : "Recent"} <span>Events</span>
         </h2>
         <Link to="/events" className={styles.outline}>See all events</Link>
 
         <article className={styles.featured}>
-          <img className={styles.featuredImg} src={f.image} alt="" loading="lazy" />
+          <Img className={styles.featuredImg} media={f.image} alt="" sizes="(min-width: 1200px) 620px, 100vw" />
           <div className={styles.overlay}>
             <h3 className={styles.name}>{f.title}</h3>
             <div className={styles.overlayRow}>
               <div className={styles.metaList}>
                 <p className={styles.meta}>
                   <Icon src={assets.iconCalendar} mobileSrc={assets.iconCalendarMobile} />
-                  {f.date}
+                  {longDate(f.date)}
+                  {f.startTime && ` · ${timeRange(f.startTime, f.endTime)}`}
                 </p>
-                <p className={styles.meta}>
-                  <Icon src={assets.iconLocation} mobileSrc={assets.iconLocationMobile} />
-                  {f.venue}
-                </p>
+                {f.venue && (
+                  <p className={styles.meta}>
+                    <Icon src={assets.iconLocation} mobileSrc={assets.iconLocationMobile} />
+                    {f.venue}
+                  </p>
+                )}
               </div>
-              <Link to={f.href} className={styles.cta}>View details →</Link>
+              <Link to={`/events/${f.slug}`} className={styles.cta}>View details →</Link>
             </div>
           </div>
         </article>
 
         <ul className={styles.schedule}>
-          {eventSchedule.map((e) => (
-            <li key={e.title} className={styles.row}>
+          {schedule.map((e) => (
+            <li key={e.slug} className={styles.row}>
               <p className={styles.when}>
-                <strong>{e.date}</strong>
-                <span>{e.time}</span>
+                <strong>{scheduleDate(e.date)}</strong>
+                <span>{time12(e.startTime, true)}</span>
               </p>
-              <img className={styles.thumb} src={e.image} alt="" loading="lazy" />
+              <Img className={styles.thumb} media={e.image} alt="" sizes="120px" />
               <div className={styles.what}>
                 <h3>{e.title}</h3>
-                <p>
-                  <Icon src={assets.iconPin} mobileSrc={assets.iconPinMobile} />
-                  {e.venue}
-                </p>
+                {e.venue && (
+                  <p>
+                    <Icon src={assets.iconPin} mobileSrc={assets.iconPinMobile} />
+                    {e.venue}
+                  </p>
+                )}
               </div>
-              <Link to={e.href} className={styles.join} aria-label={`Join now: ${e.title}`}>
-                JOIN NOW
+              <Link to={`/events/${e.slug}`} className={styles.join} aria-label={`${upcoming.length ? "Join now" : "View"}: ${e.title}`}>
+                {upcoming.length ? "JOIN NOW" : "VIEW"}
               </Link>
             </li>
           ))}

@@ -1,12 +1,15 @@
 import assert from "node:assert/strict";
 import { beforeEach, describe, it } from "node:test";
-import { db, hallBooking, makeApp, proof, resetDb } from "./helpers.ts";
+import { db, hallBooking, makeApp, proof, publishHalls, resetDb } from "./helpers.ts";
 
 const post = (app: any, form: string, payload: object, remoteAddress = "203.0.113.10") =>
   app.inject({ method: "POST", url: `/api/forms/${form}`, payload, remoteAddress });
 
 describe("form submissions", () => {
-  beforeEach(resetDb);
+  beforeEach(async () => {
+    await resetDb();
+    await publishHalls();
+  });
 
   it("saves a hall booking as New, returns its reference and emails staff and the visitor", async () => {
     const { app, mailer, transport } = await makeApp();

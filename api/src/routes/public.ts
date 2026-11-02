@@ -1,6 +1,7 @@
 import type { FastifyInstance, FastifyReply } from "fastify";
 import { validate } from "../../../shared/forms.js";
 import type { Config } from "../config.ts";
+import { cached } from "../content/cache.ts";
 import type { Db } from "../db/schema.ts";
 import { checkProof, newChallenge } from "../lib/altcha.ts";
 import { confirm, subscribe } from "../lib/newsletter.ts";
@@ -30,6 +31,21 @@ const limit = (max: number, minutes: number) => ({ rateLimit: { max, timeWindow:
 const reject = (reply: FastifyReply, code: number, error: string, message: string, fields?: Record<string, string>) =>
   reply.code(code).send({ error, message, ...(fields ? { fields } : {}) });
 
+// Halls offered in the booking form are the ones published on the Services page.
+function hallNames(db: Db): Promise<string[]> {
+  return cached("hall-names", async () => {
+    const row = await db
+      .selectFrom("documents")
+      .select("published_data")
+      .where("type", "=", "services")
+      .where("slug", "is", null)
+      .where("status", "=", "published")
+      .where("deleted_at", "is", null)
+      .executeTakeFirst();
+    return ((row?.published_data?.halls ?? []) as { name: string }[]).map((h) => h.name);
+  });
+}
+
 const BOT = "We couldn't accept this form. Please try again, or email info@ftcci.in.";
 const CHECK = "We couldn't confirm this request came from a person. Please try sending it again.";
 const FIX = "Please correct the highlighted details and try again.";
@@ -54,7 +70,8 @@ export async function publicRoutes(app: FastifyInstance, { db, config, mailer }:
     async (req, reply) => {
       const entry = formEntries[req.params.form];
       if (req.body.hp) return reject(reply, 400, "rejected", BOT);
-      const { ok, values, errors } = validate(entry.form, req.body.data);
+      const options = entry.form === "hallBooking" ? { halls: await hallNames(db) } : undefined;
+      const { ok, values, errors } = validate(entry.form, req.body.data, { options });
       if (!ok) return reject(reply, 400, "invalid", FIX, errors);
       if (!(await checkProof(db, config.altcha, req.body.altcha))) return reject(reply, 403, "verification", CHECK);
 

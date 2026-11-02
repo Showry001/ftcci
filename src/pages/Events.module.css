@@ -120,6 +120,11 @@ a.card:hover {
   text-align: center;
   color: var(--slate-600);
 }
+.empty a {
+  color: var(--navy-900);
+  font-weight: 600;
+  text-decoration: underline;
+}
 
 /* Past Events: financial-year chips + bordered list */
 .pastSection {
@@ -165,6 +170,16 @@ a.card:hover {
   gap: 33px;
   min-height: 190.78px;
   padding: 25px 31.79px;
+}
+.pastLink {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 33px;
+  min-width: 0;
+}
+.pastLink:hover h3 {
+  color: var(--gold-600);
 }
 .pastRow + .pastRow {
   border-top: 1px solid rgba(39, 39, 39, 0.21);
@@ -324,6 +339,9 @@ a.card:hover {
     gap: 20px;
     min-height: 124px;
     padding: 16px 10px;
+  }
+  .pastLink {
+    gap: 20px;
   }
   .pastRow + .pastRow {
     border-top-color: rgba(39, 39, 39, 0.08);

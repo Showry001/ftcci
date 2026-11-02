@@ -1,9 +1,16 @@
 import { useEffect, useRef } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router";
+import { single } from "../lib/content.server.js";
 import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
 import { HallBookingProvider } from "./HallBooking.jsx";
 import useReveal from "./useReveal.js";
+
+// Footer details and the hall list for the booking dialog are needed on every page.
+export async function loader({ request }) {
+  const [site, services] = await Promise.all([single("site", request), single("services", request)]);
+  return { site, halls: services.halls, hallForm: services.hallForm };
+}
 
 // Shared shell: header + page + footer. Scrolls to top (or to #hash) on navigation.
 export default function Layout() {

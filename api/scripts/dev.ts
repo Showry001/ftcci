@@ -1,7 +1,7 @@
 // Development only (`npm run dev`): starts a local Postgres in api/.data/pg and a local mail catcher,
 // applies migrations, then runs the API and restarts it when its code or api/.env changes.
 import { spawn } from "node:child_process";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, unwatchFile, watch, watchFile } from "node:fs";
 import { parseEnv } from "node:util";
 import EmbeddedPostgres from "embedded-postgres";
 import { createDb, migrate } from "../src/db/index.ts";
@@ -56,13 +56,51 @@ console.log(`[mail] catcher on 127.0.0.1:${CATCHER_PORT} saves to api/.data/mail
 // of the API's environment, because they would override later edits to the file.
 const fromFile = existsSync(".env") ? Object.keys(parseEnv(readFileSync(".env", "utf8"))) : [];
 const apiEnv = Object.fromEntries(Object.entries(env).filter(([key]) => !fromFile.includes(key)));
-const watch = ["src", "../shared", ...(existsSync(".env") ? [".env"] : [])].map((path) => `--watch-path=${path}`);
-const api = spawn(process.execPath, ["--env-file-if-exists=.env", ...watch, "src/server.ts"], { stdio: "inherit", env: apiEnv });
-
+// Hero videos are compressed with the ffmpeg bundled for development unless FFMPEG_PATH says otherwise.
+if (!env.FFMPEG_PATH) {
+  const { default: ffmpegPath } = (await import("ffmpeg-static")) as unknown as { default: string | null };
+  if (ffmpegPath) apiEnv.FFMPEG_PATH = ffmpegPath;
+}
+// Restarts the API when its code (src/, ../shared/) or api/.env changes. Node's own --watch is not
+// used: on macOS it also reacts to files written under api/.data (uploads, the database).
+const startApi = () => spawn(process.execPath, ["--env-file-if-exists=.env", "src/server.ts"], { stdio: "inherit", env: apiEnv });
+let api = startApi();
 let stopping = false;
+const onExit = (code: number | null) => {
+  if (!stopping) console.log(`[api] stopped (exit ${code}); it restarts when a file changes`);
+};
+api.on("exit", onExit);
+
+let pending: NodeJS.Timeout | undefined;
+function restart(reason: string) {
+  clearTimeout(pending);
+  pending = setTimeout(() => {
+    console.log(`[api] ${reason}, restarting`);
+    const old = api;
+    old.off("exit", onExit);
+    const next = () => {
+      api = startApi();
+      api.on("exit", onExit);
+    };
+    if (old.exitCode !== null || old.signalCode !== null) next();
+    else {
+      old.once("exit", next);
+      old.kill("SIGTERM");
+    }
+  }, 300);
+}
+const watchers = ["src", "../shared"].map((dir) =>
+  watch(dir, { recursive: true }, (_event, file) => {
+    if (file && /\.(ts|js|json|png)$/.test(file)) restart(`${dir}/${file} changed`);
+  }),
+);
+if (existsSync(".env")) watchFile(".env", { interval: 1000 }, () => restart("api/.env changed"));
+
 async function stop() {
   if (stopping) return;
   stopping = true;
+  unwatchFile(".env");
+  for (const w of watchers) w.close();
   api.kill("SIGTERM");
   catcher.close();
   await pg.stop();
@@ -70,4 +108,3 @@ async function stop() {
 }
 process.on("SIGINT", stop);
 process.on("SIGTERM", stop);
-api.on("exit", () => void stop());

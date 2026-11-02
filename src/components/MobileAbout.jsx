@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import Arrow from "./Arrow.jsx";
 import styles from "./MobileAbout.module.css";
 

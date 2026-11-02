@@ -2,13 +2,16 @@ import assert from "node:assert/strict";
 import { beforeEach, describe, it } from "node:test";
 import { sql } from "kysely";
 import { MAX_ATTEMPTS, retryDelaySeconds } from "../src/mail/outbox.ts";
-import { db, hallBooking, makeApp, proof, resetDb } from "./helpers.ts";
+import { db, hallBooking, makeApp, proof, publishHalls, resetDb } from "./helpers.ts";
 
 const outbox = () => db.selectFrom("email_outbox").selectAll().orderBy("id").execute();
 const makeDue = () => sql`update email_outbox set next_attempt_at = now() where status = 'pending'`.execute(db);
 
 describe("email outbox", () => {
-  beforeEach(resetDb);
+  beforeEach(async () => {
+    await resetDb();
+    await publishHalls();
+  });
 
   it("keeps the submission and confirms it to the visitor even when SMTP is down", async () => {
     const { app, mailer, transport } = await makeApp();

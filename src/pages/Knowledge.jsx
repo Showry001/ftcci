@@ -1,18 +1,34 @@
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router";
 import PageHero from "../components/common/PageHero.jsx";
 import SubNav from "../components/common/SubNav.jsx";
 import useReader from "../components/useReader.jsx";
 import { IssueRow, KHeader, LatestIssue, PublicationCard, QuickLink } from "../components/common/KnowledgeCards.jsx";
-import { kIcons, knowledgeSubNav, latestReview, recentReviews, usefulLinks } from "../data/knowledge.js";
-import { publications } from "../data/content.js";
+import { list, single } from "../lib/content.server.js";
+import { reviewDate } from "../lib/format.js";
+import { icons, subNav } from "../ui/assets.js";
 import styles from "./Knowledge.module.css";
 
+export async function loader({ request }) {
+  const [page, reviews, publications] = await Promise.all([single("knowledge", request), list("review", { limit: 4 }), list("publication", { limit: 4 })]);
+  // The landing page shows a few links picked from the full directory.
+  const directory = page.linkDirectory.flatMap((g) => g.links.map((l) => ({ ...l, group: g.group })));
+  const links = page.featuredLinks.map((t) => directory.find((l) => l.title === t)).filter(Boolean);
+  return { latestText: page.latestReviewText, reviews: reviews.items, publications: publications.items, links };
+}
+
+export const meta = () => [
+  { title: "Knowledge Centre – FTCCI" },
+  { name: "description", content: "The FTCCI Review weekly journal, useful government and industry links, and FTCCI publications and reports." },
+];
+
 export default function Knowledge() {
+  const { latestText, reviews, publications, links } = useLoaderData();
+  const [latest, ...recent] = reviews;
   const [reader, openReader] = useReader();
   return (
     <>
       <PageHero crumb="Home > Knowledge Centre" title="Knowledge Centre" />
-      <SubNav items={knowledgeSubNav} label="Knowledge Centre" />
+      <SubNav items={subNav.knowledge} label="Knowledge Centre" />
 
       <section className={styles.review}>
         <div className="container">
@@ -23,13 +39,16 @@ export default function Knowledge() {
             to="/knowledge/ftcci-review"
           />
           <div className={styles.reviewRow}>
-            <LatestIssue
-              issue={latestReview}
-              onRead={() => openReader({ src: latestReview.pdf, title: `FTCCI Review – ${latestReview.date}` })}
-            />
+            {latest && (
+              <LatestIssue
+                issue={latest}
+                text={latestText}
+                onRead={() => openReader({ src: latest.file.url, title: `FTCCI Review – ${reviewDate(latest.date)}` })}
+              />
+            )}
             <div className={styles.issueList}>
-              {recentReviews.map((r) => (
-                <IssueRow key={r.id} issue={r} />
+              {recent.map((r) => (
+                <IssueRow key={r.slug} issue={r} />
               ))}
             </div>
           </div>
@@ -40,12 +59,12 @@ export default function Knowledge() {
         <div className="container">
           <KHeader title="Useful" accent="Links" text="Government, regulatory and industry portals our members reach for most often." />
           <div className={styles.linkGrid}>
-            {usefulLinks.map((l) => (
+            {links.map((l) => (
               <QuickLink key={l.title} link={l} />
             ))}
           </div>
           <Link to="/knowledge/useful-links" className={styles.viewAllLinks}>
-            View all Links <img src={kIcons.arrowDark} alt="" width="14" height="14" />
+            View all Links <img src={icons.knowledge.arrowDark} alt="" width="14" height="14" />
           </Link>
         </div>
       </section>
@@ -60,8 +79,8 @@ export default function Knowledge() {
             dark
           />
           <div className={styles.pubGrid}>
-            {publications.slice(0, 4).map((p, i) => (
-              <PublicationCard key={i} pub={p} />
+            {publications.map((p) => (
+              <PublicationCard key={p.slug} pub={p} />
             ))}
           </div>
         </div>

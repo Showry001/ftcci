@@ -7,7 +7,7 @@ export default function NotFound({ message = "This page doesn't exist." }) {
     <>
       <PageHead title="Not found" intro={message} />
       <p className={ui.message}>
-        <Link to="/">Back to hall bookings</Link>
+        <Link to="/">Back to the admin home</Link>
       </p>
     </>
   );

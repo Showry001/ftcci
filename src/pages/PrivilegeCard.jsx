@@ -1,10 +1,23 @@
 import { useMemo, useState } from "react";
+import { useLoaderData } from "react-router";
+import { partnerCategories } from "../../shared/content.js";
 import SubNav from "../components/common/SubNav.jsx";
-import {
-  advantages, benefits, eligibility, faqs, heroCard, heroFeatures, icons, partnerFilters, partners, portal,
-  privilegeContact, privilegeSubNav, steps,
-} from "../data/privilege.js";
+import Img from "../components/Img.jsx";
+import { single } from "../lib/content.server.js";
+import { icons as uiIcons, pickIcons, subNav } from "../ui/assets.js";
 import styles from "./PrivilegeCard.module.css";
+
+const icons = uiIcons.privilege;
+const partnerFilters = ["All partners", ...Object.keys(partnerCategories)];
+
+export async function loader({ request }) {
+  return { page: await single("privilege", request) };
+}
+
+export const meta = () => [
+  { title: "FTCCI Privilege Card – FTCCI" },
+  { name: "description", content: "Healthcare, pharmacy and dining savings for FTCCI members, their staff and families, with a trusted partner network." },
+];
 
 const FIRST_ROWS = 9;
 
@@ -17,6 +30,9 @@ function External({ href, className, children }) {
 }
 
 export default function PrivilegeCard() {
+  const { page } = useLoaderData();
+  const { advantages, benefits, eligibility, faqs, heroFeatures, partners, steps } = page;
+  const portal = { register: page.registerUrl, benefits: page.benefitsUrl, companyLogin: page.companyLoginUrl, employeeLogin: page.employeeLoginUrl };
   const [filter, setFilter] = useState(partnerFilters[0]);
   const [query, setQuery] = useState("");
   const [showAll, setShowAll] = useState(false);
@@ -28,7 +44,7 @@ export default function PrivilegeCard() {
         (filter === "All partners" || p.category === filter) &&
         (!q || `${p.name} ${p.location} ${p.category}`.toLowerCase().includes(q))
     );
-  }, [filter, query]);
+  }, [filter, query, partners]);
   const visible = showAll ? matches : matches.slice(0, FIRST_ROWS);
 
   const pickFilter = (f) => {
@@ -43,7 +59,7 @@ export default function PrivilegeCard() {
 
   return (
     <>
-      <SubNav items={privilegeSubNav} label="Privilege Card sections" />
+      <SubNav items={subNav.privilege} label="Privilege Card sections" />
 
       <section className={styles.hero}>
         <div className={`container ${styles.heroRow}`}>
@@ -74,13 +90,13 @@ export default function PrivilegeCard() {
               <External href={portal.employeeLogin}>Employee login</External>
             </p>
           </div>
-          <img className={styles.heroCard} src={heroCard} alt="The FTCCI Privilege Card" width="620" height="470" />
+          <Img className={styles.heroCard} media={page.heroCard} sizes="(min-width: 1200px) 620px, 100vw" loading="eager" />
         </div>
         <div className="container">
           <ul className={styles.features}>
             {heroFeatures.map((f) => (
               <li key={f.title}>
-                <img src={f.icon} alt="" width={f.w} height={f.h} />
+                <PickIcon set="privilegeFeature" name={f.icon} />
                 <div>
                   <h2>{f.title}</h2>
                   <p>{f.text}</p>
@@ -134,7 +150,7 @@ export default function PrivilegeCard() {
               <li key={b.title}>
                 <div className={styles.benefitTop}>
                   <span className={styles.benefitIcon}>
-                    <img src={b.icon} alt="" width={b.w} height={b.h} />
+                    <PickIcon set="privilegeBenefit" name={b.icon} />
                   </span>
                   <span className={styles.benefitNo}>{String(i + 1).padStart(2, "0")}</span>
                 </div>
@@ -190,8 +206,8 @@ export default function PrivilegeCard() {
           <ul className={styles.eligibleList}>
             {eligibility.map((e) => (
               <li key={e.title}>
-                <span className={e.full ? styles.eligibleIconFull : styles.eligibleIcon}>
-                  <img src={e.icon} alt="" width={e.w} height={e.h} />
+                <span className={pickIcons.eligibility[e.icon]?.full ? styles.eligibleIconFull : styles.eligibleIcon}>
+                  <PickIcon set="eligibility" name={e.icon} />
                 </span>
                 <div>
                   <h3>{e.title}</h3>
@@ -246,7 +262,8 @@ export default function PrivilegeCard() {
               {visible.map((p) => (
                 <li key={p.name} className={styles.partner}>
                   <div className={styles.logo}>
-                    <img src={p.logo} alt={`${p.name} logo`} width={p.w} height={p.h} loading="lazy" />
+                    {/* Logos are uploaded at twice their display size, for sharp screens. */}
+                    <Img media={p.logo} alt={`${p.name} logo`} sizes="260px" style={p.logo ? { width: p.logo.width / 2 } : undefined} />
                   </div>
                   <p className={styles.category}>{p.category}</p>
                   <h3>{p.name}</h3>
@@ -300,19 +317,30 @@ export default function PrivilegeCard() {
               </details>
             ))}
           </div>
-          <p className={styles.help}>
-            Still have a question? Write to <a href={`mailto:${privilegeContact.email}`}>{privilegeContact.email}</a> or
-            call{" "}
-            {privilegeContact.phones.map((ph, i) => (
-              <span key={ph.tel}>
-                {i > 0 && " / "}
-                <a href={`tel:${ph.tel}`}>{ph.label}</a>
-              </span>
-            ))}{" "}
-            ({privilegeContact.hours}).
-          </p>
+          {page.contactEmail && (
+            <p className={styles.help}>
+              Still have a question? Write to <a href={`mailto:${page.contactEmail}`}>{page.contactEmail}</a>
+              {page.contactPhones.length > 0 && (
+                <>
+                  {" "}or call{" "}
+                  {page.contactPhones.map(({ phone }, i) => (
+                    <span key={phone}>
+                      {i > 0 && " / "}
+                      <a href={`tel:${phone.replace(/[^\d+]/g, "")}`}>{phone}</a>
+                    </span>
+                  ))}
+                </>
+              )}
+              {page.contactHours && ` (${page.contactHours})`}.
+            </p>
+          )}
         </div>
       </section>
     </>
   );
+}
+
+function PickIcon({ set, name }) {
+  const icon = pickIcons[set][name];
+  return icon ? <img src={icon.src} alt="" width={icon.w} height={icon.h} /> : null;
 }

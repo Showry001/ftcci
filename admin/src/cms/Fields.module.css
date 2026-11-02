@@ -1,0 +1,408 @@
+/* Form fields from the Figma "Add New Event" screen (2538:44201): 16px navy labels, 52px inputs. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px 22px;
+}
+.wide {
+  grid-column: 1 / -1;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+.label {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22.33px;
+  color: var(--navy);
+}
+.input,
+.textarea,
+.select select {
+  width: 100%;
+  min-height: 52px;
+  padding: 0 17px;
+  border: 1px solid rgba(181, 181, 181, 0.67);
+  border-radius: 6px;
+  background: #fff;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--navy);
+}
+.textarea {
+  min-height: 99px;
+  padding: 14px 17px;
+  line-height: 21px;
+  resize: vertical;
+}
+.input::placeholder,
+.textarea::placeholder {
+  color: rgba(21, 42, 94, 0.42);
+}
+.input[aria-invalid="true"],
+.textarea[aria-invalid="true"],
+.select select[aria-invalid="true"] {
+  border-color: var(--red);
+}
+.withIcon {
+  position: relative;
+}
+.withIcon img {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.withIcon .input {
+  padding-left: 42px;
+}
+/* The browser's own date and time button covers the field, so a click anywhere opens the picker. */
+.withIcon .input::-webkit-calendar-picker-indicator {
+  position: absolute;
+  inset: 0;
+  width: auto;
+  height: auto;
+  opacity: 0;
+  cursor: pointer;
+}
+.select {
+  position: relative;
+}
+.select::after {
+  content: "";
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border: solid var(--navy);
+  border-width: 0 1.6px 1.6px 0;
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+.select select {
+  appearance: none;
+  padding-right: 44px;
+}
+.help {
+  margin-top: -4px;
+  font-size: 12px;
+  line-height: 18px;
+  color: rgba(21, 42, 94, 0.55);
+}
+.error {
+  font-size: 13px;
+  line-height: 19px;
+  color: var(--red);
+}
+.check {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  min-height: 52px;
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--navy);
+  cursor: pointer;
+}
+.check input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--navy);
+}
+.check small {
+  flex-basis: 100%;
+  font-size: 12px;
+  color: rgba(21, 42, 94, 0.55);
+}
+
+/* Groups and lists */
+.group,
+.list {
+  min-width: 0;
+  margin: 0;
+  padding: 20px;
+  border: 0.5px solid var(--card-line);
+  border-radius: 8px;
+  background: #fbfcfe;
+}
+.group legend,
+.list legend {
+  padding: 0 6px;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--navy);
+}
+.count {
+  font-weight: 500;
+  color: var(--muted-2);
+}
+.list > .help {
+  margin: 0 0 12px;
+}
+.item {
+  margin-top: 10px;
+  border: 1px solid var(--row-line);
+  border-radius: 6px;
+  background: #fff;
+}
+.itemError {
+  border-color: var(--red);
+}
+.itemHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px 6px 4px;
+}
+.itemToggle {
+  flex: 1;
+  min-width: 0;
+  padding: 8px;
+  border: 0;
+  background: none;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: left;
+  color: var(--navy);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.itemBody {
+  padding: 8px 16px 18px;
+  border-top: 1px solid var(--row-line);
+}
+.mover {
+  display: flex;
+  gap: 4px;
+  flex: none;
+}
+.mover button,
+.small {
+  min-width: 32px;
+  height: 32px;
+  padding: 0 10px;
+  border: 0.84px solid rgba(181, 181, 181, 0.67);
+  border-radius: 6px;
+  background: #fff;
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--navy);
+}
+.mover button:hover:not(:disabled),
+.small:hover:not(:disabled) {
+  border-color: var(--navy);
+}
+.mover button:disabled,
+.small:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.add {
+  margin-top: 12px;
+  padding: 10px 16px;
+  border: 1px dashed rgba(21, 42, 94, 0.45);
+  border-radius: 6px;
+  background: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--navy);
+}
+.add:hover {
+  border-style: solid;
+}
+.strings {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.stringRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Media */
+.media {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.drop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 126px;
+  padding: 16px;
+  border: 1px solid rgba(181, 181, 181, 0.67);
+  border-radius: 6px;
+  background: #fff;
+  font-weight: 500;
+  font-size: 14px;
+  color: rgba(21, 42, 94, 0.7);
+}
+.drop small {
+  font-size: 12px;
+  color: rgba(21, 42, 94, 0.42);
+}
+.drop:hover {
+  border-color: var(--navy);
+}
+.mediaInvalid .drop,
+.mediaInvalid .mediaCurrent {
+  border-color: var(--red);
+}
+.mediaCurrent {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  border: 1px solid rgba(181, 181, 181, 0.67);
+  border-radius: 6px;
+  background: #fff;
+}
+.mediaCurrent img {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+  background: var(--field);
+}
+.mediaCurrent strong {
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.mediaCurrent small {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--muted-2);
+}
+.fileBadge {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 64px;
+  height: 80px;
+  border-radius: 4px;
+  background: var(--navy);
+  font-weight: 700;
+  font-size: 13px;
+  color: #fff;
+}
+.mediaActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--muted-2);
+}
+.progress progress {
+  flex: 1;
+  accent-color: var(--navy);
+}
+
+/* Rich text */
+.rich {
+  border: 1px solid rgba(181, 181, 181, 0.67);
+  border-radius: 6px;
+  background: #fff;
+}
+.richInvalid {
+  border-color: var(--red);
+}
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 8px;
+  border-bottom: 1px solid var(--row-line);
+}
+.toolbar button {
+  min-width: 34px;
+  height: 32px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--navy);
+}
+.toolbar button:hover,
+.toolbar button[aria-pressed="true"] {
+  background: var(--head-row);
+}
+.toolbarGap {
+  flex: 1;
+}
+.prose {
+  min-height: 220px;
+  padding: 14px 17px;
+  font-size: 15px;
+  line-height: 25px;
+  color: var(--navy);
+  outline: none;
+}
+.prose > * + * {
+  margin-top: 12px;
+}
+.prose h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 22px;
+}
+.prose h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 18px;
+}
+.prose ul,
+.prose ol {
+  padding-left: 22px;
+  list-style: revert;
+}
+.prose blockquote {
+  padding-left: 14px;
+  border-left: 3px solid var(--gold);
+}
+.prose a {
+  text-decoration: underline;
+}
+
+/* Two columns only where the form is wide enough (the editor's form card is a size container). */
+@container (max-width: 599px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+}
+@media (max-width: 767px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+  .group,
+  .list {
+    padding: 14px;
+  }
+  .mediaCurrent img {
+    width: 88px;
+    height: 64px;
+  }
+}

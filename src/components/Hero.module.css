@@ -15,6 +15,13 @@
   object-fit: cover;
   animation: hero-settle 1.8s var(--ease-out) both;
 }
+.slide {
+  opacity: 0;
+  transition: opacity 1.2s var(--ease-out);
+}
+.slide[data-active] {
+  opacity: 1;
+}
 .overlay {
   position: absolute;
   inset: 0;

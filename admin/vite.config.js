@@ -9,7 +9,8 @@ export default defineConfig({
     host: "127.0.0.1",
     port: 5174,
     strictPort: true,
-    proxy: { "/api/": "http://127.0.0.1:8787" },
+    // Uploaded files are served at /media (by Nginx in production).
+    proxy: { "/api/": "http://127.0.0.1:8787", "/media/": "http://127.0.0.1:8787" },
     // Form labels and option lists come from ../shared.
     fs: { allow: [".", "../shared"] },
   },

@@ -1,13 +1,16 @@
 import assert from "node:assert/strict";
 import { beforeEach, describe, it } from "node:test";
-import { db, hallBooking, makeApp, proof, resetDb } from "./helpers.ts";
+import { db, hallBooking, makeApp, proof, publishHalls, resetDb } from "./helpers.ts";
 
 async function seed(app: any, data = hallBooking()) {
   return (await app.inject({ method: "POST", url: "/api/forms/hall-booking", payload: { data, altcha: await proof(app) } })).json().reference as string;
 }
 
 describe("admin API (local only until sign-in exists)", () => {
-  beforeEach(resetDb);
+  beforeEach(async () => {
+    await resetDb();
+    await publishHalls();
+  });
 
   it("lists, filters, searches and opens submissions from this computer", async () => {
     const { app } = await makeApp();
