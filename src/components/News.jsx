@@ -1,8 +1,12 @@
-import { Link } from "react-router-dom";
-import { featuredNews, news } from "../data/content.js";
+import { Link } from "react-router";
+import { shortDate } from "../lib/format.js";
+import Img from "./Img.jsx";
 import styles from "./News.module.css";
 
-export default function News() {
+export default function News({ articles }) {
+  if (!articles.length) return null;
+  const featured = articles.find((a) => a.featured) ?? articles[0];
+  const news = articles.filter((a) => a !== featured).slice(0, 3);
   return (
     <section className={`${styles.section} desktop-only`} id="media" aria-labelledby="news-title">
       <div className="container">
@@ -13,27 +17,27 @@ export default function News() {
           <Link to="/media" className={styles.outline}>View all News</Link>
         </div>
         <div className={styles.grid}>
-          <Link to="/media" className={styles.featured}>
+          <Link to={`/media/news/${featured.slug}`} className={styles.featured}>
             <div className={styles.featuredMedia}>
-              <img src={featuredNews.image} alt={featuredNews.title} loading="lazy" />
+              <Img media={featured.image} alt={featured.title} sizes="(min-width: 1200px) 620px, 100vw" />
             </div>
             <div className={styles.featuredBody}>
               <div className={styles.metaRow}>
-                <span className={styles.tag}>{featuredNews.tag}</span>
-                <time className={styles.date}>{featuredNews.date}</time>
+                <span className={styles.tag}>{featured.tag}</span>
+                <time className={styles.date} dateTime={featured.date}>{shortDate(featured.date)}</time>
               </div>
-              <h3 className={styles.featuredTitle}>{featuredNews.title}</h3>
-              <p className={styles.excerpt}>{featuredNews.excerpt}</p>
+              <h3 className={styles.featuredTitle}>{featured.title}</h3>
+              {featured.excerpt && <p className={styles.excerpt}>{featured.excerpt}</p>}
             </div>
           </Link>
           <div className={styles.list}>
             {news.map((n) => (
-              <Link key={n.title} to="/media" className={styles.item}>
-                <img className={styles.thumb} src={n.image} alt="" loading="lazy" />
+              <Link key={n.slug} to={`/media/news/${n.slug}`} className={styles.item}>
+                <Img className={styles.thumb} media={n.image} alt="" sizes="160px" />
                 <div className={styles.itemBody}>
                   <div className={styles.metaRow}>
                     <span className={`${styles.tag} ${styles.tagSm}`}>{n.tag}</span>
-                    <time className={`${styles.date} ${styles.dateSm}`}>{n.date}</time>
+                    <time className={`${styles.date} ${styles.dateSm}`} dateTime={n.date}>{shortDate(n.date)}</time>
                   </div>
                   <h3 className={styles.itemTitle}>{n.title}</h3>
                 </div>

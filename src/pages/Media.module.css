@@ -9,28 +9,30 @@
 .h2 {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 38px;
+  font-size: 39.36px;
   line-height: 1.2;
   color: var(--navy-900);
 }
 .sub {
   margin-top: 9px;
-  max-width: 509px;
+  max-width: 536px;
   font-family: var(--font-geist);
   font-weight: 500;
-  font-size: 16px;
-  line-height: 28px;
+  font-size: 18.64px;
+  line-height: 29px;
   color: rgba(26, 45, 90, 0.5);
 }
+/* Featured story: full-width photo with tag, date and title below */
 .lead {
-  margin-top: 55px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 413.7px;
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 29.94px;
+  padding-bottom: 29.94px;
   background: var(--white);
-  border-radius: 4.33px;
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 2px 12.2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 23.7px rgba(0, 0, 0, 0.2);
 }
 .leadMedia,
 .cardMedia {
@@ -39,7 +41,7 @@
   overflow: hidden;
 }
 .leadMedia {
-  min-height: 238px;
+  height: 455px;
 }
 .leadMedia img,
 .cardMedia img {
@@ -50,6 +52,9 @@
   object-fit: cover;
   transition: transform 0.5s var(--ease-out);
 }
+.leadMedia img {
+  object-position: 50% 20%;
+}
 /* Figma news cards (311:2275 / 135:2474) hover: image eases in (~4%) */
 .lead:hover .leadMedia img,
 .card:hover .cardMedia img {
@@ -58,22 +63,16 @@
 .leadBody {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 34.6px 39px;
+  padding: 0 39.92px;
 }
 .leadBody h3 {
-  margin-top: 15px;
+  max-width: 756px;
+  margin-top: 15.12px;
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 28.13px;
-  line-height: 36.57px;
+  font-size: 28.07px;
+  line-height: 36.5px;
   color: var(--ink-800);
-}
-.leadBody p {
-  margin-top: 15px;
-  font-size: 15.15px;
-  line-height: 25.75px;
-  color: #2a6496;
 }
 .meta {
   display: flex;
@@ -93,6 +92,7 @@
 }
 .meta time {
   font-size: 12.98px;
+  line-height: 17.8px;
   color: #999;
 }
 .metaSm {
@@ -108,7 +108,7 @@
   color: #aaa;
 }
 .grid {
-  margin-top: 32.5px;
+  margin-top: 18px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 17.3px;
@@ -194,7 +194,7 @@
 .kitSub {
   margin-top: 8px;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 20px;
   color: rgba(26, 45, 90, 0.6);
 }
@@ -215,7 +215,8 @@
   border-radius: var(--radius-md);
   filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.03));
 }
-.tileWide {
+/* An odd last tile spans the row. */
+.tile:last-child:nth-child(odd) {
   grid-column: 1 / -1;
 }
 .tile h3 {
@@ -262,39 +263,116 @@
   }
 }
 @media (max-width: 1023px) {
-  .lead {
-    grid-template-columns: 1fr;
-  }
   .leadMedia {
-    aspect-ratio: 16 / 9;
-    min-height: 0;
+    height: auto;
+    aspect-ratio: 1238 / 455;
   }
 }
 @media (max-width: 767px) {
+  /* Mobile frame: grey band, compact featured card, then thumbnail rows */
   .coverage {
-    padding: 40px 0;
+    background: var(--gray-100);
+    padding: 40px 0 84px;
+  }
+  .sub {
+    font-size: 16px;
+    line-height: 28px;
+  }
+  .h2 {
+    font-size: 24px;
+    line-height: 30px;
   }
   .lead {
-    margin-top: 28px;
+    margin-top: 20px;
+    gap: 0;
+    padding-bottom: 0;
+    border-radius: 4.5px;
+    box-shadow: none;
+  }
+  .leadMedia {
+    aspect-ratio: 330 / 117;
   }
   .leadBody {
-    padding: 22px;
+    padding: 12px;
+  }
+  .leadBody h3 {
+    margin-top: 8px;
+    font-size: 13.2px;
+    line-height: 15.1px;
+    color: var(--gray-950);
   }
   .grid {
+    margin-top: 12px;
     grid-template-columns: 1fr;
+    gap: 10px;
   }
   .card {
     min-height: 0;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px;
+    border-radius: 4.7px;
   }
+  .cardMedia {
+    width: 85px;
+    height: 74px;
+    border-radius: 4.7px;
+  }
+  .cardBody {
+    flex: 1;
+    min-width: 0;
+    padding: 0;
+  }
+  .cardBody h3 {
+    margin-top: 8px;
+    font-size: 12.3px;
+    line-height: 17px;
+    color: var(--gray-900);
+  }
+  .cardBody p {
+    display: none;
+  }
+  /* Mobile press kit: white band, Inter type, full-width download buttons */
   .kit {
-    padding: 50px 0;
+    background: var(--white);
+    padding: 49px 0 32px;
   }
   .kitTitle {
-    font-size: 28px;
-    line-height: 1.3;
+    font-family: var(--font-body);
+    font-size: 24px;
+    line-height: 30px;
+    color: #001973;
+  }
+  .kitSub {
+    margin-top: 10px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #656565;
   }
   .kitGrid {
-    margin-top: 28px;
+    margin-top: 20px;
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .tile {
+    gap: 12px;
+    padding: 20px;
+  }
+  .tile h3 {
+    font-family: var(--font-body);
+    color: var(--ink-800);
+  }
+  .tile p {
+    font-family: var(--font-body);
+    font-size: 12px;
+    line-height: 18px;
+    color: #858585;
+  }
+  .dl {
+    align-self: stretch;
+    width: auto;
+    font-family: var(--font-nav);
   }
 }

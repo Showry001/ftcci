@@ -33,7 +33,7 @@
   font-size: 12px;
   line-height: 16px;
   text-transform: uppercase;
-  color: var(--yellow-400);
+  color: var(--gold-500);
 }
 .title {
   margin-top: 22px;
@@ -45,7 +45,7 @@
   color: var(--white);
 }
 .title span {
-  color: var(--yellow-500);
+  color: var(--gold-500);
 }
 .body {
   margin-top: 25px;

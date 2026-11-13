@@ -1,0 +1,276 @@
+/* Editor layout from the Figma "Add New Event" screen (2538:44201): form card with a 479px side panel. */
+.back {
+  display: inline-block;
+  margin-bottom: 18px;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--muted-2);
+  text-decoration: none;
+}
+.back:hover {
+  color: var(--navy);
+  text-decoration: underline;
+}
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 479px);
+  align-items: start;
+  gap: 25px;
+  margin-top: 30px;
+}
+.form {
+  min-width: 0;
+  border: 0.5px solid var(--card-line);
+  border-radius: 8px;
+  background: #fff;
+}
+.fields {
+  container-type: inline-size;
+  padding: 46px 29px 32px;
+}
+.slug {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 26px;
+}
+.slug label {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22.33px;
+}
+.slugInput {
+  display: flex;
+  align-items: center;
+  min-height: 52px;
+  border: 1px solid rgba(181, 181, 181, 0.67);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.slugInput span {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  padding: 0 4px 0 17px;
+  background: var(--field);
+  font-size: 14px;
+  color: var(--muted-2);
+  white-space: nowrap;
+}
+.slugInput input {
+  flex: 1;
+  min-width: 0;
+  height: 50px;
+  padding: 0 17px 0 4px;
+  border: 0;
+  background: #fff;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--navy);
+}
+.slugInput:has(input[aria-invalid="true"]) {
+  border-color: var(--red);
+}
+.help {
+  margin-top: -4px;
+  font-size: 12px;
+  line-height: 18px;
+  color: rgba(21, 42, 94, 0.55);
+}
+.error {
+  font-size: 13px;
+  line-height: 19px;
+  color: var(--red);
+}
+
+/* The action bar stays in view at the bottom while scrolling long forms. */
+.bar {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  padding: 18px 29px 24px;
+  border-top: 0.5px solid var(--card-line);
+  border-radius: 0 0 8px 8px;
+  background: #fff;
+}
+.bar > p[role="status"],
+.bar > p[role="alert"]:not(.barError) {
+  margin-top: 12px;
+}
+.barError {
+  margin-bottom: 12px;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--red);
+}
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 24px;
+}
+.saveState {
+  font-size: 13px;
+  color: var(--muted-2);
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+  min-width: 0;
+}
+.card {
+  border: 0.5px solid var(--card-line);
+  border-radius: 8px;
+  background: #fff;
+}
+.cardTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 22px 22px 0;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: var(--navy);
+}
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px 22px 24px;
+}
+.state {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  font-size: 13px;
+  color: var(--muted-2);
+}
+.note {
+  font-size: 13px;
+  line-height: 19px;
+  color: var(--muted-2);
+}
+.schedule {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid var(--row-line);
+  font-size: 14px;
+  line-height: 20px;
+}
+.schedule label {
+  font-weight: 500;
+}
+.scheduleRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+}
+.scheduleRow input {
+  flex: 1 1 200px;
+  min-height: 46px;
+  padding: 0 12px;
+  border: 1px solid rgba(181, 181, 181, 0.67);
+  border-radius: 6px;
+  font-size: 14px;
+  color: var(--navy);
+}
+.scheduleRow input[aria-invalid="true"] {
+  border-color: var(--red);
+}
+.more {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid var(--row-line);
+}
+.more > * {
+  min-height: 40px;
+  padding: 8px 16px;
+  font-size: 14px;
+}
+.versions {
+  display: flex;
+  flex-direction: column;
+}
+.versions li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid var(--row-line);
+  font-size: 13px;
+  line-height: 18px;
+}
+.versions li:first-child {
+  border-top: 0;
+}
+.versions strong {
+  display: block;
+  font-weight: 600;
+}
+.restore {
+  align-self: flex-start;
+  flex: none;
+  padding: 5px 10px;
+  border: 0.5px solid #c8c8c8;
+  border-radius: 4px;
+  background: #fff;
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--navy);
+}
+.versions .restore {
+  align-self: center;
+}
+.restore:hover:not(:disabled) {
+  border-color: var(--navy);
+}
+.restore:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+@media (max-width: 1599px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) 360px;
+  }
+}
+@media (max-width: 1199px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 599px) {
+  .layout {
+    margin-top: 20px;
+  }
+  .fields {
+    padding: 24px 16px;
+  }
+  .bar {
+    padding: 14px 16px 18px;
+  }
+  .buttons {
+    gap: 10px;
+  }
+  .buttons > button {
+    flex: 1 1 auto;
+    padding-inline: 14px;
+  }
+  .cardTitle {
+    padding: 18px 16px 0;
+  }
+  .cardBody {
+    padding: 16px;
+  }
+}

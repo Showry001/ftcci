@@ -1,0 +1,23 @@
+/* Bin: two tables, content and files. */
+.heading {
+  margin-top: 36px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 22px;
+}
+.card {
+  margin-top: 16px;
+}
+.card button {
+  background: #fff;
+  cursor: pointer;
+}
+.file {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.thumb {
+  width: 96px;
+  flex: none;
+}

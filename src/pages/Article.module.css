@@ -1,0 +1,78 @@
+/* News story body: no Figma frame; type follows the event detail page. */
+.story {
+  max-width: 760px;
+  margin-top: 30px;
+  padding: 0 24px 40px;
+  font-family: var(--font-body);
+  color: var(--slate-700);
+}
+.lead {
+  font-size: 18px;
+  line-height: 30px;
+  color: var(--navy-900);
+}
+.body {
+  margin-top: 24px;
+  font-size: 16px;
+  line-height: 28px;
+}
+.body > * + * {
+  margin-top: 16px;
+}
+.body h2,
+.body h3 {
+  margin-top: 32px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  color: var(--navy-900);
+}
+.body h2 {
+  font-size: 24px;
+  line-height: 32px;
+}
+.body h3 {
+  font-size: 20px;
+  line-height: 28px;
+}
+.body ul,
+.body ol {
+  padding-left: 22px;
+  list-style: revert;
+}
+.body li + li {
+  margin-top: 6px;
+}
+.body a {
+  color: var(--navy-900);
+  font-weight: 500;
+  text-decoration: underline;
+}
+.body blockquote {
+  padding-left: 18px;
+  border-left: 3px solid var(--gold-500);
+  color: var(--navy-900);
+}
+.body hr {
+  border: 0;
+  border-top: 1px solid var(--slate-200);
+}
+.back {
+  display: inline-block;
+  margin-top: 40px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--navy-900);
+}
+.back:hover {
+  color: var(--gold-600);
+}
+
+@media (max-width: 767px) {
+  .story {
+    padding: 0 0 32px;
+  }
+  .lead {
+    font-size: 16px;
+    line-height: 26px;
+  }
+}

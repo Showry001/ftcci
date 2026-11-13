@@ -10,6 +10,7 @@
   grid-template-columns: 246.6px 198px 246.6px 246.6px;
   justify-content: space-between;
   gap: 48px;
+  min-height: 316px;
 }
 .col h4 {
   font-family: var(--font-nav);
@@ -46,6 +47,9 @@
   font-size: 11px;
   line-height: 15px;
   color: var(--white);
+}
+.address {
+  white-space: pre-line;
 }
 .tagline {
   padding-top: 16px;
@@ -155,9 +159,17 @@
 .subscribe button:hover {
   filter: brightness(0.95);
 }
-.thanks {
+.subscribe button:disabled {
+  cursor: default;
+  opacity: 0.75;
+}
+.thanks,
+.problem {
   font-size: 13px;
   color: var(--gold-500);
+}
+.problem {
+  color: #ffb4a8;
 }
 .legal {
   width: min(1236px, 100% - 2 * var(--gutter));
@@ -214,13 +226,14 @@
 /* Mobile-Footer (390 frame): stacked About → Contact → Quick Links → Stay Informed → Legal */
 @media (max-width: 767px) {
   .footer {
-    padding: 48px 0;
+    padding: 48px 16px;
   }
   .grid {
     width: auto;
-    padding-inline: 32px;
-    grid-template-columns: 1fr;
+    padding-inline: 16px;
+    grid-template-columns: minmax(0, 1fr);
     gap: 20px;
+    min-height: 0;
   }
   .about {
     order: 1;
@@ -237,24 +250,51 @@
   .brand {
     flex-direction: row;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+  }
+  /* Logo-Align: the emblem is cropped to its gear (114×98, cover) */
+  .brand > img {
+    width: 114px;
+    height: 98px;
   }
   .brandName {
-    font-size: 16px;
+    display: none;
+  }
+  .brand > div {
+    min-width: 0;
   }
   .brandFull {
-    width: 230px;
+    margin-top: 0;
+    width: auto;
+    max-width: 200px; /* Figma's 188px box assumes Neue Montreal; the Inter fallback needs 200px for the same 3 lines */
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .tagline {
     font-size: 13px;
-    line-height: 18px;
+    line-height: 20px;
+    color: #d1d5dc;
+  }
+  .social {
+    flex-wrap: nowrap;
   }
   .contact address {
-    padding-top: 16px;
+    padding-top: 36px;
+  }
+  .links h4 {
+    font-family: var(--font-body);
+    line-height: normal;
   }
   .links ul {
-    padding-top: 12px;
+    padding-top: 32px;
   }
-  .links li + li {
-    padding-top: 10px;
+  .informedText {
+    max-width: 247px;
+  }
+  .subscribe {
+    max-width: 308px;
   }
   .informed .subscribe input,
   .informed .subscribe button {
@@ -262,12 +302,12 @@
   }
   .legal {
     width: auto;
-    margin: 20px 32px 0;
-    padding-top: 0;
-    border-top: 0;
+    margin: 20px 0 0;
+    padding: 0 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     flex-direction: column;
     align-items: flex-start;
-    gap: 14px;
+    gap: 12px;
     font-size: 11px;
   }
   .legal ul {

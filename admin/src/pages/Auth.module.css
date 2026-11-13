@@ -1,0 +1,374 @@
+/* Figma "Log in page" (2538:43752): welcome text beside a white card, soft circles behind. */
+.page {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #f9fcfe;
+}
+.circle {
+  position: absolute;
+  pointer-events: none;
+}
+.circleTop {
+  left: calc(50% + 536px);
+  top: -225px;
+}
+.circleTop2 {
+  left: calc(50% + 553px);
+  top: -237px;
+}
+.circleBottom {
+  left: calc(50% - 1231px);
+  top: 700px;
+}
+.circleBottom2 {
+  left: calc(50% - 1260px);
+  top: 723px;
+}
+
+.brand {
+  position: absolute;
+  left: 51px;
+  top: 48px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.brand img {
+  width: 70px;
+  height: 75px;
+  object-fit: contain;
+}
+.brand p {
+  width: 244px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--navy);
+}
+
+.main {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 130px;
+  min-height: 100vh;
+  padding: 150px 40px 60px;
+}
+.welcome {
+  width: 441px;
+}
+.welcome h1 {
+  padding: 10px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 1.2;
+  color: #114081;
+}
+.welcome p {
+  margin-top: 12px;
+  font-size: 20px;
+  line-height: 30px;
+  color: #788297;
+}
+.welcome p::after {
+  content: "";
+  display: block;
+  width: 101px;
+  height: 5px;
+  margin-top: 15px;
+  border-radius: 3px;
+  background: var(--gold);
+}
+
+.card {
+  width: 607px;
+  padding: 72px 47px 72px;
+  border: 1px solid #cecece;
+  border-radius: 13px;
+  background: #fff;
+}
+.card h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 1.2;
+  color: #023e92;
+}
+.intro {
+  margin-top: 14px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #5c7290;
+}
+
+.methods {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 28px;
+  padding: 4px;
+  border: 1px solid #cecece;
+  border-radius: 8px;
+}
+.methods button {
+  min-height: 44px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  font-weight: 600;
+  font-size: 16px;
+  color: #566e8e;
+}
+.methods button[aria-pressed="true"] {
+  background: var(--navy);
+  color: #fff;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: 36px;
+}
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+}
+.field label {
+  font-weight: 600;
+  font-size: 20px;
+  color: #566e8e;
+}
+.inputWrap {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  height: 74px;
+  padding: 0 24px 0 35px;
+  border: 0.5px solid #3f3f3f;
+  border-radius: 6px;
+  background: #fff;
+}
+.inputWrap:focus-within {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+.inputWrap img {
+  flex: none;
+}
+.inputWrap input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-size: 20px;
+  color: var(--navy);
+}
+.inputWrap input::placeholder,
+.codeInput::placeholder {
+  color: #a7b3c6;
+}
+.inputWrap input[readonly] {
+  color: #566e8e;
+}
+.reveal {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+}
+.reveal:hover {
+  background: var(--field);
+}
+.codeInput {
+  height: 74px;
+  padding: 0 24px;
+  border: 0.5px solid #3f3f3f;
+  border-radius: 6px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: 30px;
+  letter-spacing: 0.4em;
+  color: var(--navy);
+}
+.below {
+  text-align: right;
+  font-size: 14px;
+}
+.below a,
+.links a,
+.links button {
+  border: 0;
+  background: none;
+  padding: 0;
+  font-size: 14px;
+  color: #5c7290;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.below a:hover,
+.links a:hover,
+.links button:hover:not(:disabled) {
+  color: var(--navy);
+}
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 24px;
+}
+.hint {
+  margin-top: -14px;
+  font-size: 14px;
+  line-height: 21px;
+  color: #5c7290;
+}
+.submit {
+  height: 58px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--navy);
+  font-weight: 600;
+  font-size: 20px;
+  color: #fff;
+}
+.submit:hover:not(:disabled) {
+  background: #0f1f47;
+}
+.submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+.message {
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-size: 15px;
+  line-height: 22px;
+}
+.error {
+  background: var(--red-bg);
+  color: var(--red);
+}
+.success {
+  background: var(--green-bg);
+  color: var(--green);
+}
+.info {
+  background: var(--blue-bg);
+  color: var(--navy);
+}
+
+@media (max-width: 1279px) {
+  .main {
+    gap: 64px;
+  }
+  .welcome {
+    width: 340px;
+  }
+}
+
+/* Tablet and phone: the welcome text sits above the card. */
+@media (max-width: 1023px) {
+  .main {
+    flex-direction: column;
+    gap: 32px;
+    padding: 150px 24px 48px;
+  }
+  .welcome {
+    width: min(607px, 100%);
+  }
+  .welcome h1 {
+    padding: 0;
+    font-size: 36px;
+  }
+  .welcome p {
+    font-size: 17px;
+    line-height: 26px;
+  }
+  .card {
+    width: min(607px, 100%);
+  }
+}
+@media (max-width: 599px) {
+  .brand {
+    left: 16px;
+    top: 20px;
+  }
+  .brand img {
+    width: 48px;
+    height: 52px;
+  }
+  .brand p {
+    width: 210px;
+    font-size: 13px;
+    line-height: 17px;
+  }
+  .main {
+    gap: 20px;
+    padding: 104px 16px 32px;
+  }
+  .welcome h1 {
+    font-size: 28px;
+  }
+  .welcome p {
+    margin-top: 4px;
+    font-size: 15px;
+    line-height: 22px;
+  }
+  .card {
+    padding: 28px 20px 32px;
+  }
+  .card h2 {
+    font-size: 32px;
+  }
+  .form {
+    gap: 24px;
+    margin-top: 24px;
+  }
+  .field {
+    gap: 10px;
+  }
+  .field label {
+    font-size: 16px;
+  }
+  .inputWrap {
+    gap: 14px;
+    height: 56px;
+    padding: 0 10px 0 16px;
+  }
+  .inputWrap img:first-child {
+    width: 24px;
+    height: 24px;
+  }
+  .inputWrap input {
+    font-size: 16px;
+  }
+  .codeInput {
+    height: 60px;
+    font-size: 24px;
+  }
+  .hint {
+    margin-top: -8px;
+  }
+  .submit {
+    height: 52px;
+    font-size: 17px;
+  }
+}

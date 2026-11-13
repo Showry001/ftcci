@@ -54,6 +54,17 @@
   color: #5c6a79;
 }
 
+/* Heading line heights per section (Figma desktop / mobile frames) */
+.titleBenefits {
+  --eyebrow-lh: 24px;
+  --eyebrow-size-m: 14px;
+  --eyebrow-lh-m: 24px;
+}
+.titleOptions {
+  --title-lh-m: 32px;
+  --eyebrow-weight-m: 700;
+}
+
 /* Benefits */
 .benefits {
   background: var(--gray-100);
@@ -151,6 +162,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
+  min-height: 347px;
   padding: 36px;
   background: var(--white);
   border: 1px solid #e6e2d8;
@@ -205,11 +217,11 @@
   text-align: center;
 }
 .stepsHead p {
-  font-family: var(--font-nav);
   font-weight: 700;
-  font-size: 12px;
+  font-size: 14px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: #d4a843;
+  color: var(--gold-600);
 }
 .stepsHead h2 {
   margin-top: 16px;
@@ -380,6 +392,7 @@
   align-items: center;
   gap: 8px;
   padding: 14px 28px;
+  border: 0;
   background: #0a1b3d;
   border-radius: 6px;
   font-family: var(--font-nav);
@@ -387,12 +400,118 @@
   font-size: 14px;
   color: var(--white);
 }
-.ctaActions p {
-  font-family: var(--font-nav);
-  font-size: 12px;
+
+/* How to apply: documents per panel and forms (ftcci.in "Join FTCCI" / "How to Apply") */
+.applyNow {
+  margin-top: 48px;
+  text-align: center;
 }
-.ctaActions p a {
-  font-weight: 700;
+.docsHead {
+  margin-top: 64px;
+  text-align: center;
+}
+.docsHead h3 {
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--navy-900);
+}
+.docsHead p {
+  margin: 8px auto 0;
+  max-width: 620px;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--slate-600);
+}
+.docsGrid {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+}
+.docsCard {
+  scroll-margin-top: calc(var(--header-h) + var(--subnav-h) + 16px);
+  padding: 20px;
+  background: var(--white);
+  border: 1px solid #e6e2d8;
+  border-radius: var(--radius-lg);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.docsCard:target {
+  border-color: var(--gold-500);
+  box-shadow: 0 0 0 3px rgba(229, 169, 59, 0.18);
+}
+.docsCard h4 {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--navy-900);
+}
+.docsCard ul {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 19px;
+  color: var(--slate-600);
+}
+.docsCard li {
+  position: relative;
+  padding-left: 14px;
+}
+.docsCard li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold-500);
+}
+.applyInfo {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 32px;
+  padding: 24px 28px;
+  background: var(--surface-lavender-4);
+  border-radius: var(--radius-lg);
+}
+.applyInfo h4 {
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--navy-900);
+}
+.applyInfo p,
+.applyFiles,
+.applyContacts {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--slate-600);
+}
+.applyFiles,
+.applyContacts li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.applyContacts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.applyFiles a,
+.applyContacts a {
+  font-weight: 500;
+  color: var(--navy-900);
+}
+.applyFiles a:hover,
+.applyContacts a:hover {
+  color: var(--gold-600);
 }
 
 /* Tablet */
@@ -408,6 +527,12 @@
   }
   .optionGrid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .docsGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .applyInfo {
+    grid-template-columns: 1fr 1fr;
   }
   .stepRow {
     display: grid;
@@ -447,61 +572,158 @@
   }
 }
 
-/* Mobile */
+/* Mobile (390 frames) */
 @media (max-width: 767px) {
   .why,
   .options {
     padding: 50px 0;
   }
   .bigTitle {
-    font-size: 28px;
+    font-size: 24px;
+    line-height: 34px;
   }
   .pillars {
+    margin-top: 32px;
     grid-template-columns: 1fr;
     gap: 16px;
   }
   .pillars li {
     min-height: 0;
+    padding: 20px;
+  }
+  .pillarNo {
+    font-family: var(--font-body);
+    font-size: 24px;
+    color: #d4a843;
+  }
+  .pillars h3 {
+    margin-top: 12px;
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: #0c1835;
+  }
+  .pillars p {
+    margin-top: 12px;
+    font-family: var(--font-nav);
+    font-size: 13px;
+    line-height: 20px;
+    color: #6b7280;
   }
   .benefits {
     padding: 50px 0;
   }
+  .benefitsRow {
+    gap: 24px;
+  }
+  .benefitList {
+    gap: 13px;
+  }
   .benefitList li {
-    gap: 16px;
-    padding: 16px;
+    gap: 20px;
+    padding: 20px;
+  }
+  .benefitIcon {
+    width: 38px;
+    height: 38px;
+  }
+  .benefitIcon img {
+    width: 22px;
+    height: 22px;
+  }
+  .benefitList h3 {
+    font-size: 16px;
+  }
+  .optionsHead {
+    gap: 12px;
   }
   .optionsHead > :first-child h2 {
-    font-size: 28px;
+    font-size: 24px;
+  }
+  .optionsHead > :first-child p {
+    font-family: var(--font-nav);
+    color: #d4a843;
+  }
+  .optionsHead > p {
+    font-family: var(--font-nav);
+    line-height: 22px;
+    color: #6b7280;
   }
   .optionGrid {
     margin-top: 32px;
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 20px;
   }
   .option {
+    min-height: 0;
     padding: 24px;
+  }
+  .optionIcon {
+    width: 46px;
+    height: 46px;
+  }
+  .option h3 {
+    font-weight: 500;
+    font-size: 20px;
+    text-transform: uppercase;
   }
   .option p {
     font-size: 14px;
   }
+  .optionBtn {
+    align-self: stretch;
+    justify-content: center;
+    height: 38px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 700;
+  }
   .steps {
     padding: 50px 0 60px;
+  }
+  .stepsHead p {
+    font-family: var(--font-nav);
+    font-size: 12px;
+    letter-spacing: 0;
+    color: #d4a843;
   }
   .stepsHead h2 {
     font-size: 28px;
   }
   .stepRow {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 0;
+  }
+  .stepItem {
+    flex-direction: column;
+    gap: 0;
+  }
+  /* the horizontal connector turns into a dotted down-arrow between stacked steps */
+  .stepLine {
+    display: block;
+    margin: 42px 0;
+    transform: rotate(90deg);
   }
   .experience {
     padding: 56px 0;
   }
   .expInner h2 {
-    font-size: 28px;
+    font-family: var(--font-body);
+    font-size: 26px;
+    line-height: 32px;
+  }
+  .expText {
+    font-family: var(--font-nav);
+    font-size: 14px;
+    line-height: 22px;
   }
   .expStats dt {
+    font-family: var(--font-body);
+    font-weight: 500;
     font-size: 32px;
+  }
+  .expStats dd {
+    font-weight: 500;
+    font-size: 12px;
   }
   .ctaInner {
     flex-direction: column;
@@ -512,5 +734,19 @@
   }
   .ctaInner h2 {
     font-size: 22px;
+  }
+  .docsHead {
+    margin-top: 56px;
+  }
+  .docsHead h3 {
+    font-size: 20px;
+  }
+  .docsGrid,
+  .applyInfo {
+    grid-template-columns: 1fr;
+  }
+  .applyInfo {
+    gap: 20px;
+    padding: 20px;
   }
 }

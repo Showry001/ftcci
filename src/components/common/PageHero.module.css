@@ -24,7 +24,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
   padding-inline: var(--gutter);
   text-align: center;
   color: var(--white);
@@ -59,21 +59,18 @@
 .title {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 64px;
-  line-height: 60px;
+  font-size: 44px;
+  line-height: 48px;
 }
 @media (max-width: 1199px) {
   .title {
-    font-size: clamp(36px, 5.5vw, 64px);
+    font-size: clamp(32px, 4.4vw, 44px);
     line-height: 1.1;
   }
 }
 @media (max-width: 767px) {
   .crumb {
     font-size: 13px;
-  }
-  .title {
-    font-size: 36px;
   }
 }
 

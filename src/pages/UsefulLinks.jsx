@@ -1,9 +1,21 @@
 import { useMemo, useState } from "react";
+import { useLoaderData } from "react-router";
 import PageHero from "../components/common/PageHero.jsx";
-import { linkArrowSm, linkDirectory, searchIcon } from "../data/knowledge.js";
+import { single } from "../lib/content.server.js";
+import { icons } from "../ui/assets.js";
 import styles from "./UsefulLinks.module.css";
 
+export async function loader({ request }) {
+  return { linkDirectory: (await single("knowledge", request)).linkDirectory };
+}
+
+export const meta = () => [
+  { title: "Useful Links – FTCCI" },
+  { name: "description", content: "Government, regulatory, trade and industry websites useful to FTCCI members." },
+];
+
 export default function UsefulLinks() {
+  const { linkDirectory } = useLoaderData();
   const [q, setQ] = useState("");
   const groups = useMemo(() => {
     const term = q.trim().toLowerCase();
@@ -11,7 +23,7 @@ export default function UsefulLinks() {
     return linkDirectory
       .map((g) => ({ ...g, links: g.links.filter((l) => `${l.title} ${l.text} ${g.group}`.toLowerCase().includes(term)) }))
       .filter((g) => g.links.length);
-  }, [q]);
+  }, [q, linkDirectory]);
 
   return (
     <>
@@ -19,7 +31,7 @@ export default function UsefulLinks() {
       <section className={styles.section}>
         <div className="container">
           <label className={styles.search}>
-            <img src={searchIcon} alt="" width="20" height="20" />
+            <img src={icons.knowledge.search} alt="" width="20" height="20" />
             <span className="visually-hidden">Search links</span>
             <input type="search" placeholder="Search Links" value={q} onChange={(e) => setQ(e.target.value)} />
           </label>
@@ -34,9 +46,9 @@ export default function UsefulLinks() {
                       <a href={l.href} target="_blank" rel="noreferrer" className={styles.card}>
                         <span className={styles.cardHead}>
                           <strong>{l.title}</strong>
-                          <img src={linkArrowSm} alt="" width="12" height="12" />
+                          <img src={icons.knowledge.upRightSm} alt="" width="12" height="12" />
                         </span>
-                        <span className={styles.cardText}>{l.text}</span>
+                        {l.text && <span className={styles.cardText}>{l.text}</span>}
                       </a>
                     </li>
                   ))}

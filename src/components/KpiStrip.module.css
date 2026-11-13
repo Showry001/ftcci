@@ -1,0 +1,52 @@
+/* Frame 1000002261: KPI cards between the newsletter form and Who We Are */
+.section {
+  background: var(--white);
+  padding: 71px 0 70px;
+}
+.row {
+  width: min(1280px, 100% - 160px);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 60px;
+}
+.kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px;
+  background: var(--white);
+  border-left: 3px solid var(--gold-500);
+  border-radius: var(--radius-md);
+  filter: drop-shadow(1px 1px 7.2px rgba(0, 0, 0, 0.1));
+}
+.kpi strong {
+  font-weight: 700;
+  font-size: 36px;
+  color: var(--indigo-900);
+  /* Equal-width digits, so the figure doesn't jitter while it rolls. */
+  font-variant-numeric: tabular-nums;
+}
+.kpi > span {
+  font-family: var(--font-public);
+  font-size: 15px;
+  color: var(--slate-600);
+}
+
+@media (max-width: 1199px) {
+  .section {
+    padding: 48px 0;
+  }
+  .row {
+    width: min(var(--content-max), 100% - 2 * var(--gutter));
+    gap: 20px;
+  }
+  .kpi strong {
+    font-size: 28px;
+  }
+}
+@media (max-width: 1023px) {
+  .row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

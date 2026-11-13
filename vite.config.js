@@ -1,7 +1,14 @@
+import { reactRouter } from "@react-router/dev/vite";
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  plugins: [react()],
-  base: '/ftcci/',
+  plugins: [reactRouter()],
+  base: "/ftcci/",
+  server: {
+    proxy: {
+      // The FTCCI API (api/), started with `npm --prefix api run dev`, and the media library files it serves.
+      "/api/": "http://127.0.0.1:8787",
+      "/media/": "http://127.0.0.1:8787",
+    },
+  },
 });

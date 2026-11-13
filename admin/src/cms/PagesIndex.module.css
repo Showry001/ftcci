@@ -1,0 +1,74 @@
+/* Page cards in the admin card style (white, 0.5px navy border, 8px radius). */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 21px;
+  margin-top: 36px;
+}
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 22px 22px 20px;
+  border: 0.5px solid var(--card-line);
+  border-radius: 8px;
+  background: #fff;
+}
+.card:hover,
+.card:focus-within {
+  box-shadow: 0 0 0 2px var(--gold);
+}
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.head h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 26px;
+}
+/* The title link covers the whole card. */
+.head a {
+  color: var(--navy);
+  text-decoration: none;
+}
+.head a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+}
+.head a:focus-visible {
+  outline: none;
+}
+.intro {
+  flex: 1;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--muted-2);
+}
+.meta {
+  min-height: 18px;
+  font-size: 12px;
+  line-height: 18px;
+  color: #8a8f99;
+}
+.edit {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--navy);
+}
+
+@media (max-width: 599px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: 24px;
+  }
+}

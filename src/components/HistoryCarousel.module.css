@@ -1,0 +1,301 @@
+/* Figma "history": cards start on the content column and run off the right edge of the viewport */
+.wrap {
+  --inset: max(var(--gutter), (100% - var(--content-max)) / 2);
+  --slide-w: min(808px, 100vw - 2 * var(--gutter)); /* vw: a % would resolve against the track */
+}
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+  padding-inline: var(--inset) 38px;
+}
+.eyebrow {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 22px;
+  text-transform: uppercase;
+  color: var(--gold-600);
+}
+.title {
+  margin-top: 6px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 50px;
+  color: var(--white);
+}
+.title span {
+  color: var(--gold-600);
+}
+.arrows {
+  align-self: flex-end;
+  display: flex;
+  gap: 23px;
+}
+.arrows button {
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  border: 0;
+  background: none;
+  transition: opacity var(--dur-hover) var(--ease-out);
+}
+.arrows button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+.arrows img {
+  width: 50px;
+  height: 50px;
+}
+.prev img {
+  transform: scaleX(-1);
+}
+
+.track {
+  position: relative;
+  margin: 49px 0 0;
+  padding: 0 calc(100% - var(--inset) - var(--slide-w)) 0 var(--inset);
+  list-style: none;
+  display: flex;
+  gap: 91px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: var(--inset);
+  scrollbar-width: none;
+}
+.track::-webkit-scrollbar {
+  display: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .track {
+    cursor: grab;
+  }
+}
+.track[data-dragging] {
+  scroll-snap-type: none;
+  cursor: grabbing;
+  user-select: none;
+}
+.slide {
+  flex: 0 0 var(--slide-w);
+  scroll-snap-align: start;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 450px;
+}
+.photo {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0 0 0 20px;
+}
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 47px 35px 23px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 0 0 20px 0;
+  color: var(--white);
+}
+.year {
+  font-family: var(--font-display);
+  font-size: 64px;
+  line-height: 72px;
+  letter-spacing: 1px;
+}
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+}
+.copy h3 {
+  max-width: 315px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 33.59px;
+}
+.copy p {
+  max-width: 336px;
+  font-size: 16px;
+  line-height: 28px;
+}
+
+/* Year scrubber: 316px per year, dot under each label, 278px rule between dots */
+.years {
+  position: relative;
+  margin-top: 62px;
+  padding: 0 38px 0 var(--inset);
+  list-style: none;
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.years::-webkit-scrollbar {
+  display: none;
+}
+.years li {
+  position: relative;
+  flex: 0 0 316px;
+}
+.years li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 41px;
+  bottom: 8px;
+  width: 278px;
+  border-top: 1px solid rgba(255, 255, 255, 0.48);
+  pointer-events: none;
+}
+.years button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--white);
+  text-align: left;
+}
+.yearLabel {
+  font-family: var(--font-display);
+  font-size: 24px;
+  line-height: 33.59px;
+  white-space: nowrap;
+  opacity: 0.48;
+  transition: opacity var(--dur-hover) var(--ease-out);
+}
+.years button:hover .yearLabel {
+  opacity: 0.8;
+}
+.dot {
+  width: 17px;
+  height: 17px;
+  margin-left: 13.5px;
+  display: grid;
+  place-items: center;
+}
+.dot::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--white);
+  opacity: 0.48;
+}
+.current .yearLabel {
+  font-size: 28px;
+  opacity: 1;
+}
+.current .dot::before {
+  width: 17px;
+  height: 17px;
+  opacity: 1;
+}
+
+@media (max-width: 1199px) {
+  .slide {
+    height: auto;
+    min-height: 420px;
+  }
+  .year {
+    font-size: 48px;
+    line-height: 56px;
+  }
+  .copy h3 {
+    font-size: 24px;
+    line-height: 30px;
+  }
+  .copy p {
+    font-size: 15px;
+    line-height: 26px;
+  }
+}
+
+/* Mobile: one card per swipe with the photo above the copy; smaller scrubber */
+@media (max-width: 767px) {
+  .head {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    padding-inline: var(--gutter);
+  }
+  .eyebrow {
+    font-weight: 500;
+    font-size: 12px;
+  }
+  .title {
+    font-size: 24px;
+    line-height: 30px;
+  }
+  .arrows {
+    align-self: auto;
+    flex-shrink: 0;
+    gap: 10px;
+  }
+  .arrows button,
+  .arrows img {
+    width: 40px;
+    height: 40px;
+  }
+  .track {
+    margin-top: 28px;
+    gap: 16px;
+  }
+  .slide {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    min-height: 0;
+  }
+  .photo {
+    aspect-ratio: 4 / 3;
+    border-radius: 12px 12px 0 0;
+  }
+  .panel {
+    justify-content: flex-start;
+    gap: 16px;
+    padding: 24px 20px 28px;
+    border-radius: 0 0 12px 12px;
+  }
+  .year {
+    font-size: 40px;
+    line-height: 48px;
+  }
+  .copy {
+    gap: 12px;
+  }
+  .copy h3 {
+    font-size: 22px;
+    line-height: 28px;
+  }
+  .copy p {
+    font-size: 14px;
+    line-height: 24px;
+  }
+  .years {
+    margin-top: 32px;
+    padding-inline: var(--gutter);
+  }
+  .years li {
+    flex-basis: 120px;
+  }
+  .years li:not(:last-child)::after {
+    width: 82px;
+  }
+  .yearLabel {
+    font-size: 18px;
+    line-height: 26px;
+  }
+  .current .yearLabel {
+    font-size: 20px;
+  }
+}

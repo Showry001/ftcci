@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { assets, navLinks } from "../data/content.js";
-import HallBookingForm from "./HallBookingForm.jsx";
+import { Link, NavLink, useLocation } from "react-router";
+import { assets, navLinks } from "../ui/assets.js";
+import { useHallBooking } from "./HallBooking.jsx";
 import styles from "./Header.module.css";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const [booking, setBooking] = useState(false);
+  const { open: booking, openBooking: showBooking } = useHallBooking();
   const [expanded, setExpanded] = useState(null);
+  // Desktop dropdown closed by a click on one of its links; it can open again once the pointer or focus leaves it.
+  const [dismissed, setDismissed] = useState(null);
   const { pathname, hash, search } = useLocation();
   useEffect(() => setOpen(false), [pathname, hash, search]);
   useEffect(() => {
@@ -23,11 +25,10 @@ export default function Header() {
 
   const openBooking = () => {
     setOpen(false);
-    setBooking(true);
+    showBooking();
   };
 
   return (
-    <>
     <header className={styles.header}>
       <div className={styles.inner}>
         <Link to="/" className={styles.brand} aria-label="FTCCI home">
@@ -43,19 +44,29 @@ export default function Header() {
 
         <nav className={styles.nav} aria-label="Primary">
           {navLinks.map((l) => (
-            <NavLink key={l.to} to={l.to} className={({ isActive }) => (isActive ? styles.navActive : undefined)}>
-              {l.label}
-            </NavLink>
+            <div
+              key={l.to}
+              className={`${styles.navItem} ${dismissed === l.label ? styles.dismissed : ""}`}
+              onMouseLeave={() => setDismissed(null)}
+              onBlur={(e) => !e.currentTarget.contains(e.relatedTarget) && setDismissed(null)}
+            >
+              <NavLink to={l.to} className={({ isActive }) => (isActive ? styles.navActive : undefined)}>
+                {l.label}
+              </NavLink>
+              {l.children && (
+                <ul className={styles.dropdown} aria-label={`${l.label} pages`}>
+                  {l.children.map(([label, to]) => (
+                    <li key={to}>
+                      <Link to={to} onClick={() => setDismissed(l.label)}>{label}</Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           ))}
         </nav>
 
         <div className={styles.actions}>
-          <button type="button" className={styles.search} aria-label="Search">
-            <img src={assets.search} alt="" width="46" height="41" />
-          </button>
-          <button type="button" className={styles.searchMobile} aria-label="Search">
-            <img src={assets.searchMobile} alt="" width="34.78" height="31" />
-          </button>
           <button type="button" className={`${styles.btn} ${styles.btnGold}`} aria-haspopup="dialog" onClick={openBooking}>
             Hall Booking
           </button>
@@ -68,7 +79,7 @@ export default function Header() {
             aria-controls="mobile-menu"
             onClick={() => setOpen((v) => !v)}
           >
-            <img src={assets.menu} alt="" width="38" height="32" />
+            <img src={open ? assets.close : assets.menu} alt="" width="38" height={open ? 34 : 32} />
           </button>
         </div>
       </div>
@@ -99,7 +110,7 @@ export default function Header() {
               </div>
             ) : (
               <Link key={l.to} to={l.to} className={styles.groupBtn} onClick={() => setOpen(false)}>
-                {l.label}
+                {l.menuLabel ?? l.label}
               </Link>
             )
           )}
@@ -112,7 +123,5 @@ export default function Header() {
         </div>
       </div>
     </header>
-    <HallBookingForm open={booking} onClose={() => setBooking(false)} />
-    </>
   );
 }

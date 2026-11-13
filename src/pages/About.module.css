@@ -1,132 +1,113 @@
-/* ---------- KPI strip ---------- */
-.kpis {
-  background: var(--white);
-  padding: 71px 0 70px;
-}
-.kpiRow {
-  width: min(1243px, 100% - 2 * var(--gutter));
-  margin-inline: auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 47px;
-}
-.kpi {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 24px;
-  background: var(--white);
-  border-left: 3px solid var(--gold-500);
-  border-radius: var(--radius-md);
-  filter: drop-shadow(1px 1px 7.2px rgba(0, 0, 0, 0.1));
-}
-.kpi strong {
-  font-weight: 700;
-  font-size: 36px;
-  color: var(--indigo-900);
-}
-.kpi span {
-  font-family: var(--font-public);
-  font-size: 14px;
-  color: var(--slate-600);
+/* ---------- History (carousel lives in HistoryCarousel) ---------- */
+.history {
+  background: var(--navy-950);
+  padding: 87px 0 189px;
+  overflow: hidden;
 }
 
-/* ---------- History ---------- */
-.history {
-  background: var(--surface-lavender);
-  padding: 50px 0 99px;
-  scroll-margin-top: calc(var(--header-h) + var(--subnav-h));
+/* Heading line heights per section (Figma desktop / mobile frames) */
+.titleVision {
+  --eyebrow-lh: 26px;
+  --title-lh: 40px;
+  --eyebrow-size-m: 14px;
+  --eyebrow-lh-m: 26px;
+  --title-lh-m: 40px;
 }
-.timeline {
-  list-style: none;
-  margin: 62px auto 0;
-  padding: 0;
-  width: min(1098px, 100% - 2 * var(--gutter));
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+.titleObjectives {
+  --eyebrow-lh: 25px;
+  --title-lh: 56px;
+  --eyebrow-weight-m: 700;
 }
-.milestone {
-  display: grid;
-  grid-template-columns: 512fr 586fr;
-  height: 252px;
+.titleBearers {
+  --eyebrow-lh: 28px;
+  --title-lh: 42px;
+  --eyebrow-size-m: 14px;
+  --eyebrow-lh-m: 28px;
+  --title-lh-m: 42px;
 }
-.milestone img {
-  width: 100%;
-  height: 0; /* stretch to the row height set by the text column */
-  min-height: 100%;
-  object-fit: cover;
-  border-radius: 12px 0 0 12px;
+.titleCommittee {
+  --eyebrow-lh: 28px;
+  --title-lh: 46px;
+  --eyebrow-lh-m: 16px;
+  --eyebrow-weight-m: 600;
+  --title-lh-m: 46px;
+  --accent: #d79a26;
 }
-.milestoneBody {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 24px;
-  padding: 47px 64px 49px;
-  background: var(--white);
-  border-radius: 0 8px 8px 0;
-  filter: drop-shadow(0 1px 10px rgba(0, 0, 0, 0.08));
+.titleSecretariat {
+  --title-lh: 42px;
 }
-.milestoneBody h3 {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 32px;
-  line-height: 28px;
-  color: var(--navy-900);
-}
-.milestoneBody p {
-  max-width: 469px;
-  font-family: var(--font-public);
-  font-size: 16px;
-  line-height: 26px;
-  color: var(--neutral-600);
-}
-.flip {
-  grid-template-columns: 586fr 512fr;
-}
-.flip img {
-  order: 2;
-  border-radius: 0 12px 12px 0;
-}
-.flip .milestoneBody {
-  border-radius: 8px 0 0 8px;
-  padding-left: 58px;
+.titlePresidents {
+  --title-lh: 52px;
+  --title-lh-m: 52px;
 }
 
 /* ---------- Vision & mission ---------- */
 .vision {
   background: var(--white);
-  padding: 50px 0;
+  padding: 59px 0 96px;
 }
 .visionRow {
-  margin-top: 29px;
+  margin-top: 45px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  gap: 37px;
 }
 .visionCard {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 40px;
-  background: var(--navy-900);
-  border-radius: var(--radius-xl);
+  position: relative;
+  min-height: 335px;
+  padding: 50.19px 62px 32px 68.19px;
+  overflow: hidden;
+  border: 0.81px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24.28px 6.07px;
+  background: radial-gradient(237px 115px at 90% 6%, rgba(64, 125, 217, 0.34), rgba(64, 125, 217, 0)),
+    linear-gradient(154.93deg, #09265e 3.67%, #103b82 51.85%, #08265e 96.33%);
+  box-shadow: 0 18.21px 40.47px rgba(7, 34, 82, 0.18);
 }
-.visionCard img {
-  width: 32px;
-  height: 32px;
+.visionCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 22%;
+  height: 7.08px;
+  background: #d4a20b;
 }
 .visionCard h3 {
-  font-weight: 700;
-  font-size: 24px;
+  font-family: var(--font-lato);
+  font-weight: 900;
+  font-size: 32px;
+  line-height: 42.49px;
+  letter-spacing: -1.42px;
   color: var(--white);
 }
+.ornament {
+  height: 62.72px;
+  display: flex;
+  align-items: center;
+  padding: 14.16px 0 18.21px;
+}
+.ornament::before {
+  content: "";
+  width: 45.53px;
+  border-top: 2.43px solid #e2ad16;
+}
+.ornament span {
+  padding: 0 7.08px;
+  font-family: Georgia, serif;
+  font-size: 20.23px;
+  line-height: 20.23px;
+  color: #e8b72c;
+}
+.ornament::after {
+  content: "";
+  flex: 1;
+  border-top: 0.81px solid rgba(255, 255, 255, 0.25);
+}
 .visionCard p {
-  font-family: var(--font-public);
-  font-size: 16px;
-  line-height: 26px;
-  color: var(--slate-100);
+  font-family: var(--font-lato);
+  font-size: 20px;
+  line-height: 36.72px;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /* ---------- Objectives ---------- */
@@ -208,7 +189,7 @@
   font-family: var(--font-display);
   font-weight: 500;
   font-size: 21.46px;
-  line-height: 1.1;
+  line-height: 15.2px;
   color: var(--white);
 }
 .bearerCaption p {
@@ -305,11 +286,6 @@
   font-size: 12px;
   color: var(--navy-900);
 }
-.empty {
-  grid-column: 1 / -1;
-  color: var(--slate-600);
-}
-
 /* ---------- Secretariat ---------- */
 .secretariat {
   background: var(--surface-lavender-4);
@@ -350,6 +326,34 @@
   text-transform: uppercase;
   color: var(--neutral-550);
 }
+.staffSubjects {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 12px;
+  border-top: 1px solid var(--slate-200);
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--slate-600);
+}
+.staffContact {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 8px;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--slate-600);
+  overflow-wrap: anywhere;
+}
+.staffContact a {
+  font-weight: 500;
+  color: var(--navy-900);
+}
+.staffContact a:hover {
+  color: var(--gold-600);
+}
 
 /* ---------- Past presidents ---------- */
 .presidents {
@@ -363,23 +367,30 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 31px 37px;
 }
+/* Name and term share the first row; the company line runs the full width beneath (as in Figma) */
 .president {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "name term"
+    "company company";
+  column-gap: 16px;
   padding: 0 6px 17px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.25);
   color: var(--white);
 }
 .president h3 {
+  grid-area: name;
   font-weight: 600;
   font-size: 20px;
 }
 .president p {
+  grid-area: company;
   margin-top: 9px;
   font-size: 14px;
 }
 .president span {
+  grid-area: term;
   flex-shrink: 0;
   font-family: var(--font-public);
   font-weight: 500;
@@ -399,28 +410,18 @@
 
 /* ---------- Tablet ---------- */
 @media (max-width: 1199px) {
-  .kpiRow {
-    gap: 20px;
+  .history {
+    padding: 64px 0 96px;
   }
-  .kpi strong {
+  .visionCard {
+    padding: 40px 36px 36px 40px;
+  }
+  .visionCard h3 {
     font-size: 28px;
   }
-  .milestone {
-    height: auto;
-    min-height: 252px;
-  }
-  .milestoneBody {
-    padding: 32px;
-  }
-  .flip .milestoneBody {
-    padding-left: 32px;
-  }
-  .milestoneBody h3 {
-    font-size: 26px;
-  }
-  .milestoneBody p {
-    font-size: 14px;
-    line-height: 22px;
+  .visionCard p {
+    font-size: 17px;
+    line-height: 30px;
   }
   .objectivesRow {
     gap: 32px;
@@ -451,8 +452,9 @@
   }
 }
 @media (max-width: 1023px) {
-  .kpiRow {
-    grid-template-columns: repeat(2, 1fr);
+  .visionRow {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
   .objectivesRow {
     flex-direction: column;
@@ -467,60 +469,44 @@
   }
 }
 
-/* ---------- Mobile ---------- */
+/* ---------- Mobile (390 frames) ---------- */
 @media (max-width: 767px) {
-  .kpis {
-    padding: 40px 0;
-  }
-  .kpiRow {
-    gap: 16px;
-  }
-  .kpi {
-    padding: 18px;
-  }
-  .kpi strong {
-    font-size: 26px;
-  }
-  .kpi span {
-    font-size: 12px;
-  }
   .history {
     padding: 50px 0 60px;
   }
-  .timeline {
-    margin-top: 28px;
-  }
-  .milestone,
-  .flip {
-    grid-template-columns: 1fr;
-    min-height: 0;
-  }
-  .milestone img,
-  .flip img {
-    order: 0;
-    height: auto;
-    min-height: 0;
-    aspect-ratio: 16 / 9;
-    border-radius: 12px 12px 0 0;
-  }
-  .milestoneBody,
-  .flip .milestoneBody {
-    padding: 24px;
-    gap: 12px;
-    border-radius: 0 0 12px 12px;
+  .vision {
+    padding: 50px 0;
   }
   .visionRow {
-    grid-template-columns: 1fr;
+    margin-top: 28px;
     gap: 16px;
   }
   .visionCard {
-    padding: 28px;
+    min-height: 273px;
+    padding: 27px 24px 28px 26px;
+  }
+  /* mobile cards add gold corner brackets (top-right, bottom-left) */
+  .visionCard::after {
+    content: "";
+    position: absolute;
+    inset: 15.5px 17.5px 17.5px 21.5px;
+    pointer-events: none;
+    background:
+      linear-gradient(#e8b72c, #e8b72c) top right / 20px 1px no-repeat,
+      linear-gradient(#e8b72c, #e8b72c) top right / 1px 20px no-repeat,
+      linear-gradient(#e8b72c, #e8b72c) bottom left / 20px 1px no-repeat,
+      linear-gradient(#e8b72c, #e8b72c) bottom left / 1px 20px no-repeat;
+  }
+  .ornament {
+    height: 28px;
+    padding: 0;
   }
   .visionCard h3 {
-    font-size: 20px;
+    font-size: 26px;
+    line-height: 29px;
   }
   .visionCard p {
-    font-size: 14px;
+    font-size: 15px;
     line-height: 24px;
   }
   .objectives,
@@ -528,38 +514,157 @@
   .secretariat {
     padding: 50px 0;
   }
+  .objectives {
+    background: var(--white);
+  }
+  .objectivesRow {
+    margin-top: 22px;
+    gap: 32px;
+  }
+  .objectivesRow > img {
+    aspect-ratio: 330 / 200;
+    border-radius: var(--radius-lg);
+  }
   .objectiveGrid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 25px;
+  }
+  .objectiveGrid li {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--slate-200);
+  }
+  .objectiveGrid h3 {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 15px;
+    color: #001973;
+  }
+  .objectiveGrid p {
+    margin-top: 0;
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: normal;
+    color: var(--slate-700);
   }
   .bearerRow {
     grid-template-columns: 1fr;
     gap: 16px;
   }
   .bearerCaption h3 {
-    font-size: 20px;
+    font-size: 21.5px;
+  }
+  .committePhoto {
+    margin-top: 25px;
+    aspect-ratio: auto;
+    height: 220px;
+    border-radius: var(--radius-lg);
+  }
+  .committePhoto img {
+    position: static;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 42% center;
   }
   .panelTabs {
-    padding-left: 0;
+    margin-top: 25px;
+    gap: 0;
+    padding: 0 0 9px;
+  }
+  .panelTab {
+    padding: 8px;
+    border: 0;
+    font-family: var(--font-body);
+    font-size: 13px;
+    letter-spacing: 0;
+  }
+  .panelTabActive {
+    padding: 8px 12px;
+    background: var(--navy-900);
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--white);
+  }
+  .memberGrid {
+    margin: 25px 0 0;
+  }
+  .member {
+    gap: 6px;
+    padding: 16px;
+  }
+  .member h3 {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .member p {
+    font-size: 13px;
+    line-height: 18px;
+  }
+  .member span {
+    margin-top: 6px;
+  }
+  .secretariatIntro {
+    margin-top: 16px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 18px;
+    color: var(--slate-700);
+  }
+  .staffGrid {
+    margin-top: 25px;
+    gap: 24px;
+  }
+  .staff {
+    gap: 10px;
+    padding: 16px;
+    background: var(--white);
+    border-radius: 6px;
+  }
+  .staff p {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--slate-500);
   }
   .memberGrid,
   .staffGrid,
   .presidentGrid {
     grid-template-columns: 1fr;
   }
-  .member h3 {
-    font-size: 18px;
-  }
   .presidents {
-    padding: 50px 0;
+    padding: 54px 0 50px;
   }
   .presidentGrid {
+    margin: 26px 16px 0;
     gap: 20px;
   }
+  .president {
+    grid-template-areas:
+      "name term"
+      "company term";
+    padding: 0 0 11px;
+  }
   .president h3 {
-    font-size: 17px;
+    font-size: 15px;
+  }
+  .president p {
+    margin-top: 4px;
+    font-size: 12px;
+    line-height: 16.8px;
+    color: var(--slate-200);
   }
   .president span {
-    font-size: 14px;
+    align-self: start;
+    padding: 6px 10px;
+    background: rgba(240, 184, 77, 0.08);
+    border: 1px solid var(--gold-500);
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 11px;
+    line-height: normal;
   }
 }

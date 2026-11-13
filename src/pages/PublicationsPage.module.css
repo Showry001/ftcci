@@ -12,13 +12,13 @@
   font-family: var(--font-display);
   font-weight: 500;
   font-size: 32px;
-  line-height: 1.1;
+  line-height: 20.3px;
   color: var(--navy-900);
 }
 .grid {
-  margin-top: 41px;
+  margin-top: 54px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 28px 43px;
 }
 .card {
@@ -45,11 +45,11 @@
 .card:hover .cover img {
   transform: scale(1.06);
 }
-.body time,
+.body .meta,
 .body strong {
   transition: color var(--dur-hover) var(--ease-figma);
 }
-.card:hover .body time,
+.card:hover .body .meta,
 .card:hover .body strong {
   color: var(--white);
 }
@@ -59,12 +59,6 @@
   aspect-ratio: 277.6 / 268.16;
   overflow: hidden;
   background: #d9d9d9;
-}
-.cropped {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  max-width: none;
 }
 .fit {
   width: 100%;
@@ -76,23 +70,30 @@
   flex-direction: column;
   padding: 13px 16px 12px;
 }
-.body time {
+.body .meta {
   font-size: 10.15px;
   line-height: 15.2px;
   color: #000;
 }
 .body strong {
-  padding-top: 4px;
+  padding-top: 4.1px;
   font-weight: 700;
-  font-size: 14.2px;
+  font-size: 13.22px;
   line-height: 20.3px;
   color: #000;
 }
+@media (min-width: 1200px) {
+  .body strong {
+    white-space: nowrap; /* titles sit on one line in the 4-up grid */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
 .dl {
-  margin-top: 4px;
+  padding: 6.1px 0;
   font-weight: 600;
-  font-size: 12.19px;
-  line-height: 24px;
+  font-size: 12.18px;
+  line-height: 16.2px;
   color: var(--gold-600);
 }
 .card:hover .dl {
@@ -100,35 +101,61 @@
 }
 
 @media (max-width: 1199px) {
+  .section h2 {
+    line-height: 1.2;
+  }
   .grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 24px;
   }
 }
 @media (max-width: 1023px) {
   .grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 @media (max-width: 767px) {
+  /* Mobile Publications frame (2263:41352): one card per row */
   .page {
-    padding: 40px 0 56px;
+    padding: 48px 0;
   }
   .section + .section {
     margin-top: 48px;
   }
   .section h2 {
-    font-size: 24px;
+    font-family: var(--font-body);
+    font-size: 26px;
+    line-height: 34px;
   }
   .grid {
-    margin-top: 20px;
-    gap: 14px;
+    margin-top: 24px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+  .card {
+    border-radius: 11px;
+  }
+  .cover {
+    aspect-ratio: 330 / 319;
   }
   .body {
-    padding: 10px 12px;
+    gap: 6px;
+    padding: 16px;
+  }
+  .body .meta {
+    font-size: 12px;
+    line-height: 18px;
+    color: #141414;
   }
   .body strong {
-    font-size: 13px;
-    line-height: 18px;
+    padding-top: 0;
+    font-size: 15px;
+    line-height: 22px;
+    color: #141414;
+  }
+  .dl {
+    padding: 0;
+    font-size: 14px;
+    line-height: 24px;
   }
 }

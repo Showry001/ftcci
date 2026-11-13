@@ -56,6 +56,7 @@
   --font-arimo: "Arimo", Arial, sans-serif;
   --font-nunito: "Nunito", "Inter", sans-serif;
   --font-geist: "Geist", "Inter", system-ui, sans-serif;
+  --font-lato: "Lato", "Inter", system-ui, sans-serif;
 
   /* Radii */
   --radius-xs: 2.5px;
@@ -102,11 +103,12 @@
   --neutral-900: #171717;
   --surface-lavender-4: #f6f8ff;
   --subnav-h: 63px;
-  --page-hero-h: 461px;
+  /* Inner-page banner: about a fifth of the screen (Figma has 357px; shortened at FTCCI's request). */
+  --page-hero-h: clamp(170px, 22vh, 220px);
 }
 @media (max-width: 767px) {
   :root {
-    --page-hero-h: 260px;
+    --page-hero-h: clamp(150px, 20vh, 200px);
     --subnav-h: 0px;
   }
 }

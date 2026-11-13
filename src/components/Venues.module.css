@@ -72,26 +72,23 @@
   border-radius: var(--radius-md);
 }
 
+/* Halls strip: moves right to left at a constant speed (useMarquee); the cards are rendered twice to loop */
 .track {
   margin-top: 47px;
+  overflow: hidden;
+  /* room for card shadows */
+  padding: 4px 0 14px 4px;
+  margin-inline: -4px;
+}
+.strip {
   display: flex;
   gap: 38px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  /* room for card shadows */
-  padding: 4px 16px 14px 4px;
-  margin-inline: -4px;
-  scroll-padding-inline: 4px;
-}
-.track::-webkit-scrollbar {
-  display: none;
+  will-change: transform;
 }
 .card {
   position: relative;
   flex: 0 0 calc((100% - 2 * 38px) / 3);
   height: 267px;
-  scroll-snap-align: start;
   border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: var(--shadow-venue);
@@ -158,7 +155,7 @@
   .featured {
     width: 45%;
   }
-  .track {
+  .strip {
     gap: 20px;
   }
   .card {

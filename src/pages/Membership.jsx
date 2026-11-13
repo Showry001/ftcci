@@ -1,17 +1,38 @@
+import { useState } from "react";
+import { useLoaderData } from "react-router";
+import { membershipPanels } from "../../shared/forms.js";
 import PageHero from "../components/common/PageHero.jsx";
 import SubNav from "../components/common/SubNav.jsx";
 import SectionTitle from "../components/common/SectionTitle.jsx";
-import {
-  benefitsPhoto, ctaArrowWhite, experienceBg, experienceStats, memberBenefits,
-  membershipOptions, membershipSubNav, optionArrow, pillars, stepLine, steps,
-} from "../data/membership.js";
+import MembershipForm from "../components/MembershipForm.jsx";
+import Img from "../components/Img.jsx";
+import { single } from "../lib/content.server.js";
+import { icons, pickIcons, subNav } from "../ui/assets.js";
 import styles from "./Membership.module.css";
 
+const { ctaArrowWhite, optionArrow, stepLine } = icons.membership;
+const panelTitle = Object.fromEntries(membershipPanels.map((p) => [p.value, p.label]));
+const no = (i) => String(i + 1).padStart(2, "0");
+
+export async function loader({ request }) {
+  return { page: await single("membership", request) };
+}
+
+export const meta = () => [
+  { title: "Membership – FTCCI" },
+  { name: "description", content: "Why join FTCCI, membership benefits and options, how to apply online, and the documents each panel needs." },
+];
+
 export default function Membership() {
+  const { page } = useLoaderData();
+  const { contacts, experienceStats, files, memberBenefits, options, panelDocuments, pillars, steps } = page;
+  const [applying, setApplying] = useState(false);
+  const apply = () => setApplying(true);
+
   return (
     <>
       <PageHero crumb="Home > Membership" title="Membership" />
-      <SubNav items={membershipSubNav} label="Membership sections" />
+      <SubNav items={subNav.membership} label="Membership sections" />
 
       <section id="why-join" className={styles.why}>
         <div className="container">
@@ -21,9 +42,9 @@ export default function Membership() {
             A network built for <span>Growth</span>.
           </h2>
           <ol className={styles.pillars}>
-            {pillars.map((p) => (
-              <li key={p.n}>
-                <span className={styles.pillarNo}>{p.n}</span>
+            {pillars.map((p, i) => (
+              <li key={p.title}>
+                <span className={styles.pillarNo}>{no(i)}</span>
                 <h3>{p.title}</h3>
                 <p>{p.text}</p>
               </li>
@@ -34,14 +55,14 @@ export default function Membership() {
 
       <section id="benefits" className={styles.benefits}>
         <div className={styles.benefitsInner}>
-          <SectionTitle eyebrow="Membership Benefits" title="Everything you need to move business forward." />
+          <SectionTitle eyebrow="Membership Benefits" title="Everything you need to move business forward." className={styles.titleBenefits} />
           <div className={styles.benefitsRow}>
-            <img src={benefitsPhoto} alt="FTCCI members at the Parishrama Adalat conciliation conclave" loading="lazy" />
+            <Img media={page.benefitsPhoto} sizes="(min-width: 1200px) 600px, 100vw" />
             <ul className={styles.benefitList}>
               {memberBenefits.map((b) => (
                 <li key={b.title}>
                   <span className={styles.benefitIcon}>
-                    <img src={b.icon} alt="" width="28" height="28" />
+                    <img src={pickIcons.memberBenefit[b.icon]} alt="" width="28" height="28" />
                   </span>
                   <div>
                     <h3>{b.title}</h3>
@@ -57,22 +78,22 @@ export default function Membership() {
       <section id="options" className={styles.options}>
         <div className="container">
           <div className={styles.optionsHead}>
-            <SectionTitle eyebrow="Membership Options" title="A membership that fits your business." />
+            <SectionTitle eyebrow="Membership Options" title="A Membership that fits your business." className={styles.titleOptions} />
             <p>
               Whether you're an established enterprise, growing company or emerging entrepreneur, FTCCI offers membership
               opportunities designed around your business journey.
             </p>
           </div>
           <div className={styles.optionGrid}>
-            {membershipOptions.map((o) => (
-              <article key={o.title} className={styles.option}>
+            {options.map((o) => (
+              <article key={o.panel} className={styles.option}>
                 <span className={styles.optionIcon}>
-                  <img src={o.icon} alt="" width={o.iconSize} height={o.iconSize} style={{ width: o.iconSize, height: o.iconSize }} />
+                  <img src={pickIcons.membershipOption[o.icon]} alt="" width="30" height="30" />
                 </span>
-                <h3>{o.title}</h3>
+                <h3>{panelTitle[o.panel]}</h3>
                 <p>{o.text}</p>
-                <a href="#apply" className={styles.optionBtn}>
-                  Explore Corporate Membership <img src={optionArrow} alt="" width="14" height="14" />
+                <a href={`#docs-panel-${o.panel}`} className={styles.optionBtn}>
+                  {o.cta} <img src={optionArrow} alt="" width="14" height="14" />
                 </a>
               </article>
             ))}
@@ -88,9 +109,9 @@ export default function Membership() {
           </div>
           <ol className={styles.stepRow}>
             {steps.map((s, i) => (
-              <li key={s.n} className={styles.stepItem}>
+              <li key={s.title} className={styles.stepItem}>
                 <div className={styles.step}>
-                  <span className={styles.stepNo}>{s.n}</span>
+                  <span className={styles.stepNo}>{no(i)}</span>
                   <h3>{s.title}</h3>
                   <p>{s.text}</p>
                 </div>
@@ -98,11 +119,65 @@ export default function Membership() {
               </li>
             ))}
           </ol>
+          <p className={styles.applyNow}>
+            <button type="button" className={styles.ctaBtn} onClick={apply}>
+              Apply Online <img src={ctaArrowWhite} alt="" width="16" height="16" />
+            </button>
+          </p>
+
+          <div className={styles.docsHead}>
+            <h3>Documents to file with your application</h3>
+            <p>
+              Membership is approved by the Managing Committee and the FTCCI Secretariat. All documents need to be
+              self-attested.
+            </p>
+          </div>
+          <ul className={styles.docsGrid}>
+            {panelDocuments.map((p) => (
+              <li key={p.panel} id={`docs-panel-${p.panel}`} className={styles.docsCard}>
+                <h4>{p.title}</h4>
+                <ul>
+                  {p.docs.map((doc) => (
+                    <li key={doc}>{doc}</li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+          <div className={styles.applyInfo}>
+            <div>
+              <h4>Forms &amp; downloads</h4>
+              <ul className={styles.applyFiles}>
+                {files.map((f) => (
+                  <li key={f.title}>
+                    <a href={f.file?.url} download target="_blank" rel="noreferrer">
+                      {f.title} <span aria-hidden="true">↓</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4>Life membership</h4>
+              <p>{page.lifeMembership}</p>
+            </div>
+            <div>
+              <h4>Membership desk</h4>
+              <ul className={styles.applyContacts}>
+                {contacts.map((c) => (
+                  <li key={c.email}>
+                    <a href={`mailto:${c.email}`}>{c.email}</a>
+                    <a href={`tel:${c.phone.replace(/[^\d+]/g, "")}`}>{c.phone}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 
       <section id="experience" className={styles.experience}>
-        <img className={styles.expBg} src={experienceBg} alt="" aria-hidden="true" />
+        <Img className={styles.expBg} media={page.experienceImage} alt="" aria-hidden="true" sizes="100vw" />
         <div className={styles.expTint} aria-hidden="true" />
         <div className={`container ${styles.expInner}`}>
           <p className={styles.expEyebrow}>The FTCCI Experience</p>
@@ -129,15 +204,13 @@ export default function Membership() {
             <p>Become part of Telangana's leading business network and unlock opportunities to connect, influence and grow.</p>
           </div>
           <div className={styles.ctaActions}>
-            <a href="#apply" className={styles.ctaBtn}>
+            <button type="button" className={styles.ctaBtn} onClick={apply}>
               Apply for Membership <img src={ctaArrowWhite} alt="" width="16" height="16" />
-            </a>
-            <p>
-              Already a member? <a href="#login">Member Login →</a>
-            </p>
+            </button>
           </div>
         </div>
       </section>
+      <MembershipForm open={applying} onClose={() => setApplying(false)} />
     </>
   );
 }

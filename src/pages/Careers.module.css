@@ -1,0 +1,124 @@
+/* Careers: no Figma frame; built from the inner-page pattern (PageHero + white section, navy/gold type). */
+.section {
+  padding: 70px 0 90px;
+}
+.head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+}
+.head > p {
+  max-width: 520px;
+  font-size: 15px;
+  line-height: 24px;
+  color: var(--slate-600);
+}
+.empty {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 56px 24px;
+  background: var(--surface-lavender-4);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+.emptyIcon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--navy-900);
+  color: var(--gold-500);
+}
+.empty h2 {
+  margin-top: 20px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 26px;
+  color: var(--navy-900);
+}
+.empty p {
+  margin-top: 10px;
+  max-width: 480px;
+  font-size: 15px;
+  line-height: 24px;
+  color: var(--slate-600);
+}
+.list {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.job {
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 28px;
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-lg);
+}
+.job h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 22px;
+  color: var(--navy-900);
+}
+.meta {
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--gold-600);
+}
+.summary {
+  margin-top: 12px;
+  font-size: 15px;
+  line-height: 24px;
+  color: var(--slate-600);
+}
+.apply {
+  flex-shrink: 0;
+  max-width: 280px;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--slate-700);
+}
+.contact {
+  margin-top: 32px;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--slate-600);
+}
+.contact a {
+  font-weight: 600;
+  color: var(--navy-900);
+}
+.contact a:hover {
+  color: var(--gold-600);
+}
+
+@media (max-width: 1023px) {
+  .head,
+  .job {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+@media (max-width: 767px) {
+  .section {
+    padding: 48px 0 56px;
+  }
+  .empty {
+    margin-top: 32px;
+    padding: 40px 20px;
+  }
+  .empty h2 {
+    font-size: 22px;
+  }
+}

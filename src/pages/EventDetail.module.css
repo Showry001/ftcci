@@ -73,8 +73,18 @@
   margin-top: 30px;
   display: grid;
   grid-template-columns: minmax(0, 710px) 387px;
-  gap: 42.4px;
-  padding: 0 31.8px 53px;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "about side"
+    "expect side";
+  gap: 0 42.4px;
+  padding: 0 15.8px 53px 31.8px; /* Figma's grid runs 16px past its right padding, keeping the text column at 710px */
+}
+.aboutBlock {
+  grid-area: about;
+}
+.expectBlock {
+  grid-area: expect;
 }
 .grid h2 {
   font-family: var(--font-display);
@@ -118,6 +128,7 @@
   align-items: center;
   gap: 10.6px;
   padding: 13.25px 26.5px;
+  border: 0;
   background: var(--yellow-500);
   border-radius: 10.6px;
   font-family: var(--font-sf);
@@ -131,6 +142,8 @@
   filter: brightness(0.95);
 }
 .side {
+  grid-area: side;
+  align-self: start;
   display: flex;
   flex-direction: column;
   gap: 21px;
@@ -178,9 +191,17 @@
 }
 .details dd {
   margin: 2.65px 0 0;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 23.85px;
   color: #6e6e6e;
+}
+.details dl > div:first-child dd {
+  font-size: 14px;
+}
+@media (min-width: 1200px) {
+  .details dd {
+    white-space: nowrap; /* single-line values, as drawn */
+  }
 }
 .pdf {
   display: flex;
@@ -204,7 +225,7 @@
   .grid {
     grid-template-columns: minmax(0, 1fr) 320px;
     padding-inline: 0;
-    gap: 32px;
+    column-gap: 32px;
   }
 }
 @media (max-width: 1023px) {
@@ -218,31 +239,125 @@
     min-height: 0;
     aspect-ratio: 16 / 9;
   }
+  /* Mobile frame order: about, event details + PDF, what to expect */
   .grid {
     grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-template-areas:
+      "about"
+      "side"
+      "expect";
+    row-gap: 32px;
+  }
+  .expectTitle {
+    margin-top: 0;
   }
 }
+/* Mobile event frame (390): Inter section headings, grey breadcrumb strip, full-width actions */
 @media (max-width: 767px) {
+  .heroText {
+    padding: 57px var(--gutter) 70px;
+    gap: 16px;
+  }
   .heroText h1 {
-    font-size: 28px;
+    font-size: 24px;
     line-height: 36px;
+    letter-spacing: 0;
+  }
+  .heroText p {
+    margin-top: -6px;
+    line-height: 24px;
+  }
+  .heroImg {
+    aspect-ratio: 390 / 203;
   }
   .body {
-    padding-top: 28px;
+    padding-top: 0;
   }
   .crumbs {
-    padding-inline: 0;
+    flex-wrap: nowrap;
+    margin-inline: calc(-1 * var(--gutter));
+    padding: 12px var(--gutter);
+    background: #f8f9fa;
+    border-bottom: 1px solid var(--slate-200);
     font-size: 12px;
+    line-height: normal;
+    white-space: nowrap;
+    color: #4a5565;
+  }
+  .crumbs [aria-current] {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .grid {
+    margin-top: 37px;
+    row-gap: 24px;
   }
   .grid h2 {
-    font-size: 26px;
-    line-height: 1.6;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
   }
-  .about,
+  .grid .expectTitle {
+    margin-top: 36px;
+    font-size: 22px;
+  }
+  .about {
+    padding-top: 16px;
+    font-size: 14px;
+    line-height: 22px;
+  }
+  .details {
+    padding: 24px;
+  }
+  .details h3 {
+    font-size: 15.8px;
+    line-height: 22.6px;
+  }
+  .factIcon {
+    width: 26px;
+    height: 26px;
+  }
+  .factIcon img {
+    width: 15px;
+    height: 15px;
+  }
+  .details dt {
+    font-size: 13.6px;
+    line-height: 18.6px;
+  }
+  .details dd {
+    font-size: 12.8px;
+    line-height: 20.3px;
+  }
+  .details dl > div:first-child dd {
+    font-size: 11.5px;
+  }
+  .pdf {
+    padding: 10px 16px;
+    font-size: 16px;
+    line-height: 18.4px;
+  }
+  .expect {
+    padding: 16px 0 24px;
+    gap: 12px;
+  }
   .expect li {
-    font-size: 15px;
+    gap: 8px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .expect img {
+    width: 14px;
+    height: 14px;
+    margin-top: 3px;
   }
   .register {
+    display: flex;
+    justify-content: center;
+    padding: 12.75px 24px;
+    border-radius: 8px;
     font-size: 16px;
   }
 }
