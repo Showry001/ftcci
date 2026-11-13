@@ -6,9 +6,9 @@ The website of the Federation of Telangana Chambers of Commerce and Industry.
 |---|---|
 | `/` (`src/`, `public/`) | The public website: React 18 + React Router 7, rendered on the server, served under `/ftcci/`. Its pages read their content from the API |
 | `api/` | The server: Node.js 24, Fastify, PostgreSQL. Stores content and media, receives the forms, sends email, serves the admin API |
-| `admin/` | The staff admin: React + Vite, served under `/admin/`. **Local only until staff sign-in is added (Phase 4)** |
+| `admin/` | The staff admin: React + Vite, served under `/admin/`. Staff sign in with their own accounts |
 | `shared/` | Content types and form rules, used by all three so the browser and the server check everything the same way |
-| `docs/` | Design parity report and the [email setup guide](docs/email-setup.md) |
+| `docs/` | The [staff guide](docs/admin-guide.md), [security notes](docs/security-notes.md), [email setup guide](docs/email-setup.md) and design parity report |
 
 ## Requirements
 
@@ -37,6 +37,14 @@ npm --prefix api run seed
 ```
 
 This fills the database and media library from `api/seed/content.json`, the images in `api/seed/assets/` and the documents on ftcci.in, and publishes everything so the site looks exactly as designed. Downloads from ftcci.in are kept in `api/.data/import-cache` (about 1.5 GB with the FTCCI Review archive; delete it after seeding if space matters). `--skip-reviews` leaves out the Review archive. Running it again is safe.
+
+Then create the first Super Admin. There are no default accounts or passwords:
+
+```bash
+npm --prefix api run admin:create -- --email you@ftcci.in --name "Your Name"
+```
+
+It asks for a password, which isn't shown as you type. Leave it empty to sign in with codes sent to that email instead. The command works only while there is no active Super Admin; after that, add people under Staff accounts in the admin.
 
 ## Running locally
 
@@ -70,22 +78,23 @@ npm --prefix admin run dev
 npm test
 ```
 
-This runs the API test suite (51 tests) against a throwaway database. Also run `npm --prefix api run typecheck`, `npm run build` and `npm --prefix admin run build`.
+This runs the API test suite (69 tests) against a throwaway database. Also run `npm --prefix api run typecheck`, `npm run build` and `npm --prefix admin run build`.
 
 ## Environment variables (`api/.env`)
 
 | Variable | Required | Purpose |
 |---|---|---|
-| `NODE_ENV` | yes | `development` or `production`. The admin API only exists outside production until Phase 4 |
+| `NODE_ENV` | yes | `development` or `production`. Production requires https addresses and uses Secure cookies |
 | `HOST`, `PORT` | no | Where the API listens (default `127.0.0.1:8787`) |
 | `DATABASE_URL` | yes | PostgreSQL connection string |
 | `PUBLIC_SITE_URL` | yes | Site address used in email links (`https://` required in production) |
+| `ADMIN_URL` | yes in production | The admin's address, e.g. `https://www.ftcci.in/admin` (development default `http://127.0.0.1:5174/admin`). Used in sign-in emails; only pages from this address can sign in or make changes |
 | `TRUST_PROXY` | no | Address of the reverse proxy (e.g. `127.0.0.1` for Nginx on the same server) so rate limits see visitors' IPs |
 | `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` | yes (user/pass for real mail servers) | Outgoing mail server. Port 465 uses TLS; port 587 requires STARTTLS |
 | `MAIL_FROM` | yes | Sender, e.g. `FTCCI <noreply@ftcci.in>` |
 | `MAIL_REPLY_TO` | no | Where visitors' replies to confirmation emails go |
 | `BOOKING_NOTIFY_EMAIL`, `MEMBERSHIP_NOTIFY_EMAIL`, `EVENTS_NOTIFY_EMAIL`, `CONTACT_NOTIFY_EMAIL`, `NEWSLETTER_NOTIFY_EMAIL` | yes | Who is told about each form |
-| `ALTCHA_HMAC_SECRET` | yes | At least 32 random characters, for the spam check |
+| `ALTCHA_HMAC_SECRET` | yes | At least 32 random characters. Signs spam-check challenges, preview links and sign-in codes |
 | `MEDIA_DIR` | no | Where uploaded files are stored. Development default `api/.data/media`; in production an absolute path outside the app folder, served by Nginx |
 | `MEDIA_URL` | no | Address the files are served at (default `/media`) |
 | `FFMPEG_PATH` | no | ffmpeg for compressing hero videos (default `ffmpeg` on the PATH; development uses the bundled copy) |
@@ -145,9 +154,9 @@ Pages are rendered on the server with their content, titles, descriptions and so
 
 In production, run the website with `npm run build` then `npm start` (set `API_URL` and `PORT`), and let Nginx serve `MEDIA_DIR` at `/media`. Phase 5 adds the server setup.
 
-## Admin (local only for now)
+## Admin
 
-The admin covers website content (above), website submissions and the newsletter.
+The admin covers the dashboard, website content (above), website submissions and the newsletter. Super Admins also see Administration: staff accounts, the activity log and the bin.
 
 For each kind of submission there is a list with search and status filters. A submission's page shows everything that was sent and lets staff:
 
@@ -155,14 +164,42 @@ For each kind of submission there is a list with search and status filters. A su
 - keep internal notes;
 - see whether each email was delivered, and retry failed ones.
 
-The Newsletter page lists sign-ups.
+The Newsletter page lists sign-ups. A step-by-step guide for staff is in [docs/admin-guide.md](docs/admin-guide.md).
 
-Until Phase 4 adds sign-in with an email one-time code, the admin API is **not registered at all in production**. In development it only answers requests that come straight from the same computer: a loopback address, a `localhost` Host and Origin, and no proxy headers.
+### Staff accounts and roles
+
+| Role | Can |
+|---|---|
+| Admin | Edit and publish all content and pages, use the media library, handle website submissions, see the newsletter list, delete items (they go to the bin) |
+| Super Admin | Everything an Admin can, plus add, edit, disable and unlock staff accounts, read the activity log, and restore items from the bin |
+
+Roles are checked by the server on every request, not just hidden in the admin. Nobody can change their own role or disable their own account, so there is always at least one active Super Admin. Accounts are disabled, never deleted; disabling one signs it out everywhere at once.
+
+### Signing in
+
+FTCCI chose (2 Nov 2026) to let staff sign in **either** with a password **or** with a 6-digit code sent to their email; either one is enough. This differs from the original brief, which asked for a password plus a mandatory second step. See [docs/security-notes.md](docs/security-notes.md).
+
+| Rule | Setting |
+|---|---|
+| Passwords | At least 12 characters, not containing the email address. Stored as Argon2id hashes |
+| Wrong passwords | 5 in a row pause password sign-in for that account for 15 minutes (a code still works) |
+| Emailed codes | 6 digits, expire after 10 minutes, 5 tries each, work once; a new code cancels the previous one. At most 5 codes per account per 15 minutes and 20 per day |
+| Forgotten password | A link that works once, for 30 minutes; at most 3 per account per hour. Setting the new password signs the account out everywhere |
+| Sessions | End after 8 hours without activity (FTCCI chose no fixed maximum length), on sign-out, or when the account is disabled or its password is reset |
+| Rate limits per address | 10 password attempts, 5 code requests, 20 code attempts and 5 reset requests per 15 minutes |
+
+The session is a random token in an HttpOnly, SameSite=Strict cookie (Secure and `__Host-` prefixed in production); the database keeps only a SHA-256 of it. Every change must come from the admin's own address (`ADMIN_URL`) and carry the session's CSRF token. Sign-in, code and reset emails are sent straight away and never stored. Sign-in forms answer the same way whether or not an account exists, and a wrong email takes as long to check as a wrong password.
+
+### Activity log and bin
+
+Every sign-in (and failed attempt), publish, unpublish, archive, schedule, restore, deletion, upload, file edit, submission status change, email retry and staff account change is logged with the person, time and address. Autosaves aren't logged; version history covers them. Entries can't be edited or deleted from the admin.
+
+Deleted content and files go to the bin with who deleted them and when. A Super Admin can restore them exactly as they were; a restored item whose web address was taken in the meantime gets a number added to it.
 
 ## Project phases
 
 1. Design parity with Figma (done)
 2. Forms, server, email and submissions admin (done)
-3. Content management: hero, events, news, publications, pages and media library; imports the existing ftcci.in files (this phase)
-4. Staff sign-in with email OTP, roles, audit log and the full admin dashboard
+3. Content management: hero, events, news, publications, pages and media library; imports the existing ftcci.in files (done)
+4. Staff sign-in, roles, activity log, bin and the dashboard (this phase)
 5. Hardening and deployment: HTTPS and security headers, server setup, backups, retention policy and privacy notice

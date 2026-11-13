@@ -224,7 +224,7 @@ function Details({ id, onChange, onDeleted }) {
   }
 
   async function remove() {
-    if (!window.confirm(`Delete “${m.title || m.name}” from the media library?`)) return;
+    if (!window.confirm(`Delete “${m.title || m.name}”? It moves to the bin, where a Super Admin can restore it.`)) return;
     setBusy(true);
     setMessage(null);
     try {

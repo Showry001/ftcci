@@ -1,12 +1,25 @@
-// Calls the admin API (/api/admin). Errors carry a plain message staff can act on.
+// Calls the API. Admin calls (`api`) go to /api/admin; sign-in calls (`auth`) to /api/auth. Changes carry
+// the session's CSRF token. Errors carry a plain message staff can act on.
 const OFFLINE = "Can't reach the FTCCI server. Check that it is running, then try again.";
 
-async function request(method, path, body) {
+let csrfToken = "";
+let onSignedOut = () => {};
+/** Set after sign-in: the token every change must carry. */
+export const setCsrfToken = (token) => {
+  csrfToken = token ?? "";
+};
+/** Called when the server says the session has ended (signed out after 8 idle hours, or disabled). */
+export const whenSignedOut = (fn) => {
+  onSignedOut = fn;
+};
+export const csrfHeader = () => (csrfToken ? { "x-csrf-token": csrfToken } : {});
+
+async function request(base, method, path, body) {
   let res;
   try {
-    res = await fetch(`/api/admin${path}`, {
+    res = await fetch(`${base}${path}`, {
       method,
-      headers: { accept: "application/json", ...(body ? { "content-type": "application/json" } : {}) },
+      headers: { accept: "application/json", ...(body ? { "content-type": "application/json" } : {}), ...(method === "GET" ? {} : csrfHeader()) },
       body: body ? JSON.stringify(body) : undefined,
     });
   } catch {
@@ -14,21 +27,26 @@ async function request(method, path, body) {
   }
   const json = await res.json().catch(() => null);
   if (!res.ok) {
+    if (res.status === 401 && base === "/api/admin") onSignedOut(json?.message);
     // Content errors also name the fields to fix, keyed by path ("timeline.3.title").
     const err = new Error(json?.message ?? OFFLINE);
     err.fields = json?.fields ?? {};
+    err.status = res.status;
+    err.code = json?.error;
     throw err;
   }
   return json;
 }
 
-export const api = {
-  get: (path) => request("GET", path),
-  patch: (path, body) => request("PATCH", path, body),
-  post: (path, body) => request("POST", path, body),
-  put: (path, body) => request("PUT", path, body),
-  delete: (path) => request("DELETE", path),
-};
+const client = (base) => ({
+  get: (path) => request(base, "GET", path),
+  patch: (path, body) => request(base, "PATCH", path, body),
+  post: (path, body) => request(base, "POST", path, body),
+  put: (path, body) => request(base, "PUT", path, body),
+  delete: (path) => request(base, "DELETE", path),
+});
+export const api = client("/api/admin");
+export const auth = client("/api/auth");
 
 export const query = (params) => {
   const q = new URLSearchParams(Object.entries(params).filter(([, v]) => v !== undefined && v !== "" && v !== null));

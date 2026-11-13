@@ -33,6 +33,9 @@
   font-size: 15px;
   line-height: 20px;
 }
+.sidebar nav {
+  margin-top: 32px;
+}
 .groupLabel {
   margin: 36px 0 8px 36px;
   font-size: 12px;
@@ -106,25 +109,7 @@
   background: #fff;
   box-shadow: 0 4px 23.2px -3px rgba(0, 0, 0, 0.13);
 }
-.notice {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 4px 12px;
-  font-size: 14px;
-  line-height: 20px;
-  color: var(--muted-2);
-}
-.notice strong {
-  padding: 4px 12px;
-  border-radius: 999px;
-  background: var(--field);
-  border: 0.5px solid #c9ced4;
-  font-weight: 600;
-  color: var(--navy);
-}
 .alert {
-  margin-left: auto;
   padding: 6px 14px;
   border-radius: 999px;
   background: var(--red-bg);
@@ -132,6 +117,88 @@
   font-size: 13px;
   line-height: 20px;
   color: var(--red);
+}
+/* Figma top bar: 64px navy initials circle, name and role. */
+.user {
+  position: relative;
+  margin-left: auto;
+}
+.userButton {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 4px 8px 4px 4px;
+  border: 0;
+  border-radius: 36px;
+  background: none;
+  text-align: left;
+}
+.userButton:hover {
+  background: var(--field);
+}
+.avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--navy);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 18px;
+  color: #fff;
+}
+.userText {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  max-width: 200px;
+  line-height: 22.33px;
+}
+.userText strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--navy);
+}
+.userText span {
+  font-weight: 500;
+  font-size: 16px;
+  color: #949494;
+}
+.userMenu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  padding: 6px;
+  border: 0.5px solid var(--card-line);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 12px 32px rgba(0, 18, 46, 0.14);
+}
+.userMenu a,
+.userMenu button {
+  padding: 12px 14px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  font-weight: 500;
+  font-size: 15px;
+  text-align: left;
+  color: var(--navy);
+  text-decoration: none;
+}
+.userMenu a:hover,
+.userMenu button:hover {
+  background: var(--head-row);
 }
 .menuButton {
   display: none;
@@ -201,12 +268,13 @@
     padding: 12px 16px;
     gap: 12px;
   }
-  .notice {
-    font-size: 12px;
-    line-height: 17px;
+  .avatar {
+    width: 44px;
+    height: 44px;
+    font-size: 15px;
   }
-  .alert {
-    margin-left: 0;
+  .userText {
+    display: none;
   }
   .topbar {
     flex-wrap: wrap;

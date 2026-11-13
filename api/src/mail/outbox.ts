@@ -157,8 +157,33 @@ export function createMailer(db: Db, transport: Transport, config: Config, log: 
     return running;
   }
 
+  /**
+   * Sends an email at once without storing it: sign-in codes and reset links must not sit in the
+   * database. Tries twice; a failure is logged (without the email's content) and not retried later.
+   */
+  async function sendNow(kind: string, to: string, email: Email): Promise<boolean> {
+    for (let attempt = 1; attempt <= 2; attempt++) {
+      try {
+        await transport.sendMail({
+          from: config.mailFrom,
+          to: { name: "", address: to },
+          subject: email.subject,
+          html: email.html,
+          text: email.text,
+          attachments: [{ filename: "ftcci-logo.png", path: LOGO, cid: "ftcci-logo" }],
+        });
+        log.info({ kind }, "Email sent");
+        return true;
+      } catch (err) {
+        log.warn({ kind, attempt, error: shortError(err) }, "Email send failed");
+      }
+    }
+    return false;
+  }
+
   return {
     flush,
+    sendNow,
     start() {
       timer = setInterval(() => void flush(), POLL_MS);
       void flush();

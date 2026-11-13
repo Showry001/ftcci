@@ -24,8 +24,12 @@ export interface Config {
   /** Signs admin preview links for unpublished content. */
   previewSecret: string;
   runWorker: boolean;
-  /** The admin API exists only on a developer machine until Phase 4 adds login. */
-  adminLocalOnly: boolean;
+  /**
+   * Staff sign-in. `adminUrl` is where the admin app lives (links in emails, and the only origin allowed
+   * to send admin requests). `codeSecret` keys the hashes of emailed sign-in codes. Cookies are Secure
+   * and `__Host-` prefixed in production.
+   */
+  staff: { adminUrl: string; adminOrigin: string; codeSecret: string; secureCookies: boolean };
 }
 
 class ConfigError extends Error {}
@@ -85,6 +89,9 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
   const mediaUrl = read(env, "MEDIA_URL", "/media").replace(/\/+$/, "");
   if (!/^(\/[\w-]+)+$|^https:\/\/[^\s]+$/.test(mediaUrl)) fail("MEDIA_URL must be a path like /media or an https:// address.");
   if (replyTo && !isEmail(replyTo)) fail("MAIL_REPLY_TO must be one email address.");
+  const adminUrl = read(env, "ADMIN_URL", mode === "production" ? undefined : "http://127.0.0.1:5174/admin").replace(/\/+$/, "");
+  if (!/^https?:\/\/[^\s/]+(\/[^\s]*)?$/.test(adminUrl)) fail("ADMIN_URL must be the admin's address, like https://www.ftcci.in/admin.");
+  if (mode === "production" && !adminUrl.startsWith("https://")) fail("ADMIN_URL must use https:// in production.");
 
   return {
     env: mode,
@@ -118,7 +125,12 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
     media: { dir: mediaDir, url: mediaUrl, ffmpeg: read(env, "FFMPEG_PATH", "ffmpeg") },
     previewSecret: createHmac("sha256", secret).update("content-preview").digest("hex"),
     runWorker: env.RUN_WORKER !== "false",
-    adminLocalOnly: mode !== "production",
+    staff: {
+      adminUrl,
+      adminOrigin: new URL(adminUrl).origin,
+      codeSecret: createHmac("sha256", secret).update("staff-sign-in-codes").digest("hex"),
+      secureCookies: mode === "production",
+    },
   };
 }
 

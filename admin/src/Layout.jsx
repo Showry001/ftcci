@@ -1,10 +1,16 @@
-import { createContext, useCallback, useContext, useEffect, useState } from "react";
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
+import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { api } from "./api.js";
+import { RequireStaff, roleLabel, useAuth } from "./auth.jsx";
 import { sections } from "./sections.js";
 import styles from "./Layout.module.css";
 
 const navIcon = (name) => <img src={`${import.meta.env.BASE_URL}icons/${name}.svg`} alt="" width="20" height="20" />;
+const adminNav = [
+  { to: "/staff", label: "Staff accounts", icon: navIcon("nav-staff") },
+  { to: "/activity", label: "Activity log", icon: navIcon("nav-activity") },
+  { to: "/bin", label: "Bin", icon: <BinIcon /> },
+];
 const contentNav = [
   { to: "/content/event", label: "Events", icon: navIcon("nav-calendar") },
   { to: "/content/article", label: "News & Press", icon: navIcon("nav-news") },
@@ -18,8 +24,33 @@ const contentNav = [
 const SummaryContext = createContext({ summary: null, refresh: () => {} });
 export const useSummary = () => useContext(SummaryContext);
 
-// Sidebar and top bar from the Figma admin screens (2538:43797). Only working sections are listed.
+// Sidebar and top bar from the Figma admin screens (2538:43797, 2538:44033). Only working sections are
+// listed; the Administration group is for Super Admins.
 export default function Layout() {
+  return (
+    <RequireStaff>
+      <Shell />
+    </RequireStaff>
+  );
+}
+
+function NavList({ items }) {
+  return (
+    <ul className={styles.nav}>
+      {items.map((item) => (
+        <li key={item.to}>
+          <NavLink to={item.to} end={item.end} className={({ isActive }) => (isActive ? styles.active : undefined)}>
+            {item.icon}
+            <span>{item.label}</span>
+          </NavLink>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function Shell() {
+  const { user } = useAuth();
   const [summary, setSummary] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const { pathname } = useLocation();
@@ -39,17 +70,9 @@ export default function Layout() {
             <p>The Federation of Telangana Chambers of Commerce and Industry</p>
           </div>
           <nav aria-label="Admin sections">
+            <NavList items={[{ to: "/", end: true, label: "Dashboard", icon: navIcon("nav-dashboard") }]} />
             <p className={styles.groupLabel}>Website content</p>
-            <ul className={styles.nav}>
-              {contentNav.map((item) => (
-                <li key={item.to}>
-                  <NavLink to={item.to} className={({ isActive }) => (isActive ? styles.active : undefined)}>
-                    {item.icon}
-                    <span>{item.label}</span>
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
+            <NavList items={contentNav} />
             <p className={styles.groupLabel}>Website submissions</p>
             <ul className={styles.nav}>
               {sections.map((s) => (
@@ -65,14 +88,13 @@ export default function Layout() {
               ))}
             </ul>
             <hr className={styles.divider} />
-            <ul className={styles.nav}>
-              <li>
-                <NavLink to="/newsletter" className={({ isActive }) => (isActive ? styles.active : undefined)}>
-                  <MailIcon />
-                  <span>Newsletter</span>
-                </NavLink>
-              </li>
-            </ul>
+            <NavList items={[{ to: "/newsletter", label: "Newsletter", icon: <MailIcon /> }]} />
+            {user.role === "super_admin" && (
+              <>
+                <p className={styles.groupLabel}>Administration</p>
+                <NavList items={adminNav} />
+              </>
+            )}
           </nav>
         </aside>
         {menuOpen && <button type="button" className={styles.scrim} aria-label="Close menu" onClick={() => setMenuOpen(false)} />}
@@ -89,14 +111,12 @@ export default function Layout() {
               <span aria-hidden="true" />
               <span className="visually-hidden">Menu</span>
             </button>
-            <p className={styles.notice}>
-              <strong>Local admin</strong> Opens only on this computer until staff sign-in is added.
-            </p>
             {summary?.failedEmails > 0 && (
               <p className={styles.alert} role="status">
                 {summary.failedEmails} email{summary.failedEmails > 1 ? "s" : ""} could not be sent. Open the submission to retry.
               </p>
             )}
+            <UserMenu />
           </header>
           <main className={styles.content}>
             <Outlet />
@@ -104,6 +124,53 @@ export default function Layout() {
         </div>
       </div>
     </SummaryContext.Provider>
+  );
+}
+
+const initials = (name) =>
+  name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0].toUpperCase())
+    .join("");
+
+// The signed-in person (Figma top bar: initials, name and role), with My account and Sign out.
+function UserMenu() {
+  const { user, signOut } = useAuth();
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+  const { pathname } = useLocation();
+  useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => {
+    if (!open) return;
+    const close = (e) => {
+      if (e.type === "keydown" ? e.key === "Escape" : !ref.current.contains(e.target)) setOpen(false);
+    };
+    document.addEventListener("mousedown", close);
+    document.addEventListener("keydown", close);
+    return () => {
+      document.removeEventListener("mousedown", close);
+      document.removeEventListener("keydown", close);
+    };
+  }, [open]);
+
+  return (
+    <div className={styles.user} ref={ref}>
+      <button type="button" className={styles.userButton} aria-expanded={open} aria-haspopup="true" onClick={() => setOpen((o) => !o)}>
+        <span className={styles.avatar} aria-hidden="true">{initials(user.name)}</span>
+        <span className={styles.userText}>
+          <strong>{user.name}</strong>
+          <span>{roleLabel[user.role]}</span>
+        </span>
+      </button>
+      {open && (
+        <div className={styles.userMenu}>
+          <Link to="/account">My account</Link>
+          <button type="button" onClick={signOut}>Sign out</button>
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -133,6 +200,14 @@ function PagesIcon() {
     <svg {...stroke}>
       <rect x="3" y="4" width="18" height="16" rx="2" />
       <path d="M3 9h18M9 9v11" />
+    </svg>
+  );
+}
+
+function BinIcon() {
+  return (
+    <svg {...stroke}>
+      <path d="M4 7h16M10 11v6M14 11v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4h6v3" />
     </svg>
   );
 }

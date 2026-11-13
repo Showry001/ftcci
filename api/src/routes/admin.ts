@@ -1,41 +1,22 @@
-// Admin API for form submissions and newsletter sign-ups. Until Phase 4 adds login with email OTP,
-// these routes are only registered outside production, and every request must come straight from
-// this computer (loopback address, localhost Host and Origin, no proxy headers).
-import type { FastifyInstance, FastifyRequest } from "fastify";
+// Admin API for form submissions and newsletter sign-ups. Every request needs a signed-in staff account
+// (see ../staff/sessions.ts).
+import type { FastifyInstance } from "fastify";
 import { sql } from "kysely";
+import type { Config } from "../config.ts";
 import type { Db, SubmissionStatus, SubmissionType } from "../db/schema.ts";
 import { MAX_ATTEMPTS, type Mailer } from "../mail/outbox.ts";
+import { audit } from "../staff/audit.ts";
+import { requireStaff } from "../staff/sessions.ts";
 
 const PAGE_SIZE = 25;
 const TYPES: SubmissionType[] = ["hall_booking", "membership", "event_interest", "contact"];
 const STATUSES: SubmissionStatus[] = ["new", "contacted", "closed"];
-const LOCAL_HOSTS = new Set(["localhost", "127.0.0.1", "[::1]"]);
-const LOOPBACK = new Set(["127.0.0.1", "::1", "::ffff:127.0.0.1"]);
-
-const hostname = (value: string) => {
-  try {
-    return new URL(value.includes("://") ? value : `http://${value}`).hostname;
-  } catch {
-    return "";
-  }
-};
-
-export function isLocalRequest(req: FastifyRequest): boolean {
-  const h = req.headers;
-  if (!LOOPBACK.has(req.socket.remoteAddress ?? "")) return false;
-  if (h["x-forwarded-for"] || h["x-real-ip"] || h.forwarded) return false;
-  if (!LOCAL_HOSTS.has(hostname(h.host ?? ""))) return false;
-  if (h.origin && !LOCAL_HOSTS.has(hostname(h.origin))) return false;
-  return true;
-}
 
 // Escapes LIKE wildcards so a search for "50%" matches literally.
 const like = (q: string) => `%${q.replace(/[\\%_]/g, (c) => `\\${c}`)}%`;
 
-export async function adminRoutes(app: FastifyInstance, { db, mailer }: { db: Db; mailer: Mailer }) {
-  app.addHook("onRequest", async (req, reply) => {
-    if (!isLocalRequest(req)) return reply.code(404).send({ error: "not_found", message: "Not found." });
-  });
+export async function adminRoutes(app: FastifyInstance, { db, config, mailer }: { db: Db; config: Config; mailer: Mailer }) {
+  app.addHook("onRequest", requireStaff(db, config));
 
   app.get<{ Querystring: { type: SubmissionType; status?: SubmissionStatus; q?: string; page?: number } }>(
     "/api/admin/submissions",
@@ -104,6 +85,29 @@ export async function adminRoutes(app: FastifyInstance, { db, mailer }: { db: Db
     };
   });
 
+  // Figures and recent changes for the dashboard.
+  app.get("/api/admin/dashboard", async () => {
+    const rows = await db
+      .selectFrom("documents")
+      .select(["type", "status", sql<number>`count(*)`.as("n"), sql<number>`count(*) filter (where has_changes and status <> 'draft')`.as("changed")])
+      .where("deleted_at", "is", null)
+      .groupBy(["type", "status"])
+      .execute();
+    const count = (type: string, status: string) => Number(rows.find((r) => r.type === type && r.status === status)?.n ?? 0);
+    const recent = await db
+      .selectFrom("documents")
+      .select(["id", "type", "slug", "title", "status", "has_changes", "publish_at", "updated_at"])
+      .where("deleted_at", "is", null)
+      .orderBy("updated_at", "desc")
+      .limit(6)
+      .execute();
+    return {
+      published: { event: count("event", "published"), article: count("article", "published"), publication: count("publication", "published"), review: count("review", "published") },
+      waiting: rows.reduce((n, r) => n + (r.status === "draft" && r.n ? Number(r.n) : 0) + Number(r.changed), 0),
+      recent: recent.map((d) => ({ id: d.id, type: d.type, single: d.slug === null, title: d.title, status: d.status, hasChanges: d.has_changes, publishAt: d.publish_at, updatedAt: d.updated_at })),
+    };
+  });
+
   const refParam = {
     type: "object",
     required: ["reference"],
@@ -147,13 +151,17 @@ export async function adminRoutes(app: FastifyInstance, { db, mailer }: { db: Db
     },
     async (req, reply) => {
       const { status, notes } = req.body;
+      const before = await db.selectFrom("submissions").select(["status", "notes"]).where("reference", "=", req.params.reference).executeTakeFirst();
       const updated = await db
         .updateTable("submissions")
         .set({ ...(status ? { status } : {}), ...(notes !== undefined ? { notes: notes.replace(/\r\n?/g, "\n") } : {}), updated_at: new Date() })
         .where("reference", "=", req.params.reference)
         .returning("reference")
         .executeTakeFirst();
-      if (!updated) return reply.code(404).send({ error: "not_found", message: "We couldn't find that submission." });
+      if (!updated || !before) return reply.code(404).send({ error: "not_found", message: "We couldn't find that submission." });
+      const target = { type: "submission", id: req.params.reference };
+      if (status && status !== before.status) await audit(db, req, { action: "submission.status", target, summary: `Marked ${req.params.reference} as ${status[0].toUpperCase()}${status.slice(1)}` });
+      if (notes !== undefined && notes.replace(/\r\n?/g, "\n") !== before.notes) await audit(db, req, { action: "submission.notes", target, summary: `Updated the notes on ${req.params.reference}` });
       return detail(req.params.reference);
     },
   );
@@ -171,6 +179,7 @@ export async function adminRoutes(app: FastifyInstance, { db, mailer }: { db: Db
         .returning("id")
         .executeTakeFirst();
       if (!row) return reply.code(409).send({ error: "not_failed", message: "Only failed emails can be retried." });
+      await audit(db, req, { action: "submission.email_retried", target: { type: "email", id: row.id }, summary: "Retried a failed email" });
       await mailer.flush();
       const email = await db
         .selectFrom("email_outbox")

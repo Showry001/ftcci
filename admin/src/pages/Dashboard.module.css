@@ -1,0 +1,184 @@
+/* Figma "Dashboard Overview" (2538:44033): 4 figure cards, then Quick Actions and Recent Activity. */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 35px;
+  margin-top: 34px;
+}
+.stats li {
+  display: flex;
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 172px;
+  padding: 20px 18px 16px;
+  border: 0.5px solid var(--card-line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--navy);
+  text-decoration: none;
+}
+a.stat:hover {
+  box-shadow: 0 0 0 2px var(--gold);
+}
+.stat img {
+  width: 24px;
+  height: 22px;
+  object-fit: contain;
+  object-position: left;
+}
+.stat strong {
+  margin-top: 12px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 38.8px;
+}
+.statLabel {
+  margin-top: 12px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22.33px;
+  color: #30507f;
+}
+.statText {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--muted);
+}
+
+.panels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 35px;
+  margin-top: 30px;
+}
+.panel {
+  padding: 22px 22px 25px;
+  border: 0.5px solid var(--card-line);
+  border-radius: 8px;
+  background: #fff;
+}
+.panel h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 38.8px;
+  color: var(--navy);
+}
+.panelHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.panelHead a {
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--navy);
+  text-decoration: none;
+}
+.panelHead a:hover {
+  text-decoration: underline;
+}
+.actions,
+.recent {
+  margin-top: 18px;
+  border-top: 1px solid var(--row-line);
+}
+.actions li,
+.recent li {
+  border-bottom: 1px solid var(--row-line);
+}
+.actions li:last-child,
+.recent li:last-child {
+  border-bottom: 0;
+}
+.action,
+.recentItem {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 18px 4px;
+  color: var(--navy);
+  text-decoration: none;
+}
+.action:hover,
+.recentItem:hover {
+  background: #fbfcfe;
+}
+.actionCircle,
+.actionIcon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+}
+.actionCircle {
+  background: rgba(217, 217, 217, 0.41);
+}
+.actionText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+.actionText strong {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22.33px;
+}
+.actionText span {
+  font-size: 12px;
+  line-height: 20px;
+  color: var(--muted);
+}
+.chevron {
+  flex: none;
+  transform: rotate(180deg);
+}
+.empty {
+  padding: 24px 4px;
+  font-size: 14px;
+  color: var(--muted-2);
+}
+
+@media (max-width: 1279px) {
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+  .panels {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+}
+@media (max-width: 599px) {
+  .stats {
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .stat {
+    min-height: 0;
+    padding: 16px 14px;
+  }
+  .statLabel {
+    font-size: 15px;
+  }
+  .panel {
+    padding: 16px;
+  }
+  .action,
+  .recentItem {
+    gap: 14px;
+  }
+  .actionText strong {
+    font-size: 16px;
+  }
+}

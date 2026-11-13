@@ -1,12 +1,15 @@
+import { createHash, randomBytes } from "node:crypto";
 import { after } from "node:test";
 import { solveChallenge } from "altcha-lib";
 import { deriveKey } from "altcha-lib/algorithms/sha";
+import type { InjectOptions, LightMyRequestResponse } from "fastify";
 import { sql } from "kysely";
 import sharp from "sharp";
 import { buildApp } from "../src/app.ts";
 import { loadConfig, type Config } from "../src/config.ts";
 import { bumpContentVersion } from "../src/content/cache.ts";
 import { createDb } from "../src/db/index.ts";
+import type { StaffUser } from "../src/db/schema.ts";
 import type { MailMessage, Transport } from "../src/mail/outbox.ts";
 
 export const db = createDb(process.env.TEST_DATABASE_URL!);
@@ -27,6 +30,7 @@ export function testConfig(overrides: Record<string, string> = {}): Config {
     NEWSLETTER_NOTIFY_EMAIL: "news@ftcci.test",
     ALTCHA_HMAC_SECRET: "test-secret-test-secret-test-secret-0123",
     MEDIA_DIR: process.env.TEST_MEDIA_DIR,
+    ADMIN_URL: `${ADMIN_ORIGIN}/admin`,
     ...overrides,
   });
   // Keep the proof-of-work tiny so tests stay fast.
@@ -52,17 +56,52 @@ export function fakeTransport() {
   return transport;
 }
 
+export const ADMIN_ORIGIN = "http://127.0.0.1:5174";
+
+/**
+ * Builds the app. `admin` makes requests as a signed-in Super Admin (session cookie, CSRF token and the
+ * admin's Origin), as the admin app does.
+ */
 export async function makeApp(overrides: Record<string, string> = {}) {
   const config = testConfig(overrides);
   const transport = fakeTransport();
   const { app, mailer } = await buildApp({ config, db, transport, logger: false });
   after(() => app.close());
-  return { app, mailer, transport, config };
+  const admin = await signedIn(app, "super_admin");
+  return { app, admin, mailer, transport, config };
+}
+
+type App = Awaited<ReturnType<typeof buildApp>>["app"];
+export type Client = Awaited<ReturnType<typeof signedIn>>;
+let people = 0;
+
+export async function staffUser(role: "super_admin" | "admin" = "admin", values: { email?: string; name?: string } = {}) {
+  people += 1;
+  return db
+    .insertInto("staff_users")
+    .values({ email: values.email ?? `staff${people}@ftcci.test`, name: values.name ?? `Staff Member ${people}`, role })
+    .returningAll()
+    .executeTakeFirstOrThrow();
+}
+
+/** A session for a new account of this role, made directly in the database. */
+export async function signedIn(app: App, role: "super_admin" | "admin" = "admin", user?: StaffUser) {
+  const account = user ?? (await staffUser(role));
+  const token = randomBytes(32).toString("base64url");
+  const csrf = randomBytes(32).toString("base64url");
+  await db.insertInto("staff_sessions").values({ id: createHash("sha256").update(token).digest("hex"), user_id: account.id, csrf_token: csrf, method: "password" }).execute();
+  const headers = { cookie: `ftcci_admin=${token}`, "x-csrf-token": csrf, origin: ADMIN_ORIGIN };
+  return {
+    user: account,
+    headers,
+    inject: (opts: InjectOptions) => app.inject({ ...opts, headers: { ...headers, ...opts.headers } }),
+  };
 }
 
 export async function resetDb() {
   await sql`truncate email_outbox, submissions, newsletter_subscribers, reference_counters, altcha_used,
-    documents, document_versions, document_media, media, jobs restart identity cascade`.execute(db);
+    documents, document_versions, document_media, media, jobs,
+    staff_users, staff_sessions, staff_codes, staff_password_resets, audit_log restart identity cascade`.execute(db);
   bumpContentVersion();
 }
 
@@ -109,7 +148,7 @@ export function testImage({ width = 1600, height = 900, exif }: { width?: number
 export const testPdf = () => Buffer.from(`%PDF-1.4\n1 0 obj<</Type/Catalog>>endobj\n% ${Math.random()}\ntrailer<</Root 1 0 R>>\n%%EOF\n`);
 
 /** Uploads a file to the media library the way the admin does (multipart, fields before the file). */
-export async function upload(app: Awaited<ReturnType<typeof makeApp>>["app"], file: { name: string; data: Buffer; type?: string }, fields: Record<string, string> = {}, remoteAddress = "127.0.0.1") {
+export async function upload(client: { inject(opts: InjectOptions): Promise<LightMyRequestResponse> }, file: { name: string; data: Buffer; type?: string }, fields: Record<string, string> = {}) {
   const boundary = `----ftcci${Math.random().toString(16).slice(2)}`;
   const parts: Buffer[] = Object.entries(fields).map(([k, v]) => Buffer.from(`--${boundary}\r\nContent-Disposition: form-data; name="${k}"\r\n\r\n${v}\r\n`));
   parts.push(
@@ -117,5 +156,5 @@ export async function upload(app: Awaited<ReturnType<typeof makeApp>>["app"], fi
     file.data,
     Buffer.from(`\r\n--${boundary}--\r\n`),
   );
-  return app.inject({ method: "POST", url: "/api/admin/media", payload: Buffer.concat(parts), headers: { "content-type": `multipart/form-data; boundary=${boundary}` }, remoteAddress });
+  return client.inject({ method: "POST", url: "/api/admin/media", payload: Buffer.concat(parts), headers: { "content-type": `multipart/form-data; boundary=${boundary}` } });
 }

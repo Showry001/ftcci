@@ -1,5 +1,5 @@
-// Admin API for content and the media library. Like the submissions admin, it is only registered
-// outside production and only answers requests from this computer until Phase 4 adds sign-in.
+// Admin API for content, the media library and the bin. Every request needs a signed-in staff account;
+// restoring from the bin needs a Super Admin.
 import { randomBytes } from "node:crypto";
 import { createWriteStream } from "node:fs";
 import { mkdir, rm } from "node:fs/promises";
@@ -13,13 +13,15 @@ import { mediaRefs } from "../../../shared/validate-content.js";
 import type { Config } from "../config.ts";
 import { bumpContentVersion } from "../content/cache.ts";
 import {
-  ContentError, createDocument, deleteDocument, getDocument, getSingle, isType, previewToken, publishDocument,
-  restoreVersion, saveDocument, scheduleDocument, setStatus,
+  ContentError, createDocument, deleteDocument, describe, getDocument, getSingle, isType, previewToken, publishDocument,
+  restoreDocument, restoreVersion, saveDocument, scheduleDocument, setStatus,
 } from "../content/documents.ts";
 import type { Db, Document, MediaKind } from "../db/schema.ts";
 import type { JobRunner } from "../jobs.ts";
+import { formatIst } from "../mail/templates.ts";
 import { MAX_UPLOAD, MediaError, mediaView, storeFile } from "../media/store.ts";
-import { isLocalRequest } from "./admin.ts";
+import { audit } from "../staff/audit.ts";
+import { requireStaff, superAdminOnly } from "../staff/sessions.ts";
 
 const PAGE_SIZE = 25;
 // Publications and vacancies are ordered by hand, so they are listed on one page.
@@ -28,9 +30,7 @@ const ORDERED_PAGE_SIZE = 200;
 const idParam = { type: "object", required: ["id"], properties: { id: { type: "integer", minimum: 1 } } } as const;
 
 export async function adminContentRoutes(app: FastifyInstance, { db, config, jobs }: { db: Db; config: Config; jobs: JobRunner }) {
-  app.addHook("onRequest", async (req, reply) => {
-    if (!isLocalRequest(req)) return reply.code(404).send({ error: "not_found", message: "Not found." });
-  });
+  app.addHook("onRequest", requireStaff(db, config));
   await app.register(multipart, { limits: { fileSize: MAX_UPLOAD, files: 1, fields: 4, fieldSize: 1000, parts: 5 } });
 
   app.setErrorHandler((error: Error & { statusCode?: number; validation?: unknown; code?: string }, req, reply) => {
@@ -123,8 +123,10 @@ export async function adminContentRoutes(app: FastifyInstance, { db, config, job
     { schema: { body: { type: "object", required: ["data"], additionalProperties: false, properties: { data: { type: "object" }, slug: { type: "string", maxLength: 100 } } } } },
     async (req, reply) => {
       if (!isType(req.params.type)) return reply.code(404).send({ error: "not_found", message: "Unknown content type." });
+      const doc = await createDocument(db, req.params.type, req.body.data, req.body.slug);
+      await audit(db, req, { action: "content.created", target: { type: "document", id: doc.id }, summary: `Created ${describe(doc)}` });
       reply.code(201);
-      return send(reply, await createDocument(db, req.params.type, req.body.data, req.body.slug));
+      return send(reply, doc);
     },
   );
 
@@ -152,6 +154,14 @@ export async function adminContentRoutes(app: FastifyInstance, { db, config, job
         : action === "schedule" ? await scheduleDocument(db, id, body.at ? new Date(body.at) : null)
         : action === "restore" ? await restoreVersion(db, id, body.versionId ?? 0)
         : await setStatus(db, id, action as "unpublish" | "archive" | "unarchive");
+      const what = describe(doc);
+      const summary =
+        action === "publish" ? `Published ${what}`
+        : action === "schedule" ? (doc.publish_at ? `Scheduled ${what} to publish on ${formatIst(doc.publish_at)}` : `Cancelled the schedule for ${what}`)
+        : action === "restore" ? `Restored an earlier version of ${what}`
+        : `${action[0].toUpperCase()}${action.slice(1)}d ${what}`;
+      const logged = { publish: "published", unpublish: "unpublished", archive: "archived", unarchive: "unarchived", restore: "version_restored", schedule: doc.publish_at ? "scheduled" : "schedule_cancelled" }[action];
+      await audit(db, req, { action: `content.${logged}`, target: { type: "document", id }, summary });
       return send(reply, doc);
     },
   );
@@ -171,7 +181,8 @@ export async function adminContentRoutes(app: FastifyInstance, { db, config, job
   });
 
   app.delete<{ Params: { id: number } }>("/api/admin/content/doc/:id", { schema: { params: idParam } }, async (req, reply) => {
-    await deleteDocument(db, req.params.id);
+    const doc = await deleteDocument(db, req.params.id, req.staff!.id);
+    await audit(db, req, { action: "content.deleted", target: { type: "document", id: doc.id }, summary: `Moved ${describe(doc)} to the bin` });
     return reply.code(204).send();
   });
 
@@ -185,6 +196,7 @@ export async function adminContentRoutes(app: FastifyInstance, { db, config, job
         for (const [i, id] of req.body.ids.entries()) await trx.updateTable("documents").set({ sort_order: i }).where("id", "=", id).where("type", "=", req.params.type).execute();
       });
       bumpContentVersion();
+      await audit(db, req, { action: "content.reordered", target: { type: "list", id: req.params.type }, summary: `Changed the order of ${(contentTypes[req.params.type as keyof typeof contentTypes] as { label: string }).label}` });
       return { ok: true };
     },
   );
@@ -252,6 +264,7 @@ export async function adminContentRoutes(app: FastifyInstance, { db, config, job
       const expect = field("expect").split(",").filter((k): k is MediaKind => ["image", "pdf", "video"].includes(k));
       const { media, duplicate } = await storeFile(db, config, { tempPath, originalName: part.filename, expect: expect.length ? expect : undefined, alt: field("alt") });
       if (media.kind === "video" && media.status === "processing") void jobs.flush();
+      if (!duplicate) await audit(db, req, { action: "media.uploaded", target: { type: "media", id: media.id }, summary: `Uploaded ${media.original_name}` });
       reply.code(duplicate ? 200 : 201);
       return { ...mediaView(media, config), duplicate };
     } finally {
@@ -286,6 +299,7 @@ export async function adminContentRoutes(app: FastifyInstance, { db, config, job
         .executeTakeFirst();
       if (!m) return reply.code(404).send({ error: "not_found", message: "We couldn't find that file." });
       bumpContentVersion();
+      await audit(db, req, { action: "media.updated", target: { type: "media", id: m.id }, summary: `Edited the title or alt text of ${m.original_name}` });
       return mediaView(m, config);
     },
   );
@@ -301,7 +315,51 @@ export async function adminContentRoutes(app: FastifyInstance, { db, config, job
     if (used.length) {
       return reply.code(409).send({ error: "in_use", message: `This file is used in ${used.length} place${used.length > 1 ? "s" : ""}: ${used.slice(0, 5).map((u) => u.title).join(", ")}. Replace it there first.` });
     }
-    await db.updateTable("media").set({ deleted_at: new Date() }).where("id", "=", req.params.id).execute();
+    const m = await db.updateTable("media").set({ deleted_at: new Date(), deleted_by: req.staff!.id }).where("id", "=", req.params.id).where("deleted_at", "is", null).returning(["id", "original_name"]).executeTakeFirst();
+    if (!m) return reply.code(404).send({ error: "not_found", message: "We couldn't find that file." });
+    await audit(db, req, { action: "media.deleted", target: { type: "media", id: m.id }, summary: `Moved ${m.original_name} to the bin` });
     return reply.code(204).send();
+  });
+
+  // ---- Bin (Super Admins) ----
+
+  app.get("/api/admin/bin", { preHandler: superAdminOnly }, async () => {
+    const documents = await db
+      .selectFrom("documents as d")
+      .leftJoin("staff_users as u", "u.id", "d.deleted_by")
+      .select(["d.id", "d.type", "d.title", "d.status", "d.deleted_at", "u.name as deleted_by"])
+      .where("d.deleted_at", "is not", null)
+      .orderBy("d.deleted_at", "desc")
+      .limit(200)
+      .execute();
+    const media = await db
+      .selectFrom("media as m")
+      .leftJoin("staff_users as u", "u.id", "m.deleted_by")
+      .selectAll("m")
+      .select("u.name as deleted_by_name")
+      .where("m.deleted_at", "is not", null)
+      .orderBy("m.deleted_at", "desc")
+      .limit(200)
+      .execute();
+    return {
+      documents: documents.map((d) => ({ ...d, label: describe(d) })),
+      media: media.map((m) => ({ ...mediaView(m, config), deletedAt: m.deleted_at, deletedBy: m.deleted_by_name })),
+    };
+  });
+
+  app.post<{ Params: { id: number } }>("/api/admin/bin/documents/:id/restore", { preHandler: superAdminOnly, schema: { params: idParam } }, async (req, reply) => {
+    const doc = await restoreDocument(db, req.params.id);
+    await audit(db, req, { action: "content.restored", target: { type: "document", id: doc.id }, summary: `Restored ${describe(doc)} from the bin` });
+    return send(reply, doc);
+  });
+
+  app.post<{ Params: { id: number } }>("/api/admin/bin/media/:id/restore", { preHandler: superAdminOnly, schema: { params: idParam } }, async (req, reply) => {
+    const m = await db.selectFrom("media").selectAll().where("id", "=", req.params.id).where("deleted_at", "is not", null).executeTakeFirst();
+    if (!m) return reply.code(404).send({ error: "not_found", message: "That file isn't in the bin." });
+    const copy = await db.selectFrom("media").select("id").where("sha256", "=", m.sha256).where("deleted_at", "is", null).executeTakeFirst();
+    if (copy) return reply.code(409).send({ error: "duplicate", message: "The same file was uploaded again after this one was deleted. Use that copy in the media library." });
+    const restored = await db.updateTable("media").set({ deleted_at: null, deleted_by: null, updated_at: new Date() }).where("id", "=", m.id).returningAll().executeTakeFirstOrThrow();
+    await audit(db, req, { action: "media.restored", target: { type: "media", id: m.id }, summary: `Restored ${m.original_name} from the bin` });
+    return mediaView(restored, config);
   });
 }

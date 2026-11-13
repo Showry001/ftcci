@@ -8,8 +8,10 @@ import { createJobRunner } from "./jobs.ts";
 import { createMailer, type Transport } from "./mail/outbox.ts";
 import { adminContentRoutes } from "./routes/admin-content.ts";
 import { adminRoutes } from "./routes/admin.ts";
+import { authRoutes } from "./routes/auth.ts";
 import { contentRoutes } from "./routes/content.ts";
 import { publicRoutes } from "./routes/public.ts";
+import { staffRoutes } from "./routes/staff.ts";
 
 const SERVER_ERROR = "Something went wrong on our side. Please try again in a few minutes, or email info@ftcci.in.";
 
@@ -50,12 +52,14 @@ export async function buildApp({ config, db, transport, logger = true }: { confi
   app.setNotFoundHandler((_req, reply) => reply.code(404).send({ error: "not_found", message: "Not found." }));
 
   await app.register(rateLimit, { global: false });
+  // Set by the staff sign-in check on admin routes.
+  app.decorateRequest("staff", null);
   await app.register(publicRoutes, { db, config, mailer });
   await app.register(contentRoutes, { db, config });
-  if (config.adminLocalOnly) {
-    await app.register(adminRoutes, { db, mailer });
-    await app.register(adminContentRoutes, { db, config, jobs });
-  }
+  await app.register(authRoutes, { db, config, mailer });
+  await app.register(adminRoutes, { db, config, mailer });
+  await app.register(adminContentRoutes, { db, config, jobs });
+  await app.register(staffRoutes, { db, config, mailer });
 
   // Uploaded files. In production Nginx serves MEDIA_DIR directly; this covers development.
   mkdirSync(config.media.dir, { recursive: true });

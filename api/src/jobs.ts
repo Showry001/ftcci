@@ -1,11 +1,14 @@
-// Background work: compresses uploaded videos one at a time and publishes scheduled content. Jobs are
-// claimed with a lock in the database, so a crashed run is picked up again after the lock expires.
+// Background work: compresses uploaded videos one at a time, publishes scheduled content, and hourly
+// forgets ended staff sessions and old sign-in codes. Jobs are claimed with a lock in the database, so a
+// crashed run is picked up again after the lock expires.
 import type { FastifyBaseLogger } from "fastify";
 import { sql } from "kysely";
 import type { Config } from "./config.ts";
 import { publishDue } from "./content/documents.ts";
 import type { Db } from "./db/schema.ts";
 import { processVideo } from "./media/video.ts";
+import { forgetUsedTokens } from "./staff/accounts.ts";
+import { forgetIdleSessions } from "./staff/sessions.ts";
 
 const POLL_MS = 20_000;
 const MAX_ATTEMPTS = 3;
@@ -14,6 +17,7 @@ type Job = { id: number; kind: string; payload: { mediaId: number }; attempts: n
 export function createJobRunner(db: Db, config: Config, log: FastifyBaseLogger) {
   let timer: NodeJS.Timeout | undefined;
   let running: Promise<void> | null = null;
+  let lastCleanup = 0;
   // Shutting down cancels a running video job and hands it back, instead of waiting for ffmpeg.
   const stopping = new AbortController();
 
@@ -57,6 +61,11 @@ export function createJobRunner(db: Db, config: Config, log: FastifyBaseLogger) 
   async function runOnce() {
     const published = await publishDue(db, log);
     if (published) log.info({ published }, "Scheduled content published");
+    if (Date.now() - lastCleanup > 3_600_000) {
+      lastCleanup = Date.now();
+      await forgetIdleSessions(db);
+      await forgetUsedTokens(db);
+    }
     for (let job = !stopping.signal.aborted && (await claim()); job; job = !stopping.signal.aborted && (await claim())) await runJob(job);
   }
 

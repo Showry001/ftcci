@@ -1,0 +1,76 @@
+/* Staff accounts: row actions and the add/edit dialog. */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.actions button {
+  background: #fff;
+  cursor: pointer;
+}
+.danger {
+  color: var(--red);
+}
+.dialog {
+  width: min(560px, calc(100vw - 32px));
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-top: 24px;
+}
+.form > p[role] {
+  margin-top: 0;
+}
+.roles {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.roles legend {
+  margin-bottom: 10px;
+}
+.role {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid rgba(181, 181, 181, 0.67);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.role:has(input:checked) {
+  border-color: var(--navy);
+  background: var(--head-row);
+}
+.role input {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--navy);
+}
+.role strong {
+  display: block;
+  font-weight: 600;
+  font-size: 15px;
+}
+.role small {
+  display: block;
+  margin-top: 2px;
+  font-size: 13px;
+  line-height: 19px;
+  color: var(--muted-2);
+}
+.roles:disabled .role {
+  cursor: default;
+  opacity: 0.7;
+}
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}

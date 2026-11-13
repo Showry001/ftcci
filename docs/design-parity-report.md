@@ -151,3 +151,16 @@ Changes from the client's Phase 1 review. Items that need a server or the admin 
 | Media library tabs per page | Tabs filter files by where they are used, plus "Not used" | Files are shared between pages |
 | Row actions eye / edit / "…" | Eye (view on the website) and edit; reorder arrows on Publications and Careers | Every other action is on the editor, with a confirmation |
 
+
+## Phase 4 notes (2 Nov 2026)
+
+The sign-in page follows the Figma "Log in page" (2538:43752). The dashboard follows "Dashboard Overview" (2538:44033), with its sidebar icons for Dashboard, Users & Roles and Activity Log. Staff accounts, the activity log, the bin and My account have no Figma frames, so they use the same cards, tables and buttons as the other admin screens. All of these will be restyled when the new admin designs arrive.
+
+| Figma | Admin | Reason |
+|-------|-------|--------|
+| "Email Address / Membership ID" | "Email Address" | Only staff sign in; members don't have accounts |
+| "Remember me" checkbox | Not shown | Sessions last until 8 hours without activity, whatever the browser does (FTCCI's choice) |
+| One sign-in form | "Password" and "Email code" tabs | Staff can sign in either way (FTCCI's choice) |
+| Top bar search and notification bell | Not shown | No global search or notifications are defined; new submissions show as counts in the sidebar |
+| "Users & Roles", "Settings" | "Staff accounts" under Administration; no Settings page | Settings live in `api/.env` on the server; there is nothing for staff to set |
+| "View all" on Recent Activity | Shown to Super Admins only | It opens the activity log, which only Super Admins can read |

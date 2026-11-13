@@ -35,6 +35,8 @@ interface Layout {
   heading: string;
   paragraphs: string[];
   reference?: string;
+  /** Label over `reference` (default "Reference number"). */
+  referenceLabel?: string;
   rows?: Row[];
   action?: { label: string; href: string };
   after?: string[];
@@ -46,7 +48,7 @@ function render(l: Layout): Email {
   const reference = l.reference
     ? `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:6px 0 20px;">
         <tr><td style="background:${C.soft};border-left:4px solid ${C.gold};border-radius:6px;padding:14px 18px;font-family:${FONT};">
-          <div style="font-size:12px;letter-spacing:0.04em;text-transform:uppercase;color:${C.muted};">Reference number</div>
+          <div style="font-size:12px;letter-spacing:0.04em;text-transform:uppercase;color:${C.muted};">${esc(l.referenceLabel ?? "Reference number")}</div>
           <div style="font-size:20px;font-weight:bold;color:${C.navy};letter-spacing:0.02em;">${esc(l.reference)}</div>
         </td></tr>
       </table>`
@@ -116,7 +118,7 @@ function render(l: Layout): Email {
     l.heading,
     "",
     ...l.paragraphs.flatMap((t) => [t, ""]),
-    ...(l.reference ? [`Reference number: ${l.reference}`, ""] : []),
+    ...(l.reference ? [`${l.referenceLabel ?? "Reference number"}: ${l.reference}`, ""] : []),
     ...(l.rows?.length ? [...l.rows.map(([k, v]) => `${k}: ${v.includes("\n") ? `\n${v}` : v}`), ""] : []),
     ...(l.action ? [`${l.action.label}: ${l.action.href}`, ""] : []),
     ...(l.after ?? []).flatMap((t) => [t, ""]),
@@ -251,5 +253,55 @@ export function newsletterNotification(s: {
       ] as Row[]
     ).filter(([, value]) => value !== ""),
     footer: staffFooter,
+  });
+}
+
+// ---- Staff accounts. Sent straight away and never stored, because they carry sign-in codes and links. ----
+
+const accountFooter = ["Sent by the FTCCI admin. If you didn't expect this email, tell your FTCCI Super Admin.", ADDRESS];
+
+export function staffSignInCode(code: string, minutes: number): Email {
+  return render({
+    subject: "Your FTCCI admin sign-in code",
+    preheader: `Your code expires in ${minutes} minutes.`,
+    heading: "Your sign-in code",
+    paragraphs: ["Enter this code on the FTCCI admin sign-in page."],
+    reference: code,
+    referenceLabel: "Sign-in code",
+    after: [`The code works once and expires in ${minutes} minutes. Never share it: FTCCI staff will never ask you for it. If you didn't try to sign in, ignore this email.`],
+    footer: accountFooter,
+  });
+}
+
+export function staffPasswordReset(link: string, minutes: number): Email {
+  return render({
+    subject: "Reset your FTCCI admin password",
+    preheader: `The link works once, for ${minutes} minutes.`,
+    heading: "Reset your password",
+    paragraphs: ["Someone asked to reset the password for your FTCCI admin account. Choose a new password with the button below."],
+    action: { label: "Choose a new password", href: link },
+    after: [`The link works once and expires in ${minutes} minutes. If you didn't ask for this, ignore this email; your password stays the same.`],
+    footer: accountFooter,
+  });
+}
+
+export function staffInvite(name: string, invitedBy: string, role: string, link: string): Email {
+  return render({
+    subject: "You have been added to the FTCCI admin",
+    preheader: `${invitedBy} added you as ${role}.`,
+    heading: `Welcome, ${oneLine(name, 60)}`,
+    paragraphs: [`${oneLine(invitedBy, 80)} added you to the FTCCI website admin as ${role}.`, "To sign in, open the admin and enter this email address. We'll email you a sign-in code. Once signed in you can also set a password under My account."],
+    action: { label: "Open the FTCCI admin", href: link },
+    footer: accountFooter,
+  });
+}
+
+export function staffPasswordChanged(name: string, at: Date): Email {
+  return render({
+    subject: "Your FTCCI admin password was changed",
+    preheader: "If this wasn't you, tell your Super Admin straight away.",
+    heading: "Your password was changed",
+    paragraphs: [`Hello ${oneLine(name, 60)}, the password for your FTCCI admin account was changed on ${formatIst(at)}.`, "If you didn't do this, tell your FTCCI Super Admin straight away so they can disable the account."],
+    footer: accountFooter,
   });
 }

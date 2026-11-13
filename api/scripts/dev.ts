@@ -78,7 +78,17 @@ function restart(reason: string) {
     console.log(`[api] ${reason}, restarting`);
     const old = api;
     old.off("exit", onExit);
-    const next = () => {
+    // New migrations (added while this runs) are applied before the API starts again.
+    const next = async () => {
+      const migrations = createDb(env.DATABASE_URL!);
+      try {
+        const done = await migrate(migrations);
+        if (done.length) console.log(`[postgres] applied ${done.join(", ")}`);
+      } catch (err) {
+        console.error(`[postgres] migration failed: ${err instanceof Error ? err.message : err}`);
+      } finally {
+        await migrations.destroy();
+      }
       api = startApi();
       api.on("exit", onExit);
     };

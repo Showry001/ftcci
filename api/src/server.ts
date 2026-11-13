@@ -25,7 +25,8 @@ if (config.runWorker) {
   jobs.start();
 }
 app.log.info(`Email goes out through ${config.smtp.host}:${config.smtp.port} as ${config.mailFrom.address}`);
-app.log.info(config.adminLocalOnly ? "Admin API is on for this computer only (development)." : "Admin API is off until Phase 4 adds login.");
+const staff = await db.selectFrom("staff_users").select("id").where("role", "=", "super_admin").where("disabled_at", "is", null).executeTakeFirst();
+if (!staff) app.log.warn("No Super Admin account yet. Create the first one with: npm run admin:create -- --email you@ftcci.in --name \"Your Name\"");
 
 let closing = false;
 for (const signal of ["SIGINT", "SIGTERM"] as const) {

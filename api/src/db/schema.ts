@@ -96,6 +96,7 @@ export interface MediaTable {
   created_at: CreatedAt;
   updated_at: UpdatedAt;
   deleted_at: ColumnType<Date | null, never, Date | null>;
+  deleted_by: ColumnType<number | null, never, number | null>;
 }
 
 export type DocumentStatus = "draft" | "published" | "archived";
@@ -115,6 +116,7 @@ export interface DocumentsTable {
   created_at: CreatedAt;
   updated_at: UpdatedAt;
   deleted_at: ColumnType<Date | null, never, Date | null>;
+  deleted_by: ColumnType<number | null, never, number | null>;
 }
 
 export interface DocumentVersionsTable {
@@ -143,6 +145,63 @@ export interface JobsTable {
   finished_at: ColumnType<Date | null, never, Date | null>;
 }
 
+export type StaffRole = "super_admin" | "admin";
+export interface StaffUsersTable {
+  id: Generated<number>;
+  email: string;
+  name: string;
+  role: StaffRole;
+  password_hash: ColumnType<string | null, string | null | undefined, string | null>;
+  failed_passwords: ColumnType<number, never, number>;
+  locked_until: ColumnType<Date | null, never, Date | null>;
+  last_sign_in_at: ColumnType<Date | null, never, Date | null>;
+  created_at: CreatedAt;
+  updated_at: UpdatedAt;
+  disabled_at: ColumnType<Date | null, never, Date | null>;
+}
+
+export interface StaffSessionsTable {
+  id: string;
+  user_id: number;
+  csrf_token: string;
+  method: "password" | "code";
+  ip: ColumnType<string, string | undefined, string>;
+  user_agent: ColumnType<string, string | undefined, string>;
+  created_at: CreatedAt;
+  last_seen_at: ColumnType<Date, never, Date>;
+}
+
+export interface StaffCodesTable {
+  id: Generated<number>;
+  user_id: number;
+  code_hash: string;
+  attempts: ColumnType<number, never, number>;
+  expires_at: Date;
+  used_at: ColumnType<Date | null, never, Date | null>;
+  created_at: CreatedAt;
+}
+
+export interface StaffPasswordResetsTable {
+  id: Generated<number>;
+  user_id: number;
+  token_hash: string;
+  expires_at: Date;
+  used_at: ColumnType<Date | null, never, Date | null>;
+  created_at: CreatedAt;
+}
+
+export interface AuditLogTable {
+  id: Generated<number>;
+  at: CreatedAt;
+  user_id: number | null;
+  actor: string;
+  action: string;
+  target_type: string;
+  target_id: string;
+  summary: string;
+  ip: string;
+}
+
 export interface AltchaUsedTable {
   id: string;
   expires_at: Date;
@@ -159,6 +218,11 @@ export interface Database {
   document_versions: DocumentVersionsTable;
   document_media: DocumentMediaTable;
   jobs: JobsTable;
+  staff_users: StaffUsersTable;
+  staff_sessions: StaffSessionsTable;
+  staff_codes: StaffCodesTable;
+  staff_password_resets: StaffPasswordResetsTable;
+  audit_log: AuditLogTable;
 }
 
 export type Db = Kysely<Database>;
@@ -166,3 +230,4 @@ export type Submission = Selectable<SubmissionsTable>;
 export type OutboxRow = Selectable<EmailOutboxTable>;
 export type Media = Selectable<MediaTable>;
 export type Document = Selectable<DocumentsTable>;
+export type StaffUser = Selectable<StaffUsersTable>;

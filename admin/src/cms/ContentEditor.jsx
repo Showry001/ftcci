@@ -250,7 +250,7 @@ function Editor({ type, id, page, meta }) {
   };
 
   const remove = () => {
-    if (!window.confirm(`Delete “${doc.title || `this ${singular(type).toLowerCase()}`}”? It is removed from the website and from this list.`)) return;
+    if (!window.confirm(`Delete “${doc.title || `this ${singular(type).toLowerCase()}`}”? It's removed from the website and moved to the bin, where a Super Admin can restore it.`)) return;
     return run("delete", async () => {
       await api.delete(`/content/doc/${doc.id}`);
       dirtyRef.current = false;

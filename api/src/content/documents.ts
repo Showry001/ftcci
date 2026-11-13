@@ -9,6 +9,7 @@ import { mediaRefs, validateContent } from "../../../shared/validate-content.js"
 import type { Config } from "../config.ts";
 import type { Db, Document, DocumentStatus } from "../db/schema.ts";
 import { mediaView, type MediaView } from "../media/store.ts";
+import { record } from "../staff/audit.ts";
 import { bumpContentVersion } from "./cache.ts";
 
 type Data = Record<string, any>;
@@ -239,12 +240,36 @@ export async function restoreVersion(db: Db, id: number, versionId: number): Pro
   return doc;
 }
 
-/** Moves an item to the bin (it can be restored by an administrator later). */
-export async function deleteDocument(db: Db, id: number): Promise<void> {
+/** Moves an item to the bin. A Super Admin can restore it. */
+export async function deleteDocument(db: Db, id: number, by: number | null): Promise<Document> {
   const doc = await getDocument(db, id);
   if (!isCollection(doc.type as ContentType)) throw new ContentError("Pages can't be deleted.");
-  await db.updateTable("documents").set({ deleted_at: new Date(), publish_at: null }).where("id", "=", id).execute();
+  await db.updateTable("documents").set({ deleted_at: new Date(), deleted_by: by, publish_at: null }).where("id", "=", id).execute();
   if (doc.published_data) bumpContentVersion();
+  return doc;
+}
+
+/** Takes an item out of the bin, back in the state it was deleted in. A clashing web address gets a number. */
+export async function restoreDocument(db: Db, id: number): Promise<Document> {
+  const doc = await db.selectFrom("documents").selectAll().where("id", "=", id).where("deleted_at", "is not", null).executeTakeFirst();
+  if (!doc) throw new ContentError("That item isn't in the bin.", 404);
+  const restored = await db.transaction().execute(async (trx) =>
+    trx
+      .updateTable("documents")
+      .set({ deleted_at: null, deleted_by: null, slug: doc.slug === null ? null : await uniqueSlug(trx, doc.type, doc.slug, id), updated_at: new Date() })
+      .where("id", "=", id)
+      .returningAll()
+      .executeTakeFirstOrThrow(),
+  );
+  if (restored.published_data) bumpContentVersion();
+  return restored;
+}
+
+/** "Event “Trade Expo”" or "About page", for messages and the activity log. */
+export function describe(doc: { type: string; title: string }): string {
+  const spec = contentTypes[doc.type as ContentType] as { collection?: boolean; singular?: string; label: string } | undefined;
+  if (!spec) return doc.title;
+  return spec.collection ? `${spec.singular} “${doc.title}”` : spec.label;
 }
 
 /** Publishes documents whose scheduled time has come. Returns how many were published. */
@@ -254,10 +279,13 @@ export async function publishDue(db: Db, log: { warn: (o: object, m: string) => 
   for (const doc of due) {
     try {
       await publishDocument(db, doc.id);
+      await record(db, { action: "content.published", target: { type: "document", id: doc.id }, actor: "Scheduled publishing", summary: `Published ${describe(doc)} at its scheduled time` });
       count++;
     } catch (err) {
       await db.updateTable("documents").set({ publish_at: null }).where("id", "=", doc.id).execute();
-      log.warn({ documentId: doc.id, error: err instanceof Error ? err.message : String(err) }, "Scheduled publish failed");
+      const reason = err instanceof Error ? err.message : String(err);
+      await record(db, { action: "content.schedule_failed", target: { type: "document", id: doc.id }, actor: "Scheduled publishing", summary: `Couldn't publish ${describe(doc)}: ${reason}` });
+      log.warn({ documentId: doc.id, error: reason }, "Scheduled publish failed");
     }
   }
   return count;
