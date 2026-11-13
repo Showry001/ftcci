@@ -20,6 +20,9 @@ body {
 img {
   display: block;
   max-width: 100%;
+  /* Media library images carry width/height attributes (to reserve space while loading). Without
+     this, an image sized by width alone would keep its full attribute height and look stretched. */
+  height: auto;
 }
 
 h1, h2, h3, h4, p {

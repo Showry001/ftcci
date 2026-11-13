@@ -67,12 +67,6 @@ export default function Header() {
         </nav>
 
         <div className={styles.actions}>
-          <button type="button" className={styles.search} aria-label="Search">
-            <img src={assets.search} alt="" width="46" height="41" />
-          </button>
-          <button type="button" className={styles.searchMobile} aria-label="Search">
-            <img src={assets.searchMobile} alt="" width="34.78" height="31" />
-          </button>
           <button type="button" className={`${styles.btn} ${styles.btnGold}`} aria-haspopup="dialog" onClick={openBooking}>
             Hall Booking
           </button>

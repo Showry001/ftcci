@@ -128,32 +128,10 @@
   flex-shrink: 0;
 }
 
-.search,
-.searchMobile,
 .menuBtn {
   background: none;
   border: 0;
   padding: 0;
-  display: inline-flex;
-}
-.search img {
-  width: 46px;
-  height: 41px;
-  transition: filter var(--dur-hover) var(--ease-figma);
-}
-/* Figma Container 23:194 hover: outline → navy fill, white icon */
-.search {
-  border-radius: var(--radius-md);
-  transition: background-color var(--dur-hover) var(--ease-figma);
-}
-.search:hover {
-  background: var(--navy-900);
-}
-.search:hover img {
-  filter: brightness(0) invert(1);
-}
-.searchMobile,
-.menuBtn {
   display: none;
 }
 
@@ -280,7 +258,7 @@
 }
 
 /* Mobile (390 frame, Component 14) */
-/* Small laptops: the full desktop bar (brand, 7 nav items, search, both CTAs) needs ~1184px, so tighten it */
+/* Small laptops: the full desktop bar (brand, 7 nav items, both CTAs) needs ~1130px, so tighten it */
 @media (min-width: 1200px) and (max-width: 1365px) {
   .inner {
     width: calc(100% - 48px);
@@ -302,7 +280,7 @@
   }
 }
 
-/* Narrow tablets: brand + search + both CTAs + menu need a little less room to fit */
+/* Narrow tablets: brand + both CTAs + menu need a little less room to fit */
 @media (min-width: 768px) and (max-width: 959px) {
   .inner,
   .brand {
@@ -345,16 +323,8 @@
   .actions {
     gap: 10px;
   }
-  .search,
   .actions > .btn {
     display: none;
-  }
-  .searchMobile {
-    display: inline-flex;
-  }
-  .searchMobile img {
-    width: 34.78px;
-    height: 31px;
   }
   .menuBtn img {
     width: 38px;

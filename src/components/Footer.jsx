@@ -7,6 +7,9 @@ import { joinNewsletter, prepareProof } from "../lib/api.js";
 import { Honeypot } from "./FormDialog.jsx";
 import styles from "./Footer.module.css";
 
+// FTCCI, Federation House, on Google Maps.
+const MAP_URL = "https://www.google.com/maps/search/?api=1&query=FTCCI%2C%20Federation%20House%2C%20Red%20Hills%2C%20Hyderabad%20500004";
+
 export default function Footer() {
   const { site } = useRouteLoaderData("site");
   const [email, setEmail] = useState("");
@@ -71,7 +74,9 @@ export default function Footer() {
           <address>
             <p className={styles.contactRow}>
               <img src={assets.footerLocation} alt="" width="14" height="14" className={styles.pinIcon} />
-              <span className={styles.address}>{site.address}</span>
+              <a className={styles.address} href={MAP_URL} target="_blank" rel="noopener noreferrer" aria-label={`${site.address.replace(/\n/g, ", ")} (opens Google Maps in a new tab)`}>
+                {site.address}
+              </a>
             </p>
             {site.phone && (
               <p className={styles.contactRow}>

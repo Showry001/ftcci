@@ -5,8 +5,6 @@ const a = (p) => `${import.meta.env.BASE_URL}assets/${p}`;
 export const assets = {
   logo: a("header/logo.png"),
   footerLogo: a("footer/logo.png"),
-  search: a("header/search.svg"),
-  searchMobile: a("mobile/search.svg"),
   menu: a("mobile/menu.svg"),
   close: a("mobile/close.svg"),
   arrowWhite: a("icons/arrow-white.svg"),
@@ -99,7 +97,6 @@ export const quickLinks = [
   { label: "Events & Summits", to: "/events" },
   { label: "Publications", to: "/knowledge/publications" },
   { label: "Committees", to: "/services#expert-committee" },
-  { label: "Awards", to: "/media" },
   { label: "Media Gallery", to: "/media" },
   { label: "Career", to: "/careers" },
 ];

@@ -103,11 +103,12 @@
   --neutral-900: #171717;
   --surface-lavender-4: #f6f8ff;
   --subnav-h: 63px;
-  --page-hero-h: 357px;
+  /* Inner-page banner: about a fifth of the screen (Figma has 357px; shortened at FTCCI's request). */
+  --page-hero-h: clamp(170px, 22vh, 220px);
 }
 @media (max-width: 767px) {
   :root {
-    --page-hero-h: 260px;
+    --page-hero-h: clamp(150px, 20vh, 200px);
     --subnav-h: 0px;
   }
 }
