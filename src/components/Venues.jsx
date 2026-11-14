@@ -8,7 +8,7 @@ import styles from "./Venues.module.css";
 export default function Venues({ highlights, featured, venues }) {
   const m = useMarquee(venues.length);
   return (
-    <section className={`${styles.section} desktop-only`} id="venues" aria-labelledby="venues-title">
+    <section className={`${styles.section} desktop-only`} id="venues" aria-labelledby="venues-title" data-edit="home.halls">
       <div className="container">
         <div className={styles.top}>
           <div className={styles.copy}>

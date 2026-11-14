@@ -3,7 +3,7 @@ import styles from "./WhoWeAre.module.css";
 
 export default function WhoWeAre({ image, photo }) {
   return (
-    <section className={styles.section} id="about" aria-labelledby="who-title">
+    <section className={styles.section} id="about" aria-labelledby="who-title" data-edit="home.whoWeAre">
       <Img className={styles.bg} media={image} alt="" aria-hidden="true" loading="eager" sizes="(min-width: 1200px) 1240px, 100vw" />
       <div className={styles.tint} aria-hidden="true" />
       <div className={styles.inner}>

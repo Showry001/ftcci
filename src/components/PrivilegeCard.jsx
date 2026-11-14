@@ -4,7 +4,7 @@ import styles from "./PrivilegeCard.module.css";
 
 export default function PrivilegeCard({ image }) {
   return (
-    <section className={styles.section} id="services" aria-labelledby="privilege-title">
+    <section className={styles.section} id="services" aria-labelledby="privilege-title" data-edit="home.privilegeCard">
       <div className={styles.inner}>
         <div className={styles.copy}>
           <p className={styles.eyebrow}>Exclusive Benefits</p>

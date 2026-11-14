@@ -34,7 +34,7 @@ export default function Membership() {
       <PageHero crumb="Home > Membership" title="Membership" />
       <SubNav items={subNav.membership} label="Membership sections" />
 
-      <section id="why-join" className={styles.why}>
+      <section id="why-join" className={styles.why} data-edit="membership.why">
         <div className="container">
           <h2 className={styles.bigTitle}>
             More than Membership.
@@ -53,7 +53,7 @@ export default function Membership() {
         </div>
       </section>
 
-      <section id="benefits" className={styles.benefits}>
+      <section id="benefits" className={styles.benefits} data-edit="membership.benefits">
         <div className={styles.benefitsInner}>
           <SectionTitle eyebrow="Membership Benefits" title="Everything you need to move business forward." className={styles.titleBenefits} />
           <div className={styles.benefitsRow}>
@@ -75,7 +75,7 @@ export default function Membership() {
         </div>
       </section>
 
-      <section id="options" className={styles.options}>
+      <section id="options" className={styles.options} data-edit="membership.options">
         <div className="container">
           <div className={styles.optionsHead}>
             <SectionTitle eyebrow="Membership Options" title="A Membership that fits your business." className={styles.titleOptions} />
@@ -101,7 +101,7 @@ export default function Membership() {
         </div>
       </section>
 
-      <section id="apply" className={styles.steps}>
+      <section id="apply" className={styles.steps} data-edit="membership.apply">
         <div className="container">
           <div className={styles.stepsHead}>
             <p>How it works</p>
@@ -125,58 +125,60 @@ export default function Membership() {
             </button>
           </p>
 
-          <div className={styles.docsHead}>
-            <h3>Documents to file with your application</h3>
-            <p>
-              Membership is approved by the Managing Committee and the FTCCI Secretariat. All documents need to be
-              self-attested.
-            </p>
-          </div>
-          <ul className={styles.docsGrid}>
-            {panelDocuments.map((p) => (
-              <li key={p.panel} id={`docs-panel-${p.panel}`} className={styles.docsCard}>
-                <h4>{p.title}</h4>
-                <ul>
-                  {p.docs.map((doc) => (
-                    <li key={doc}>{doc}</li>
+          <div data-edit="membership.documents">
+            <div className={styles.docsHead}>
+              <h3>Documents to file with your application</h3>
+              <p>
+                Membership is approved by the Managing Committee and the FTCCI Secretariat. All documents need to be
+                self-attested.
+              </p>
+            </div>
+            <ul className={styles.docsGrid}>
+              {panelDocuments.map((p) => (
+                <li key={p.panel} id={`docs-panel-${p.panel}`} className={styles.docsCard}>
+                  <h4>{p.title}</h4>
+                  <ul>
+                    {p.docs.map((doc) => (
+                      <li key={doc}>{doc}</li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+            <div className={styles.applyInfo}>
+              <div>
+                <h4>Forms &amp; downloads</h4>
+                <ul className={styles.applyFiles}>
+                  {files.map((f) => (
+                    <li key={f.title}>
+                      <a href={f.file?.url} download target="_blank" rel="noreferrer">
+                        {f.title} <span aria-hidden="true">↓</span>
+                      </a>
+                    </li>
                   ))}
                 </ul>
-              </li>
-            ))}
-          </ul>
-          <div className={styles.applyInfo}>
-            <div>
-              <h4>Forms &amp; downloads</h4>
-              <ul className={styles.applyFiles}>
-                {files.map((f) => (
-                  <li key={f.title}>
-                    <a href={f.file?.url} download target="_blank" rel="noreferrer">
-                      {f.title} <span aria-hidden="true">↓</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h4>Life membership</h4>
-              <p>{page.lifeMembership}</p>
-            </div>
-            <div>
-              <h4>Membership desk</h4>
-              <ul className={styles.applyContacts}>
-                {contacts.map((c) => (
-                  <li key={c.email}>
-                    <a href={`mailto:${c.email}`}>{c.email}</a>
-                    <a href={`tel:${c.phone.replace(/[^\d+]/g, "")}`}>{c.phone}</a>
-                  </li>
-                ))}
-              </ul>
+              </div>
+              <div>
+                <h4>Life membership</h4>
+                <p>{page.lifeMembership}</p>
+              </div>
+              <div>
+                <h4>Membership desk</h4>
+                <ul className={styles.applyContacts}>
+                  {contacts.map((c) => (
+                    <li key={c.email}>
+                      <a href={`mailto:${c.email}`}>{c.email}</a>
+                      <a href={`tel:${c.phone.replace(/[^\d+]/g, "")}`}>{c.phone}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="experience" className={styles.experience}>
+      <section id="experience" className={styles.experience} data-edit="membership.experience">
         <Img className={styles.expBg} media={page.experienceImage} alt="" aria-hidden="true" sizes="100vw" />
         <div className={styles.expTint} aria-hidden="true" />
         <div className={`container ${styles.expInner}`}>

@@ -8,7 +8,7 @@ export default function News({ articles }) {
   const featured = articles.find((a) => a.featured) ?? articles[0];
   const news = articles.filter((a) => a !== featured).slice(0, 3);
   return (
-    <section className={`${styles.section} desktop-only`} id="media" aria-labelledby="news-title">
+    <section className={`${styles.section} desktop-only`} id="media" aria-labelledby="news-title" data-edit="link.article">
       <div className="container">
         <div className={styles.head}>
           <h2 id="news-title" className={styles.title}>

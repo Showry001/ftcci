@@ -13,7 +13,7 @@ import { mediaRefs } from "../../../shared/validate-content.js";
 import type { Config } from "../config.ts";
 import { bumpContentVersion } from "../content/cache.ts";
 import {
-  ContentError, createDocument, deleteDocument, describe, getDocument, getSingle, isType, previewToken, publishDocument,
+  ContentError, PREVIEW_MAX_DOCUMENTS, createDocument, deleteDocument, describe, getDocument, getSingle, isType, previewToken, publishDocument,
   restoreDocument, restoreVersion, saveDocument, scheduleDocument, setStatus,
 } from "../content/documents.ts";
 import type { Db, Document, MediaKind } from "../db/schema.ts";
@@ -179,6 +179,25 @@ export async function adminContentRoutes(app: FastifyInstance, { db, config, job
     const doc = await getDocument(db, req.params.id);
     return { token: previewToken(config, doc.id), type: doc.type, slug: doc.slug };
   });
+
+  // One preview link for several documents, for the page editor (a page plus the parts shown on it).
+  app.post<{ Body: { ids: number[] } }>(
+    "/api/admin/content/preview",
+    {
+      schema: {
+        body: {
+          type: "object",
+          required: ["ids"],
+          additionalProperties: false,
+          properties: { ids: { type: "array", minItems: 1, maxItems: PREVIEW_MAX_DOCUMENTS, uniqueItems: true, items: { type: "integer", minimum: 1 } } },
+        },
+      },
+    },
+    async (req) => {
+      for (const id of req.body.ids) await getDocument(db, id);
+      return { token: previewToken(config, req.body.ids) };
+    },
+  );
 
   app.delete<{ Params: { id: number } }>("/api/admin/content/doc/:id", { schema: { params: idParam } }, async (req, reply) => {
     const doc = await deleteDocument(db, req.params.id, req.staff!.id);

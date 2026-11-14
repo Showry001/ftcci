@@ -4,7 +4,7 @@ import styles from "./QuickActions.module.css";
 
 export default function QuickActions({ actions }) {
   return (
-    <section className={`${styles.section} mobile-only`} aria-labelledby="qa-title">
+    <section className={`${styles.section} mobile-only`} aria-labelledby="qa-title" data-edit="home.quickActions">
       <p className={styles.eyebrow}>Explore FTCCI Services</p>
       <h2 id="qa-title" className={styles.title}>Quick Actions</h2>
       <div className={styles.grid}>

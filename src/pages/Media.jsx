@@ -43,7 +43,7 @@ export default function Media() {
       <SubNav items={mediaSubNav} label="Media sections" tabs />
 
       {tab === "press-coverage" && (
-        <section className={styles.coverage}>
+        <section className={styles.coverage} data-edit="link.article">
           <div className="container">
             <h2 className={styles.h2}>Featured Media Coverage</h2>
             <p className={styles.sub}>FTCCI initiatives, policy dialogues, and industrial growth stories in leading publications.</p>
@@ -97,7 +97,7 @@ export default function Media() {
       )}
 
       {tab === "press-kit" && (
-        <section className={styles.kit}>
+        <section className={styles.kit} data-edit="media.pressKit">
           <div className="container">
             <h2 className={styles.kitTitle}>Media &amp; Press Assets</h2>
             <p className={styles.kitSub}>Download official organization assets, brand guidelines, and high-resolution media resources.</p>

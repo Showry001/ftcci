@@ -4,7 +4,7 @@ import styles from "./Benefits.module.css";
 
 export default function Benefits({ image, photo, benefits }) {
   return (
-    <section className={`${styles.section} desktop-only`} id="membership" aria-labelledby="benefits-title">
+    <section className={`${styles.section} desktop-only`} id="membership" aria-labelledby="benefits-title" data-edit="home.benefits">
       <div className={styles.bg} aria-hidden="true">
         <Img media={image} alt="" sizes="100vw" />
       </div>

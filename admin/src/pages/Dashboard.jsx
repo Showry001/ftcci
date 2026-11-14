@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { viewForDoc } from "../../../shared/page-sections.js";
 import { api, formatDateTime } from "../api.js";
 import { useAuth } from "../auth.jsx";
 import { collectionTypes, stateOf } from "../cms/types.js";
@@ -13,7 +14,7 @@ const actions = [
   { to: "/content/publication/new", label: "Upload Publication", text: "Upload FTCCI Review, reports and downloadable documents.", icon: "qa-publication" },
   { to: "/media", label: "Manage Media", text: "Upload or replace website images, banners and event posters.", icon: "qa-media" },
 ];
-const editorPath = (d) => (d.single ? `/pages/${d.type}` : `/content/${d.type}/${d.id}`);
+const editorPath = (d) => (d.single ? `/pages/${viewForDoc(d.type)}` : `/content/${d.type}/${d.id}`);
 
 // Dashboard Overview (Figma "Desktop - 218", 2538:44033): figures, quick actions and recent changes.
 export default function Dashboard() {

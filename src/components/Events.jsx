@@ -22,7 +22,7 @@ export default function Events({ upcoming, recent }) {
   const f = events.find((e) => e.featured) ?? events[0];
   const schedule = events.filter((e) => e !== f).slice(0, 4);
   return (
-    <section className={styles.section} id="events" aria-labelledby="events-title">
+    <section className={styles.section} id="events" aria-labelledby="events-title" data-edit="link.event">
       <div className={styles.grid}>
         <h2 id="events-title" className={styles.title}>
           {upcoming.length ? "Upcoming" : "Recent"} <span>Events</span>

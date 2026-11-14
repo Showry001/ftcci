@@ -52,7 +52,21 @@ Every button that removes something asks you to confirm first.
 
 ## Website pages
 
-**Website pages** holds the fixed pages: the home hero (video or image carousel), home page, About, Membership, Services (including the hall tariff used by the booking form), Knowledge Centre, Media, Privilege Card, Careers and the footer. Each works like the editor above: change it, preview it, publish it.
+**Website pages** holds the fixed pages: Home, About, Membership, Services, Knowledge Centre, Media, Privilege Card and Careers. Press **Edit page** on one to open it in the page editor:
+
+1. **On the right is the real page.** Move the pointer over it: each part you can edit gets an outline and its name. Click one, or pick it from the list on the left.
+2. **On the left, its fields open.** Change text, swap photos or add items. About a second later the page on the right shows your change. Nothing is on the website yet.
+3. **Use Desktop, Tablet and Phone** at the top to see how it looks on each.
+4. **Press Publish** when you're happy. Everything you changed on that page goes live together, within a minute.
+
+Good to know:
+
+- **The hero, the office bearers and the footer** can be edited wherever they appear. The footer is the same on every page, so changing it on one page changes it everywhere.
+- **Events, news, publications and vacancies** are listed on some pages, but you add and edit them in their own sections. Clicking them in the page editor gives you a button to go there.
+- **"Unpublished changes"** at the top means something on this page hasn't been published yet.
+- **If Publish stops because something is missing,** the part with the problem opens, and the field is marked in red.
+- **Earlier versions** at the bottom of each part brings back an earlier version as a draft.
+- **On a phone,** switch between **Edit** and **Preview** at the top.
 
 ## Images, PDFs and videos
 

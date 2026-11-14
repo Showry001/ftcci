@@ -310,19 +310,24 @@ export async function withMedia(db: Db, config: Config, docs: { type: string; da
   return docs.map((d) => expand(contentTypes[d.type as ContentType].fields, d.data));
 }
 
-// Preview links let staff see unpublished changes on the real site. They expire after an hour.
+// Preview links let staff see unpublished changes on the real site. One link can cover several documents
+// (the page editor previews a page together with the hero, footer and other parts shown on it). They
+// expire after an hour.
 const PREVIEW_MS = 60 * 60_000;
+export const PREVIEW_MAX_DOCUMENTS = 10;
 const sign = (secret: string, payload: string) => createHmac("sha256", secret).update(payload).digest("base64url");
 
-export function previewToken(config: Config, documentId: number, now = Date.now()) {
-  const payload = `${documentId}.${now + PREVIEW_MS}`;
+export function previewToken(config: Config, documentIds: number | number[], now = Date.now()) {
+  const ids = [documentIds].flat();
+  const payload = `${ids.join("-")}.${now + PREVIEW_MS}`;
   return `${payload}.${sign(config.previewSecret, payload)}`;
 }
 
-export function readPreviewToken(config: Config, token: string): number | null {
-  const m = /^(\d+)\.(\d+)\.([\w-]{43})$/.exec(token);
+/** The document ids a valid, unexpired preview link covers, or null. */
+export function readPreviewToken(config: Config, token: string): number[] | null {
+  const m = /^(\d+(?:-\d+){0,9})\.(\d+)\.([\w-]{43})$/.exec(token);
   if (!m || Number(m[2]) < Date.now()) return null;
   const expected = Buffer.from(sign(config.previewSecret, `${m[1]}.${m[2]}`));
   const given = Buffer.from(m[3]);
-  return expected.length === given.length && timingSafeEqual(expected, given) ? Number(m[1]) : null;
+  return expected.length === given.length && timingSafeEqual(expected, given) ? m[1].split("-").map(Number) : null;
 }

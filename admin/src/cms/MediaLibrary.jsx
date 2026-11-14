@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
+import { viewForDoc } from "../../../shared/page-sections.js";
 import { api, formatDateTime, query } from "../api.js";
 import { Message, PageHead, Pagination, SearchBox, Select } from "../ui.jsx";
 import ui from "../ui.module.css";
@@ -15,7 +16,7 @@ const kinds = [
   { value: "pdf", label: "PDFs" },
   { value: "video", label: "Videos" },
 ];
-const editorPath = (d) => (collectionTypes[d.type] ? `/content/${d.type}/${d.id}` : `/pages/${d.type}`);
+const editorPath = (d) => (collectionTypes[d.type] ? `/content/${d.type}/${d.id}` : `/pages/${viewForDoc(d.type)}`);
 
 // Every image, PDF and video on the website (Figma "Manage Media", 2538:44446).
 export default function MediaLibrary() {

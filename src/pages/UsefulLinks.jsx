@@ -28,7 +28,7 @@ export default function UsefulLinks() {
   return (
     <>
       <PageHero crumb="Knowledge > Links" title="Useful Links" />
-      <section className={styles.section}>
+      <section className={styles.section} data-edit="knowledge.linkDirectory">
         <div className="container">
           <label className={styles.search}>
             <img src={icons.knowledge.search} alt="" width="20" height="20" />

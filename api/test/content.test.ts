@@ -128,7 +128,7 @@ describe("content", () => {
     await save(admin, doc.id, { ...data, title: "Unpublished title" });
 
     const { token } = (await act(admin, doc.id, "preview")).json();
-    const preview = (await app.inject({ url: `/api/content/preview/${token}` })).json();
+    const [preview] = (await app.inject({ url: `/api/content/preview/${token}` })).json().documents;
     assert.equal(preview.title, "Unpublished title");
     assert.equal(preview.preview, true);
     assert.equal(preview.image.url.startsWith("/media/"), true);
@@ -137,6 +137,23 @@ describe("content", () => {
     assert.equal((await app.inject({ url: `/api/content/preview/${forged}` })).statusCode, 404);
     const expired = previewToken(config, doc.id, Date.now() - 2 * 3600_000);
     assert.equal((await app.inject({ url: `/api/content/preview/${expired}` })).json().error, "expired");
+  });
+
+  it("previews a page together with the other drafts shown on it", async () => {
+    const { app, admin } = await makeApp();
+    const page = (await admin.inject({ url: "/api/admin/content/careers" })).json();
+    const footer = (await admin.inject({ url: "/api/admin/content/site" })).json();
+    await save(admin, page.id, { email: "jobs@ftcci.in" });
+    await save(admin, footer.id, { tagline: "Draft footer line" });
+
+    const { token } = (await admin.inject({ method: "POST", url: "/api/admin/content/preview", payload: { ids: [page.id, footer.id] } })).json();
+    const { documents } = (await app.inject({ url: `/api/content/preview/${token}` })).json();
+    assert.deepEqual(documents.map((d: any) => [d.type, d.email ?? d.tagline]).sort(), [["careers", "jobs@ftcci.in"], ["site", "Draft footer line"]]);
+
+    const tampered = token.replace(`${page.id}-${footer.id}`, `${page.id}-${footer.id + 1}`);
+    assert.equal((await app.inject({ url: `/api/content/preview/${tampered}` })).statusCode, 404, "changing the documents breaks the signature");
+    assert.equal((await admin.inject({ method: "POST", url: "/api/admin/content/preview", payload: { ids: [page.id, 99999] } })).statusCode, 404);
+    assert.equal((await app.inject({ method: "POST", url: "/api/admin/content/preview", payload: { ids: [page.id] } })).statusCode, 401, "only signed-in staff can make preview links");
   });
 
   it("publishes scheduled items when their time comes", async () => {

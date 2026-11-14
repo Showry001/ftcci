@@ -17,7 +17,7 @@ export default function MobileUpdates({ articles, publications, reviews }) {
       : reviews.slice(0, 4).map((r) => ({ tag: "PDF", date: reviewDate(r.date), title: "FTCCI Review", image: r.cover, href: r.file?.url }));
 
   return (
-    <section className={`${styles.section} mobile-only`} id="updates" aria-labelledby="updates-title">
+    <section className={`${styles.section} mobile-only`} id="updates" aria-labelledby="updates-title" data-edit="link.article">
       <h2 id="updates-title" className={styles.title}>
         Latest <span>Updates</span>
       </h2>

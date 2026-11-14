@@ -1,22 +1,21 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { contentTypes } from "../../../shared/content.js";
+import { pageViews, viewDocs } from "../../../shared/page-sections.js";
 import { api, formatDateTime } from "../api.js";
 import { Message, PageHead, Pill } from "../ui.jsx";
-import { pageTypes, stateOf } from "./types.js";
 import styles from "./PagesIndex.module.css";
 
 const icon = (name) => `${import.meta.env.BASE_URL}icons/${name}.svg`;
 
-// The fixed pages and blocks of the website, each edited as one document.
+// The website's fixed pages. Each opens in the visual page editor.
 export default function PagesIndex() {
-  const [items, setItems] = useState(null);
+  const [docs, setDocs] = useState(null);
   const [error, setError] = useState("");
 
   useEffect(() => {
     let live = true;
     api.get("/pages").then(
-      (d) => live && setItems(Object.fromEntries(d.items.map((p) => [p.type, p]))),
+      (d) => live && setDocs(Object.fromEntries(d.items.map((p) => [p.type, p]))),
       (e) => live && setError(e.message),
     );
     return () => {
@@ -26,32 +25,25 @@ export default function PagesIndex() {
 
   return (
     <>
-      <PageHead title="Website pages" intro="Text, photos and files on the fixed pages of the website. Changes go live when you publish them." />
+      <PageHead title="Website pages" intro="Open a page to edit it on the page itself: click any part to change its text, photos and files. Changes go live when you publish." />
       {error && <Message tone="error">{error}</Message>}
       <ul className={styles.grid}>
-        {Object.entries(pageTypes).map(([type, meta]) => {
-          const doc = items?.[type];
-          const state = doc ? stateOf(doc) : null;
+        {Object.entries(pageViews).map(([key, view]) => {
+          const shown = docs && viewDocs(key).map((t) => docs[t]).filter(Boolean);
+          const waiting = shown?.some((d) => !d.published || d.hasChanges);
+          const latest = shown?.map((d) => d.publishedAt).filter(Boolean).sort().at(-1);
           return (
-            <li key={type} className={styles.card}>
+            <li key={key} className={styles.card}>
               <div className={styles.head}>
                 <h2>
-                  <Link to={`/pages/${type}`}>{contentTypes[type].label}</Link>
+                  <Link to={`/pages/${key}`}>{view.label}</Link>
                 </h2>
-                {state && <Pill tone={state.tone}>{state.label}</Pill>}
+                {shown && <Pill tone={waiting ? "orange" : "green"}>{waiting ? "Unpublished changes" : "Published"}</Pill>}
               </div>
-              <p className={styles.intro}>{meta.intro}</p>
-              <p className={styles.meta}>
-                {doc?.publishAt
-                  ? `Changes publish ${formatDateTime(doc.publishAt)}`
-                  : doc?.published && doc.hasChanges
-                    ? "Has changes not published yet"
-                    : doc?.publishedAt
-                      ? `Published ${formatDateTime(doc.publishedAt)}`
-                      : items && "Not published yet"}
-              </p>
+              <p className={styles.intro}>{view.sections.filter((s) => s.doc && s.id !== "site.footer").map((s) => s.label).join(" · ")}</p>
+              <p className={styles.meta}>{latest ? `Last published ${formatDateTime(latest)}` : docs && "Not published yet"}</p>
               <span className={styles.edit} aria-hidden="true">
-                <img src={icon("edit")} alt="" width="20" height="20" /> Edit
+                <img src={icon("edit")} alt="" width="20" height="20" /> Edit page
               </span>
             </li>
           );

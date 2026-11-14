@@ -51,7 +51,7 @@ export default function NewsletterForm({ perks }) {
   };
 
   return (
-    <section className={styles.card} aria-labelledby="stay-connected-title">
+    <section className={styles.card} aria-labelledby="stay-connected-title" data-edit="home.stayConnected">
       <div className={styles.left}>
         <p className={styles.eyebrow}>Stay Connected</p>
         <h2 id="stay-connected-title" className={styles.title}>

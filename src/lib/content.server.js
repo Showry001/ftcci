@@ -15,12 +15,12 @@ async function get(path) {
   return res.json();
 }
 
-// Several loaders run for one page; the preview is fetched once per request.
+// Several loaders run for one page; the preview (the drafts a signed link covers) is fetched once per request.
 const previews = new WeakMap();
 function preview(request) {
   const token = new URL(request.url).searchParams.get("preview");
-  if (!token) return Promise.resolve(null);
-  if (!previews.has(request)) previews.set(request, get(`/api/content/preview/${encodeURIComponent(token)}`));
+  if (!token) return Promise.resolve([]);
+  if (!previews.has(request)) previews.set(request, get(`/api/content/preview/${encodeURIComponent(token)}`).then((p) => p?.documents ?? []));
   return previews.get(request);
 }
 
@@ -28,8 +28,8 @@ export const isPreview = (request) => new URL(request.url).searchParams.has("pre
 
 /** The published content of a page or block (Home page, About page, footer, …). */
 export async function single(type, request) {
-  const draft = await preview(request);
-  if (draft?.type === type) return draft;
+  const draft = (await preview(request)).find((d) => d.type === type);
+  if (draft) return draft;
   const doc = await get(`/api/content/single/${type}`);
   if (!doc) throw new Response(UNAVAILABLE, { status: 503 });
   return doc.data;
@@ -43,9 +43,16 @@ export async function list(type, params = {}) {
 
 /** One published (or archived) item, or a 404 page. */
 export async function item(type, slug, request) {
-  const draft = await preview(request);
-  if (draft?.type === type && draft.slug === slug) return draft;
+  const draft = (await preview(request)).find((d) => d.type === type && d.slug === slug);
+  if (draft) return draft;
   const doc = await get(`/api/content/item/${type}/${encodeURIComponent(slug)}`);
   if (!doc) throw new Response("Not found", { status: 404 });
   return doc;
 }
+
+/**
+ * Where the admin's page editor runs, for the preview bridge (see PreviewBridge.jsx). Set ADMIN_ORIGIN when
+ * the admin is on another address; in production it is normally the site's own address.
+ */
+export const adminOrigin = () => process.env.ADMIN_ORIGIN || (process.env.NODE_ENV === "production" ? null : "http://127.0.0.1:5174");
+

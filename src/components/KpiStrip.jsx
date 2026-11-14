@@ -54,7 +54,7 @@ function RollingNumber({ value }) {
 
 export default function KpiStrip({ kpis }) {
   return (
-    <section className={styles.section} aria-label="FTCCI at a glance">
+    <section className={styles.section} aria-label="FTCCI at a glance" data-edit="home.kpis">
       <div className={styles.row}>
         {kpis.map((k) => (
           <div key={k.label} className={styles.kpi}>

@@ -6,10 +6,11 @@ import "@fontsource/inter/500.css";
 import "@fontsource/inter/600.css";
 import "@fontsource/inter/700.css";
 import "./styles.css";
-import Auth, { SuperAdminOnly } from "./auth.jsx";
+import Auth, { RequireStaff, SuperAdminOnly } from "./auth.jsx";
 import ContentEditor from "./cms/ContentEditor.jsx";
 import ContentList from "./cms/ContentList.jsx";
 import MediaLibrary from "./cms/MediaLibrary.jsx";
+import PageEditor from "./cms/PageEditor.jsx";
 import PagesIndex from "./cms/PagesIndex.jsx";
 import Layout from "./Layout.jsx";
 import Account from "./pages/Account.jsx";
@@ -35,6 +36,8 @@ const router = createBrowserRouter(
         { path: "sign-in", element: <SignIn /> },
         { path: "forgot-password", element: <ForgotPassword /> },
         { path: "reset-password", element: <ResetPassword /> },
+        // The page editor fills the screen, without the admin's sidebar.
+        { path: "pages/:view", element: <RequireStaff><PageEditor /></RequireStaff> },
         {
           element: <Layout />,
           children: [
@@ -43,7 +46,6 @@ const router = createBrowserRouter(
             { path: "content/:type/new", element: <ContentEditor /> },
             { path: "content/:type/:id", element: <ContentEditor /> },
             { path: "pages", element: <PagesIndex /> },
-            { path: "pages/:type", element: <ContentEditor page /> },
             { path: "media", element: <MediaLibrary /> },
             { path: "submissions/:type", element: <SubmissionList /> },
             { path: "submissions/:type/:reference", element: <SubmissionDetail /> },
@@ -61,8 +63,15 @@ const router = createBrowserRouter(
   { basename: "/admin" },
 );
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>,
-);
+// In development the admin's address is 127.0.0.1:5174 (ADMIN_URL in api/.env). "localhost" reaches the
+// same server, but to the browser it is another address, so sign-in and the page editor's preview would
+// be refused. Switch to the right address before anything loads.
+if (import.meta.env.DEV && window.location.hostname === "localhost") {
+  window.location.replace(window.location.href.replace("//localhost", "//127.0.0.1"));
+} else {
+  ReactDOM.createRoot(document.getElementById("root")).render(
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>,
+  );
+}

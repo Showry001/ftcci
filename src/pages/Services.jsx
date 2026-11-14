@@ -71,7 +71,7 @@ export default function Services() {
       <PageHero crumb="Home > Services" title="Services" />
       <SubNav items={subNav.services} variant="titleCase" label="Services" />
 
-      <section id="certificate-of-origin" className={`${styles.section} ${styles.white}`}>
+      <section id="certificate-of-origin" className={`${styles.section} ${styles.white}`} data-edit="services.co">
         <div className={`container ${styles.coRow}`}>
           <div className={styles.coMain}>
             <h2 className={styles.h2}>Certificate of Origin</h2>
@@ -124,7 +124,7 @@ export default function Services() {
         </div>
       </section>
 
-      <section id="liaison" className={`${styles.section} ${styles.grey}`}>
+      <section id="liaison" className={`${styles.section} ${styles.grey}`} data-edit="services.liaison">
         <div className={`container ${styles.split}`}>
           <div className={styles.splitText} style={{ maxWidth: 574 }}>
             <h2 className={styles.h2}>Liaison with Bodies</h2>
@@ -138,7 +138,7 @@ export default function Services() {
         </div>
       </section>
 
-      <section id="help-desk" className={`${styles.section} ${styles.white}`}>
+      <section id="help-desk" className={`${styles.section} ${styles.white}`} data-edit="services.helpdesk">
         <div className={`container ${styles.split} ${styles.splitReverse}`}>
           <Img className={styles.splitImg} style={{ aspectRatio: "498 / 340", maxWidth: 498 }} media={d.helpdeskImage} sizes="(min-width: 1200px) 498px, 100vw" />
           <div className={styles.splitText} style={{ maxWidth: 678 }}>
@@ -152,7 +152,7 @@ export default function Services() {
         </div>
       </section>
 
-      <section id="certification" className={`${styles.section} ${styles.lavenderDeep}`}>
+      <section id="certification" className={`${styles.section} ${styles.lavenderDeep}`} data-edit="services.certification">
         <div className="container">
           <h2 className={styles.h2} style={{ color: "#0f1c52" }}>Certification of Documents</h2>
           <p className={styles.lead} style={{ maxWidth: 705, marginTop: 30, fontSize: 15, lineHeight: 1.65, color: "#5e6c84" }}>
@@ -170,7 +170,7 @@ export default function Services() {
         </div>
       </section>
 
-      <section id="expert-committee" className={`${styles.section} ${styles.white}`}>
+      <section id="expert-committee" className={`${styles.section} ${styles.white}`} data-edit="services.expert">
         <div className="container">
           <h2 className={styles.h2}>Expert Committee</h2>
           <p className={styles.lead} style={{ maxWidth: 793, marginTop: 30, fontSize: 15, color: "#4d525e" }}>
@@ -194,7 +194,7 @@ export default function Services() {
         </div>
       </section>
 
-      <section id="ceo-forum" className={`${styles.section} ${styles.grey} ${styles.ceoForum}`}>
+      <section id="ceo-forum" className={`${styles.section} ${styles.grey} ${styles.ceoForum}`} data-edit="services.ceo">
         <div className="container">
           <Img className={styles.banner} media={d.ceoImage} sizes="(min-width: 1200px) 1240px, 100vw" />
           <h2 className={`${styles.h2} ${styles.h2Sm}`} style={{ marginTop: 42 }}>CEO Forum</h2>
@@ -206,7 +206,7 @@ export default function Services() {
         </div>
       </section>
 
-      <section id="hall-booking" className={`${styles.section} ${styles.white}`}>
+      <section id="hall-booking" className={`${styles.section} ${styles.white}`} data-edit="services.halls">
         <div className={`container ${styles.hallsRow}`}>
           <div className={styles.hallsMain}>
             <h2 className={styles.h2} style={{ color: "#0f2c52" }}>Halls &amp; Booking</h2>
@@ -298,7 +298,7 @@ export default function Services() {
         </div>
       </section>
 
-      <section id="downloads" className={`${styles.section} ${styles.lavender}`}>
+      <section id="downloads" className={`${styles.section} ${styles.lavender}`} data-edit="services.downloads">
         <div className="container">
           <p className={styles.attachEyebrow}>Attachments</p>
           <h2 className={styles.h2} style={{ color: "#0c1c3e", lineHeight: 1.2, marginTop: 12 }}>Forms, guidelines &amp; downloads</h2>

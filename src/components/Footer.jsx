@@ -38,7 +38,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className={styles.footer} id="contact">
+    <footer className={styles.footer} id="contact" data-edit="site.footer">
       <div className={styles.grid}>
         <div className={`${styles.col} ${styles.about}`}>
           <div className={styles.brand}>

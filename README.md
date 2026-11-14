@@ -100,7 +100,10 @@ This runs the API test suite (69 tests) against a throwaway database. Also run `
 | `FFMPEG_PATH` | no | ffmpeg for compressing hero videos (default `ffmpeg` on the PATH; development uses the bundled copy) |
 | `RUN_WORKER` | no | `false` stops this instance from sending queued email, processing videos and publishing scheduled items |
 
-The website's server reads one variable: `API_URL`, the API address (default `http://127.0.0.1:8787`). It only uses it on the server; browsers never call it directly.
+The website's server reads two variables:
+
+- `API_URL`: the API address (default `http://127.0.0.1:8787`). It's used only on the server; browsers never call it directly.
+- `ADMIN_ORIGIN`: where the admin runs, if that's a different address from the website. Only the page editor's preview uses it. It defaults to `http://127.0.0.1:5174` in development and to the website's own address in production.
 
 The API refuses to start, with a clear message, when a required value is missing or malformed. It never logs secret values.
 
@@ -127,16 +130,33 @@ Everything on the website except the layout is edited in the admin.
 | Admin section | What it holds |
 |---|---|
 | Events, News & Press, Publications, FTCCI Review, Careers | Collections: one item per event, story, report, issue or vacancy |
-| Website pages | One document per page or block: home hero, home page, About, Membership, Services (including the hall tariff used by the booking form), Knowledge Centre, Media, Privilege Card, Careers, and the footer |
+| Website pages | The fixed pages (Home, About, Membership, Services, Knowledge Centre, Media, Privilege Card, Careers), edited in the visual page editor described below. The hero and the footer are edited from the pages that show them. |
 | Media Library | Every image, PDF and video, with titles, alt text and where each file is used |
 
 - **States.** Items are *Draft*, *Published* or *Archived*. The website shows only published content (archived events stay reachable from old links and appear under past events). Editing a published item changes a working copy; the website keeps the live version until staff press *Publish changes*.
 - **Saving.** New items are saved with *Save Draft*. After that the editor saves by itself a moment after each change, and asks before leaving a new item unsaved. Required fields are only enforced when publishing; formats and lengths are checked on every save, in the browser and again on the server (`shared/validate-content.js`).
-- **Preview.** *Preview* opens the real page with the unsaved working copy, through a signed link that expires after one hour.
+- **Preview.** *Preview* opens the real page with the unsaved working copy, through a signed link that expires after one hour. One link can cover several documents, so a page previews together with its hero and footer.
 - **Scheduling.** *Publish later* sets a date and time; the API publishes due items within 20 seconds of that time.
 - **Version history.** Every publish and restore, and at most one save every five minutes, is kept (the last 60 per item). *Restore* brings an earlier version back as the draft and keeps the one it replaces.
 - **Order.** Publications and vacancies appear in the order set with the arrows on their lists; everything else is ordered by date.
 - **Rich text** (news stories) allows headings, bold, italic, underline, lists, quotes and links only. The server removes everything else, including scripts, styles and unsafe links.
+
+### Visual page editor
+
+Website pages open in a full-screen editor, laid out like Shopify's theme editor:
+
+- **Left:** the parts of the page, in the order they appear (for the About page: History, Vision & Mission, Objectives and so on, then the footer).
+- **Right:** the real page, at desktop, tablet or phone width.
+- **Choosing a part:** hover outlines it with its name; clicking it, there or in the list, opens its fields on the left.
+- **Saving:** changes save as a draft about a second after typing, and the preview refreshes in place. **Publish** puts everything changed on that page live together: the page, plus the hero, office bearers or footer if they were changed there.
+- **Shared parts:** the hero, office bearers and footer are edited wherever they appear. Footer changes show on every page.
+- **Lists:** events, news, publications and vacancies stay in their own sections; the editor links to them.
+- **Phones:** on a phone, the parts list and the preview take turns.
+
+How it works:
+- **Which part is which:** `shared/page-sections.js` lists each page's parts and the fields they edit. The website marks each part with `data-edit="<part id>"`.
+- **The preview frame:** inside the editor, `src/components/PreviewBridge.jsx` outlines parts and reports clicks. It only acts in a frame opened with a signed preview link and `edit=1`, and only exchanges messages with the admin's address.
+- **No content in messages:** messages carry part names and "reload" requests only. The page always reads drafts from the server through the signed link.
 
 ### Media library
 

@@ -8,7 +8,7 @@ import ui from "../ui.module.css";
 import Fields from "./Fields.jsx";
 import MediaPicker from "./MediaPicker.jsx";
 import PreviewCard from "./PreviewCard.jsx";
-import { SITE_URL, collectionTypes, pageTypes, singular, stateOf } from "./types.js";
+import { SITE_URL, collectionTypes, singular, stateOf } from "./types.js";
 import styles from "./Editor.module.css";
 
 const icon = (name) => `${import.meta.env.BASE_URL}icons/${name}.svg`;
@@ -18,20 +18,21 @@ const versionLabel = { save: "Saved", publish: "Published", restore: "Restored",
 // A datetime-local value (the browser's own time zone) for an ISO time.
 const localInput = (date) => new Date(date.getTime() - date.getTimezoneOffset() * 60_000).toISOString().slice(0, 16);
 
-// Edits one item of a collection (/content/event/12, /content/event/new) or one page (/pages/about).
-export default function ContentEditor({ page = false }) {
+// Edits one item of a collection (/content/event/12, /content/event/new). Website pages have their own
+// visual editor (PageEditor.jsx).
+export default function ContentEditor() {
   const { type, id } = useParams();
-  const meta = page ? pageTypes[type] : collectionTypes[type];
+  const meta = collectionTypes[type];
   if (!meta || (id !== undefined && !/^\d+$/.test(id))) return <NotFound />;
-  return <Editor key={`${type}/${id ?? "new"}`} type={type} id={id ? Number(id) : null} page={page} meta={meta} />;
+  return <Editor key={`${type}/${id ?? "new"}`} type={type} id={id ? Number(id) : null} meta={meta} />;
 }
 
-function Editor({ type, id, page, meta }) {
+function Editor({ type, id, meta }) {
   const spec = contentTypes[type];
-  const isNew = !page && id === null;
+  const isNew = id === null;
   const navigate = useNavigate();
   const location = useLocation();
-  const listPath = page ? "/pages" : `/content/${type}`;
+  const listPath = `/content/${type}`;
 
   const [doc, setDoc] = useState(null);
   const [data, setData] = useState(isNew ? {} : null);
@@ -83,7 +84,7 @@ function Editor({ type, id, page, meta }) {
     if (location.state) navigate(".", { replace: true, state: null });
     if (isNew) return;
     let live = true;
-    api.get(page ? `/content/${type}` : `/content/doc/${id}`).then(
+    api.get(`/content/doc/${id}`).then(
       (view) => {
         if (!live) return;
         if (view.type !== type) return setLoadError("We couldn't find that item.");
@@ -225,7 +226,7 @@ function Editor({ type, id, page, meta }) {
       try {
         const saved = dirtyRef.current || isNew ? await save() : docRef.current;
         const { token, slug: savedSlug } = await api.post(`/content/doc/${saved.id}/preview`);
-        const url = `${SITE_URL}${page ? meta.path : meta.path({ slug: savedSlug })}?preview=${encodeURIComponent(token)}`;
+        const url = `${SITE_URL}${meta.path({ slug: savedSlug })}?preview=${encodeURIComponent(token)}`;
         if (tab) tab.location.href = url;
         const text = tab ? "Preview opened in a new tab. The link works for one hour." : "Your browser blocked the preview tab. Allow pop-ups for this site and try again.";
         if (isNew) return goToSaved(saved, { message: text, tone: tab ? "success" : "error" });
@@ -266,22 +267,21 @@ function Editor({ type, id, page, meta }) {
     media,
     addMedia: (view) => setMedia((m) => ({ ...m, [view.id]: view })),
     openPicker: setPicker,
-    hidden: meta.hidden?.(data),
   };
   const state = doc ? stateOf(doc) : { tone: "orange", label: "Not saved yet" };
   const live = doc?.published;
-  const canPreview = page || meta.preview;
-  const sitePath = page ? meta.path : doc && meta.path(doc);
+  const canPreview = meta.preview;
+  const sitePath = doc && meta.path(doc);
   const versions = doc?.versions ?? [];
-  const title = isNew ? meta.add : page ? spec.label : doc?.title || `Untitled ${singular(type).toLowerCase()}`;
-  const intro = isNew ? meta.addIntro : page ? meta.intro : null;
+  const title = isNew ? meta.add : doc?.title || `Untitled ${singular(type).toLowerCase()}`;
+  const intro = isNew ? meta.addIntro : null;
   const changesToPublish = !live || doc.hasChanges || dirty;
   const otherErrors = Object.keys(errors).filter((k) => k !== "slug" && k !== "publishAt").length;
 
   return (
     <>
       <Link to={listPath} className={styles.back}>
-        ← {page ? "All pages" : `All ${meta.title.toLowerCase()}`}
+        ← All {meta.title.toLowerCase()}
       </Link>
       <PageHead title={title} intro={intro} />
 
@@ -339,16 +339,14 @@ function Editor({ type, id, page, meta }) {
         </form>
 
         <aside className={styles.side}>
-          {!page && (
-            <section className={styles.card} aria-labelledby="live-preview">
-              <h2 id="live-preview" className={styles.cardTitle}>
-                <img src={icon("monitor")} alt="" width="20" height="16" /> Live Preview
-              </h2>
-              <div className={styles.cardBody}>
-                <PreviewCard type={type} data={data} media={media} />
-              </div>
-            </section>
-          )}
+          <section className={styles.card} aria-labelledby="live-preview">
+            <h2 id="live-preview" className={styles.cardTitle}>
+              <img src={icon("monitor")} alt="" width="20" height="16" /> Live Preview
+            </h2>
+            <div className={styles.cardBody}>
+              <PreviewCard type={type} data={data} media={media} />
+            </div>
+          </section>
 
           <section className={styles.card} aria-labelledby="publishing">
             <h2 id="publishing" className={styles.cardTitle}>Publishing</h2>
@@ -413,7 +411,7 @@ function Editor({ type, id, page, meta }) {
                       <img src={icon("eye")} alt="" width="15" height="11" /> View on website
                     </a>
                   )}
-                  {!page && doc.status === "published" && (
+                  {doc.status === "published" && (
                     <button
                       type="button"
                       className={ui.button}
@@ -428,12 +426,12 @@ function Editor({ type, id, page, meta }) {
                       Archive
                     </button>
                   )}
-                  {!page && doc.status === "archived" && (
+                  {doc.status === "archived" && (
                     <button type="button" className={ui.button} disabled={Boolean(busy)} onClick={() => act("unarchive", { done: "Back on the website." })}>
                       Unarchive
                     </button>
                   )}
-                  {!page && live && (
+                  {live && (
                     <button
                       type="button"
                       className={ui.button}
@@ -448,11 +446,9 @@ function Editor({ type, id, page, meta }) {
                       Unpublish
                     </button>
                   )}
-                  {!page && (
-                    <button type="button" className={`${ui.button} ${ui.dangerButton}`} disabled={Boolean(busy)} onClick={remove}>
-                      Delete
-                    </button>
-                  )}
+                  <button type="button" className={`${ui.button} ${ui.dangerButton}`} disabled={Boolean(busy)} onClick={remove}>
+                    Delete
+                  </button>
                 </div>
               )}
             </div>

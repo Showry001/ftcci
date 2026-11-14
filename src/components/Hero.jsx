@@ -9,7 +9,7 @@ const SLIDE_MS = 6000;
 // Home hero: a video (phones get a lighter 720p file) or an image carousel, chosen in the admin.
 export default function Hero({ hero }) {
   return (
-    <section className={styles.hero} aria-labelledby="hero-title" data-no-reveal>
+    <section className={styles.hero} aria-labelledby="hero-title" data-no-reveal data-edit="hero.hero">
       {hero.mode === "carousel" ? <Slides slides={hero.slides} /> : <HeroVideo video={hero.video} poster={hero.poster} />}
       {/* Figma fill: VIDEO + 40% black overlay */}
       <div className={styles.overlay} aria-hidden="true" />

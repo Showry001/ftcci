@@ -7,7 +7,7 @@ import { collections, contentTypes, singles } from "../../../shared/content.js";
 import { todayInIndia } from "../../../shared/forms.js";
 import type { Config } from "../config.ts";
 import { cached } from "../content/cache.ts";
-import { getDocument, readPreviewToken, withMedia } from "../content/documents.ts";
+import { readPreviewToken, withMedia } from "../content/documents.ts";
 import type { Db } from "../db/schema.ts";
 
 const notFound = { error: "not_found", message: "Not found." };
@@ -101,17 +101,19 @@ export async function contentRoutes(app: FastifyInstance, { db, config }: { db: 
     },
   );
 
-  // Draft content for staff previews. The token comes from the admin and expires after an hour.
+  // Draft content for staff previews: the working copies of the documents a signed link covers. The
+  // link comes from the admin and expires after an hour.
   app.get<{ Params: { token: string } }>(
     "/api/content/preview/:token",
-    { schema: { params: { type: "object", properties: { token: { type: "string", maxLength: 120 } }, required: ["token"] } } },
+    { schema: { params: { type: "object", properties: { token: { type: "string", maxLength: 200 } }, required: ["token"] } } },
     async (req, reply) => {
-      const id = readPreviewToken(config, req.params.token);
-      if (!id) return reply.code(404).send({ error: "expired", message: "This preview link has expired. Open a new preview from the admin." });
-      const doc = await getDocument(db, id).catch(() => null);
-      if (!doc || !Object.hasOwn(contentTypes, doc.type)) return reply.code(404).send(notFound);
-      const [data] = await withMedia(db, config, [{ type: doc.type, data: doc.data }]);
-      return { type: doc.type, slug: doc.slug, preview: true, ...data };
+      const ids = readPreviewToken(config, req.params.token);
+      if (!ids) return reply.code(404).send({ error: "expired", message: "This preview link has expired. Open a new preview from the admin." });
+      const docs = await db.selectFrom("documents").select(["type", "slug", "data"]).where("id", "in", ids).where("deleted_at", "is", null).execute();
+      const known = docs.filter((d) => Object.hasOwn(contentTypes, d.type));
+      if (!known.length) return reply.code(404).send(notFound);
+      const data = await withMedia(db, config, known);
+      return { documents: known.map((d, i) => ({ type: d.type, slug: d.slug, preview: true, ...data[i] })) };
     },
   );
 }

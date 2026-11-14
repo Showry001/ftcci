@@ -75,25 +75,6 @@ export const collectionTypes = {
   },
 };
 
-// Page blocks, in the order staff see them.
-export const pageTypes = {
-  hero: {
-    path: "/",
-    intro: "The video or image carousel at the top of the home page, with its heading and buttons.",
-    // Only the fields for the chosen kind of hero are shown.
-    hidden: (d) => (d.mode === "carousel" ? ["video", "poster"] : d.mode === "video" ? ["slides"] : []),
-  },
-  home: { path: "/", intro: "Numbers, halls, benefits and photos on the home page." },
-  about: { path: "/about", intro: "History, vision, objectives, office bearers, committee, secretariat and past presidents." },
-  membership: { path: "/membership", intro: "Why join, benefits, options, how to apply, documents and contacts." },
-  services: { path: "/services", intro: "Service details, hall tariff (also used by the booking form) and downloads." },
-  knowledge: { path: "/knowledge", intro: "The useful links directory and the FTCCI Review description." },
-  media: { path: "/media", intro: "Files in the press kit." },
-  privilege: { path: "/privilege-card", intro: "Benefits, partners and FAQs of the Privilege Card page." },
-  careers: { path: "/careers", intro: "The contact address on the Careers page. Vacancies are under Careers." },
-  site: { path: "/", intro: "Footer text, contact details and social media links on every page." },
-};
-
 // Media library tabs: files used by these content types (Figma "Manage Media", 2538:44446).
 export const mediaTabs = [
   { label: "All files", used: "" },

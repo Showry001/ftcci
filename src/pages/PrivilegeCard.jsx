@@ -61,7 +61,7 @@ export default function PrivilegeCard() {
     <>
       <SubNav items={subNav.privilege} label="Privilege Card sections" />
 
-      <section className={styles.hero}>
+      <section className={styles.hero} data-edit="privilege.hero">
         <div className={`container ${styles.heroRow}`}>
           <div className={styles.heroCopy}>
             <h1>
@@ -107,7 +107,7 @@ export default function PrivilegeCard() {
         </div>
       </section>
 
-      <section className={styles.advantage}>
+      <section className={styles.advantage} data-edit="privilege.advantages">
         <div className="container">
           <div className={styles.advPanel}>
             <div className={styles.advCopy}>
@@ -134,7 +134,7 @@ export default function PrivilegeCard() {
         </div>
       </section>
 
-      <section id="benefits" className={styles.benefits}>
+      <section id="benefits" className={styles.benefits} data-edit="privilege.benefits">
         <div className="container">
           <div className={styles.benefitsHead}>
             <div>
@@ -165,7 +165,7 @@ export default function PrivilegeCard() {
         </div>
       </section>
 
-      <section id="how-it-works" className={styles.steps}>
+      <section id="how-it-works" className={styles.steps} data-edit="privilege.steps">
         <div className="container">
           <h2 className={`${styles.h2} ${styles.center}`}>
             Your benefits, in <span>three steps.</span>
@@ -186,7 +186,7 @@ export default function PrivilegeCard() {
         </div>
       </section>
 
-      <section id="eligibility" className={styles.community}>
+      <section id="eligibility" className={styles.community} data-edit="privilege.eligibility">
         <div className={`container ${styles.communityRow}`}>
           <div className={styles.communityCopy}>
             <p className={styles.eyebrow}>A privilege that extends further</p>
@@ -220,7 +220,7 @@ export default function PrivilegeCard() {
         </div>
       </section>
 
-      <section id="partners" className={styles.partners}>
+      <section id="partners" className={styles.partners} data-edit="privilege.partners">
         <div className="container">
           <p className={styles.eyebrowSm}>Our trusted partner network</p>
           <h2 className={styles.h2}>
@@ -301,7 +301,7 @@ export default function PrivilegeCard() {
         </div>
       </section>
 
-      <section id="faqs" className={styles.faqs}>
+      <section id="faqs" className={styles.faqs} data-edit="privilege.faqs">
         <div className="container">
           <h2 className={styles.faqTitle}>
             Your questions. <span>Answered.</span>

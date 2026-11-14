@@ -59,6 +59,7 @@ Decisions that affect security, who made them, and what reduces the risk. The fi
   - sign-in codes and reset links are sent straight away and never stored in the email outbox;
   - logs redact the `Cookie` header and never contain codes or tokens.
 - **Audit:** the activity log records sign-ins, failed attempts, lockouts, and every publish, deletion, restore, upload and account change. The admin has no way to edit or delete entries.
+- **Page editor preview:** the website's preview bridge only runs inside a frame opened with a signed preview link and `edit=1`. It accepts messages only from the admin's address and only from its parent frame, and sends messages only there. The messages carry part names and "reload" requests, never content or credentials; drafts come from the server through the signed, one-hour link. In edit mode, links that would leave the page and form submissions are blocked.
 - **Soft delete:** deleted content and files go to a bin that a Super Admin can restore from. Accounts are disabled, never deleted.
 
 ## For Phase 5

@@ -33,12 +33,12 @@ export default function About() {
       <SubNav items={subNav.about} label="About sections" />
 
       {/* History */}
-      <section id="history" className={styles.history}>
+      <section id="history" className={styles.history} data-edit="about.history">
         <HistoryCarousel timeline={timeline} />
       </section>
 
       {/* Vision & Mission */}
-      <section id="vision" className={styles.vision}>
+      <section id="vision" className={styles.vision} data-edit="about.vision">
         <div className="container">
           <SectionTitle eyebrow="Core Values" title="Our Vision &" accent="Mission" className={styles.titleVision} />
           <div className={styles.visionRow}>
@@ -56,7 +56,7 @@ export default function About() {
       </section>
 
       {/* Objectives */}
-      <section id="objectives" className={styles.objectives}>
+      <section id="objectives" className={styles.objectives} data-edit="about.objectives">
         <div className="container">
           <SectionTitle eyebrow="Objectives" title="How We Empower" accent="Industry" className={styles.titleObjectives} />
           <div className={styles.objectivesRow}>
@@ -74,7 +74,7 @@ export default function About() {
       </section>
 
       {/* Office bearers */}
-      <section id="office-bearers" className={styles.bearers}>
+      <section id="office-bearers" className={styles.bearers} data-edit="about.officeBearers">
         <div className="container">
           <SectionTitle eyebrow="Leadership" title="Office" accent="Bearers" className={styles.titleBearers} />
           <ul className={styles.bearerRow}>
@@ -92,7 +92,7 @@ export default function About() {
       </section>
 
       {/* Managing committee */}
-      <section id="managing-committee" className={styles.committee}>
+      <section id="managing-committee" className={styles.committee} data-edit="about.committee">
         <div className="container">
           <SectionTitle eyebrow="Managing Committee" title="Meet the Managing" accent="Committee" className={styles.titleCommittee} />
           <div className={styles.committePhoto}>
@@ -125,7 +125,7 @@ export default function About() {
       </section>
 
       {/* Secretariat */}
-      <section id="secretariat" className={styles.secretariat}>
+      <section id="secretariat" className={styles.secretariat} data-edit="about.secretariat">
         <div className="container">
           <SectionTitle title="FTCCI" accent="Secretariat" className={styles.titleSecretariat} />
           <p className={styles.secretariatIntro}>
@@ -155,7 +155,7 @@ export default function About() {
       </section>
 
       {/* Past presidents */}
-      <section id="past-presidents" className={styles.presidents}>
+      <section id="past-presidents" className={styles.presidents} data-edit="about.pastPresidents">
         <div className="container">
           <SectionTitle title="Past" accent="Presidents" light className={styles.titlePresidents} />
           <ul className={styles.presidentGrid}>

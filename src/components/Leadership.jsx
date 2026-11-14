@@ -3,7 +3,7 @@ import styles from "./Leadership.module.css";
 
 export default function Leadership({ bearers }) {
   return (
-    <section className={styles.section} aria-labelledby="leadership-title">
+    <section className={styles.section} aria-labelledby="leadership-title" data-edit="about.officeBearers">
       <div className={`container ${styles.inner}`}>
         <div className={styles.intro}>
           <h2 id="leadership-title" className={styles.title}>

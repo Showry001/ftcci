@@ -30,7 +30,7 @@ export default function Knowledge() {
       <PageHero crumb="Home > Knowledge Centre" title="Knowledge Centre" />
       <SubNav items={subNav.knowledge} label="Knowledge Centre" />
 
-      <section className={styles.review}>
+      <section className={styles.review} data-edit="knowledge.review">
         <div className="container">
           <KHeader
             title="FTCCI"
@@ -55,7 +55,7 @@ export default function Knowledge() {
         </div>
       </section>
 
-      <section className={styles.links}>
+      <section className={styles.links} data-edit="knowledge.featuredLinks">
         <div className="container">
           <KHeader title="Useful" accent="Links" text="Government, regulatory and industry portals our members reach for most often." />
           <div className={styles.linkGrid}>
@@ -69,7 +69,7 @@ export default function Knowledge() {
         </div>
       </section>
 
-      <section className={styles.pubs}>
+      <section className={styles.pubs} data-edit="link.publication">
         <div className="container">
           <KHeader
             title="FTCCI"
