@@ -7,3 +7,5 @@ api/.data
 build
 # React Router type generation
 .react-router
+# macOS folder view settings
+.DS_Store
