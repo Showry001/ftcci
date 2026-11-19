@@ -43,14 +43,11 @@ export default function Footer() {
         <div className={`${styles.col} ${styles.about}`}>
           <div className={styles.brand}>
             <img src={assets.footerLogo} alt="FTCCI emblem" width="70" height="88" />
-            <div>
-              <p className={styles.brandName}>FTCCI</p>
-              <p className={styles.brandFull}>
-                The Federation of Telangana Chambers
-                <br />
-                of Commerce and Industry
-              </p>
-            </div>
+            <p className={styles.brandFull}>
+              The Federation of Telangana Chambers
+              <br />
+              of Commerce and Industry
+            </p>
           </div>
           {site.tagline && <p className={styles.tagline}>{site.tagline}</p>}
           <ul className={styles.social}>

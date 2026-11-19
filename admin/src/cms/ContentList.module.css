@@ -53,6 +53,22 @@
   color: var(--blue);
   white-space: nowrap;
 }
+/* Date, time and venue lines with their icons; long venues wrap beside the icon. */
+.iconLine {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  max-width: 220px;
+}
+.iconLine + .iconLine {
+  margin-top: 6px;
+}
+.iconLine img {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin-top: 1px;
+}
 .actions {
   display: flex;
   align-items: center;
@@ -89,7 +105,7 @@
   cursor: default;
 }
 
-@media (max-width: 767px) {
+@container (max-width: 879px) {
   .details {
     min-width: 0;
   }

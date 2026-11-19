@@ -79,13 +79,41 @@
   pointer-events: none;
 }
 
+/* "← All events" and the other back links: a clear outlined button, easy to spot and to tap. */
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  margin-bottom: 18px;
+  padding: 8px 16px 8px 12px;
+  border: 1px solid #c9cfda;
+  border-radius: 8px;
+  background: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--navy);
+  text-decoration: none;
+}
+.backLink > span {
+  font-size: 18px;
+}
+.backLink:hover {
+  border-color: var(--navy);
+  background: var(--head-row);
+}
+
+/* The table inside switches to stacked rows by the space this card actually has (the sidebar takes
+   part of the screen), so no column or button is ever cut off. Anything still too wide scrolls. */
 .card {
   margin-top: 42px;
   margin-inline: -30px;
   background: #fff;
   border: 0.5px solid var(--card-line);
   border-radius: 8px;
-  overflow: hidden;
+  overflow-x: auto;
+  container-type: inline-size;
 }
 .table {
   width: 100%;
@@ -276,7 +304,6 @@
   }
 }
 
-/* Phones: each row becomes a stacked card. */
 @media (max-width: 767px) {
   .head h1 {
     font-size: 26px;
@@ -297,6 +324,14 @@
   .card {
     margin-top: 24px;
   }
+  .pages {
+    justify-content: center;
+  }
+}
+
+/* Too narrow for all the columns side by side (phones, tablets, and laptops with the sidebar open):
+   each row becomes a stacked card with its labels. */
+@container (max-width: 879px) {
   .table thead {
     position: absolute;
     width: 1px;
@@ -335,9 +370,6 @@
   }
   .table td:last-child {
     padding-top: 10px;
-  }
-  .pages {
-    justify-content: center;
   }
 }
 

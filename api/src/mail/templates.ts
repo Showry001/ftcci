@@ -89,8 +89,7 @@ function render(l: Layout): Email {
       <table role="presentation" cellpadding="0" cellspacing="0"><tr>
         <td><img src="cid:ftcci-logo" width="46" height="58" alt="FTCCI emblem" style="display:block;border:0;"></td>
         <td style="padding-left:14px;font-family:${FONT};color:#ffffff;">
-          <div style="font-size:19px;font-weight:bold;letter-spacing:0.03em;">FTCCI</div>
-          <div style="font-size:12px;line-height:1.4;color:#cdd5ea;">The Federation of Telangana Chambers of Commerce and Industry</div>
+          <div style="font-size:15px;line-height:1.35;font-weight:bold;">The Federation of Telangana Chambers<br>of Commerce and Industry</div>
         </td>
       </tr></table>
     </td></tr>

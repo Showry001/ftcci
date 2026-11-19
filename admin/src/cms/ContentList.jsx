@@ -2,12 +2,30 @@ import { useEffect, useState } from "react";
 import { Link, useLocation, useParams, useSearchParams } from "react-router-dom";
 import { api, formatDateTime, query } from "../api.js";
 import NotFound from "../pages/NotFound.jsx";
+import { icons } from "../sections.js";
 import { Message, PageHead, Pagination, Pill, SearchBox, Select } from "../ui.jsx";
 import ui from "../ui.module.css";
 import { SITE_URL, collectionTypes, singular, stateOf } from "./types.js";
 import styles from "./ContentList.module.css";
 
 const icon = (name) => `${import.meta.env.BASE_URL}icons/${name}.svg`;
+
+// One list column's value: a category pill, lines with icons (date, time, venue), or plain text.
+function Cell({ column, summary }) {
+  if (column.lines) {
+    const lines = column.lines(summary).filter(([, text]) => text);
+    if (!lines.length) return "—";
+    return lines.map(([name, text]) => (
+      <span key={name} className={styles.iconLine}>
+        <img src={icons[name]} alt="" width="16" height="16" />
+        {text}
+      </span>
+    ));
+  }
+  const value = column.value(summary);
+  if (column.pill) return value ? <span className={styles.category}>{value}</span> : null;
+  return value || "—";
+}
 const statuses = [
   { value: "draft", label: "Draft" },
   { value: "scheduled", label: "Scheduled" },
@@ -130,7 +148,7 @@ export default function ContentList() {
                   </td>
                   {meta.columns.map((c) => (
                     <td key={c.label} data-label={c.label}>
-                      {c.pill ? c.value(d.summary) && <span className={styles.category}>{c.value(d.summary)}</span> : c.value(d.summary) || "—"}
+                      <Cell column={c} summary={d.summary} />
                     </td>
                   ))}
                   <td data-label="Status">

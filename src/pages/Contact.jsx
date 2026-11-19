@@ -134,14 +134,14 @@ export default function Contact() {
                 </p>
               </div>
               <div className={styles.donate}>
-                <h3>DONATION to THE FEDERATION</h3>
+                <h3>DONATION TO THE FEDERATION</h3>
                 <p>
-                  The Cheque/DD is to be drawn in favour of FTCCI payble at Hyderabad.
+                  The Cheque/DD is to be drawn in favour of FTCCI payable at Hyderabad.
                   <br />
-                  For Neft/RTGS : FTCCI, SBI, Bazarghat (Br), Hyderabad
+                  For NEFT/RTGS: FTCCI, SBI, Bazarghat (Br), Hyderabad
                 </p>
                 <p className={styles.razor}>
-                  Through Razor Pay Payment Gateway :{" "}
+                  Through Razorpay Payment Gateway:{" "}
                   <a href="https://rzp.io/rzp/donationtoftcci" target="_blank" rel="noreferrer">https://rzp.io/rzp/donationtoftcci</a>
                 </p>
               </div>

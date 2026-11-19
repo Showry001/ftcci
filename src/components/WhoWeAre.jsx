@@ -1,7 +1,8 @@
+import FadeSlides from "./FadeSlides.jsx";
 import Img from "./Img.jsx";
 import styles from "./WhoWeAre.module.css";
 
-export default function WhoWeAre({ image, photo }) {
+export default function WhoWeAre({ image, photos }) {
   return (
     <section className={styles.section} id="about" aria-labelledby="who-title" data-edit="home.whoWeAre">
       <Img className={styles.bg} media={image} alt="" aria-hidden="true" loading="eager" sizes="(min-width: 1200px) 1240px, 100vw" />
@@ -29,7 +30,7 @@ export default function WhoWeAre({ image, photo }) {
           </div>
         </div>
         <figure className={styles.media}>
-          <Img media={photo} sizes="(min-width: 1200px) 560px, 100vw" />
+          <FadeSlides className={styles.photo} photos={photos} sizes="(min-width: 1200px) 560px, 100vw" />
           <figcaption className={styles.quote}>
             <span className={styles.quoteLabel}>Member Voice</span>
             <blockquote>

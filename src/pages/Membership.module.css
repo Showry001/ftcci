@@ -32,6 +32,22 @@
   background: var(--white);
   border: 1px solid #e6e2d8;
   border-radius: var(--radius-lg);
+  transition: transform var(--dur-hover) var(--ease-out), box-shadow var(--dur-hover) var(--ease-out),
+    border-color var(--dur-hover) var(--ease-out), background-color var(--dur-hover) var(--ease-out);
+}
+/* Hover highlight: the card lifts a little, takes a gold edge and a soft shadow. */
+@media (hover: hover) {
+  .pillars li:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold-500);
+    background: #fffcf5;
+    box-shadow: 0 14px 30px rgba(11, 27, 51, 0.1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pillars li:hover {
+    transform: none;
+  }
 }
 .pillarNo {
   display: block;

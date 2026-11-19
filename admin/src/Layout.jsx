@@ -65,10 +65,6 @@ function Shell() {
     <SummaryContext.Provider value={{ summary, refresh }}>
       <div className={styles.shell}>
         <aside id="admin-menu" className={styles.sidebar} data-open={menuOpen || undefined}>
-          <div className={styles.brand}>
-            <img src={`${import.meta.env.BASE_URL}logo.png`} alt="FTCCI emblem" width="60" height="75" />
-            <p>The Federation of Telangana Chambers of Commerce and Industry</p>
-          </div>
           <nav aria-label="Admin sections">
             <NavList items={[{ to: "/", end: true, label: "Dashboard", icon: navIcon("nav-dashboard") }]} />
             <p className={styles.groupLabel}>Website content</p>
@@ -111,6 +107,14 @@ function Shell() {
               <span aria-hidden="true" />
               <span className="visually-hidden">Menu</span>
             </button>
+            <Link to="/" className={styles.brand}>
+              <img src={`${import.meta.env.BASE_URL}logo.png`} alt="FTCCI emblem" width="60" height="75" />
+              <span>
+                The Federation of Telangana Chambers
+                <br />
+                of Commerce and Industry
+              </span>
+            </Link>
             {summary?.failedEmails > 0 && (
               <p className={styles.alert} role="status">
                 {summary.failedEmails} email{summary.failedEmails > 1 ? "s" : ""} could not be sent. Open the submission to retry.

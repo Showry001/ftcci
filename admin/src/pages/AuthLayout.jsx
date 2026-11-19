@@ -13,7 +13,11 @@ export default function AuthLayout({ title, intro, children }) {
       <img className={`${styles.circle} ${styles.circleBottom2}`} src={asset("auth/circle-bottom-2.svg")} alt="" width="913" height="977" />
       <div className={styles.brand}>
         <img src={asset("logo.png")} alt="FTCCI emblem" width="70" height="75" />
-        <p>The Federation of Telangana Chambers of Commerce and Industry</p>
+        <p>
+          The Federation of Telangana Chambers
+          <br />
+          of Commerce and Industry
+        </p>
       </div>
       <main className={styles.main}>
         <div className={styles.welcome}>

@@ -206,9 +206,13 @@
   line-height: 19.8px;
   color: #e4e4e4;
 }
+/* Numbered lists keep the browser's 40px indent unless reset (the global reset covers only ul). */
 .advList {
   flex-shrink: 0;
   width: 400px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -339,6 +343,8 @@
 }
 .stepRow {
   margin: 55px auto 0;
+  padding: 0;
+  list-style: none;
   max-width: 1120px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -501,21 +507,24 @@
   flex-wrap: wrap;
   gap: 8px;
 }
+/* Unselected filters are outlined buttons, so they read as buttons rather than plain text. */
 .filters button {
-  padding: 6px 14px;
-  border: 0;
+  padding: 5px 13px;
+  border: 1px solid #cfd5df;
   border-radius: 6px;
-  background: transparent;
+  background: var(--white);
   font-weight: 500;
   font-size: 16px;
   color: #0c1931;
-  transition: background-color 0.15s, color 0.15s;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
 }
 .filters button:hover {
+  border-color: var(--navy-900);
   background: #f1f2f5;
 }
 .filters .filterOn,
 .filters .filterOn:hover {
+  border-color: var(--navy-900);
   background: var(--navy-900);
   color: var(--white);
 }
@@ -886,7 +895,7 @@
   .stepRow {
     margin-top: 36px;
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 48px;
   }
   .stepRow li:not(:last-child)::after {
     display: none;
@@ -907,7 +916,7 @@
     padding: 56px 0 48px;
   }
   .filters button {
-    padding: 6px 10px;
+    padding: 5px 9px;
     font-size: 14px;
   }
   .search {

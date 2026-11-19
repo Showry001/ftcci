@@ -1,12 +1,18 @@
+import { useState } from "react";
 import { Link } from "react-router";
 import { assets } from "../ui/assets.js";
 import Img, { CoverImage } from "./Img.jsx";
-import useMarquee from "./useMarquee.js";
 import Dots from "./Dots.jsx";
 import styles from "./Venues.module.css";
 
+const PER_VIEW = 3;
+
 export default function Venues({ highlights, featured, venues }) {
-  const m = useMarquee(venues.length);
+  // Three halls at a time. The strip stays still; the dots move it to the next three.
+  const pages = Math.ceil(venues.length / PER_VIEW);
+  const [page, setPage] = useState(0);
+  const current = Math.min(page, Math.max(0, pages - 1));
+  const first = Math.min(current * PER_VIEW, Math.max(0, venues.length - PER_VIEW));
   return (
     <section className={`${styles.section} desktop-only`} id="venues" aria-labelledby="venues-title" data-edit="home.halls">
       <div className="container">
@@ -32,10 +38,10 @@ export default function Venues({ highlights, featured, venues }) {
           <Img className={styles.featured} media={featured} sizes="(min-width: 1200px) 600px, 100vw" />
         </div>
 
-        <div className={styles.track} ref={m.trackRef}>
-          <div className={styles.strip} ref={m.stripRef}>
-            {[...venues, ...venues].map((v, i) => (
-              <article key={i} className={styles.card} aria-hidden={i >= venues.length || undefined}>
+        <div className={styles.track}>
+          <div className={styles.strip} style={{ "--first": first }}>
+            {venues.map((v, i) => (
+              <article key={i} className={styles.card}>
                 <CoverImage media={v.image} alt={v.name} className={styles.photo} sizes="300px" />
                 <div className={styles.caption}>
                   <h3>{v.name}</h3>
@@ -45,7 +51,7 @@ export default function Venues({ highlights, featured, venues }) {
             ))}
           </div>
         </div>
-        <Dots count={m.pages} active={m.page} onSelect={m.goTo} tone="gold" label="Venue slides" />
+        <Dots count={pages} active={current} onSelect={setPage} tone="gold" label="Venue slides" />
       </div>
     </section>
   );

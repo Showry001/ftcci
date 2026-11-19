@@ -440,6 +440,21 @@ input:checked + .box::after {
 .input::placeholder {
   color: var(--hb-placeholder);
 }
+.input[type="date"],
+.input[type="time"] {
+  min-width: 0;
+}
+/* iPhone and iPad: drop Safari's own date/time box (taller, centred text) so these match the other fields. */
+@supports (-webkit-touch-callout: none) {
+  .input[type="date"],
+  .input[type="time"] {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .input::-webkit-date-and-time-value {
+    text-align: left;
+  }
+}
 .input[aria-invalid="true"] {
   border-color: #b42318;
 }
@@ -475,9 +490,11 @@ input:checked + .box::after {
   line-height: 18px;
   color: rgba(26, 45, 90, 0.6);
 }
+/* minmax(0, …): phone date and time inputs have a wide built-in minimum that pushed the columns
+   into each other and past the dialog's edge. */
 .grid2 {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
   margin-top: 8px;
 }

@@ -280,8 +280,8 @@ function Editor({ type, id, meta }) {
 
   return (
     <>
-      <Link to={listPath} className={styles.back}>
-        ← All {meta.title.toLowerCase()}
+      <Link to={listPath} className={ui.backLink}>
+        <span aria-hidden="true">←</span> All {meta.title.toLowerCase()}
       </Link>
       <PageHead title={title} intro={intro} />
 

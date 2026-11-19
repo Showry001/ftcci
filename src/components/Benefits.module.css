@@ -38,10 +38,9 @@
   flex-shrink: 0;
   padding: 10px;
 }
-.media > img {
+.photo {
   width: 100%;
   aspect-ratio: 1200 / 912;
-  object-fit: cover;
   border-radius: 10px;
 }
 .badge {
@@ -171,5 +170,21 @@
     width: auto;
     min-width: 0;
     white-space: normal;
+  }
+}
+
+/* Figma animations page (membership benefits, 1092:27607): when the pointer is over the section the
+   photo slides right and the text moves in to meet it (0.5 s, ease out). The distances are scaled to
+   this layout's 60px gap so the two never touch. */
+@media (min-width: 1200px) and (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .media,
+  .copy {
+    transition: transform 0.5s ease-out;
+  }
+  .section:hover .media {
+    transform: translateX(30px);
+  }
+  .section:hover .copy {
+    transform: translateX(-12px);
   }
 }

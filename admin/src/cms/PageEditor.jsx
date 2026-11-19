@@ -423,8 +423,8 @@ function SectionPanel({ section, doc, data, errors, media, visible, device, busy
   const [showVersions, setShowVersions] = useState(false);
   return (
     <div className={styles.section}>
-      <button type="button" className={styles.back} onClick={onBack}>
-        ← All parts
+      <button type="button" className={ui.backLink} onClick={onBack}>
+        <span aria-hidden="true">←</span> All parts
       </button>
       <h1 className={styles.panelTitle}>{section.label}</h1>
       {section.note && <p className={styles.hint}>{section.note}</p>}

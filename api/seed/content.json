@@ -61,10 +61,20 @@
     "$asset": "about/who-we-are-bg.png",
     "alt": ""
    },
-   "whoWeArePhoto": {
-    "$asset": "about/members-networking.png",
-    "alt": "FTCCI members networking at a chamber event"
-   },
+   "whoWeArePhotos": [
+    {
+     "image": {
+      "$asset": "about/members-networking.png",
+      "alt": "FTCCI members networking at a chamber event"
+     }
+    },
+    {
+     "image": {
+      "$asset": "about/msme-spark-3.jpg",
+      "alt": "FTCCI at MSME Spark 3.0 on aerospace and defence manufacturing, Hyderabad"
+     }
+    }
+   ],
    "venueHighlights": [
     "State-of-the-art infrastructure",
     "Centrally located in Hyderabad",
@@ -155,10 +165,14 @@
     "$asset": "benefits/benefits-bg.png",
     "alt": ""
    },
-   "benefitsPhoto": {
-    "$asset": "benefits/business-summit.png",
-    "alt": "FTCCI leaders at the Business Summit"
-   },
+   "benefitsPhotos": [
+    {
+     "image": {
+      "$asset": "benefits/business-summit.png",
+      "alt": "FTCCI leaders at the Business Summit"
+     }
+    }
+   ],
    "benefits": [
     {
      "label": "Business Networking",
@@ -185,6 +199,19 @@
      "icon": "awards"
     }
    ],
+   "privilegeCard": {
+    "eyebrow": "Exclusive Benefits",
+    "title": "FTCCI Privilege Card",
+    "text": "Enjoy exclusive savings and benefits across healthcare, diagnostics, pharmacy, wellness, dining and lifestyle services through FTCCI's growing partner network."
+   },
+   "privilegeCardPrimary": {
+    "label": "Apply Now",
+    "href": "/privilege-card"
+   },
+   "privilegeCardSecondary": {
+    "label": "Know More",
+    "href": "/privilege-card#benefits"
+   },
    "privilegeCardImage": {
     "$asset": "card/privilege-card.png",
     "alt": "The FTCCI Privilege Card"
@@ -401,39 +428,21 @@
      "name": "Mr. Srinivas Garimella",
      "role": "Senior Vice President, FTCCI",
      "image": {
-      "$asset": "leadership/senior-vice-president.png",
-      "crop": {
-       "x": 0.05085354896675652,
-       "y": 0.07384857818207866,
-       "w": 0.8984725965858041,
-       "h": 0.7162810686913544
-      }
+      "$asset": "leadership/senior-vice-president.png"
      }
     },
     {
      "name": "Mr. K. K. Maheshwari",
      "role": "President, FTCCI",
      "image": {
-      "$asset": "leadership/president.png",
-      "crop": {
-       "x": 0,
-       "y": 0.0009701887458105487,
-       "w": 1,
-       "h": 0.8819897689186806
-      }
+      "$asset": "leadership/president.png"
      }
     },
     {
      "name": "Mr. Vinod Kumar Agarwal",
      "role": "Vice President, FTCCI",
      "image": {
-      "$asset": "leadership/vice-president.png",
-      "crop": {
-       "x": 0.012807377049180326,
-       "y": 0.020203590022534777,
-       "w": 0.8538251366120219,
-       "h": 0.777061154712876
-      }
+      "$asset": "leadership/vice-president.png"
      }
     }
    ],
@@ -1062,7 +1071,7 @@
       "Resolution of the Board of Directors on letterhead (format in the application)",
       "Certificate of Incorporation copy",
       "IEC (optional)",
-      "SSI / MSME / Udyog Aadhar (optional)"
+      "SSI / MSME / Udyog Aadhaar (optional)"
      ]
     },
     {
@@ -1084,7 +1093,7 @@
       "Photograph",
       "Procuration by firm, Board resolution, or self-declaration by individual on letterhead (prescribed format)",
       "IEC (optional)",
-      "SSI / MSME / Udyog Aadhar (optional)"
+      "SSI / MSME / Udyog Aadhaar (optional)"
      ]
     }
    ],

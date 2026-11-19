@@ -187,20 +187,6 @@
 .section > a {
   margin-top: 18px;
 }
-.back {
-  margin: -6px 0 12px -8px;
-  padding: 6px 8px;
-  border: 0;
-  border-radius: 6px;
-  background: none;
-  font-weight: 600;
-  font-size: 13px;
-  color: var(--muted-2);
-}
-.back:hover {
-  background: var(--head-row);
-  color: var(--navy);
-}
 /* The fields lay out in one column in this narrow panel (Fields.module.css container query). */
 .fields {
   container-type: inline-size;

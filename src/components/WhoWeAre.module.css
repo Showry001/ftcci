@@ -90,10 +90,9 @@
   flex-shrink: 0;
   padding-bottom: 70px;
 }
-.media > img {
+.photo {
   width: 100%;
   height: 320px;
-  object-fit: cover;
   border-radius: var(--radius-xl);
 }
 .quote {
@@ -138,7 +137,7 @@
   .media {
     width: 44%;
   }
-  .media > img {
+  .photo {
     height: auto;
     aspect-ratio: 548 / 320;
   }

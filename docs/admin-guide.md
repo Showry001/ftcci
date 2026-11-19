@@ -62,6 +62,8 @@ Every button that removes something asks you to confirm first.
 Good to know:
 
 - **The hero, the office bearers and the footer** can be edited wherever they appear. The footer is the same on every page, so changing it on one page changes it everywhere.
+- **Who We Are and Member Benefits** on the home page each take up to six photos. With more than one, they change one after another with a slow fade.
+- **The home page's Privilege Card** has its own label, heading, text and two buttons. A button shows only when it has both a label and a link.
 - **Events, news, publications and vacancies** are listed on some pages, but you add and edit them in their own sections. Clicking them in the page editor gives you a button to go there.
 - **"Unpublished changes"** at the top means something on this page hasn't been published yet.
 - **If Publish stops because something is missing,** the part with the problem opens, and the field is marked in red.

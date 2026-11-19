@@ -235,7 +235,10 @@
   .heroText {
     padding: 48px var(--gutter);
   }
+  /* Full width under the text: a grid item with an aspect ratio would otherwise shrink to a corner. */
   .heroImg {
+    justify-self: stretch;
+    width: 100%;
     min-height: 0;
     aspect-ratio: 16 / 9;
   }

@@ -83,7 +83,9 @@ export default function SubmissionDetail() {
 
   return (
     <>
-      <Link to={`/submissions/${type}`} className={styles.back}>← {section.title}</Link>
+      <Link to={`/submissions/${type}`} className={ui.backLink}>
+        <span aria-hidden="true">←</span> {section.title}
+      </Link>
       <PageHead title={s.reference} intro={`${forms[section.form].title} from ${s.name}, received ${formatDateTime(s.created_at)}`} />
 
       <div className={styles.grid}>

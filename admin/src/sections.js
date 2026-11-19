@@ -25,4 +25,5 @@ export const icons = {
   next: icon("page-next"),
   calendar: icon("calendar"),
   clock: icon("clock"),
+  pin: icon("pin"),
 };

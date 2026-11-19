@@ -1,0 +1,26 @@
+/* The first photo sits in the flow and gives the box its size; the others lie on top of it. */
+.slides {
+  position: relative;
+  overflow: hidden;
+}
+.slides > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity var(--fade) ease-in-out;
+}
+.slides > img + img {
+  position: absolute;
+  inset: 0;
+}
+.slides > img.active {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slides > img {
+    transition: none;
+  }
+}

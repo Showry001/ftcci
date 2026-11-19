@@ -55,7 +55,7 @@ export default function Home() {
         </div>
         <div className={`desktop-only ${styles.whoBand}`}>
           <div className={styles.topStack}>
-            <WhoWeAre image={home.whoWeAreImage} photo={home.whoWeArePhoto} />
+            <WhoWeAre image={home.whoWeAreImage} photos={home.whoWeArePhotos} />
           </div>
         </div>
         <QuickActions actions={home.quickActions} />
@@ -65,8 +65,8 @@ export default function Home() {
         <Venues highlights={home.venueHighlights} featured={home.venueFeatured} venues={home.venues} />
         <News articles={articles} />
         <MobileUpdates articles={articles} publications={publications} reviews={reviews} />
-        <Benefits image={home.benefitsImage} photo={home.benefitsPhoto} benefits={home.benefits} />
-        <PrivilegeCard image={home.privilegeCardImage} />
+        <Benefits image={home.benefitsImage} photos={home.benefitsPhotos} benefits={home.benefits} />
+        <PrivilegeCard image={home.privilegeCardImage} copy={home.privilegeCard} primary={home.privilegeCardPrimary} secondary={home.privilegeCardSecondary} />
     </>
   );
 }

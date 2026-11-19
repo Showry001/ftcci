@@ -1,16 +1,4 @@
 /* Editor layout from the Figma "Add New Event" screen (2538:44201): form card with a 479px side panel. */
-.back {
-  display: inline-block;
-  margin-bottom: 18px;
-  font-weight: 500;
-  font-size: 14px;
-  color: var(--muted-2);
-  text-decoration: none;
-}
-.back:hover {
-  color: var(--navy);
-  text-decoration: underline;
-}
 .layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(300px, 479px);

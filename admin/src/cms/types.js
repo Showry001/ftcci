@@ -17,10 +17,11 @@ export const collectionTypes = {
     addIntro: "Fill in the event details below. You can save it as a draft and publish it later.",
     path: (doc) => `/events/${doc.slug}`,
     preview: true,
+    // `lines` columns show each value on its own line with an icon (calendar, clock, pin in sections.js).
     columns: [
       { label: "Category", value: (d) => d.category, pill: true },
-      { label: "Date & Time", value: (d) => [day(d.date), d.startTime].filter(Boolean).join(" · ") },
-      { label: "Venue", value: (d) => d.venue },
+      { label: "Date & Time", lines: (d) => [["calendar", day(d.date)], ["clock", d.startTime]] },
+      { label: "Venue", lines: (d) => [["pin", d.venue]] },
     ],
     sub: (d) => d.subtitle,
   },

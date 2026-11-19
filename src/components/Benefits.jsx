@@ -1,8 +1,9 @@
 import { pickIcons } from "../ui/assets.js";
+import FadeSlides from "./FadeSlides.jsx";
 import Img from "./Img.jsx";
 import styles from "./Benefits.module.css";
 
-export default function Benefits({ image, photo, benefits }) {
+export default function Benefits({ image, photos, benefits }) {
   return (
     <section className={`${styles.section} desktop-only`} id="membership" aria-labelledby="benefits-title" data-edit="home.benefits">
       <div className={styles.bg} aria-hidden="true">
@@ -11,7 +12,7 @@ export default function Benefits({ image, photo, benefits }) {
       <div className={styles.gradient} aria-hidden="true" />
       <div className={styles.inner}>
         <figure className={styles.media}>
-          <Img media={photo} sizes="(min-width: 1200px) 600px, 100vw" />
+          <FadeSlides className={styles.photo} photos={photos} sizes="(min-width: 1200px) 600px, 100vw" />
           <figcaption className={styles.badge}>
             <span className={styles.badgeEyebrow}>HYDERABAD CHAMBER OF COMMERCE</span>
             <span className={styles.badgeTitle}>BUSINESS SUMMIT 2024</span>

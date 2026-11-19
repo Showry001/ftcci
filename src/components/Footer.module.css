@@ -7,9 +7,10 @@
   width: min(1130.4px, 100% - 2 * var(--gutter));
   margin-inline: auto;
   display: grid;
-  grid-template-columns: 246.6px 198px 246.6px 246.6px;
+  /* The first column is wide enough for the two-line name beside the logo. */
+  grid-template-columns: 310px 198px 246.6px 246.6px;
   justify-content: space-between;
-  gap: 48px;
+  gap: 40px;
   min-height: 316px;
 }
 .col h4 {
@@ -34,18 +35,13 @@
   object-fit: cover;
   flex-shrink: 0;
 }
-.brandName {
-  font-family: var(--font-nav);
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 20px;
-  color: var(--white);
-}
+/* The name on two lines, in bold, as in the header. */
 .brandFull {
-  margin-top: 5px;
-  width: 226px;
-  font-size: 11px;
-  line-height: 15px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11.5px;
+  line-height: 16px;
+  white-space: nowrap;
   color: var(--white);
 }
 .address {
@@ -194,15 +190,12 @@
 
 @media (max-width: 1199px) {
   .grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: minmax(236px, 1.25fr) repeat(3, minmax(0, 1fr));
     gap: 28px;
   }
   .brand {
     flex-direction: column;
     align-items: flex-start;
-  }
-  .brandFull {
-    width: auto;
   }
   .social {
     flex-wrap: wrap;
@@ -252,25 +245,15 @@
     align-items: center;
     gap: 8px;
   }
-  /* Logo-Align: the emblem is cropped to its gear (114×98, cover) */
+  /* Logo-Align: the emblem is cropped to its gear (cover), sized so the two-line name fits beside it */
   .brand > img {
-    width: 114px;
-    height: 98px;
+    width: 56px;
+    height: 48px;
   }
-  .brandName {
-    display: none;
-  }
-  .brand > div {
-    min-width: 0;
-  }
+  /* Fills the space beside the logo (screen minus page padding and logo), up to 12px. */
   .brandFull {
-    margin-top: 0;
-    width: auto;
-    max-width: 200px; /* Figma's 188px box assumes Neue Montreal; the Inter fallback needs 200px for the same 3 lines */
-    font-family: var(--font-display);
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 20px;
+    font-size: min(12px, calc((100vw - 128px) / 21));
+    line-height: 1.3;
   }
   .tagline {
     font-size: 13px;

@@ -98,10 +98,10 @@ export const quickLinks = [
   { label: "Publications", to: "/knowledge/publications" },
   { label: "Committees", to: "/services#expert-committee" },
   { label: "Media Gallery", to: "/media" },
-  { label: "Career", to: "/careers" },
+  { label: "Careers", to: "/careers" },
 ];
 
-export const legalLinks = ["Privacy Policy", "Terms of Use", "Sitemap"];
+export const legalLinks = ["Privacy Policy", "Terms & Conditions", "Sitemap"];
 
 export const subNav = {
   about: [
