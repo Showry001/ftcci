@@ -1,9 +1,20 @@
-/* Figma "Log in page" (2538:43752): welcome text beside a white card, soft circles behind. */
+/* Figma "Log in page" (2538:43752): welcome text beside a white card, soft circles behind.
+   On desktop and tablet the whole page fits one screen: --t runs from 0px on a short screen to 1px on a
+   tall one, and the card's spacing, fields and headings grow with it ("16px + 12 * t" is 16px at the
+   smallest and 28px, the Figma size, at full height). Phones keep the full sizes and scroll. */
 .page {
+  --vh: 100vh;
+  --t: clamp(0px, (var(--vh) - 600px) / 260, 1px);
   position: relative;
-  min-height: 100vh;
+  min-height: var(--vh);
   overflow: hidden;
   background: #f9fcfe;
+}
+/* The screen height with a tablet's address bar showing. */
+@supports (height: 100svh) {
+  .page {
+    --vh: 100svh;
+  }
 }
 .circle {
   position: absolute;
@@ -17,13 +28,14 @@
   left: calc(50% + 553px);
   top: -237px;
 }
+/* Kept the same distance from the bottom as in the 1024px-tall Figma frame, so they show on short screens too. */
 .circleBottom {
   left: calc(50% - 1231px);
-  top: 700px;
+  bottom: -653px;
 }
 .circleBottom2 {
   left: calc(50% - 1260px);
-  top: 723px;
+  bottom: -676px;
 }
 
 .brand {
@@ -57,8 +69,8 @@
   align-items: center;
   justify-content: center;
   gap: 130px;
-  min-height: 100vh;
-  padding: 150px 40px 60px;
+  min-height: var(--vh);
+  padding: 24px 40px;
 }
 .welcome {
   width: 441px;
@@ -89,7 +101,7 @@
 
 .card {
   width: 607px;
-  padding: 72px 47px 72px;
+  padding: calc(32px + 40 * var(--t)) 47px;
   border: 1px solid #cecece;
   border-radius: 13px;
   background: #fff;
@@ -97,12 +109,12 @@
 .card h2 {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 48px;
+  font-size: calc(36px + 12 * var(--t));
   line-height: 1.2;
   color: #023e92;
 }
 .intro {
-  margin-top: 14px;
+  margin-top: calc(8px + 6 * var(--t));
   font-size: 16px;
   line-height: 24px;
   color: #5c7290;
@@ -111,7 +123,7 @@
 .methods {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin-top: 28px;
+  margin-top: calc(16px + 12 * var(--t));
   padding: 4px;
   border: 1px solid #cecece;
   border-radius: 8px;
@@ -133,30 +145,30 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  margin-top: 36px;
+  gap: calc(16px + 16 * var(--t));
+  margin-top: calc(20px + 16 * var(--t));
 }
 .fieldGroup {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: calc(6px + 4 * var(--t));
 }
 .field {
   display: flex;
   flex-direction: column;
-  gap: 19px;
+  gap: calc(8px + 11 * var(--t));
 }
 .field label {
   font-weight: 600;
-  font-size: 20px;
+  font-size: calc(16px + 4 * var(--t));
   color: #566e8e;
 }
 .inputWrap {
   display: flex;
   align-items: center;
-  gap: 22px;
-  height: 74px;
-  padding: 0 24px 0 35px;
+  gap: calc(14px + 8 * var(--t));
+  height: calc(52px + 22 * var(--t));
+  padding: 0 24px 0 calc(20px + 15 * var(--t));
   border: 0.5px solid #3f3f3f;
   border-radius: 6px;
   background: #fff;
@@ -175,7 +187,7 @@
   border: 0;
   outline: 0;
   background: transparent;
-  font-size: 20px;
+  font-size: calc(16px + 4 * var(--t));
   color: var(--navy);
 }
 .inputWrap input::placeholder,
@@ -199,13 +211,13 @@
   background: var(--field);
 }
 .codeInput {
-  height: 74px;
+  height: calc(56px + 18 * var(--t));
   padding: 0 24px;
   border: 0.5px solid #3f3f3f;
   border-radius: 6px;
   font-variant-numeric: tabular-nums;
   font-weight: 600;
-  font-size: 30px;
+  font-size: calc(24px + 6 * var(--t));
   letter-spacing: 0.4em;
   color: var(--navy);
 }
@@ -236,18 +248,18 @@
   gap: 8px 24px;
 }
 .hint {
-  margin-top: -14px;
+  margin-top: calc(-6px - 8 * var(--t));
   font-size: 14px;
   line-height: 21px;
   color: #5c7290;
 }
 .submit {
-  height: 58px;
+  height: calc(50px + 8 * var(--t));
   border: 0;
   border-radius: 6px;
   background: var(--navy);
   font-weight: 600;
-  font-size: 20px;
+  font-size: calc(17px + 3 * var(--t));
   color: #fff;
 }
 .submit:hover:not(:disabled) {
@@ -285,12 +297,18 @@
   }
 }
 
-/* Tablet and phone: the welcome text sits above the card. */
+/* Tablet and phone: the welcome text sits above the card, so the card has less of the screen. */
 @media (max-width: 1023px) {
+  .page {
+    --t: clamp(0px, (var(--vh) - 840px) / 260, 1px);
+  }
+  .brand {
+    top: 32px;
+  }
   .main {
     flex-direction: column;
-    gap: 32px;
-    padding: 150px 24px 48px;
+    gap: 24px;
+    padding: 131px 24px 24px;
   }
   .welcome {
     width: min(607px, 100%);
@@ -308,6 +326,9 @@
   }
 }
 @media (max-width: 599px) {
+  .page {
+    --t: 1px;
+  }
   .brand {
     left: 16px;
     top: 20px;
